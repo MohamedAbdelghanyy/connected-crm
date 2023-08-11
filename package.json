@@ -2,7 +2,10 @@
   "name": "connected-crm",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://mohamedabdelghanyy.github.io/connected-crm",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -28,6 +31,7 @@
     "date-fns": "^2.30.0",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.13",
+    "gh-pages": "^6.0.0",
     "lucide-react": "^0.263.1",
     "next": "13.4.13",
     "postcss": "8.4.27",
