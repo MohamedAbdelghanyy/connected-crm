@@ -1,11 +1,7 @@
 "use client"
 
 import * as React from "react"
-import {
-  CaretSortIcon,
-  CheckIcon,
-  PlusCircledIcon,
-} from "@radix-ui/react-icons"
+
 
 import { cn } from "@/lib/utils"
 import {
@@ -46,6 +42,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select"
+import { CheckIcon, PlusCircleIcon, SortAscIcon } from "lucide-react"
 
 const groups = [
   {
@@ -104,7 +101,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
               <AvatarFallback>SC</AvatarFallback>
             </Avatar>
             {selectedTeam.label}
-            <CaretSortIcon className="ml-auto h-4 w-4 shrink-0 opacity-50" />
+            <SortAscIcon className="ml-auto h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-[200px] p-0">
@@ -155,7 +152,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
                       setShowNewTeamDialog(true)
                     }}
                   >
-                    <PlusCircledIcon className="mr-2 h-5 w-5" />
+                    <PlusCircleIcon className="mr-2 h-5 w-5" />
                     Create Team
                   </CommandItem>
                 </DialogTrigger>
