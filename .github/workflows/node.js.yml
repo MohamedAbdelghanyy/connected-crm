@@ -31,8 +31,9 @@ jobs:
     - run: npm touch out/.nojekyll
     
     - name: Deploy with gh-pages
-      with:
-        folder: out
+      uses: JamesIves/github-pages-deploy-action@4.4.0
+        with:
+          folder: out
       run: |
         git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
         npm run deploy -- -u "github-actions-bot <support+actions@github.com>"
