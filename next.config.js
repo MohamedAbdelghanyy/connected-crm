@@ -6,7 +6,8 @@ let assetPrefix = ''
 let basePath = '/'
 
 if (isGithubActions) {
-  const repo = process.env.GITHUB_REPOSITORY.replace(/.*?\//, '')
+  repoURL = "https://mohamedabdelghanyy.github.io/connected-crm/";
+  const repo = repoURL.replace(/.*?\//, '')
 
   assetPrefix = `/${repo}/`
   basePath = `/${repo}`
