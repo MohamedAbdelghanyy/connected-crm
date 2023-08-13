@@ -96,7 +96,7 @@ export default function AddCustomer({
             <div className="space-y-4 py-2 pb-4">
               <div className="space-y-2">
                 <Label htmlFor="name">Name</Label>
-                <Input id="name" placeholder="Acme Inc." />
+                <Input id="name" placeholder="Enter your name" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
