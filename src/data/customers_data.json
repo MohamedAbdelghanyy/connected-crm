@@ -1,0 +1,23 @@
+[
+  {
+    "id": "USR-123",
+    "name": "Mohamed Abdelghany",
+    "email": "mohamedabdelghanyy@gmail.com",
+    "phone": "+201115696965",
+    "status": "active"
+  },
+  {
+    "id": "USR-129",
+    "name": "Soha Elhadary",
+    "email": "soha.el.hadary@gmail.com",
+    "phone": "+201224466880",
+    "status": "banned"
+  },
+  {
+    "id": "USR-134",
+    "name": "Khaled Afify",
+    "email": "khaled.afify@gmail.com",
+    "phone": "+201234567890",
+    "status": "active"
+  }
+]

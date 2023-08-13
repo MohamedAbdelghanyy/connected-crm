@@ -2,9 +2,9 @@ import { redirect } from "next/navigation"
 
 import { EmptyPlaceholder } from "@/components/empty-placeholder"
 import { DashboardHeader } from "@/components/header"
-import { PostCreateButton } from "@/components/post-create-button"
-import { PostItem } from "@/components/post-item"
+import { PostCreateButton } from "@/components/buttons/post-create-button"
 import { DashboardShell } from "@/components/shell"
+import { CustomerAddButton } from "@/components/buttons/customer-add-button"
 
 export const metadata = {
   title: "Dashboard",
@@ -14,8 +14,8 @@ export default async function DashboardPage() {
 
   return (
     <DashboardShell>
-      <DashboardHeader heading="Posts" text="Create and manage posts.">
-        <PostCreateButton />
+      <DashboardHeader heading="Customers" text="Manage your customers">
+        <CustomerAddButton />
       </DashboardHeader>
       <div>
           {/*<div className="divide-y divide-border rounded-md border">
@@ -23,11 +23,11 @@ export default async function DashboardPage() {
           </div>*/}
           <EmptyPlaceholder>
             <EmptyPlaceholder.Icon name="post" />
-            <EmptyPlaceholder.Title>No posts created</EmptyPlaceholder.Title>
+            <EmptyPlaceholder.Title>No Customers</EmptyPlaceholder.Title>
             <EmptyPlaceholder.Description>
-              You don&apos;t have any posts yet. Start creating content.
+              You don&apos;t have any customer yet.
             </EmptyPlaceholder.Description>
-            <PostCreateButton variant="outline" />
+            <CustomerAddButton variant="outline" />
           </EmptyPlaceholder>
       </div>
     </DashboardShell>
