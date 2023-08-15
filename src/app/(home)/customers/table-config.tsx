@@ -6,21 +6,7 @@ import { Checkbox } from "../../../components/ui/checkbox"
 
 import { DataTableColumnHeader } from "../../../components/table/data-table-column-header"
 import { ActionListProps, DataTableRowActions } from "../../../components/table/data-table-row-actions"
-import { ToolbarProps } from "@/components/table/data-table-toolbar"
-
-// Options
-const statuses = [
-  {
-    value: "active",
-    label: "Active",
-    //icon: CheckCircleIcon,
-  },
-  {
-    value: "banned",
-    label: "Banned",
-    //icon: BanIcon,
-  },
-]
+import { ToolbarProps, ToolbarSearchListProps } from "@/components/table/data-table-toolbar"
 
 interface CustomersProps {
   id: string
@@ -45,11 +31,44 @@ const customersActionList : ActionListProps[] = [
   }
 ]
 
+// Options
+const statuses = [
+  {
+    value: "active",
+    label: "Active",
+    //icon: CheckCircleIcon,
+  },
+  {
+    value: "banned",
+    label: "Banned",
+    //icon: BanIcon,
+  },
+]
+
 export const customersTableToolbar : ToolbarProps[] = [
   {
     key: "status",
     title: "Status",
     options: statuses,
+  }
+]
+
+export const customersTableToolbarSearchList : ToolbarSearchListProps[] = [
+  {
+    key: 'id',
+    title: 'ID'
+  },
+  {
+    key: 'name',
+    title: 'Name'
+  },
+  {
+    key: 'email',
+    title: 'Email'
+  },
+  {
+    key: 'phone',
+    title: 'Phone'
   }
 ]
 

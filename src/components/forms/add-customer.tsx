@@ -12,19 +12,19 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "./ui/dialog"
-import { Input } from "./ui/input"
-import { Label } from "./ui/label"
+} from "../ui/dialog"
+import { Input } from "../ui/input"
+import { Label } from "../ui/label"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "./ui/select"
+} from "../ui/select"
 import { toast } from "@/components/ui/use-toast"
 import { Icons } from "@/components/icons"
-import { Button } from "./ui/button"
+import { Button } from "../ui/button"
 import { ButtonProps, buttonVariants } from "@/components/ui/button"
 
 
@@ -89,7 +89,7 @@ export default function AddCustomer({
           <DialogHeader>
             <DialogTitle>Create Customer</DialogTitle>
             <DialogDescription>
-              Add a new customer.
+              Enter customer details
             </DialogDescription>
           </DialogHeader>
           <div>

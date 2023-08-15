@@ -11,7 +11,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
 } from "../ui/dropdown-menu"
-import { EyeIcon } from "lucide-react"
+import { Settings2 } from "lucide-react"
 
 interface DataTableViewOptionsProps<TData> {
   table: Table<TData>
@@ -26,9 +26,9 @@ export function DataTableViewOptions<TData>({
         <Button
           variant="outline"
           size="sm"
-          className="ml-auto hidden h-8 lg:flex"
+          className="ml-2 hidden h-10 lg:flex"
         >
-          <EyeIcon className="mr-2 h-4 w-4" />
+          <Settings2 className="mr-2 h-4 w-4" />
           View
         </Button>
       </DropdownMenuTrigger>

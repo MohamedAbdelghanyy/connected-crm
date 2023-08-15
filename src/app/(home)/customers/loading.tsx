@@ -1,20 +1,32 @@
 import { DashboardHeader } from "@/components/header"
-import { PostCreateButton } from "@/components/buttons/post-create-button"
-import { PostItem } from "@/components/post-item"
 import { DashboardShell } from "@/components/shell"
+import AddCustomer from "@/components/forms/add-customer"
+import { Skeleton } from "@/components/ui/skeleton"
 
-export default function DashboardLoading() {
+function ItemSkeleton() {
   return (
-    <DashboardShell>
+    <div className="p-4">
+      <div className="space-y-3">
+        <Skeleton className="h-5 w-2/5" />
+        <Skeleton className="h-4 w-4/5" />
+      </div>
+    </div>
+  )
+}
+
+export default function CustomersLoading() {
+  return (
+    <DashboardShell className="mb-1">
       <DashboardHeader heading="Customers" text="Manage your customers">
-        <PostCreateButton />
+        <AddCustomer />
       </DashboardHeader>
       <div className="divide-border-200 divide-y rounded-md border">
-        <PostItem.Skeleton />
-        <PostItem.Skeleton />
-        <PostItem.Skeleton />
-        <PostItem.Skeleton />
-        <PostItem.Skeleton />
+        <ItemSkeleton />
+        <ItemSkeleton />
+        <ItemSkeleton />
+        <ItemSkeleton />
+        <ItemSkeleton />
+        <ItemSkeleton />
       </div>
     </DashboardShell>
   )

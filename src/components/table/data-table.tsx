@@ -26,15 +26,16 @@ import {
 } from "../ui/table"
 
 import { DataTablePagination } from "./data-table-pagination"
-import { DataTableToolbar, ToolbarProps } from "./data-table-toolbar"
+import { DataTableToolbar, ToolbarProps, ToolbarSearchListProps } from "./data-table-toolbar"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
   toolbar: ToolbarProps[]
+  toolbarSearchList: ToolbarSearchListProps[]
 }
 
-export function DataTable<TData, TValue>({columns,data, toolbar}: DataTableProps<TData, TValue>) {
+export function DataTable<TData, TValue>({columns, data, toolbar, toolbarSearchList}: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = React.useState({})
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({})
@@ -67,9 +68,9 @@ export function DataTable<TData, TValue>({columns,data, toolbar}: DataTableProps
 
   return (
     <div className="space-y-4">
-      <DataTableToolbar table={table} toolbar={toolbar} />
+      <DataTableToolbar table={table} toolbar={toolbar} toolbarSearchList={toolbarSearchList} />
       <div className="rounded-md border">
-        <Table>
+        <Table style={{position: "relative"}}>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>

@@ -5,11 +5,11 @@ import { EmptyPlaceholder } from "@/components/empty-placeholder"
 import { DashboardHeader } from "@/components/header"
 import { DashboardShell } from "@/components/shell"
 import { DataTable } from "@/components/table/data-table"
-import { customersTableColumns, customersTableToolbar } from "@/app/(home)/customers/table-config"
-import AddCustomer from "@/components/add-customer"
+import { customersTableColumns, customersTableToolbar, customersTableToolbarSearchList } from "@/app/(home)/customers/table-config"
+import AddCustomer from "@/components/forms/add-customer"
 
 export const metadata = {
-  title: "Dashboard",
+  title: "Customers",
 }
 
 async function getCustomers() {
@@ -31,7 +31,7 @@ export default async function CustomersPage() {
       </DashboardShell>
       <div className="m-2">
           {customers.length > 0 ? (
-            <DataTable data={customers} columns={customersTableColumns} toolbar={customersTableToolbar} />
+            <DataTable data={customers} columns={customersTableColumns} toolbar={customersTableToolbar} toolbarSearchList={customersTableToolbarSearchList} />
           ) : (<EmptyPlaceholder>
             <EmptyPlaceholder.Icon name="post" />
             <EmptyPlaceholder.Title>No Customers</EmptyPlaceholder.Title>

@@ -8,10 +8,17 @@ import { DataTableViewOptions } from "./data-table-view-options"
 
 import { DataTableFacetedFilter } from "./data-table-faceted-filter"
 import { LucideIcon, XCircleIcon } from "lucide-react"
+import { FilterInput } from "../filter-input"
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>
   toolbar: ToolbarProps[]
+  toolbarSearchList: ToolbarSearchListProps[]
+}
+
+export interface ToolbarSearchListProps {
+  key: string
+  title: string
 }
 
 export interface ToolbarProps {
@@ -27,20 +34,17 @@ export interface ToolbarProps {
 export function DataTableToolbar<TData>({
   table,
   toolbar,
+  toolbarSearchList
 }: DataTableToolbarProps<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0
 
   return (
     <div className="flex items-center justify-between">
       <div className="flex flex-1 items-center space-x-2">
-        <Input
-          placeholder="Filter..."
-          value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
-          onChange={(event) => {
-              table.getColumn("name")?.setFilterValue(event.target.value)
-            }
-          }
-          className="h-8 w-[150px] lg:w-[250px]"
+        <FilterInput
+          toolbarSearchList={toolbarSearchList}
+          table={table}
+          //className="h-8 w-[150px] lg:w-[250px]"
         />
         {toolbar.map((toolbarItem) => {
           table.getColumn(toolbarItem.key);
@@ -57,7 +61,7 @@ export function DataTableToolbar<TData>({
           <Button
             variant="ghost"
             onClick={() => table.resetColumnFilters()}
-            className="h-8 px-2 lg:px-3"
+            className="h-10 px-2 lg:px-3"
           >
             Reset
             <XCircleIcon className="ml-2 h-4 w-4" />
