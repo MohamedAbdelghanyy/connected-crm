@@ -1,14 +1,14 @@
 "use client"
 
-import * as React from "react"
 import Link from "next/link"
 import { useSelectedLayoutSegment } from "next/navigation"
+import * as React from "react"
 
-import { MainNavItem, SidebarNavItem } from "@/types"
-import { siteConfig } from "@/config/site"
-import { cn } from "@/lib/utils"
 import { Icons } from "@/components/icons"
 import { MobileNav } from "@/components/mobile-nav"
+import { siteConfig } from "@/config/site"
+import { cn } from "@/lib/utils"
+import { MainNavItem, SidebarNavItem } from "@/types"
 
 interface MainNavProps {
   items?: MainNavItem[]
@@ -19,6 +19,10 @@ interface MainNavProps {
 export function MainNav({ items, sideItems, children }: MainNavProps) {
   const segment = useSelectedLayoutSegment()
   const [showMobileMenu, setShowMobileMenu] = React.useState<boolean>(false)
+
+  const toggleMobileMenu = () => {
+    setShowMobileMenu(!showMobileMenu);
+  }
 
   return (
     <div className="flex gap-6 md:gap-10">
@@ -49,13 +53,13 @@ export function MainNav({ items, sideItems, children }: MainNavProps) {
       ) : null}
       <button
         className="flex items-center space-x-2 md:hidden"
-        onClick={() => setShowMobileMenu(!showMobileMenu)}
+        onClick={toggleMobileMenu}
       >
         {showMobileMenu ? <Icons.close /> : <Icons.logo width="30px" height="30px"  />}
-        <span className="font-bold">Menu</span>
+        <span className="font-bold">{siteConfig.name}</span>
       </button>
       {showMobileMenu && items && sideItems && (
-        <MobileNav items={items} sideItems={sideItems}>{children}</MobileNav>
+        <MobileNav items={items} sideItems={sideItems} toggleMobileMenu={toggleMobileMenu}>{children}</MobileNav>
       )}
     </div>
   )
