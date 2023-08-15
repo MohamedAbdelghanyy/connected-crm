@@ -1,13 +1,13 @@
 import { Table } from "@tanstack/react-table"
 
-import { Button } from "../ui/button"
+import { Button } from "@/components/ui/button"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../ui/select"
+} from "@/components/ui/select"
 import { ArrowLeftIcon, ArrowLeftToLineIcon, ArrowRightIcon, ArrowRightToLineIcon } from "lucide-react"
 
 interface DataTablePaginationProps<TData> {

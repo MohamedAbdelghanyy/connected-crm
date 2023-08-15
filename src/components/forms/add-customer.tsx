@@ -12,19 +12,19 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "../ui/dialog"
-import { Input } from "../ui/input"
-import { Label } from "../ui/label"
+} from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../ui/select"
+} from "@/components/ui/select"
 import { toast } from "@/components/ui/use-toast"
 import { Icons } from "@/components/icons"
-import { Button } from "../ui/button"
+import { Button } from "@/components/ui/button"
 import { ButtonProps, buttonVariants } from "@/components/ui/button"
 
 
