@@ -7,8 +7,14 @@ export const dashboardConfig: DashboardConfig = {
   sidebarNav: [
     {
       title: "Dashboard",
+    },
+    {
+      title: "Dashboard",
       href: "/dashboard",
       icon: "post",
+    },
+    {
+      title: "Customers",
     },
     {
       title: "Customers",
@@ -19,6 +25,9 @@ export const dashboardConfig: DashboardConfig = {
       title: "Merchants",
       href: "/merchants",
       icon: "merchants",
+    },
+    {
+      title: "Catalog",
     },
     {
       title: "Items",
@@ -56,6 +65,9 @@ export const dashboardConfig: DashboardConfig = {
       icon: "topics",
     },
     {
+      title: "Marketing",
+    },
+    {
       title: "Notifications",
       href: "/notifications",
       icon: "notifications",
@@ -67,13 +79,22 @@ export const dashboardConfig: DashboardConfig = {
     },
     {
       title: "Sales",
+    },
+    {
+      title: "Sales",
       href: "/sales",
       icon: "sales",
     },
     {
       title: "Reports",
+    },
+    {
+      title: "Reports",
       href: "/reports",
       icon: "reports",
+    },
+    {
+      title: "Internal System",
     },
     {
       title: "Dashboard Users",
