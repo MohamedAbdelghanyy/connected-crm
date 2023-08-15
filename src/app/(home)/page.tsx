@@ -7,7 +7,7 @@ export default function DashboardPage() {
   const { push } = useRouter();
 
   useEffect(() => {
-     push('/dashboard');
+     push('/login');
   }, []);
 
   return (

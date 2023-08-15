@@ -23,7 +23,7 @@ export function MainNav({ items, sideItems, children }: MainNavProps) {
   return (
     <div className="flex gap-6 md:gap-10">
       <Link href="/" className="hidden items-center space-x-2 md:flex">
-        <Icons.logo />
+        <Icons.logo width="30px" height="30px" />
         <span className="hidden font-bold sm:inline-block">
           {siteConfig.name}
         </span>
@@ -51,7 +51,7 @@ export function MainNav({ items, sideItems, children }: MainNavProps) {
         className="flex items-center space-x-2 md:hidden"
         onClick={() => setShowMobileMenu(!showMobileMenu)}
       >
-        {showMobileMenu ? <Icons.close /> : <Icons.logo />}
+        {showMobileMenu ? <Icons.close /> : <Icons.logo width="30px" height="30px"  />}
         <span className="font-bold">Menu</span>
       </button>
       {showMobileMenu && items && sideItems && (
