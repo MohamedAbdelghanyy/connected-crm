@@ -82,7 +82,7 @@ export default function AddCustomer({
         )}
       >
         <Icons.add className="mr-2 h-4 w-4" />
-        New Customer
+        Create Customer
       </button>
       <Dialog open={showNewCustomerDialog} onOpenChange={setShowNewCustomerDialog}>
         <DialogContent>
