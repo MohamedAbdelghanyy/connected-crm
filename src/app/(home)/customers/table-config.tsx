@@ -2,10 +2,10 @@
 
 import { ColumnDef } from "@tanstack/react-table"
 
-import { Checkbox } from "../../../components/ui/checkbox"
+import { Checkbox } from "@/components/ui/checkbox"
 
-import { DataTableColumnHeader } from "../../../components/table/data-table-column-header"
-import { ActionListProps, DataTableRowActions } from "../../../components/table/data-table-row-actions"
+import { DataTableColumnHeader } from "@/components/table/data-table-column-header"
+import { ActionListProps, DataTableRowActions } from "@/components/table/data-table-row-actions"
 import { ToolbarProps, ToolbarSearchListProps } from "@/components/table/data-table-toolbar"
 
 interface CustomersProps {
