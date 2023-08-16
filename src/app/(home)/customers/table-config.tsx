@@ -18,12 +18,41 @@ interface CustomersProps {
 
 const customersActionList : ActionListProps[] = [
   {
+    type: "dropdown",
+    label: "Change Status",
+    subActions: [
+      {
+        type: "button",
+        label: "Activate",
+        action: (id: string) => {
+          console.log('Activate: ' + id)
+        }
+      },
+      {
+        type: "button",
+        label: "De-activate",
+        action: (id: string) => {
+          console.log('De-activate: ' + id)
+        }
+      },
+      {
+        type: "button",
+        label: "Ban",
+        action: (id: string) => {
+          console.log('Ban: ' + id)
+        }
+      }
+    ]
+  },
+  {
+    type: "button",
     label: "Edit",
     action: (id: string) => {
       console.log('Edit: ' + id)
     }
   },
   {
+    type: "button",
     label: "Delete",
     action: (id: string) => {
       console.log('Delete: ' + id)

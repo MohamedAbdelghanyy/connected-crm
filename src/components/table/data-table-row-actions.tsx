@@ -7,8 +7,11 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuPortal,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
@@ -20,8 +23,10 @@ interface DataTableRowActionsProps<TData> {
 }
 
 export interface ActionListProps {
+  type: string,
   label: string;
-  action: (id: string) => void;
+  action?: (id: string) => void;
+  subActions?: ActionListProps[];
 }
 
 export function DataTableRowActions<TData>({
@@ -44,7 +49,38 @@ export function DataTableRowActions<TData>({
         {actionList.map((action, i) => {
           return (
             <>
-              <DropdownMenuItem onClick={() => {action.action(row.getValue('id'))}}>{action.label}</DropdownMenuItem>
+              {
+                action.action ?
+                (<DropdownMenuItem
+                  key={action.label}
+                  onClick={() => {
+                  if(action.action){
+                    action.action(row.getValue('id'))
+                  }
+                }}>{action.label}</DropdownMenuItem>) 
+                : action.subActions ? (
+                  <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>
+                    <span>{action.label}</span>
+                  </DropdownMenuSubTrigger>
+                  <DropdownMenuPortal>
+                    <DropdownMenuSubContent>
+                    {
+                      action.subActions.map((subAction) => (
+                      <DropdownMenuItem
+                        key={subAction.label}
+                        onClick={() =>{
+                          if(subAction.action){
+                            subAction.action(row.getValue('id'));
+                          }
+                        }}>
+                        <span>{subAction.label}</span>
+                      </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuSubContent>
+                  </DropdownMenuPortal>
+                </DropdownMenuSub>) : (<></>)
+              }
               {i+1 < actionList.length && <DropdownMenuSeparator />}
             </>
           )
