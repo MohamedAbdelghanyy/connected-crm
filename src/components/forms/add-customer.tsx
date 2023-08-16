@@ -131,7 +131,7 @@ export default function AddCustomer({
             </div>
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setShowNewCustomerDialog(false)}>
+            <Button variant="outline" className="mb-2" onClick={() => setShowNewCustomerDialog(false)}>
               Cancel
             </Button>
             <button
@@ -141,7 +141,7 @@ export default function AddCustomer({
                 {
                   "cursor-not-allowed opacity-60": isLoading,
                 },
-              )}
+              ) + " mb-2"}
               disabled={isLoading}
             >
               {isLoading ? (
