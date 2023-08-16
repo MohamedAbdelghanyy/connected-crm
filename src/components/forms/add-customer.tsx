@@ -54,7 +54,7 @@ export default function AddCustomer({
       if (!response?.ok) {
         return toast({
           title: "Something went wrong.",
-          description: "An error occurred while creating " + userNameRef.current.value + ", Please try again.",
+          description: "An error occurred while adding " + userNameRef.current.value + ", Please try again.",
           variant: "destructive",
         })
       }else{
@@ -85,7 +85,7 @@ export default function AddCustomer({
       </button>
       <Dialog open={showNewCustomerDialog} onOpenChange={setShowNewCustomerDialog}>
         <DialogContent>
-          <DialogHeader>
+          <DialogHeader className="ml-4 mt-4">
             <DialogTitle>Add Customer</DialogTitle>
             <DialogDescription>
               Enter customer details
@@ -129,7 +129,7 @@ export default function AddCustomer({
               </div>
             </div>
           </div>
-          <DialogFooter>
+          <DialogFooter className="mr-4 mb-2">
             <Button variant="outline" className="mb-2" onClick={() => setShowNewCustomerDialog(false)}>
               Cancel
             </Button>
