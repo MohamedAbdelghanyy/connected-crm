@@ -8,7 +8,7 @@ import { DataTableColumnHeader } from "@/components/table/data-table-column-head
 import { ActionListProps, DataTableRowActions } from "@/components/table/data-table-row-actions"
 import { ToolbarProps, ToolbarSearchListProps } from "@/components/table/data-table-toolbar"
 
-const customersActionList : ActionListProps[] = [
+const itemsActionList : ActionListProps[] = [
   {
     type: "dropdown",
     label: "Change Status",
@@ -66,7 +66,7 @@ const statuses = [
   },
 ]
 
-export const customersTableToolbar : ToolbarProps[] = [
+export const itemsTableToolbar : ToolbarProps[] = [
   {
     key: "status",
     title: "Status",
@@ -74,7 +74,7 @@ export const customersTableToolbar : ToolbarProps[] = [
   }
 ]
 
-export const customersTableToolbarSearchList : ToolbarSearchListProps[] = [
+export const itemsTableToolbarSearchList : ToolbarSearchListProps[] = [
   {
     key: 'id',
     title: 'ID'
@@ -93,7 +93,7 @@ export const customersTableToolbarSearchList : ToolbarSearchListProps[] = [
   }
 ]
 
-interface CustomersProps {
+interface ItemsProps {
   id: string
   name: string
   email: string
@@ -101,7 +101,7 @@ interface CustomersProps {
   status: string
 }
 
-export const customersTableColumns: ColumnDef<CustomersProps>[] = [
+export const itemsTableColumns: ColumnDef<ItemsProps>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -206,6 +206,6 @@ export const customersTableColumns: ColumnDef<CustomersProps>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }) => <DataTableRowActions row={row} actionList={customersActionList}  />,
+    cell: ({ row }) => <DataTableRowActions row={row} actionList={itemsActionList}  />,
   },
 ]
