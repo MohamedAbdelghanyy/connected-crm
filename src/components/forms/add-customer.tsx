@@ -1,9 +1,7 @@
 "use client"
 
 import * as React from "react"
-
 import { useRouter } from "next/navigation"
-
 import { cn } from "@/lib/utils"
 import {
   Dialog,
@@ -27,48 +25,49 @@ import { Icons } from "@/components/icons"
 import { Button } from "@/components/ui/button"
 import { ButtonProps, buttonVariants } from "@/components/ui/button"
 
-
-interface CustomerAddButtonProps extends ButtonProps {}
-
 export default function AddCustomer({
   className,
   variant,
   ...props
-}: CustomerAddButtonProps) {
-  const [showNewCustomerDialog, setShowNewCustomerDialog] = React.useState(false)
-
+}: ButtonProps) {
   const router = useRouter()
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
+  const [showNewCustomerDialog, setShowNewCustomerDialog] = React.useState(false)
+  const userNameRef = React.useRef<HTMLInputElement>(null);
 
   async function saveCustomer() {
-    setIsLoading(true)
+    if(userNameRef.current && userNameRef.current.value){
+      setIsLoading(true)
 
-    const response = await fetch("/api/posts", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        title: "Untitled Post",
-      }),
-    })
-
-    setIsLoading(false)
-
-    if (!response?.ok) {
-      return toast({
-        title: "Something went wrong.",
-        description: "Your post was not created. Please try again.",
-        variant: "destructive",
+      const response = await fetch("/api/posts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: "Untitled Post",
+        }),
       })
+
+      setIsLoading(false)
+
+      if (!response?.ok) {
+        return toast({
+          title: "Something went wrong.",
+          description: "An error occurred while creating " + userNameRef.current.value + ", Please try again.",
+          variant: "destructive",
+        })
+      }else{
+        setShowNewCustomerDialog(false);
+        return toast({
+          title: "Success",
+          description: userNameRef.current.value + " was successfully added.",
+        })
+      }
+
+      // This forces a cache invalidation.
+      router.refresh()
     }
-
-    const post = await response.json()
-
-    // This forces a cache invalidation.
-    router.refresh()
-
-    router.push(`/editor/${post.id}`)
   }
   
   return (
@@ -82,12 +81,12 @@ export default function AddCustomer({
         )}
       >
         <Icons.add className="mr-2 h-4 w-4" />
-        Create Customer
+        Add Customer
       </button>
       <Dialog open={showNewCustomerDialog} onOpenChange={setShowNewCustomerDialog}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Create Customer</DialogTitle>
+            <DialogTitle>Add Customer</DialogTitle>
             <DialogDescription>
               Enter customer details
             </DialogDescription>
@@ -96,7 +95,7 @@ export default function AddCustomer({
             <div className="space-y-4 py-2 pb-4">
               <div className="space-y-2">
                 <Label htmlFor="name">Name</Label>
-                <Input id="name" placeholder="Enter your name" />
+                <Input id="name" placeholder="Enter your name" ref={userNameRef} />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
