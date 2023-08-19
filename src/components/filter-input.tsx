@@ -36,11 +36,13 @@ export function FilterInput<TData>({
   const [isOpenMenu, setIsOpenMenu] = React.useState(false)
   const [filterValue, setFilterValue] = React.useState(toolbarSearchList[0].key)
 
-   const handleSearchFilterChanged = (currentValue : string) => {
+   const handleSearchFilterChanged = (newValue : string) => {
     table.getColumn(filterValue)?.setFilterValue('');
-    setFilterValue(currentValue);
+    setFilterValue(newValue);
     setIsOpenMenu(false);
    }
+
+   console.log(toolbarSearchList)
 
   return (
     <>
@@ -66,7 +68,7 @@ export function FilterInput<TData>({
               {toolbarSearchList.map((item) => (
                 <CommandItem
                   key={item.key}
-                  onSelect={handleSearchFilterChanged}
+                  onSelect={()=>handleSearchFilterChanged(item.key)}
                 >
                   <Check
                     className={cn(
