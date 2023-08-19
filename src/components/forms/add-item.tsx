@@ -186,7 +186,26 @@ export default function AddItem({
                   </div>
                 </div>
               </TabsContent>
-              <TabsContent value="media" forceMount={true} hidden={activeTab !== "media"}></TabsContent>
+              <TabsContent value="media" forceMount={true} hidden={activeTab !== "media"}>
+                <div className="space-y-4 py-2 pb-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="thumbnail">Thumbnail</Label>
+                    <Input type="file" id="thumbnail" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="mediaLow">Media Low</Label>
+                    <Input type="file" id="mediaLow" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="mediaMid">MediaHigh</Label>
+                    <Input type="file" id="mediaMid" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="mediaHigh">MediaHigh</Label>
+                    <Input type="file" id="mediaHigh" />
+                  </div>
+                </div>
+              </TabsContent>
               <TabsContent value="price" forceMount={true} hidden={activeTab !== "price"}>
                 <div className="space-y-4 py-2 pb-4">
                   <div className="space-y-2" style={{justifyContent: "space-between", display: "flex"}}>
