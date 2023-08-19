@@ -189,7 +189,6 @@ export const itemsTableColumns: ColumnDef<ItemsProps>[] = [
       )
     },
     enableSorting: false,
-    enableHiding: false,
   },
   {
     accessorKey: "name",
