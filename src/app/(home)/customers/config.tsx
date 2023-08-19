@@ -5,6 +5,7 @@ import { DataTableColumnHeader } from "@/components/table/data-table-column-head
 import { ActionListProps, DataTableRowActions } from "@/components/table/data-table-row-actions"
 import { ToolbarProps, ToolbarSearchListProps } from "@/components/table/data-table-toolbar"
 import { Checkbox } from "@/components/ui/checkbox"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 const customersActionList : ActionListProps[] = [
   {
@@ -123,6 +124,7 @@ export const customersTableToolbarSearchList : ToolbarSearchListProps[] = [
 
 interface CustomersProps {
   id: string
+  avatar: string
   name: string
   mobile: string
   occupation: string
@@ -161,6 +163,22 @@ export const customersTableColumns: ColumnDef<CustomersProps>[] = [
       <DataTableColumnHeader column={column} title="ID" />
     ),
     cell: ({ row }) => <div className="w-[80px]">{row.getValue("id")}</div>,
+    enableSorting: false,
+    enableHiding: false,
+  },
+  {
+    accessorKey: "avatar",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Avatar" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <Avatar style={{width: "50px", height: "50px"}}>
+          <AvatarImage src={row.getValue("avatar")} alt="avatar" style={{objectFit: "cover"}} />
+          <AvatarFallback>{String(row.getValue("name")).charAt(0)}</AvatarFallback>
+        </Avatar>
+      )
+    },
     enableSorting: false,
     enableHiding: false,
   },

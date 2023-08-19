@@ -1,6 +1,7 @@
 [
   {
     "id": "USR-123",
+    "avatar": "https://connectedapp20200512063146.azurewebsites.net/api/connectedadmin/GetImage/b6ba9520-0ad8-4630-9d02-0cfa61bc58dc.jpeg",
     "name": "Mohamed Abdelghany",
     "mobile": "+201115696965",
     "occupation": "Dev.",
@@ -12,6 +13,7 @@
   },
   {
     "id": "USR-129",
+    "avatar": "https://connectedapp20200512063146.azurewebsites.net/api/connectedadmin/GetImage/6bcf548f-dffa-4218-a109-f27ddcb30317.jpg",
     "name": "Soha Elhadary",
     "mobile": "+201224466880",
     "occupation": "Project Manager",
@@ -23,6 +25,7 @@
   },
   {
     "id": "USR-134",
+    "avatar": "",
     "name": "Khaled Afify",
     "mobile": "+201234567890",
     "occupation": "Senior Dev.",
