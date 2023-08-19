@@ -32,10 +32,6 @@ export const categoriesTableToolbarSearchList : ToolbarSearchListProps[] = [
     title: 'ID'
   },
   {
-    key: 'image',
-    title: 'Image'
-  },
-  {
     key: 'name',
     title: 'Name'
   }

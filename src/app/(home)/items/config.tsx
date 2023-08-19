@@ -97,10 +97,6 @@ export const itemsTableToolbarSearchList : ToolbarSearchListProps[] = [
     title: 'ID'
   },
   {
-    key: 'image',
-    title: 'Image'
-  },
-  {
     key: 'name',
     title: 'Name'
   },
