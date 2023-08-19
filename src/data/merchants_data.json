@@ -1,0 +1,35 @@
+[
+  {
+    "id": "USR-123",
+    "name": "Mohamed Abdelghany",
+    "mobile": "+201115696965",
+    "occupation": "Dev.",
+    "noofposts": 9,
+    "noofwishlist": 20,
+    "lastseen": "18/08/2023",
+    "interests": "Automotive",
+    "status": "approved"
+  },
+  {
+    "id": "USR-129",
+    "name": "Soha Elhadary",
+    "mobile": "+201224466880",
+    "occupation": "Project Manager",
+    "noofposts": 23,
+    "noofwishlist": 32,
+    "lastseen": "16/08/2023",
+    "interests": "Lifestyle",
+    "status": "rejected"
+  },
+  {
+    "id": "USR-134",
+    "name": "Khaled Afify",
+    "mobile": "+201234567890",
+    "occupation": "Senior Dev.",
+    "noofposts": 19,
+    "noofwishlist": 11,
+    "lastseen": "16/08/2023",
+    "interests": "Realestate",
+    "status": "pending"
+  }
+]
