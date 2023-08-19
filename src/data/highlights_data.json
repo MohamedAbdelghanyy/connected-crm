@@ -1,0 +1,17 @@
+[
+  {
+    "id": "HL-123",
+    "image": "https://connectedapp20200512063146.azurewebsites.net/api/connectedadmin/GetImage/e390d7cb-e9e4-4a55-94e6-866b63547653.jpg",
+    "name": "Highlight 1"
+  },
+  {
+    "id": "HL-456",
+    "image": "https://connectedapp20200512063146.azurewebsites.net/api/connectedadmin/GetImage/e5b5ca50-fb6e-414d-88fb-1198ed605211.jpg",
+    "name": "Highlight 2"
+  },
+  {
+    "id": "HL-789",
+    "image": "https://connectedapp20200512063146.azurewebsites.net/api/connectedadmin/GetImage/e96e0667-6abf-46e5-97b7-1f2986cf6360.jpg",
+    "name": "Highlight 3"
+  }
+]
