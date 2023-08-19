@@ -1,0 +1,29 @@
+[
+  {
+    "id": "USR-123",
+    "name": "Mohamed Abdelghany",
+    "email": "mohamedabdelghanyy@gmail.com",
+    "jobTitle": "Software Engineer",
+    "dashboardType": "Admin",
+    "accessName": "Admin",
+    "privileges": "All"
+  },
+  {
+    "id": "USR-456",
+    "name": "Khaled Afify",
+    "email": "khaledafify@gmail.com",
+    "jobTitle": "Software Engineer",
+    "dashboardType": "Super Admin",
+    "accessName": "Super Admin",
+    "privileges": "All"
+  },
+  {
+    "id": "USR-789",
+    "name": "Soha El Hadary",
+    "email": "sohaelhadary@gmail.com",
+    "jobTitle": "Project Manager",
+    "dashboardType": "Super Admin",
+    "accessName": "Super Admin",
+    "privileges": "All"
+  }
+]
