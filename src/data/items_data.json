@@ -1,6 +1,7 @@
 [
   {
     "id": "ITM-1",
+    "image": "https://connectedapp20200512063146.azurewebsites.net/api/connectedadmin/GetImage/dbe4eb7e-545c-4384-96f6-20940f796bc3.jpg",
     "name": "Item 1",
     "price": 100000,
     "category": "Category 1",
@@ -13,6 +14,7 @@
   },
   {
     "id": "ITM-2",
+    "image": "https://connectedapp20200512063146.azurewebsites.net/api/connectedadmin/GetImage/069b7415-505a-44b2-ac2d-fb9cd9002b4a.jpg",
     "name": "Item 2",
     "price": 100000,
     "category": "Category 2",
@@ -25,6 +27,7 @@
   },
   {
     "id": "ITM-3",
+    "image": "https://connectedapp20200512063146.azurewebsites.net/api/connectedadmin/GetImage/e390d7cb-e9e4-4a55-94e6-866b63547653.jpg",
     "name": "Item 3",
     "price": 100000,
     "category": "Category 3",
@@ -37,6 +40,7 @@
   },
   {
     "id": "ITM-4",
+    "image": "https://connectedapp20200512063146.azurewebsites.net/api/connectedadmin/GetImage/e5b5ca50-fb6e-414d-88fb-1198ed605211.jpg",
     "name": "Item 4",
     "price": 100000,
     "category": "Category 4",
@@ -49,6 +53,7 @@
   },
   {
     "id": "ITM-5",
+    "image": "https://connectedapp20200512063146.azurewebsites.net/api/connectedadmin/GetImage/e96e0667-6abf-46e5-97b7-1f2986cf6360.jpg",
     "name": "Item 5",
     "price": 100000,
     "category": "Category 5",

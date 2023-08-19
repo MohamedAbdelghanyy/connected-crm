@@ -5,6 +5,7 @@ import { DataTableColumnHeader } from "@/components/table/data-table-column-head
 import { ActionListProps, DataTableRowActions } from "@/components/table/data-table-row-actions"
 import { ToolbarProps, ToolbarSearchListProps } from "@/components/table/data-table-toolbar"
 import { Checkbox } from "@/components/ui/checkbox"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 const itemsActionList : ActionListProps[] = [
   {
@@ -96,6 +97,10 @@ export const itemsTableToolbarSearchList : ToolbarSearchListProps[] = [
     title: 'ID'
   },
   {
+    key: 'image',
+    title: 'Image'
+  },
+  {
     key: 'name',
     title: 'Name'
   },
@@ -131,6 +136,7 @@ export const itemsTableToolbarSearchList : ToolbarSearchListProps[] = [
 
 interface ItemsProps {
   id: string
+  image: string
   name: string
   price: number
   category: string
@@ -170,6 +176,22 @@ export const itemsTableColumns: ColumnDef<ItemsProps>[] = [
       <DataTableColumnHeader column={column} title="ID" />
     ),
     cell: ({ row }) => <div className="w-[80px]">{row.getValue("id")}</div>,
+    enableSorting: false,
+    enableHiding: false,
+  },
+  {
+    accessorKey: "image",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Image" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <Avatar style={{width: "150px", height: "100px", borderRadius: "5px"}}>
+          <AvatarImage src={row.getValue("image")} alt="avatar" style={{objectFit: "cover"}} />
+          <AvatarFallback>{row.getValue("name")}</AvatarFallback>
+        </Avatar>
+      )
+    },
     enableSorting: false,
     enableHiding: false,
   },
