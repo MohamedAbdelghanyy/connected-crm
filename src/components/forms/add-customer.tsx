@@ -111,7 +111,7 @@ export default function AddCustomer({
               </div>
               <div className="space-y-2">
                 <Label htmlFor="name">Full Name</Label>
-                <Input id="name" placeholder="Enter your name" ref={userNameRef} />
+                <Input id="name" placeholder="Enter customer's name" ref={userNameRef} />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="mobile">Mobile</Label>
@@ -123,13 +123,13 @@ export default function AddCustomer({
               </div>
               <div className="space-y-2">
                 <Label htmlFor="age">Age</Label>
-                <Input type="number" id="age" placeholder="Enter your age" />
+                <Input type="number" id="age" placeholder="Enter customer's age" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="gender">Gender</Label>
                 <Select>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select your gender" />
+                    <SelectValue placeholder="Select customer's gender" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="male">
@@ -145,7 +145,7 @@ export default function AddCustomer({
                 <Label htmlFor="country">Country</Label>
                 <Select>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select your country" />
+                    <SelectValue placeholder="Select customer's country" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="egypt">
@@ -159,21 +159,21 @@ export default function AddCustomer({
               </div>
               <div className="space-y-2">
                 <Label htmlFor="address">Address</Label>
-                <Input type="text" id="address" placeholder="Enter your address" />
+                <Input type="text" id="address" placeholder="Enter customer's address" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="occupation">Occupation</Label>
-                <Input type="text" id="occupation" placeholder="Enter your occupation" />
+                <Input type="text" id="occupation" placeholder="Enter customer's occupation" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="company">Company</Label>
-                <Input type="text" id="company" placeholder="Enter your company" />
+                <Input type="text" id="company" placeholder="Enter customer's company" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="interests">Interests</Label>
                 <Select>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select your interests" />
+                    <SelectValue placeholder="Select customer's interests" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="automotive">
