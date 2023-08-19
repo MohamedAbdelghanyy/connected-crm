@@ -52,7 +52,8 @@ export function FilterInput<TData>({
             variant="outline"
             role="combobox"
             aria-expanded={isOpenMenu}
-            className="w-[200px] justify-between"
+            className="justify-between"
+            style={{width: "250px"}}
           >
             {filterValue
               ? toolbarSearchList.find((item) => item.key === filterValue)?.title
