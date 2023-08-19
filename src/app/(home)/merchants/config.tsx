@@ -60,17 +60,17 @@ const merchantsActionList : ActionListProps[] = [
 // Options
 const statuses = [
   {
-    value: "approved",
-    label: "Approved",
+    value: "activated",
+    label: "Activated",
   },
   {
-    value: "pending",
-    label: "Pending",
+    value: "deactivated",
+    label: "De-activated",
   },
   {
-    value: "rejected",
-    label: "Rejected",
-  },
+    value: "banned",
+    label: "Banned",
+  }
 ]
 
 export const merchantsTableToolbar : ToolbarProps[] = [
@@ -91,45 +91,34 @@ export const merchantsTableToolbarSearchList : ToolbarSearchListProps[] = [
     title: 'Name'
   },
   {
-    key: 'mobile',
-    title: 'Mobile'
+    key: 'category',
+    title: 'Category'
   },
   {
-    key: 'occupation',
-    title: 'Occupation'
+    key: 'contactName',
+    title: 'Contact Name'
   },
   {
-    key: 'noofposts',
+    key: 'contactNumber',
+    title: 'Contact Number'
+  },
+  {
+    key: 'noofitems',
     title: 'No. Of Posted Items'
-  },
-  {
-    key: 'noofwishlist',
-    title: 'No. Of Wishlist Items'
-  },
-  {
-    key: 'lastseen',
-    title: 'Last Seen'
-  },
-  {
-    key: 'interests',
-    title: 'Interests'
   },
   {
     key: 'status',
     title: 'Status'
   },
-
 ]
 
 interface MerchantsProps {
   id: string
   name: string
-  mobile: string
-  occupation: string
-  noofposts: number
-  noofwishlist: number
-  lastseen: string
-  interests: string
+  category: string
+  contactName: string
+  contactNumber: number
+  noofitems: number
   status: string
 }
 
@@ -180,90 +169,60 @@ export const merchantsTableColumns: ColumnDef<MerchantsProps>[] = [
     },
   },
   {
-    accessorKey: "mobile",
+    accessorKey: "category",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Mobile" />
+      <DataTableColumnHeader column={column} title="Category" />
     ),
     cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("mobile")}
+            {row.getValue("category")}
           </span>
         </div>
       )
     },
   },
   {
-    accessorKey: "occupation",
+    accessorKey: "contactName",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Occupation" />
+      <DataTableColumnHeader column={column} title="Contact Name" />
     ),
     cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("occupation")}
+            {row.getValue("contactName")}
           </span>
         </div>
       )
     },
   },
   {
-    accessorKey: "noofposts",
+    accessorKey: "Contact Number",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Posted Items" />
+      <DataTableColumnHeader column={column} title="Contact Number" />
     ),
     cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("noofposts")}
+            {row.getValue("contactNumber")}
           </span>
         </div>
       )
     },
   },
   {
-    accessorKey: "noofwishlist",
+    accessorKey: "noofitems",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Wishlist Items" />
+      <DataTableColumnHeader column={column} title="Items" />
     ),
     cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("noofwishlist")}
-          </span>
-        </div>
-      )
-    },
-  },
-  {
-    accessorKey: "lastseen",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Last Seen" />
-    ),
-    cell: ({ row }) => {
-      return (
-        <div className="flex space-x-2">
-          <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("lastseen")}
-          </span>
-        </div>
-      )
-    },
-  },
-  {
-    accessorKey: "interests",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Interests" />
-    ),
-    cell: ({ row }) => {
-      return (
-        <div className="flex space-x-2">
-          <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("interests")}
+            {row.getValue("noofitems")}
           </span>
         </div>
       )

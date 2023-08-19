@@ -1,35 +1,29 @@
 [
   {
-    "id": "USR-123",
-    "name": "Mohamed Abdelghany",
-    "mobile": "+201115696965",
-    "occupation": "Dev.",
-    "noofposts": 9,
-    "noofwishlist": 20,
-    "lastseen": "18/08/2023",
-    "interests": "Automotive",
-    "status": "approved"
+    "id": "MRCH-1",
+    "name": "Merchant 1",
+    "category": "NA",
+    "contactName": "Contact 1",
+    "contactNumber": "+XXXXXXXXXXX",
+    "noofitems": 9,
+    "status": "activated"
   },
   {
-    "id": "USR-129",
-    "name": "Soha Elhadary",
-    "mobile": "+201224466880",
-    "occupation": "Project Manager",
-    "noofposts": 23,
-    "noofwishlist": 32,
-    "lastseen": "16/08/2023",
-    "interests": "Lifestyle",
-    "status": "rejected"
+    "id": "MRCH-2",
+    "name": "Merchant 2",
+    "category": "NA",
+    "contactName": "Contact 2",
+    "contactNumber": "+XXXXXXXXXXX",
+    "noofitems": 12,
+    "status": "deactivated"
   },
   {
-    "id": "USR-134",
-    "name": "Khaled Afify",
-    "mobile": "+201234567890",
-    "occupation": "Senior Dev.",
-    "noofposts": 19,
-    "noofwishlist": 11,
-    "lastseen": "16/08/2023",
-    "interests": "Realestate",
-    "status": "pending"
+    "id": "MRCH-3",
+    "name": "Merchant 3",
+    "category": "NA",
+    "contactName": "Contact 3",
+    "contactNumber": "+XXXXXXXXXXX",
+    "noofitems": 33,
+    "status": "banned"
   }
 ]
