@@ -14,7 +14,7 @@ export const metadata = {
 
 async function getItems() {
   const data = await fs.readFile(
-    path.join(process.cwd(), "src/data/customers_data.json")
+    path.join(process.cwd(), "src/data/items_data.json")
   )
   const items = JSON.parse(data.toString())
   return items

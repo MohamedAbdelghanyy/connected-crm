@@ -53,14 +53,32 @@ const itemsActionList : ActionListProps[] = [
 // Options
 const statuses = [
   {
-    value: "active",
-    label: "Active",
-    //icon: CheckCircleIcon,
+    value: "pending",
+    label: "Pending",
   },
   {
-    value: "banned",
-    label: "Banned",
-    //icon: BanIcon,
+    value: "inreview",
+    label: "In Review",
+  },
+  {
+    value: "approved",
+    label: "Approved",
+  },
+  {
+    value: "rejected",
+    label: "Rejected",
+  },
+  {
+    value: "onhold",
+    label: "On Hold",
+  },
+  {
+    value: "reserved",
+    label: "Reserved",
+  },
+  {
+    value: "soldout",
+    label: "Sold Out",
   },
 ]
 
@@ -82,20 +100,45 @@ export const itemsTableToolbarSearchList : ToolbarSearchListProps[] = [
     title: 'Name'
   },
   {
-    key: 'email',
-    title: 'Email'
+    key: 'price',
+    title: 'Price'
   },
   {
-    key: 'phone',
-    title: 'Phone'
+    key: 'category',
+    title: 'Category'
+  },
+  {
+    key: 'owner',
+    title: 'Owner'
+  },
+  {
+    key: 'views',
+    title: 'Views'
+  },
+  {
+    key: 'wishlisted',
+    title: 'Wishlisted'
+  },
+  {
+    key: 'interactions',
+    title: 'Interactions'
+  },
+  {
+    key: 'lastupdated',
+    title: 'Last Updated'
   }
 ]
 
 interface ItemsProps {
   id: string
   name: string
-  email: string
-  phone: string
+  price: number
+  category: string
+  owner: string
+  views: number
+  wishlisted: number
+  interactions: number
+  lastupdated: string
   status: string
 }
 
@@ -146,30 +189,105 @@ export const itemsTableColumns: ColumnDef<ItemsProps>[] = [
     },
   },
   {
-    accessorKey: "email",
+    accessorKey: "price",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Email" />
+      <DataTableColumnHeader column={column} title="Price" />
     ),
     cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("email")}
+            {row.getValue("price")}
           </span>
         </div>
       )
     },
   },
   {
-    accessorKey: "phone",
+    accessorKey: "category",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Phone" />
+      <DataTableColumnHeader column={column} title="Category" />
     ),
     cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("phone")}
+            {row.getValue("category")}
+          </span>
+        </div>
+      )
+    },
+  },
+  {
+    accessorKey: "owner",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Owner" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex space-x-2">
+          <span className="max-w-[500px] truncate font-medium">
+            {row.getValue("owner")}
+          </span>
+        </div>
+      )
+    },
+  },
+  {
+    accessorKey: "views",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Views" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex space-x-2">
+          <span className="max-w-[500px] truncate font-medium">
+            {row.getValue("views")}
+          </span>
+        </div>
+      )
+    },
+  },
+  {
+    accessorKey: "wishlisted",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Wishlisted" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex space-x-2">
+          <span className="max-w-[500px] truncate font-medium">
+            {row.getValue("wishlisted")}
+          </span>
+        </div>
+      )
+    },
+  },
+  {
+    accessorKey: "interactions",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Interactions" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex space-x-2">
+          <span className="max-w-[500px] truncate font-medium">
+            {row.getValue("interactions")}
+          </span>
+        </div>
+      )
+    },
+  },
+  {
+    accessorKey: "lastupdated",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Last Updated" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex space-x-2">
+          <span className="max-w-[500px] truncate font-medium">
+            {row.getValue("lastupdated")}
           </span>
         </div>
       )

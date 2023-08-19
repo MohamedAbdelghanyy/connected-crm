@@ -1,0 +1,62 @@
+[
+  {
+    "id": "ITM-1",
+    "name": "Item 1",
+    "price": 100000,
+    "category": "Category 1",
+    "owner": "Connected",
+    "views": 9,
+    "wishlisted": 20,
+    "interactions": 129,
+    "lastupdated": "10/10/2020",
+    "status": "approved"
+  },
+  {
+    "id": "ITM-2",
+    "name": "Item 2",
+    "price": 100000,
+    "category": "Category 2",
+    "owner": "Connected",
+    "views": 9,
+    "wishlisted": 20,
+    "interactions": 129,
+    "lastupdated": "10/10/2020",
+    "status": "rejected"
+  },
+  {
+    "id": "ITM-3",
+    "name": "Item 3",
+    "price": 100000,
+    "category": "Category 3",
+    "owner": "Connected",
+    "views": 9,
+    "wishlisted": 20,
+    "interactions": 129,
+    "lastupdated": "10/10/2020",
+    "status": "reserved"
+  },
+  {
+    "id": "ITM-4",
+    "name": "Item 4",
+    "price": 100000,
+    "category": "Category 4",
+    "owner": "Connected",
+    "views": 9,
+    "wishlisted": 20,
+    "interactions": 129,
+    "lastupdated": "10/10/2020",
+    "status": "soldout"
+  },
+  {
+    "id": "ITM-5",
+    "name": "Item 5",
+    "price": 100000,
+    "category": "Category 5",
+    "owner": "Connected",
+    "views": 9,
+    "wishlisted": 20,
+    "interactions": 129,
+    "lastupdated": "10/10/2020",
+    "status": "approved"
+  }
+]
