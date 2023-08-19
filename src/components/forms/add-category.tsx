@@ -99,7 +99,7 @@ export default function AddCategory({
               </div>
               <div className="space-y-2">
                 <Label htmlFor="image">Image</Label>
-                <Input type="file" id="mobile" placeholder="Upload Category Image" />
+                <Input type="file" id="image" placeholder="Upload Category Image" />
               </div>
             </div>
           </div>
