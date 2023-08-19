@@ -36,6 +36,13 @@ const customersActionList : ActionListProps[] = [
   },
   {
     type: "button",
+    label: "View",
+    action: (id: string) => {
+      console.log('View: ' + id)
+    }
+  },
+  {
+    type: "button",
     label: "Edit",
     action: (id: string) => {
       console.log('Edit: ' + id)
@@ -53,14 +60,16 @@ const customersActionList : ActionListProps[] = [
 // Options
 const statuses = [
   {
-    value: "active",
-    label: "Active",
-    //icon: CheckCircleIcon,
+    value: "approved",
+    label: "Approved",
   },
   {
-    value: "banned",
-    label: "Banned",
-    //icon: BanIcon,
+    value: "pending",
+    label: "Pending",
+  },
+  {
+    value: "rejected",
+    label: "Rejected",
   },
 ]
 
@@ -82,20 +91,45 @@ export const customersTableToolbarSearchList : ToolbarSearchListProps[] = [
     title: 'Name'
   },
   {
-    key: 'email',
-    title: 'Email'
+    key: 'mobile',
+    title: 'Mobile'
   },
   {
-    key: 'phone',
-    title: 'Phone'
-  }
+    key: 'occupation',
+    title: 'Occupation'
+  },
+  {
+    key: 'noofposts',
+    title: 'No. Of Posted Items'
+  },
+  {
+    key: 'noofwishlist',
+    title: 'No. Of Wishlist Items'
+  },
+  {
+    key: 'lastseen',
+    title: 'Last Seen'
+  },
+  {
+    key: 'interests',
+    title: 'Interests'
+  },
+  {
+    key: 'status',
+    title: 'Status'
+  },
+
 ]
 
 interface CustomersProps {
   id: string
   name: string
-  email: string
-  phone: string
+  mobile: string
+  occupation: string
+  noofposts: number
+  noofwishlist: number
+  lastseen: string
+  interests: string
   status: string
 }
 
@@ -146,30 +180,90 @@ export const customersTableColumns: ColumnDef<CustomersProps>[] = [
     },
   },
   {
-    accessorKey: "email",
+    accessorKey: "mobile",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Email" />
+      <DataTableColumnHeader column={column} title="Mobile" />
     ),
     cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("email")}
+            {row.getValue("mobile")}
           </span>
         </div>
       )
     },
   },
   {
-    accessorKey: "phone",
+    accessorKey: "occupation",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Phone" />
+      <DataTableColumnHeader column={column} title="Occupation" />
     ),
     cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("phone")}
+            {row.getValue("occupation")}
+          </span>
+        </div>
+      )
+    },
+  },
+  {
+    accessorKey: "noofposts",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Posted Items" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex space-x-2">
+          <span className="max-w-[500px] truncate font-medium">
+            {row.getValue("noofposts")}
+          </span>
+        </div>
+      )
+    },
+  },
+  {
+    accessorKey: "noofwishlist",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Wishlist Items" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex space-x-2">
+          <span className="max-w-[500px] truncate font-medium">
+            {row.getValue("noofwishlist")}
+          </span>
+        </div>
+      )
+    },
+  },
+  {
+    accessorKey: "lastseen",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Last Seen" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex space-x-2">
+          <span className="max-w-[500px] truncate font-medium">
+            {row.getValue("lastseen")}
+          </span>
+        </div>
+      )
+    },
+  },
+  {
+    accessorKey: "interests",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Interests" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex space-x-2">
+          <span className="max-w-[500px] truncate font-medium">
+            {row.getValue("interests")}
           </span>
         </div>
       )

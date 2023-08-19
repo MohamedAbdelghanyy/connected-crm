@@ -94,35 +94,96 @@ export default function AddCustomer({
           <div style={{maxHeight: "60vh", overflow: "hidden scroll", padding: "0px 10px 0px 20px",}}>
             <div className="space-y-4 py-2 pb-4">
               <div className="space-y-2">
-                <Label htmlFor="name">Name</Label>
+                <Label htmlFor="customertype">Customer Type</Label>
+                <Select>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select customer type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="vip">
+                      <span className="font-medium">VIP</span>
+                    </SelectItem>
+                    <SelectItem value="topvip">
+                      <span className="font-medium">Top VIP</span>
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="name">Full Name</Label>
                 <Input id="name" placeholder="Enter your name" ref={userNameRef} />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="mobile">Mobile</Label>
+                <Input type="number" id="mobile" placeholder="+201XXXXXXXXX" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
                 <Input type="email" id="email" placeholder="example@example.com" />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="phone">Phone</Label>
-                <Input type="number" id="phone" placeholder="+201XXXXXXXXX" />
+                <Label htmlFor="age">Age</Label>
+                <Input type="number" id="age" placeholder="Enter your age" />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="plan">Subscription plan</Label>
+                <Label htmlFor="gender">Gender</Label>
                 <Select>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select a plan" />
+                    <SelectValue placeholder="Select your gender" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="free">
-                      <span className="font-medium">Free</span> -{" "}
-                      <span className="text-muted-foreground">
-                        Trial for two weeks
-                      </span>
+                    <SelectItem value="male">
+                      <span className="font-medium">Male</span>
                     </SelectItem>
-                    <SelectItem value="pro">
-                      <span className="font-medium">Pro</span> -{" "}
-                      <span className="text-muted-foreground">
-                        $9/month per user
-                      </span>
+                    <SelectItem value="female">
+                      <span className="font-medium">Female</span>
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="country">Country</Label>
+                <Select>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select your country" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="egypt">
+                      <span className="font-medium">Egypt</span>
+                    </SelectItem>
+                    <SelectItem value="uae">
+                      <span className="font-medium">UAE</span>
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="address">Address</Label>
+                <Input type="text" id="address" placeholder="Enter your address" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="occupation">Occupation</Label>
+                <Input type="text" id="occupation" placeholder="Enter your occupation" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="company">Company</Label>
+                <Input type="text" id="company" placeholder="Enter your company" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="interests">Interests</Label>
+                <Select>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select your interests" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="automotive">
+                      <span className="font-medium">Automotive</span>
+                    </SelectItem>
+                    <SelectItem value="lifestyle">
+                      <span className="font-medium">Lifestyle</span>
+                    </SelectItem>
+                    <SelectItem value="realestate">
+                      <span className="font-medium">Realestate</span>
                     </SelectItem>
                   </SelectContent>
                 </Select>
