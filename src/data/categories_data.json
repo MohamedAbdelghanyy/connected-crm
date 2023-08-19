@@ -1,0 +1,17 @@
+[
+  {
+    "id": "CAT-123",
+    "image": "https://connectedapp20200512063146.azurewebsites.net/api/connectedadmin/GetImage/5a38bbb0-919f-416e-844d-2abcc00ddb06.svg",
+    "name": "Automotive"
+  },
+  {
+    "id": "CAT-456",
+    "image": "https://connectedapp20200512063146.azurewebsites.net/api/connectedadmin/GetImage/ec230401-4a3a-4371-894e-53032bc27f23.svg",
+    "name": "Lifestyle"
+  },
+  {
+    "id": "CAT-789",
+    "image": "https://connectedapp20200512063146.azurewebsites.net/api/connectedadmin/GetImage/508d3c8b-2afb-45b6-a692-af28fb282e15.svg",
+    "name": "Realestate"
+  }
+]
