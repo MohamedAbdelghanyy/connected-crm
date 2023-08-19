@@ -65,6 +65,11 @@ export const dashboardConfig: DashboardConfig = {
       icon: "topics",
     },
     {
+      title: "Locations",
+      href: "/locations",
+      icon: "locations",
+    },
+    {
       title: "Marketing",
     },
     {

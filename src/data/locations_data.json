@@ -1,0 +1,20 @@
+[
+  {
+    "id": "LOC-123",
+    "name": "6th October",
+    "latitude": "29.9285",
+    "longitude": "30.9188"
+  },
+  {
+    "id": "LOC-456",
+    "name": "Al Maadi",
+    "latitude": "29.962696",
+    "longitude": "31.276942"
+  },
+  {
+    "id": "LOC-789",
+    "name": "Alexandria",
+    "latitude": "31.2001",
+    "longitude": "29.9187"
+  }
+]

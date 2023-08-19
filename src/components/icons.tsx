@@ -37,6 +37,7 @@ import {
   Text,
   Code,
   Code2,
+  MapPinIcon,
 } from "lucide-react"
 
 export type Icon = LucideIcon
@@ -86,6 +87,7 @@ export const Icons = {
   ads: Zap,
   tags: Tags,
   topics: MessageSquare,
+  locations: MapPinIcon,
   notifications: BellRing,
   integrations: Workflow,
   sales: DollarSign,
