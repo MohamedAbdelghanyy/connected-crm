@@ -4,7 +4,7 @@
     "name": "Merchant 1",
     "category": "NA",
     "contactName": "Contact 1",
-    "contactNumber": "+XXXXXXXXXXX",
+    "contact Number": "+XXXXXXXXXXX",
     "noofitems": 9,
     "status": "activated"
   },
@@ -13,7 +13,7 @@
     "name": "Merchant 2",
     "category": "NA",
     "contactName": "Contact 2",
-    "contactNumber": "+XXXXXXXXXXX",
+    "contact Number": "+XXXXXXXXXXX",
     "noofitems": 12,
     "status": "deactivated"
   },
@@ -22,7 +22,7 @@
     "name": "Merchant 3",
     "category": "NA",
     "contactName": "Contact 3",
-    "contactNumber": "+XXXXXXXXXXX",
+    "contact Number": "+XXXXXXXXXXX",
     "noofitems": 33,
     "status": "banned"
   }

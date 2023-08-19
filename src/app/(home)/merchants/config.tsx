@@ -117,7 +117,7 @@ interface MerchantsProps {
   name: string
   category: string
   contactName: string
-  contactNumber: number
+  contactNumber: string
   noofitems: number
   status: string
 }
@@ -199,7 +199,7 @@ export const merchantsTableColumns: ColumnDef<MerchantsProps>[] = [
     },
   },
   {
-    accessorKey: "Contact Number",
+    accessorKey: "contactNumber",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Contact Number" />
     ),
