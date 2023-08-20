@@ -50,11 +50,6 @@ export const dashboardConfig: DashboardConfig = {
       icon: "brands",
     },
     {
-      title: "Ads",
-      href: "/ads",
-      icon: "ads",
-    },
-    {
       title: "Product Tags",
       href: "/tags",
       icon: "tags",
@@ -68,6 +63,19 @@ export const dashboardConfig: DashboardConfig = {
       title: "Locations",
       href: "/locations",
       icon: "locations",
+    },
+    {
+      title: "Ads",
+    },
+    {
+      title: "Advertisers",
+      href: "/advertisers",
+      icon: "advertisers",
+    },
+    {
+      title: "Ads",
+      href: "/ads",
+      icon: "ads",
     },
     {
       title: "Marketing",

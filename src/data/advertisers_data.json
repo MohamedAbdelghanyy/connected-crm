@@ -1,0 +1,12 @@
+[
+  {
+    "id": "ADV-123",
+    "logo": "https://connectedapp20200512063146.azurewebsites.net/api/connectedadmin/GetImage/2ec4d5ee-7d6a-437c-93ad-d05738e735be.png",
+    "name": "Four Seasons"
+  },
+  {
+    "id": "ADV-456",
+    "logo": "https://connectedapp20200512063146.azurewebsites.net/api/connectedadmin/GetImage/581b743a-0414-4db7-90ef-7c39cbaa4004.png",
+    "name": "Audemars Piguet"
+  }
+]
