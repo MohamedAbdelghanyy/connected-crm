@@ -63,10 +63,44 @@ const leadsActionList : ActionListProps[] = [
     ]
   },
   {
+    type: "dropdown",
+    label: "Assign To",
+    subActions: [
+      {
+        type: "button",
+        label: "Mohamed Abdelghany",
+        action: (id: string) => {
+          console.log('Moh: ' + id)
+        }
+      },
+      {
+        type: "button",
+        label: "Khaled Afify",
+        action: (id: string) => {
+          console.log('Khal: ' + id)
+        }
+      },
+      {
+        type: "button",
+        label: "Soha El Hadary",
+        action: (id: string) => {
+          console.log('Soh: ' + id)
+        }
+      }
+    ]
+  },
+  {
     type: "button",
     label: "Convert Into User",
     action: (id: string) => {
       console.log('Convert: ' + id)
+    }
+  },
+  {
+    type: "button",
+    label: "Move To Not Interested",
+    action: (id: string) => {
+      console.log('Not Interested: ' + id)
     }
   },
   {

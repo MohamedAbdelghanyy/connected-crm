@@ -218,6 +218,25 @@ export default function AddLead({
                   </SelectContent>
                 </Select>
               </div>
+              <div className="space-y-2">
+                <Label htmlFor="assignedTo">Assigned To</Label>
+                <Select>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select user" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="moh">
+                      <span className="font-medium">Mohamed Abdelghany</span>
+                    </SelectItem>
+                    <SelectItem value="khal">
+                      <span className="font-medium">Khaled Afify</span>
+                    </SelectItem>
+                    <SelectItem value="soh">
+                      <span className="font-medium">Soha El Hadary</span>
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
           </div>
           <DialogFooter className="mr-4 mb-2">
