@@ -1,0 +1,41 @@
+[
+  {
+    "id": "USR-123",
+    "name": "Mohamed Abdelghany",
+    "mobile": "+201115696965",
+    "email": "mohamedabdelghanyy@gmail.com",
+    "interests": "Automotive",
+    "buy": "NA",
+    "sell": "NA",
+    "status": "unqualified",
+    "rating": 10,
+    "notes": "NA",
+    "priority": "low"
+  },
+  {
+    "id": "USR-129",
+    "name": "Soha Elhadary",
+    "mobile": "+201224466880",
+    "email": "sohaelhadary@gmail.com",
+    "interests": "Lifestyle",
+    "buy": "NA",
+    "sell": "NA",
+    "status": "qualified",
+    "rating": 10,
+    "notes": "NA",
+    "priority": "high"
+  },
+  {
+    "id": "USR-134",
+    "name": "Khaled Afify",
+    "mobile": "+201234567890",
+    "email": "khaledafify@gmail.com",
+    "interests": "Realestate",
+    "buy": "NA",
+    "sell": "NA",
+    "status": "active",
+    "rating": 10,
+    "notes": "NA",
+    "priority": "high"
+  }
+]
