@@ -94,17 +94,32 @@ export const dashboardConfig: DashboardConfig = {
       title: "Sales",
     },
     {
-      title: "Sales",
-      href: "/sales",
-      icon: "sales",
+      title: "Leads",
+      href: "/leads",
+      icon: "leads",
+    },
+    {
+      title: "Whatsapp",
+      href: "/whatsapp",
+      icon: "whatsapp",
     },
     {
       title: "Reports",
     },
     {
-      title: "Reports",
-      href: "/reports",
-      icon: "reports",
+      title: "Top Acitve Customers",
+      href: "/top-active-customers",
+      icon: "topActiveCustomers",
+    },
+    {
+      title: "Most Liked Items",
+      href: "/most-liked-items",
+      icon: "mostLikedItems",
+    },
+    {
+      title: "Most Wishlisted Items",
+      href: "/most-wishlisted-items",
+      icon: "mostWishlistedItems",
     },
     {
       title: "Internal System",
