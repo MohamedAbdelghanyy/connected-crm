@@ -128,6 +128,25 @@ export default function AddItem({
                     <Textarea id="description" placeholder="Enter item description" />
                   </div>
                   <div className="space-y-2">
+                    <Label htmlFor="brand">Brand</Label>
+                    <Select>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select brand" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="rolex">
+                          <span className="font-medium">Rolex</span>
+                        </SelectItem>
+                        <SelectItem value="bmw">
+                          <span className="font-medium">BMW</span>
+                        </SelectItem>
+                        <SelectItem value="Emaar">
+                          <span className="font-medium">Emaar</span>
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-2">
                     <Label htmlFor="category">Category</Label>
                     <Select>
                       <SelectTrigger>

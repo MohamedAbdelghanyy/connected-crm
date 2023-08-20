@@ -109,6 +109,10 @@ export const itemsTableToolbarSearchList : ToolbarSearchListProps[] = [
     title: 'Category'
   },
   {
+    key: 'brand',
+    title: 'Brand'
+  },
+  {
     key: 'owner',
     title: 'Owner'
   },
@@ -135,6 +139,7 @@ interface ItemsProps {
   image: string
   name: string
   price: number
+  brand: string
   category: string
   owner: string
   views: number
@@ -230,6 +235,21 @@ export const itemsTableColumns: ColumnDef<ItemsProps>[] = [
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
             {row.getValue("category")}
+          </span>
+        </div>
+      )
+    },
+  },
+  {
+    accessorKey: "brand",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Brand" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex space-x-2">
+          <span className="max-w-[500px] truncate font-medium">
+            {row.getValue("brand")}
           </span>
         </div>
       )
