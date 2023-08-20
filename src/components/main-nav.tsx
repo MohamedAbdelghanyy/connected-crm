@@ -29,7 +29,7 @@ export function MainNav({ items, sideItems, children }: MainNavProps) {
   return (
     <div className="flex gap-6 md:gap-10">
       <Link href="/" className="hidden items-center space-x-2 md:flex">
-        <Icons.logo width="30px" height="30px" color={theme === "dark" ? "#fff" : "#000"} />
+        <Icons.logo width="30px" height="30px" color={theme === "light" ? "#000" : "#fff"} />
         <span className="hidden font-bold sm:inline-block">
           {siteConfig.name}
         </span>
@@ -57,7 +57,7 @@ export function MainNav({ items, sideItems, children }: MainNavProps) {
         className="flex items-center space-x-2 md:hidden"
         onClick={toggleMobileMenu}
       >
-        {showMobileMenu ? <Icons.close /> : <Icons.logo width="30px" height="30px" color={theme === "dark" ? "#fff" : "#000"} />}
+        {showMobileMenu ? <Icons.close /> : <Icons.logo width="30px" height="30px" color={theme === "light" ? "#000" : "#fff"} />}
         <span className="font-bold">{siteConfig.name}</span>
       </button>
       {showMobileMenu && items && sideItems && (
