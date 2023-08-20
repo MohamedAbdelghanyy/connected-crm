@@ -25,7 +25,7 @@ export default async function advertisersPage() {
   return (
     <>
       <DashboardShell className="mb-1">
-        <DashboardHeader heading="Ads" text="Manage your advertisers">
+        <DashboardHeader heading="Advertisers" text="Manage your advertisers">
           <AddAdvertiser />
         </DashboardHeader>
       </DashboardShell>
