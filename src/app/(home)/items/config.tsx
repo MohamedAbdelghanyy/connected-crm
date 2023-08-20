@@ -36,6 +36,26 @@ const itemsActionList : ActionListProps[] = [
     ]
   },
   {
+    type: "dropdown",
+    label: "Requests",
+    subActions: [
+      {
+        type: "button",
+        label: "Create Request",
+        action: (id: string) => {
+          console.log('Create Req.: ' + id)
+        }
+      },
+      {
+        type: "button",
+        label: "View Requests",
+        action: (id: string) => {
+          console.log('View Req.: ' + id)
+        }
+      },
+    ]
+  },
+  {
     type: "button",
     label: "Edit",
     action: (id: string) => {
@@ -129,6 +149,22 @@ export const itemsTableToolbarSearchList : ToolbarSearchListProps[] = [
     title: 'Interactions'
   },
   {
+    key: 'noOfRequests',
+    title: 'No. Of Requests'
+  },
+  {
+    key: 'dateItemAdded',
+    title: 'Adding Date'
+  },
+  {
+    key: 'dateItemReserved',
+    title: 'Reservation Date'
+  },
+  {
+    key: 'dateItemSold',
+    title: 'Sold Out Date'
+  },
+  {
     key: 'lastupdated',
     title: 'Last Updated'
   }
@@ -145,6 +181,10 @@ interface ItemsProps {
   views: number
   wishlisted: number
   interactions: number
+  noOfRequests: number
+  dateItemAdded: string
+  dateItemReserved: string
+  dateItemSold: string
   lastupdated: string
   status: string
 }
@@ -310,6 +350,66 @@ export const itemsTableColumns: ColumnDef<ItemsProps>[] = [
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
             {row.getValue("interactions")}
+          </span>
+        </div>
+      )
+    },
+  },
+  {
+    accessorKey: "noOfRequests",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Requests" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex space-x-2">
+          <span className="max-w-[500px] truncate font-medium">
+            {row.getValue("noOfRequests")}
+          </span>
+        </div>
+      )
+    },
+  },
+  {
+    accessorKey: "dateItemAdded",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Adding Date" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex space-x-2">
+          <span className="max-w-[500px] truncate font-medium">
+            {row.getValue("dateItemAdded")}
+          </span>
+        </div>
+      )
+    },
+  },
+  {
+    accessorKey: "dateItemReserved",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Reservation Date" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex space-x-2">
+          <span className="max-w-[500px] truncate font-medium">
+            {row.getValue("dateItemReserved")}
+          </span>
+        </div>
+      )
+    },
+  },
+  {
+    accessorKey: "dateItemSold",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Sold Out Date" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex space-x-2">
+          <span className="max-w-[500px] truncate font-medium">
+            {row.getValue("dateItemSold")}
           </span>
         </div>
       )

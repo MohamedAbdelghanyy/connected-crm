@@ -154,7 +154,46 @@ export default function AddLead({
               </div>
               <div className="space-y-2">
                 <Label htmlFor="rating">Rating</Label>
-                <Input type="number" id="rating" placeholder="Enter rating" />
+                <Select>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select rating" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="0">
+                      <span className="font-medium">0</span>
+                    </SelectItem>
+                    <SelectItem value="1">
+                      <span className="font-medium">1</span>
+                    </SelectItem>
+                    <SelectItem value="2">
+                      <span className="font-medium">2</span>
+                    </SelectItem>
+                    <SelectItem value="4">
+                      <span className="font-medium">3</span>
+                    </SelectItem>
+                    <SelectItem value="5">
+                      <span className="font-medium">4</span>
+                    </SelectItem>
+                    <SelectItem value="6">
+                      <span className="font-medium">5</span>
+                    </SelectItem>
+                    <SelectItem value="7">
+                      <span className="font-medium">6</span>
+                    </SelectItem>
+                    <SelectItem value="8">
+                      <span className="font-medium">7</span>
+                    </SelectItem>
+                    <SelectItem value="9">
+                      <span className="font-medium">8</span>
+                    </SelectItem>
+                    <SelectItem value="10">
+                      <span className="font-medium">9</span>
+                    </SelectItem>
+                    <SelectItem value="3">
+                      <span className="font-medium">10</span>
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
               <div className="space-y-2">
                 <Label htmlFor="notes">Notes</Label>

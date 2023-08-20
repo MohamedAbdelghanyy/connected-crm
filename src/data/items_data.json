@@ -10,6 +10,10 @@
     "views": 912,
     "wishlisted": 20,
     "interactions": 129,
+    "noOfRequests": 109,
+    "dateItemAdded": "10/10/2020",
+    "dateItemReserved": "10/10/2020",
+    "dateItemSold": "10/10/2020",
     "lastupdated": "12/10/2020",
     "status": "approved"
   },
@@ -24,6 +28,10 @@
     "views": 122,
     "wishlisted": 7,
     "interactions": 68,
+    "noOfRequests": 109,
+    "dateItemAdded": "10/10/2020",
+    "dateItemReserved": "10/10/2020",
+    "dateItemSold": "10/10/2020",
     "lastupdated": "10/10/2020",
     "status": "rejected"
   },
@@ -38,6 +46,10 @@
     "views": 30,
     "wishlisted": 2,
     "interactions": 20,
+    "noOfRequests": 109,
+    "dateItemAdded": "10/10/2020",
+    "dateItemReserved": "10/10/2020",
+    "dateItemSold": "10/10/2020",
     "lastupdated": "11/10/2020",
     "status": "reserved"
   },
@@ -52,6 +64,10 @@
     "views": 104,
     "wishlisted": 11,
     "interactions": 47,
+    "noOfRequests": 109,
+    "dateItemAdded": "10/10/2020",
+    "dateItemReserved": "10/10/2020",
+    "dateItemSold": "10/10/2020",
     "lastupdated": "19/10/2020",
     "status": "soldout"
   },
@@ -66,6 +82,10 @@
     "views": 539,
     "wishlisted": 68,
     "interactions": 81,
+    "noOfRequests": 109,
+    "dateItemAdded": "10/10/2020",
+    "dateItemReserved": "10/10/2020",
+    "dateItemSold": "10/10/2020",
     "lastupdated": "10/10/2020",
     "status": "approved"
   }
