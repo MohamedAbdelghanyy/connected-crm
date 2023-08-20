@@ -25,31 +25,29 @@ export default function DashboardPage() {
   return (
     <>
       <div className="flex items-center justify-between space-y-2">
-      <Grid container spacing={1}>
-        <Grid item xs={12} sm={12} md={6} lg={6}>
-          <h2 className="text-4xl mb-1">Dashboard</h2>
-        </Grid>
-        <Grid item xs={12} sm={12} md={6} lg={6}>
-          <div className="flex items-center space-x-2" style={{float: "right"}}>
-            <CalendarDateRangePicker />
-            <Button>Download</Button>
-          </div>
-        </Grid>
-      </Grid>
+        <h2 className="text-4xl mb-1">Dashboard</h2>
       </div>
       <Tabs defaultValue="overview" className="space-y-4 mt-2">
-        <TabsList>
-          <TabsTrigger value="overview">Overview</TabsTrigger>
-          <TabsTrigger value="analytics" disabled>
-            Analytics
-          </TabsTrigger>
-          <TabsTrigger value="reports" disabled>
-            Reports
-          </TabsTrigger>
-          <TabsTrigger value="notifications" disabled>
-            Notifications
-          </TabsTrigger>
-        </TabsList>
+        <Grid container spacing={1}>
+          <Grid item xs={12} sm={12} md={5} lg={4}>
+            <TabsList style={{width: "100%", justifyContent: "space-between"}}>
+              <TabsTrigger value="overview">Overview</TabsTrigger>
+              <TabsTrigger value="analytics" disabled>
+                Analytics
+              </TabsTrigger>
+              <TabsTrigger value="reports" disabled>
+                Reports
+              </TabsTrigger>
+            </TabsList>
+          </Grid>
+          <Grid item xs={0} sm={0} md={2} lg={3}></Grid>
+          <Grid item xs={12} sm={12} md={5} lg={5}>
+            <div className="flex items-center space-x-2" style={{float: "right"}}>
+              <CalendarDateRangePicker />
+              <Button>Download</Button>
+            </div>
+          </Grid>
+        </Grid>
         <TabsContent value="overview" className="space-y-4">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             <Card>

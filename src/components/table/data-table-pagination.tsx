@@ -22,14 +22,14 @@ export function DataTablePagination<TData>({
   return (
     <div className="flex items-center justify-between px-2">
       <Grid container spacing={1}>
-        <Grid item xs={12} sm={12} md={3} lg={3}>
+        <Grid item xs={12} sm={12} md={4} lg={4}>
           <div className="flex-1 text-sm text-muted-foreground">
             {table.getFilteredSelectedRowModel().rows.length} of{" "}
             {table.getFilteredRowModel().rows.length} row(s) selected.
           </div>
         </Grid>
-        <Grid item xs={12} sm={12} md={9} lg={9}>
-          <div className="flex items-center space-x-6 lg:space-x-8" style={{float: "right"}}>
+        <Grid item xs={12} sm={12} md={4} lg={4}>
+          <div className="flex items-center space-x-6 lg:space-x-8">
             <div className="flex items-center space-x-2">
               <p className="text-sm font-medium">Rows per page</p>
               <Select
@@ -50,6 +50,10 @@ export function DataTablePagination<TData>({
                 </SelectContent>
               </Select>
             </div>
+          </div>
+        </Grid>
+        <Grid item xs={12} sm={12} md={4} lg={4}>
+          <div className="flex items-center space-x-6 lg:space-x-8" style={{float: "right"}}>
             <div className="flex w-[100px] items-center justify-center text-sm font-medium">
               Page {table.getState().pagination.pageIndex + 1} of{" "}
               {table.getPageCount()}
