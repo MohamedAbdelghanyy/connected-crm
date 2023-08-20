@@ -326,13 +326,22 @@ export const customersTableColumns: ColumnDef<CustomersProps>[] = [
       <DataTableColumnHeader column={column} title="Source" />
     ),
     cell: ({ row }) => {
+      const source = sources.find(
+        (source: { value: unknown }) => source.value === row.getValue("source")
+      )
+
+      if (!source) {
+        return null
+      }
+
       return (
-        <div className="flex space-x-2">
-          <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("source")}
-          </span>
+        <div className="flex w-[100px] items-center">
+          <span>{source.label}</span>
         </div>
       )
+    },
+    filterFn: (row, id, value) => {
+      return value.includes(row.getValue(id))
     },
   },
   {
