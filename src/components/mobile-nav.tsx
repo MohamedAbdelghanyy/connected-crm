@@ -37,19 +37,25 @@ export function MobileNav({ items, sideItems, toggleMobileMenu, children }: Mobi
               {item.title}
             </Link>
           ))}
-          {sideItems.map((sideItem, index) => (
-            <Link
-              key={index}
-              onClick={()=>toggleMobileMenu()}
-              href={sideItem.disabled ? "#" : String(sideItem.href)}
-              className={cn(
-                "flex w-full items-center rounded-md p-2 text-sm font-medium hover:underline",
-                sideItem.disabled && "cursor-not-allowed opacity-60"
-              )}
-            >
-              {sideItem.title}
-            </Link>
-          ))}
+          {sideItems.map((sideItem, index) => {
+            const Icon = Icons[sideItem.icon || "arrowRight"]
+            return  sideItem.href? (
+              <Link
+                key={index}
+                onClick={()=>toggleMobileMenu()}
+                href={sideItem.disabled ? "#" : String(sideItem.href)}
+                className={cn(
+                  "flex w-full items-center rounded-md p-2 text-sm font-medium hover:underline",
+                  sideItem.disabled && "cursor-not-allowed opacity-60"
+                )}
+              >
+                <Icon className="mr-2 h-4 w-4" />
+                {sideItem.title}
+              </Link>
+            ):(
+              <span className="mt-5 ml-2">{sideItem.title}</span>
+            )
+          })}
         </nav>
         {children}
       </div>

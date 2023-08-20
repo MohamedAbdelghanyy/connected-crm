@@ -15,6 +15,7 @@ import {
 import { CalendarDateRangePicker } from "@/components/date-range-picker"
 import { Overview } from "@/components/overview"
 import { RecentSales } from "@/components/recent-sales"
+import Grid from '@mui/material/Grid';
 
 export const metadata = {
   title: "Dashboard",
@@ -24,11 +25,17 @@ export default function DashboardPage() {
   return (
     <>
       <div className="flex items-center justify-between space-y-2">
-        <h2 className="text-4xl mb-1">Dashboard</h2>
-        <div className="flex items-center space-x-2">
-          <CalendarDateRangePicker />
-          <Button>Download</Button>
-        </div>
+      <Grid container spacing={1}>
+        <Grid item xs={12} sm={12} md={6} lg={6}>
+          <h2 className="text-4xl mb-1">Dashboard</h2>
+        </Grid>
+        <Grid item xs={12} sm={12} md={6} lg={6}>
+          <div className="flex items-center space-x-2" style={{float: "right"}}>
+            <CalendarDateRangePicker />
+            <Button>Download</Button>
+          </div>
+        </Grid>
+      </Grid>
       </div>
       <Tabs defaultValue="overview" className="space-y-4 mt-2">
         <TabsList>

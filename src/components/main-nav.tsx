@@ -9,6 +9,7 @@ import { MobileNav } from "@/components/mobile-nav"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import { MainNavItem, SidebarNavItem } from "@/types"
+import { useTheme } from "next-themes";
 
 interface MainNavProps {
   items?: MainNavItem[]
@@ -19,6 +20,7 @@ interface MainNavProps {
 export function MainNav({ items, sideItems, children }: MainNavProps) {
   const segment = useSelectedLayoutSegment()
   const [showMobileMenu, setShowMobileMenu] = React.useState<boolean>(false)
+  const { theme, setTheme } = useTheme();
 
   const toggleMobileMenu = () => {
     setShowMobileMenu(!showMobileMenu);
@@ -27,7 +29,7 @@ export function MainNav({ items, sideItems, children }: MainNavProps) {
   return (
     <div className="flex gap-6 md:gap-10">
       <Link href="/" className="hidden items-center space-x-2 md:flex">
-        <Icons.logo width="30px" height="30px" />
+        <Icons.logo width="30px" height="30px" color={theme === "dark" ? "#fff" : "#000"} />
         <span className="hidden font-bold sm:inline-block">
           {siteConfig.name}
         </span>
@@ -55,7 +57,7 @@ export function MainNav({ items, sideItems, children }: MainNavProps) {
         className="flex items-center space-x-2 md:hidden"
         onClick={toggleMobileMenu}
       >
-        {showMobileMenu ? <Icons.close /> : <Icons.logo width="30px" height="30px"  />}
+        {showMobileMenu ? <Icons.close /> : <Icons.logo width="30px" height="30px" color={theme === "dark" ? "#fff" : "#000"} />}
         <span className="font-bold">{siteConfig.name}</span>
       </button>
       {showMobileMenu && items && sideItems && (

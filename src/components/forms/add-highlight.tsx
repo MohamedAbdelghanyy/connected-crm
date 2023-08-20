@@ -96,7 +96,7 @@ export default function AddHighlight({
               </div>
             </div>
           </div>
-          <DialogFooter className="mr-4 mb-2">
+          <DialogFooter className="mr-4 ml-4 mb-2">
             <Button variant="outline" className="mb-2" onClick={() => setShowNewHighlightDialog(false)}>
               Cancel
             </Button>
