@@ -29,7 +29,7 @@ export function DataTablePagination<TData>({
           </div>
         </Grid>
         <Grid item xs={12} sm={12} md={9} lg={9}>
-          <div className="flex items-center space-x-6 lg:space-x-8">
+          <div className="flex items-center space-x-6 lg:space-x-8" style={{float: "right"}}>
             <div className="flex items-center space-x-2">
               <p className="text-sm font-medium">Rows per page</p>
               <Select
