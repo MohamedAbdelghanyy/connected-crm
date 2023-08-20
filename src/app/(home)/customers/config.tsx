@@ -37,6 +37,13 @@ const customersActionList : ActionListProps[] = [
   },
   {
     type: "button",
+    label: "Activity Log",
+    action: (id: string) => {
+      console.log('Log: ' + id)
+    }
+  },
+  {
+    type: "button",
     label: "View",
     action: (id: string) => {
       console.log('View: ' + id)
@@ -59,6 +66,22 @@ const customersActionList : ActionListProps[] = [
 ]
 
 // Options
+const sources = [
+  {
+    value: "invitation",
+    label: "Invitation",
+  },
+  {
+    value: "leads",
+    label: "Leads",
+  },
+  {
+    value: "registration",
+    label: "Registration",
+  },
+]
+
+// Options
 const statuses = [
   {
     value: "approved",
@@ -75,6 +98,11 @@ const statuses = [
 ]
 
 export const customersTableToolbar : ToolbarProps[] = [
+  {
+    key: "source",
+    title: "Source",
+    options: sources,
+  },
   {
     key: "status",
     title: "Status",
@@ -116,6 +144,10 @@ export const customersTableToolbarSearchList : ToolbarSearchListProps[] = [
     title: 'Interests'
   },
   {
+    key: 'source',
+    title: 'Source'
+  },
+  {
     key: 'status',
     title: 'Status'
   },
@@ -132,6 +164,7 @@ interface CustomersProps {
   noofwishlist: number
   lastseen: string
   interests: string
+  source: string
   status: string
 }
 
@@ -282,6 +315,21 @@ export const customersTableColumns: ColumnDef<CustomersProps>[] = [
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
             {row.getValue("interests")}
+          </span>
+        </div>
+      )
+    },
+  },
+  {
+    accessorKey: "source",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Source" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex space-x-2">
+          <span className="max-w-[500px] truncate font-medium">
+            {row.getValue("source")}
           </span>
         </div>
       )

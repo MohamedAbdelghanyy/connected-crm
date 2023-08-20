@@ -9,6 +9,7 @@
     "noofwishlist": 20,
     "lastseen": "18/08/2023",
     "interests": "Automotive",
+    "source": "invitation",
     "status": "approved"
   },
   {
@@ -21,6 +22,7 @@
     "noofwishlist": 32,
     "lastseen": "16/08/2023",
     "interests": "Lifestyle",
+    "source": "leads",
     "status": "rejected"
   },
   {
@@ -33,6 +35,7 @@
     "noofwishlist": 11,
     "lastseen": "16/08/2023",
     "interests": "Realestate",
+    "source": "registration",
     "status": "pending"
   }
 ]
