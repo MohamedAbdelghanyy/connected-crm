@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { useRouter } from "next/navigation"
 import { cn } from "@/lib/utils"
 import {
   Dialog,
@@ -23,17 +24,16 @@ import { toast } from "@/components/ui/use-toast"
 import { Icons } from "@/components/icons"
 import { Button } from "@/components/ui/button"
 import { ButtonProps, buttonVariants } from "@/components/ui/button"
-import { useRouter } from 'next/navigation'
 
-export default function AddCustomer({
+export default function AddCustomerBK({
   className,
   variant,
   ...props
 }: ButtonProps) {
+  const router = useRouter()
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
   const [showNewCustomerDialog, setShowNewCustomerDialog] = React.useState(false)
   const userNameRef = React.useRef<HTMLInputElement>(null);
-  const router = useRouter();
 
   async function saveCustomer() {
     if(userNameRef.current && userNameRef.current.value){
@@ -74,8 +74,7 @@ export default function AddCustomer({
     <>
       <button
         onClick={() =>{
-          router.push('/customers/add', { scroll: false })
-          //setShowNewCustomerDialog(true);
+          setShowNewCustomerDialog(true);
         }}
         className={cn(
           buttonVariants({ variant }),
