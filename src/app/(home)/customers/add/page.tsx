@@ -27,14 +27,9 @@ import { ButtonProps, buttonVariants } from "@/components/ui/button"
 import { DashboardShell } from "@/components/shell"
 import { DashboardHeader } from "@/components/header"
 
-export default function AddCustomer({
-  className,
-  variant,
-  ...props
-}: ButtonProps) {
+export default function AddCustomerPage() {
   const router = useRouter()
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
-  const [showNewCustomerDialog, setShowNewCustomerDialog] = React.useState(false)
   const userNameRef = React.useRef<HTMLInputElement>(null);
 
   async function saveCustomer() {
@@ -60,7 +55,6 @@ export default function AddCustomer({
           variant: "destructive",
         })
       }else{
-        setShowNewCustomerDialog(false);
         return toast({
           title: "Success",
           description: userNameRef.current.value + " was successfully added.",
@@ -181,7 +175,7 @@ export default function AddCustomer({
               onClick={saveCustomer}
               style={{width: "150px"}}
               className={cn(
-                buttonVariants({ variant }),
+                buttonVariants({}),
                 {
                   "cursor-not-allowed opacity-60": isLoading,
                 },
