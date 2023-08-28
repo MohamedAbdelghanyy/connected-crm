@@ -50,7 +50,7 @@ export default function AddItemPage() {
   return (
     <>       
       <DashboardShell className="mb-1">
-        <DashboardHeader heading="Add Customer" text="Enter your customer details">
+        <DashboardHeader heading="Add Item" text="Enter item's details">
         </DashboardHeader>
       </DashboardShell>
       <div>
