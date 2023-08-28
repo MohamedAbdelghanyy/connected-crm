@@ -7,6 +7,11 @@ import { DashboardShell } from "@/components/shell"
 import { DataTable } from "@/components/table/data-table"
 import AddItem from "@/components/forms/add-item"
 import { itemsTableColumns, itemsTableToolbar, itemsTableToolbarSearchList } from "./config"
+import { cn } from "@/lib/utils"
+import { buttonVariants } from "@/components/ui/button"
+import { Icons } from "@/components/icons"
+import { redirect, useRouter } from "next/navigation"
+import Link from "next/link"
 
 export const metadata = {
   title: "Items",
@@ -20,6 +25,7 @@ async function getItems() {
   return items
 }
 
+
 export default async function ItemsPage() {
   const items = await getItems()
   return (
@@ -27,6 +33,9 @@ export default async function ItemsPage() {
       <DashboardShell className="mb-1">
         <DashboardHeader heading="Items" text="Manage your items">
           <AddItem />
+          <Link href="/items/add-1" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" /> Add Item 1</Link>
+          <Link href="/items/add-2" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" /> Add Item 2</Link>
+          <Link href="/items/add-3" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" /> Add Item 3</Link>
         </DashboardHeader>
       </DashboardShell>
       <div className="m-2">
