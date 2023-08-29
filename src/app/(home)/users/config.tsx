@@ -1,10 +1,10 @@
 "use client"
 
-import { ColumnDef } from "@tanstack/react-table"
 import { DataTableColumnHeader } from "@/components/table/data-table-column-header"
 import { ActionListProps, DataTableRowActions } from "@/components/table/data-table-row-actions"
 import { ToolbarProps, ToolbarSearchListProps } from "@/components/table/data-table-toolbar"
 import { Checkbox } from "@/components/ui/checkbox"
+import { ColumnDef } from "@tanstack/react-table"
 
 const usersActionList : ActionListProps[] = [
   {

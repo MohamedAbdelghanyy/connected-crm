@@ -1,7 +1,10 @@
 import { DashboardHeader } from "@/components/header"
+import { Icons } from "@/components/icons"
 import { DashboardShell } from "@/components/shell"
-import AddLead from "@/components/forms/add-lead"
+import { buttonVariants } from "@/components/ui/button"
 import { Skeleton } from "@/components/ui/skeleton"
+import { cn } from "@/lib/utils"
+import Link from "next/link"
 
 function ItemSkeleton() {
   return (
@@ -17,7 +20,7 @@ export default function LeadLoading() {
   return (
     <DashboardShell className="mb-1">
       <DashboardHeader heading="Leads" text="Manage your leads">
-        <AddLead />
+        <Link href="/leads/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" />Add Lead</Link>
       </DashboardHeader>
       <div className="divide-border-200 divide-y rounded-md border">
         <ItemSkeleton />

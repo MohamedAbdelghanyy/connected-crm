@@ -3,9 +3,12 @@ import path from "path"
 
 import { EmptyPlaceholder } from "@/components/empty-placeholder"
 import { DashboardHeader } from "@/components/header"
+import { Icons } from "@/components/icons"
 import { DashboardShell } from "@/components/shell"
 import { DataTable } from "@/components/table/data-table"
-import AddAd from "@/components/forms/add-ad"
+import { buttonVariants } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
+import Link from "next/link"
 import { adsTableColumns, adsTableToolbar, adsTableToolbarSearchList } from "./config"
 
 export const metadata = {
@@ -26,7 +29,7 @@ export default async function AdsPage() {
     <>
       <DashboardShell className="mb-1">
         <DashboardHeader heading="Ads" text="Manage your ads">
-          <AddAd />
+          <Link href="/ads/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" />Add Ad.</Link>
         </DashboardHeader>
       </DashboardShell>
       <div className="m-2">
@@ -38,7 +41,7 @@ export default async function AdsPage() {
             <EmptyPlaceholder.Description>
               You don&apos;t have any ads yet.
             </EmptyPlaceholder.Description>
-            <AddAd variant="outline" />
+            <Link href="/ads/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Ad.</Link>
           </EmptyPlaceholder>)}
       </div>
     </>

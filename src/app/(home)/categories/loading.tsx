@@ -1,7 +1,10 @@
 import { DashboardHeader } from "@/components/header"
+import { Icons } from "@/components/icons"
 import { DashboardShell } from "@/components/shell"
+import { buttonVariants } from "@/components/ui/button"
 import { Skeleton } from "@/components/ui/skeleton"
-import AddCategory from "@/components/forms/add-category"
+import { cn } from "@/lib/utils"
+import Link from "next/link"
 
 function ItemSkeleton() {
   return (
@@ -17,7 +20,7 @@ export default function CategoriesLoading() {
   return (
     <DashboardShell className="mb-1">
       <DashboardHeader heading="Categories" text="Manage your categories">
-        <AddCategory />
+        <Link href="/categories/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" />Add Category</Link>
       </DashboardHeader>
       <div className="divide-border-200 divide-y rounded-md border">
         <ItemSkeleton />

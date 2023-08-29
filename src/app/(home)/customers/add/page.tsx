@@ -1,16 +1,9 @@
 "use client"
 
-import * as React from "react"
-import { useRouter } from "next/navigation"
-import { cn } from "@/lib/utils"
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog"
+import { DashboardHeader } from "@/components/header"
+import { Icons } from "@/components/icons"
+import { DashboardShell } from "@/components/shell"
+import { buttonVariants } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {
@@ -21,11 +14,9 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { toast } from "@/components/ui/use-toast"
-import { Icons } from "@/components/icons"
-import { Button } from "@/components/ui/button"
-import { ButtonProps, buttonVariants } from "@/components/ui/button"
-import { DashboardShell } from "@/components/shell"
-import { DashboardHeader } from "@/components/header"
+import { cn } from "@/lib/utils"
+import { useRouter } from "next/navigation"
+import * as React from "react"
 
 export default function AddCustomerPage() {
   const router = useRouter()

@@ -1,13 +1,10 @@
-import { notFound } from "next/navigation"
 
-import { dashboardConfig } from "@/config/dashboard"
 import { MainNav } from "@/components/main-nav"
 import { DashboardNav } from "@/components/nav"
 import { SiteFooter } from "@/components/site-footer"
-import { UserAccountNav } from "@/components/user-account-nav"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { DocsSidebarNav } from "@/components/sidebar-nav"
-import { docsConfig } from "@/config/docs"
+import { UserAccountNav } from "@/components/user-account-nav"
+import { dashboardConfig } from "@/config/dashboard"
 
 interface DashboardLayoutProps {
   children?: React.ReactNode

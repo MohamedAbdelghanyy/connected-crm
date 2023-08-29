@@ -32,7 +32,7 @@ export default async function ItemsPage() {
     <>
       <DashboardShell className="mb-1">
         <DashboardHeader heading="Items" text="Manage your items">
-          <Link href="/items/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" /> Add Item 2</Link>
+          <Link href="/items/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" />Add Item</Link>
         </DashboardHeader>
       </DashboardShell>
       <div className="m-2">
@@ -44,7 +44,7 @@ export default async function ItemsPage() {
             <EmptyPlaceholder.Description>
               You don&apos;t have any items yet.
             </EmptyPlaceholder.Description>
-            <AddItem variant="outline" />
+            <Link href="/items/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Item</Link>
           </EmptyPlaceholder>)}
       </div>
     </>

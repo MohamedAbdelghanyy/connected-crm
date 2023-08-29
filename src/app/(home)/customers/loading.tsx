@@ -1,7 +1,10 @@
 import { DashboardHeader } from "@/components/header"
+import { Icons } from "@/components/icons"
 import { DashboardShell } from "@/components/shell"
-import AddCustomer from "@/components/forms/add-customer"
+import { buttonVariants } from "@/components/ui/button"
 import { Skeleton } from "@/components/ui/skeleton"
+import { cn } from "@/lib/utils"
+import Link from "next/link"
 
 function ItemSkeleton() {
   return (
@@ -17,7 +20,7 @@ export default function CustomersLoading() {
   return (
     <DashboardShell className="mb-1">
       <DashboardHeader heading="Customers" text="Manage your customers">
-        <AddCustomer />
+        <Link href="/customers/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" />Add Customer</Link>
       </DashboardHeader>
       <div className="divide-border-200 divide-y rounded-md border">
         <ItemSkeleton />

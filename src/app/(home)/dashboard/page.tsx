@@ -1,3 +1,6 @@
+import { CalendarDateRangePicker } from "@/components/date-range-picker"
+import { Overview } from "@/components/overview"
+import { RecentSales } from "@/components/recent-sales"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -12,10 +15,7 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
-import { CalendarDateRangePicker } from "@/components/date-range-picker"
-import { Overview } from "@/components/overview"
-import { RecentSales } from "@/components/recent-sales"
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid'
 
 export const metadata = {
   title: "Dashboard",

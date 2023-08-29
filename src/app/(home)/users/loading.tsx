@@ -1,8 +1,10 @@
 import { DashboardHeader } from "@/components/header"
+import { Icons } from "@/components/icons"
 import { DashboardShell } from "@/components/shell"
-import AddCustomer from "@/components/forms/add-customer"
+import { buttonVariants } from "@/components/ui/button"
 import { Skeleton } from "@/components/ui/skeleton"
-import AddUser from "@/components/forms/add-user"
+import { cn } from "@/lib/utils"
+import Link from "next/link"
 
 function ItemSkeleton() {
   return (
@@ -18,7 +20,7 @@ export default function UsersLoading() {
   return (
     <DashboardShell className="mb-1">
       <DashboardHeader heading="Users" text="Manage your users">
-        <AddUser />
+        <Link href="/users/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" />Add User</Link>
       </DashboardHeader>
       <div className="divide-border-200 divide-y rounded-md border">
         <ItemSkeleton />

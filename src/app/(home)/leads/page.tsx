@@ -1,12 +1,15 @@
 import { promises as fs } from "fs"
 import path from "path"
 
+import { leadsTableColumns, leadsTableToolbar, leadsTableToolbarSearchList } from "@/app/(home)/leads/config"
 import { EmptyPlaceholder } from "@/components/empty-placeholder"
 import { DashboardHeader } from "@/components/header"
+import { Icons } from "@/components/icons"
 import { DashboardShell } from "@/components/shell"
 import { DataTable } from "@/components/table/data-table"
-import { leadsTableColumns, leadsTableToolbar, leadsTableToolbarSearchList } from "@/app/(home)/leads/config"
-import AddLead from "@/components/forms/add-lead"
+import { buttonVariants } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
+import Link from "next/link"
 
 export const metadata = {
   title: "Leads",
@@ -26,7 +29,7 @@ export default async function LeadsPage() {
     <>
       <DashboardShell className="mb-1">
         <DashboardHeader heading="Leads" text="Manage your leads">
-          <AddLead />
+          <Link href="/leads/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" />Add Lead</Link>
         </DashboardHeader>
       </DashboardShell>
       <div className="m-2">
@@ -38,7 +41,7 @@ export default async function LeadsPage() {
             <EmptyPlaceholder.Description>
               You don&apos;t have any lead yet.
             </EmptyPlaceholder.Description>
-            <AddLead variant="outline" />
+            <Link href="/leads/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Lead</Link>
           </EmptyPlaceholder>)}
       </div>
     </>

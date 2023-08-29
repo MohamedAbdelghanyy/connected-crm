@@ -3,9 +3,12 @@ import path from "path"
 
 import { EmptyPlaceholder } from "@/components/empty-placeholder"
 import { DashboardHeader } from "@/components/header"
+import { Icons } from "@/components/icons"
 import { DashboardShell } from "@/components/shell"
 import { DataTable } from "@/components/table/data-table"
-import AddTag from "@/components/forms/add-tag"
+import { buttonVariants } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
+import Link from "next/link"
 import { tagsTableColumns, tagsTableToolbar, tagsTableToolbarSearchList } from "./config"
 
 export const metadata = {
@@ -26,7 +29,7 @@ export default async function TagsPage() {
     <>
       <DashboardShell className="mb-1">
         <DashboardHeader heading="Tags" text="Manage your tags">
-          <AddTag />
+          <Link href="/tags/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" />Add Tag</Link>
         </DashboardHeader>
       </DashboardShell>
       <div className="m-2">
@@ -38,7 +41,7 @@ export default async function TagsPage() {
             <EmptyPlaceholder.Description>
               You don&apos;t have any tags yet.
             </EmptyPlaceholder.Description>
-            <AddTag variant="outline" />
+            <Link href="/tags/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Tag</Link>
           </EmptyPlaceholder>)}
       </div>
     </>

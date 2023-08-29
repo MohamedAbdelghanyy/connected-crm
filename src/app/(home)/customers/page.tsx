@@ -1,12 +1,15 @@
 import { promises as fs } from "fs"
 import path from "path"
 
+import { customersTableColumns, customersTableToolbar, customersTableToolbarSearchList } from "@/app/(home)/customers/config"
 import { EmptyPlaceholder } from "@/components/empty-placeholder"
 import { DashboardHeader } from "@/components/header"
+import { Icons } from "@/components/icons"
 import { DashboardShell } from "@/components/shell"
 import { DataTable } from "@/components/table/data-table"
-import { customersTableColumns, customersTableToolbar, customersTableToolbarSearchList } from "@/app/(home)/customers/config"
-import AddCustomer from "@/components/forms/add-customer"
+import { buttonVariants } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
+import Link from "next/link"
 
 export const metadata = {
   title: "Customers",
@@ -26,7 +29,7 @@ export default async function CustomersPage() {
     <>
       <DashboardShell className="mb-1">
         <DashboardHeader heading="Customers" text="Manage your customers">
-          <AddCustomer />
+          <Link href="/customers/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" />Add Customer</Link>
         </DashboardHeader>
       </DashboardShell>
       <div className="m-2">
@@ -38,7 +41,7 @@ export default async function CustomersPage() {
             <EmptyPlaceholder.Description>
               You don&apos;t have any customer yet.
             </EmptyPlaceholder.Description>
-            <AddCustomer variant="outline" />
+            <Link href="/customers/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Customer</Link>
           </EmptyPlaceholder>)}
       </div>
     </>
