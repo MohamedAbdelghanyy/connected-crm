@@ -3,15 +3,13 @@ import path from "path"
 
 import { EmptyPlaceholder } from "@/components/empty-placeholder"
 import { DashboardHeader } from "@/components/header"
+import { Icons } from "@/components/icons"
 import { DashboardShell } from "@/components/shell"
 import { DataTable } from "@/components/table/data-table"
-import AddItem from "@/components/forms/add-item"
-import { itemsTableColumns, itemsTableToolbar, itemsTableToolbarSearchList } from "./config"
-import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
-import { Icons } from "@/components/icons"
-import { redirect, useRouter } from "next/navigation"
+import { cn } from "@/lib/utils"
 import Link from "next/link"
+import { itemsTableColumns, itemsTableToolbar, itemsTableToolbarSearchList } from "./config"
 
 export const metadata = {
   title: "Items",

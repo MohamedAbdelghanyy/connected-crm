@@ -19,7 +19,7 @@ import { Grid } from "@mui/material"
 import { useRouter } from "next/navigation"
 import * as React from "react"
 
-export default function AddItemPage() {
+export default function AddBrandPage() {
   const router = useRouter()
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
   const [activeTab, setActiveTab] = React.useState("general")
@@ -39,7 +39,7 @@ export default function AddItemPage() {
   return (
     <>       
       <DashboardShell className="mb-1">
-        <DashboardHeader heading="Add Item" text="Enter item's details"></DashboardHeader>
+        <DashboardHeader heading="Add Brand" text="Enter brand's details"></DashboardHeader>
       </DashboardShell>
       <div className="space-y-4 pb-4 px-2">
         <div className="space-y-2"></div>
