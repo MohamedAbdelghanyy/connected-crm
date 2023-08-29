@@ -32,10 +32,7 @@ export default async function ItemsPage() {
     <>
       <DashboardShell className="mb-1">
         <DashboardHeader heading="Items" text="Manage your items">
-          <AddItem />
-          <Link href="/items/add-1" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" /> Add Item 1</Link>
-          <Link href="/items/add-2" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" /> Add Item 2</Link>
-          <Link href="/items/add-3" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" /> Add Item 3</Link>
+          <Link href="/items/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" /> Add Item 2</Link>
         </DashboardHeader>
       </DashboardShell>
       <div className="m-2">
