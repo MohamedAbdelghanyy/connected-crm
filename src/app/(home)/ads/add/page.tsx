@@ -34,11 +34,14 @@ export default function AddAdPage() {
           <div>
             <TabsList className="w-full h-full">
               <Grid container spacing={2}>
-                <Grid item sm={6} xs={6}>
+                <Grid item sm={4} xs={12}>
                   <TabsTrigger value="general" className="w-full">General</TabsTrigger>
                 </Grid>
-                <Grid item sm={6} xs={6}>
+                <Grid item sm={4} xs={6}>
                   <TabsTrigger value="media" className="w-full">Media</TabsTrigger>
+                </Grid>
+                <Grid item sm={4} xs={6}>
+                  <TabsTrigger value="settings" className="w-full">Settings</TabsTrigger>
                 </Grid>
               </Grid>
             </TabsList>
@@ -49,6 +52,10 @@ export default function AddAdPage() {
                 <div className="space-y-2">
                   <Label htmlFor="title">Ad Title</Label>
                   <Input id="title" placeholder="Enter ad title" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="description">Ad Description</Label>
+                  <Textarea id="description" placeholder="Enter ad. description" />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="name">Advertiser Name</Label>
@@ -62,10 +69,22 @@ export default function AddAdPage() {
                   <Label htmlFor="linkTitle">Link Title</Label>
                   <Input id="linkTitle" placeholder="Link Title" />
                 </div>
+              </div>
+            </TabsContent>
+            <TabsContent value="media" forceMount={true} hidden={activeTab !== "media"}>
+              <div className="space-y-4 py-2 pb-4">
                 <div className="space-y-2">
-                  <Label htmlFor="description">Description</Label>
-                  <Textarea id="description" placeholder="Enter ad. description" />
+                  <Label htmlFor="logo">Advertiser Logo</Label>
+                  <Input type="file" id="logo" placeholder="Upload advertiser's Logo" />
                 </div>
+                <div className="space-y-2">
+                  <Label htmlFor="image">Ad. Image</Label>
+                  <Input type="file" id="image" placeholder="Upload ad. image" />
+                </div>
+              </div>
+            </TabsContent>
+            <TabsContent value="settings" forceMount={true} hidden={activeTab !== "settings"}>
+              <div className="space-y-4 py-2 pb-4">
                 <div className="space-y-2" style={{justifyContent: "space-between", display: "flex"}}>
                   <Label style={{textAlign: "left"}} className="mt-3">Visible</Label>
                   <Switch
@@ -79,18 +98,6 @@ export default function AddAdPage() {
                     checked={isExclusive}
                     onCheckedChange={setIsExclusive}
                   />
-                </div>
-              </div>
-            </TabsContent>
-            <TabsContent value="media" forceMount={true} hidden={activeTab !== "media"}>
-              <div className="space-y-4 py-2 pb-4">
-                <div className="space-y-2">
-                  <Label htmlFor="logo">Advertiser Logo</Label>
-                  <Input type="file" id="logo" placeholder="Upload advertiser's Logo" />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="image">Ad. Image</Label>
-                  <Input type="file" id="image" placeholder="Upload ad. image" />
                 </div>
               </div>
             </TabsContent>
