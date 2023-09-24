@@ -65,8 +65,8 @@ export default function AddCustomerPage() {
                   <Input type="email" id="email" placeholder="example@example.com" />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="age">Age</Label>
-                  <Input type="number" id="age" placeholder="Enter customer's age" />
+                  <Label htmlFor="age">Birthdate</Label>
+                  <Input type="date" id="age" placeholder="" />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="gender">Gender</Label>
