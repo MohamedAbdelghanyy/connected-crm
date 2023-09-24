@@ -127,7 +127,17 @@ export const dashboardConfig: DashboardConfig = {
       icon: "mostWishlistedItems",
     },
     {
-      title: "Internal System",
+      title: "Administration",
+    },
+    {
+      title: "Organization Units",
+      href: "/organization-units",
+      icon: "organizationUnits",
+    },
+    {
+      title: "Roles",
+      href: "/roles",
+      icon: "roles",
     },
     {
       title: "Dashboard Users",
@@ -135,9 +145,47 @@ export const dashboardConfig: DashboardConfig = {
       icon: "users",
     },
     {
+      title: "Claim Types",
+      href: "/claim-types",
+      icon: "claimTypes",
+    },
+    {
+      title: "Security Logs",
+      href: "/security-logs",
+      icon: "securityLogs",
+    },
+    {
+      title: "Text Templates",
+      href: "/text-templates",
+      icon: "textTemplates",
+    },
+    {
+      title: "Audit Logs",
+      href: "/audit-logs",
+      icon: "auditLogs",
+    },
+    {
+      title: "Settings",
+      href: "/settings",
+      icon: "settings",
+    },
+    {
       title: "Developers",
       href: "/developers",
       icon: "developers",
+    },
+    {
+      title: "Languages",
+    },
+    {
+      title: "Languages",
+      href: "/languages",
+      icon: "languages",
+    },
+    {
+      title: "Language Text",
+      href: "/language-text",
+      icon: "languageText",
     },
   ],
 }

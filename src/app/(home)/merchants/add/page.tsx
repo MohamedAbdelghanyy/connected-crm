@@ -89,6 +89,10 @@ export default function AddMerchantPage() {
                   <Label htmlFor="website">Website</Label>
                   <Input type="text" id="website" placeholder="Enter merchant's website" />
                 </div>
+                <div className="space-y-2">
+                  <Label htmlFor="agreement">Signed Agreement</Label>
+                  <Input type="file" id="agreement" placeholder="Upload Agreement File" />
+                </div>
               </div>
             </TabsContent>
             <FormAddButton isLoading={isLoading} callback={add} />
