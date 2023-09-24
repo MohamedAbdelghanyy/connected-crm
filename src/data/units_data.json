@@ -1,0 +1,29 @@
+[
+  {
+    "id": "UN-1",
+    "name": "Sales",
+    "subUnits": [
+      {
+        "id": "S-UN-1",
+        "name": "Online Sales",
+        "subUnits": [
+            {
+              "id": "S-S-UN-1",
+              "name": "Facebook Sales",
+              "subUnits": null
+            }
+          ]
+      },
+      {
+        "id": "S-UN-2",
+        "name": "Phone Sales",
+        "subUnits": null
+      }
+    ]
+  },
+  {
+    "id": "UN-2",
+    "name": "Marketing",
+    "subUnits": null
+  }
+]
