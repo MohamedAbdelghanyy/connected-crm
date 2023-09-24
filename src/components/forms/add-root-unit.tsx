@@ -17,22 +17,18 @@ import { toast } from "@/components/ui/use-toast"
 import { Icons } from "@/components/icons"
 import { Button } from "@/components/ui/button"
 import { ButtonProps, buttonVariants } from "@/components/ui/button"
-import { Textarea } from "@/components/ui/textarea"
-import { Switch } from "../ui/switch"
 
-export default function AddAd({
+export default function AddRootUnit({
   className,
   variant,
   ...props
 }: ButtonProps) {
   const router = useRouter()
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
-  const [showNewAdDialog, setShowNewAdDialog] = React.useState(false)
-  const [isVisible, setIsVisible] = React.useState(false)
-  const [isExclusive, setIsExclusive] = React.useState(false)
+  const [showDialog, setShowDialog] = React.useState(false)
   const userNameRef = React.useRef<HTMLInputElement>(null);
 
-  async function saveAd() {
+  async function save() {
     if(userNameRef.current && userNameRef.current.value){
       setIsLoading(true)
 
@@ -55,7 +51,7 @@ export default function AddAd({
           variant: "destructive",
         })
       }else{
-        setShowNewAdDialog(false);
+        setShowDialog(false);
         return toast({
           title: "Success",
           description: userNameRef.current.value + " was successfully added.",
@@ -70,76 +66,39 @@ export default function AddAd({
   return (
     <>
       <button
+        style={{float: "right"}}
         onClick={() =>{
-          setShowNewAdDialog(true);
+          setShowDialog(true);
         }}
         className={cn(
           buttonVariants({ variant }),
         )}
       >
         <Icons.add className="mr-2 h-4 w-4" />
-        Add Ad.
+        Add Root Unit
       </button>
-      <Dialog open={showNewAdDialog} onOpenChange={setShowNewAdDialog}>
+      <Dialog open={showDialog} onOpenChange={setShowDialog}>
         <DialogContent>
           <DialogHeader className="ml-4 mt-4">
-            <DialogTitle>Add Advertisement</DialogTitle>
+            <DialogTitle>Add Root Unit</DialogTitle>
             <DialogDescription>
-              Enter advertisement details
+              Enter unit details
             </DialogDescription>
           </DialogHeader>
           <div style={{maxHeight: "60vh", overflow: "hidden scroll", padding: "0px 10px 0px 20px",}}>
             <div className="space-y-4 py-2 pb-4">
               <div className="space-y-2">
-                <Label htmlFor="title">Ad Title</Label>
-                <Input id="title" placeholder="Enter ad title" />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="logo">Advertiser Logo</Label>
-                <Input type="file" id="logo" placeholder="Upload advertiser's Logo" />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="name">Advertiser Name</Label>
-                <Input id="name" placeholder="Enter advertiser's name" />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="image">Image</Label>
-                <Input type="file" id="image" placeholder="Upload ad. image" />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="link">Link</Label>
-                <Input id="link" placeholder="Link" />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="linkTitle">Link Title</Label>
-                <Input id="linkTitle" placeholder="Link Title" />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="description">Description</Label>
-                <Textarea id="description" placeholder="Enter ad. description" />
-              </div>
-              <div className="space-y-2" style={{justifyContent: "space-between", display: "flex"}}>
-                <Label style={{textAlign: "left"}} className="mt-3">Visible</Label>
-                <Switch
-                  checked={isVisible}
-                  onCheckedChange={setIsVisible}
-                />
-              </div>
-              <div className="space-y-2" style={{justifyContent: "space-between", display: "flex"}}>
-                <Label style={{textAlign: "left"}} className="mt-3">Exclusive</Label>
-                <Switch
-                  checked={isExclusive}
-                  onCheckedChange={setIsExclusive}
-                />
+                <Label htmlFor="name">Unit Name</Label>
+                <Input id="name" placeholder="Enter unit name" />
               </div>
             </div>
           </div>
           <DialogFooter className="mr-4 ml-4 mb-2">
-            <Button variant="outline" className="mb-2" onClick={() => setShowNewAdDialog(false)}>
+            <Button variant="outline" className="mb-2" onClick={() => setShowDialog(false)}>
               Cancel
             </Button>
             <button
-              onClick={saveAd}
+              onClick={save}
               className={cn(
                 buttonVariants({ variant }),
                 {
@@ -151,7 +110,7 @@ export default function AddAd({
               {isLoading ? (
                 <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
               ) : (<></>)}
-              Continue
+              Add
             </button>
           </DialogFooter>
         </DialogContent>

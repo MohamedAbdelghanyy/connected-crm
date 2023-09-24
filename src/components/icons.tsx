@@ -37,7 +37,15 @@ import {
   Workflow,
   X,
   Zap,
-  type IconNode as LucideIcon
+  type IconNode as LucideIcon,
+  ShieldCheckIcon,
+  FileLock2Icon,
+  LayoutPanelTopIcon,
+  FileType2,
+  FileQuestionIcon,
+  ScrollTextIcon,
+  GlobeIcon,
+  LanguagesIcon
 } from "lucide-react"
 
 export type Icon = LucideIcon
@@ -96,9 +104,16 @@ export const Icons = {
   topActiveCustomers: MedalIcon,
   mostLikedItems: ThumbsUpIcon,
   mostWishlistedItems: HeartIcon,
+  organizationUnits: LayoutPanelTopIcon,
+  roles: ShieldCheckIcon,
   users: User,
+  claimTypes: FileQuestionIcon,
+  securityLogs: FileLock2Icon,
+  textTemplates: FileType2,
+  auditLogs: ScrollTextIcon,
   developers: Code2,
-  
+  languages: GlobeIcon,
+  languageText: LanguagesIcon,
   gitHub: ({ ...props }: LucideProps) => (
     <svg
       aria-hidden="true"
