@@ -6,6 +6,7 @@ import { ToolbarProps, ToolbarSearchListProps } from "@/components/table/data-ta
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Checkbox } from "@/components/ui/checkbox"
 import { ColumnDef } from "@tanstack/react-table"
+import { Check, X } from "lucide-react"
 
 const itemsActionList : ActionListProps[] = [
   {
@@ -137,6 +138,10 @@ export const itemsTableToolbarSearchList : ToolbarSearchListProps[] = [
     title: 'Owner'
   },
   {
+    key: 'soldByConnected',
+    title: 'Sold By Connected'
+  },
+  {
     key: 'views',
     title: 'Views'
   },
@@ -178,6 +183,7 @@ interface ItemsProps {
   brand: string
   category: string
   owner: string
+  soldByConnected: boolean
   views: number
   wishlisted: number
   interactions: number
@@ -306,6 +312,23 @@ export const itemsTableColumns: ColumnDef<ItemsProps>[] = [
           <span className="max-w-[500px] truncate font-medium">
             {row.getValue("owner")}
           </span>
+        </div>
+      )
+    },
+  },
+  {
+    accessorKey: "soldByConnected",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Sold By Connected" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="space-x-2">
+          <center>
+            <span className="max-w-[500px] truncate font-medium">
+              {row.getValue("soldByConnected") ? (<Check color="green" />) : (<X color="red" />)}
+            </span>
+          </center>
         </div>
       )
     },

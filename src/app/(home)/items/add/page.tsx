@@ -31,6 +31,7 @@ export default function AddItemPage() {
   const [requestPricing, setRequestPricing] = React.useState(false)
   const [requestVIP, setRequestVIP] = React.useState(false)
   const [isSponsored, setIsSponsored] = React.useState(false)
+  const [isSoldByConnected, setIsSoldByConnected] = React.useState(false)
 
   const add = () => {
     console.log("Added");
@@ -326,6 +327,13 @@ export default function AddItemPage() {
                   <Switch
                     checked={isSponsored}
                     onCheckedChange={setIsSponsored}
+                  />
+                </div>
+                <div className="space-y-2" style={{justifyContent: "space-between", display: "flex"}}>
+                  <Label style={{textAlign: "left"}} className="mt-3">Sold By Connected</Label>
+                  <Switch
+                    checked={isSoldByConnected}
+                    onCheckedChange={setIsSoldByConnected}
                   />
                 </div>
               </div>
