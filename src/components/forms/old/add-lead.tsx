@@ -24,7 +24,7 @@ import { toast } from "@/components/ui/use-toast"
 import { Icons } from "@/components/icons"
 import { Button } from "@/components/ui/button"
 import { ButtonProps, buttonVariants } from "@/components/ui/button"
-import { Textarea } from "../ui/textarea"
+import { Textarea } from "@/components/ui/textarea"
 
 export default function AddLead({
   className,
