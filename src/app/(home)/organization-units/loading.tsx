@@ -1,10 +1,7 @@
 import { DashboardHeader } from "@/components/header"
-import { Icons } from "@/components/icons"
 import { DashboardShell } from "@/components/shell"
-import { buttonVariants } from "@/components/ui/button"
 import { Skeleton } from "@/components/ui/skeleton"
-import { cn } from "@/lib/utils"
-import Link from "next/link"
+import { Grid } from "@mui/material"
 
 function ItemSkeleton() {
   return (
@@ -18,18 +15,30 @@ function ItemSkeleton() {
 
 export default function UnitsLoading() {
   return (
-    <DashboardShell className="mb-1">
-      <DashboardHeader heading="Organization Units" text="Manage your organization units">
-        <Link href="/organization-units/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" />Add Unit</Link>
-      </DashboardHeader>
-      <div className="divide-border-200 divide-y rounded-md border">
-        <ItemSkeleton />
-        <ItemSkeleton />
-        <ItemSkeleton />
-        <ItemSkeleton />
-        <ItemSkeleton />
-        <ItemSkeleton />
-      </div>
+    <DashboardShell>
+      <DashboardHeader heading="Organization Units" text="Manage your organization units"></DashboardHeader>
+      <Grid container spacing={2}>
+        <Grid item md={5} sm={12}>
+          <div className="divide-border-200 divide-y rounded-md border">
+            <ItemSkeleton />
+            <ItemSkeleton />
+            <ItemSkeleton />
+            <ItemSkeleton />
+            <ItemSkeleton />
+            <ItemSkeleton />
+          </div>
+        </Grid>
+        <Grid item md={7} sm={12}>
+          <div className="divide-border-200 divide-y rounded-md border">
+            <ItemSkeleton />
+            <ItemSkeleton />
+            <ItemSkeleton />
+            <ItemSkeleton />
+            <ItemSkeleton />
+            <ItemSkeleton />
+          </div>
+        </Grid>
+      </Grid>
     </DashboardShell>
   )
 }

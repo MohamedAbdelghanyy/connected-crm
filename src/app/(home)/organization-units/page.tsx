@@ -2,10 +2,8 @@ import { promises as fs } from "fs"
 import path from "path"
 
 import { DashboardHeader } from "@/components/header"
-import OrganizationData from "@/components/organization-data"
-import OrganizationTree from "@/components/organization-tree"
+import UnitsPageMain from "@/components/organization-units/units-page-main"
 import { DashboardShell } from "@/components/shell"
-import { Grid } from "@mui/material"
 
 export const metadata = {
   title: "Organization Units",
@@ -19,23 +17,32 @@ async function getUnits() {
   return units
 }
 
-export default async function unitsPage() {
+async function getMembers() {
+  const data = await fs.readFile(
+    path.join(process.cwd(), "src/data/users_data.json")
+  )
+  const members = JSON.parse(data.toString())
+  return members
+}
+
+async function getRoles() {
+  const data = await fs.readFile(
+    path.join(process.cwd(), "src/data/roles_data.json")
+  )
+  const roles = JSON.parse(data.toString())
+  return roles
+}
+
+export default async function UnitsPage() {
   const units = await getUnits()
+  const members = await getMembers()
+  const roles = await getRoles()
   return (
     <>
       <DashboardShell className="mb-1">
         <DashboardHeader heading="Organization Units" text="Manage your organization units"></DashboardHeader>
       </DashboardShell>
-      <div className="m-2">
-        <Grid container spacing={2}>
-          <Grid item md={5} sm={12}>
-            <OrganizationTree units={units} />
-          </Grid>
-          <Grid item md={7} sm={12}>
-            <OrganizationData />
-          </Grid>
-        </Grid>
-      </div>
+      <UnitsPageMain units={units} members={members} roles={roles} />
     </>
   )
 }

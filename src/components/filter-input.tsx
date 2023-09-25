@@ -36,7 +36,7 @@ export function FilterInput<TData>({
   ...props
 }: InputProps<TData>){
   const [isOpenMenu, setIsOpenMenu] = React.useState(false)
-  const [filterValue, setFilterValue] = React.useState(toolbarSearchList[0].key)
+  const [filterValue, setFilterValue] = React.useState(toolbarSearchList[0] ? toolbarSearchList[0].key : '')
 
    const handleSearchFilterChanged = (newValue : string) => {
     table.getColumn(filterValue)?.setFilterValue('');
@@ -48,7 +48,7 @@ export function FilterInput<TData>({
 
   return (
     <>
-    <Grid container spacing={1}>
+      <Grid container spacing={1}>
         <Grid item xs={12} sm={3} md={3} lg={3}>
           <Popover open={isOpenMenu} onOpenChange={setIsOpenMenu}>
             <PopoverTrigger asChild>

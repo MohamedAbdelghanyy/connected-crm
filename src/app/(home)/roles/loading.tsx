@@ -16,11 +16,11 @@ function ItemSkeleton() {
   )
 }
 
-export default function UsersLoading() {
+export default function RolesLoading() {
   return (
     <DashboardShell className="mb-1">
-      <DashboardHeader heading="Users" text="Manage your users">
-        <Link href="/users/add" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add User</Link>
+      <DashboardHeader heading="Roles" text="Manage your roles">
+        <Link href="/roles/add" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Role</Link>
       </DashboardHeader>
       <div className="divide-border-200 divide-y rounded-md border">
         <ItemSkeleton />

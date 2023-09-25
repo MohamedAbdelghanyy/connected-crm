@@ -1,0 +1,17 @@
+[
+  {
+    "id": "ROL-123",
+    "name": "Manager",
+    "userCount": 19
+  },
+  {
+    "id": "ROL-456",
+    "name": "Moderator",
+    "userCount": 22
+  },
+  {
+    "id": "ROL-789",
+    "name": "Admin",
+    "userCount": 5
+  }
+]

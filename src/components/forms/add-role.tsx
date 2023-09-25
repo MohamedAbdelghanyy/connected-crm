@@ -1,7 +1,7 @@
 "use client"
 
 import { Icons } from "@/components/icons"
-import { Button, ButtonProps, buttonVariants } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -10,18 +10,14 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import { toast } from "@/components/ui/use-toast"
 import { cn } from "@/lib/utils"
 import { useRouter } from "next/navigation"
 import * as React from "react"
+import { rolesWidgetTableColumns, rolesWidgetTableToolbar, rolesWidgetTableToolbarSearchList } from "../organization-units/roles/config"
+import { DataTable } from "../table/data-table"
 
-export default function AddRootUnit({
-  className,
-  variant,
-  ...props
-}: ButtonProps) {
+export default function AddRole({ roles }: any) {
   const router = useRouter()
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
   const [showDialog, setShowDialog] = React.useState(false)
@@ -70,25 +66,24 @@ export default function AddRootUnit({
           setShowDialog(true);
         }}
         className={cn(
-          buttonVariants({ variant }),
+          buttonVariants(),
         )}
       >
         <Icons.add className="mr-2 h-4 w-4" />
-        Add Root Unit
+        Add Role
       </button>
       <Dialog open={showDialog} onOpenChange={setShowDialog}>
         <DialogContent>
           <DialogHeader className="ml-4 mt-4">
-            <DialogTitle>Add Root Unit</DialogTitle>
+            <DialogTitle>Add Role</DialogTitle>
             <DialogDescription>
-              Enter unit details
+              Select roles to add
             </DialogDescription>
           </DialogHeader>
           <div style={{ maxHeight: "60vh", overflow: "hidden scroll", padding: "0px 10px 0px 20px", }}>
             <div className="space-y-4 py-2 pb-4">
               <div className="space-y-2">
-                <Label htmlFor="name">Unit Name</Label>
-                <Input id="name" placeholder="Enter unit name" />
+                <DataTable data={roles} columns={rolesWidgetTableColumns} toolbar={rolesWidgetTableToolbar} toolbarSearchList={rolesWidgetTableToolbarSearchList} />
               </div>
             </div>
           </div>
@@ -99,7 +94,7 @@ export default function AddRootUnit({
             <button
               onClick={save}
               className={cn(
-                buttonVariants({ variant }),
+                buttonVariants(),
                 {
                   "cursor-not-allowed opacity-60": isLoading,
                 },

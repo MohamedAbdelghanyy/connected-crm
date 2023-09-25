@@ -68,7 +68,7 @@ export function DataTable<TData, TValue>({columns, data, toolbar, toolbarSearchL
 
   return (
     <div className="space-y-4">
-      <DataTableToolbar table={table} toolbar={toolbar} toolbarSearchList={toolbarSearchList} />
+      {(toolbar.length != 0 || toolbarSearchList.length != 0) && <DataTableToolbar table={table} toolbar={toolbar} toolbarSearchList={toolbarSearchList} />}
       <div className="rounded-md border">
         <Table style={{position: "relative"}}>
           <TableHeader>
@@ -119,7 +119,7 @@ export function DataTable<TData, TValue>({columns, data, toolbar, toolbarSearchL
           </TableBody>
         </Table>
       </div>
-      <DataTablePagination table={table} />
+      {(toolbar.length != 0 || toolbarSearchList.length != 0) && <DataTablePagination table={table} />}  
     </div>
   )
 }

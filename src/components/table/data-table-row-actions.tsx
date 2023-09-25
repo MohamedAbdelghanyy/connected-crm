@@ -15,7 +15,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
-import { MoreHorizontalIcon } from "lucide-react"
+import { MoreHorizontalIcon, SettingsIcon } from "lucide-react"
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>
@@ -38,10 +38,13 @@ export function DataTableRowActions<TData>({
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          variant="ghost"
-          className="flex h-8 w-8 p-0 data-[state=open]:bg-muted"
+          //variant="ghost"
+          style={{width: "100%"}}
+          className="flex h-8 w-8 p-3 data-[state=open]:bg-muted"
         >
-          <MoreHorizontalIcon className="h-4 w-4" />
+          {/* <MoreHorizontalIcon className="h-4 w-4" />*/}
+          <SettingsIcon className="h-4 w-4" />
+          <p className="ml-1" style={{fontSize: "12px"}}>Actions</p>
           <span className="sr-only">Open menu</span>
         </Button>
       </DropdownMenuTrigger>

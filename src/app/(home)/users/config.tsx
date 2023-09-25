@@ -5,28 +5,9 @@ import { ActionListProps, DataTableRowActions } from "@/components/table/data-ta
 import { ToolbarProps, ToolbarSearchListProps } from "@/components/table/data-table-toolbar"
 import { Checkbox } from "@/components/ui/checkbox"
 import { ColumnDef } from "@tanstack/react-table"
+import { Check, X } from "lucide-react"
 
-const usersActionList : ActionListProps[] = [
-  {
-    type: "dropdown",
-    label: "Change Access",
-    subActions: [
-      {
-        type: "button",
-        label: "Admin",
-        action: (id: string) => {
-          console.log('Admin: ' + id)
-        }
-      },
-      {
-        type: "button",
-        label: "Super Admin",
-        action: (id: string) => {
-          console.log('Super Admin: ' + id)
-        }
-      }
-    ]
-  },
+const usersActionList: ActionListProps[] = [
   {
     type: "button",
     label: "View",
@@ -51,7 +32,7 @@ const usersActionList : ActionListProps[] = [
 ]
 
 // Options
-const accessNames = [
+const roleNames = [
   {
     value: "Admin",
     label: "Admin",
@@ -62,15 +43,9 @@ const accessNames = [
   }
 ]
 
-export const usersTableToolbar : ToolbarProps[] = [
-  {
-    key: "accessName",
-    title: "Access",
-    options: accessNames,
-  }
-]
+export const usersTableToolbar: ToolbarProps[] = []
 
-export const usersTableToolbarSearchList : ToolbarSearchListProps[] = [
+export const usersTableToolbarSearchList: ToolbarSearchListProps[] = [
   {
     key: 'id',
     title: 'ID'
@@ -88,16 +63,40 @@ export const usersTableToolbarSearchList : ToolbarSearchListProps[] = [
     title: 'Job Title'
   },
   {
-    key: 'dashboardType',
-    title: 'Dashboard Type'
+    key: 'roles',
+    title: 'Roles'
   },
   {
-    key: 'accessName',
-    title: 'Access Name'
+    key: 'phoneNumber',
+    title: 'Phone Number'
   },
   {
-    key: 'privileges',
-    title: 'Privileges'
+    key: 'active',
+    title: 'Active'
+  },
+  {
+    key: 'lockout',
+    title: 'Lock Out'
+  },
+  {
+    key: 'emailConfirmed',
+    title: 'Email Confirmed'
+  },
+  {
+    key: 'twoFactorAuth',
+    title: 'Two Factor Auth'
+  },
+  {
+    key: 'accessFailed',
+    title: 'Access Failed'
+  },
+  {
+    key: 'creationTime',
+    title: 'Creation Time'
+  },
+  {
+    key: 'modificationTime',
+    title: 'Modification Time'
   }
 ]
 
@@ -106,9 +105,15 @@ interface UsersProps {
   name: string
   email: string
   jobTitle: string
-  dashboardType: string
-  accessName: string
-  privileges: string
+  roles: string
+  phoneNumber: string
+  active: boolean
+  lockout: boolean
+  emailConfirmed: boolean
+  twoFactorAuth: boolean
+  accessFailed: number
+  creationTime: string
+  modificationTime: string
 }
 
 export const usersTableColumns: ColumnDef<UsersProps>[] = [
@@ -132,6 +137,10 @@ export const usersTableColumns: ColumnDef<UsersProps>[] = [
     ),
     enableSorting: false,
     enableHiding: false,
+  },
+  {
+    id: "actions",
+    cell: ({ row }) => <DataTableRowActions row={row} actionList={usersActionList} />,
   },
   {
     accessorKey: "id",
@@ -188,61 +197,146 @@ export const usersTableColumns: ColumnDef<UsersProps>[] = [
     },
   },
   {
-    accessorKey: "dashboardType",
+    accessorKey: "roles",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Dashboard Type" />
+      <DataTableColumnHeader column={column} title="Roles" />
     ),
     cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("dashboardType")}
+            {row.getValue("roles")}
           </span>
         </div>
       )
     },
   },
   {
-    accessorKey: "accessName",
+    accessorKey: "phoneNumber",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Access Name" />
-    ),
-    cell: ({ row }) => {
-      const accessName = accessNames.find(
-        (accessName: { value: unknown }) => accessName.value === row.getValue("accessName")
-      )
-
-      if (!accessName) {
-        return null
-      }
-
-      return (
-        <div className="flex w-[100px] items-center">
-          <span>{accessName.label}</span>
-        </div>
-      )
-    },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id))
-    },
-  },
-  {
-    accessorKey: "privileges",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Privileges" />
+      <DataTableColumnHeader column={column} title="Phone Number" />
     ),
     cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("privileges")}
+            {row.getValue("phoneNumber")}
           </span>
         </div>
       )
     },
   },
   {
-    id: "actions",
-    cell: ({ row }) => <DataTableRowActions row={row} actionList={usersActionList}  />,
+    accessorKey: "active",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Active" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="space-x-2">
+          <center>
+            <span className="max-w-[500px] truncate font-medium">
+              {row.getValue("active") ? (<Check color="green" />) : (<X color="red" />)}
+            </span>
+          </center>
+        </div>
+      )
+    },
+  },
+  {
+    accessorKey: "lockout",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Lockout" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="space-x-2">
+          <center>
+            <span className="max-w-[500px] truncate font-medium">
+              {row.getValue("lockout") ? (<Check color="green" />) : (<X color="red" />)}
+            </span>
+          </center>
+        </div>
+      )
+    },
+  },
+  {
+    accessorKey: "emailConfirmed",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Email Confirmed" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="space-x-2">
+          <center>
+            <span className="max-w-[500px] truncate font-medium">
+              {row.getValue("emailConfirmed") ? (<Check color="green" />) : (<X color="red" />)}
+            </span>
+          </center>
+        </div>
+      )
+    },
+  },
+  {
+    accessorKey: "twoFactorAuth",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Two Factor Auth" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="space-x-2">
+          <center>
+            <span className="max-w-[500px] truncate font-medium">
+              {row.getValue("twoFactorAuth") ? (<Check color="green" />) : (<X color="red" />)}
+            </span>
+          </center>
+        </div>
+      )
+    },
+  },
+  {
+    accessorKey: "accessFailed",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Access Failed" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex space-x-2">
+          <span className="max-w-[500px] truncate font-medium">
+            {row.getValue("accessFailed")}
+          </span>
+        </div>
+      )
+    },
+  },
+  {
+    accessorKey: "creationTime",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Creation Time" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex space-x-2">
+          <span className="max-w-[500px] truncate font-medium">
+            {row.getValue("creationTime")}
+          </span>
+        </div>
+      )
+    },
+  },
+  {
+    accessorKey: "modificationTime",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Modification Time" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex space-x-2">
+          <span className="max-w-[500px] truncate font-medium">
+            {row.getValue("modificationTime")}
+          </span>
+        </div>
+      )
+    },
   },
 ]

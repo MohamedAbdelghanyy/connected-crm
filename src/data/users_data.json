@@ -4,26 +4,44 @@
     "name": "Mohamed Abdelghany",
     "email": "mohamedabdelghanyy@gmail.com",
     "jobTitle": "Software Engineer",
-    "dashboardType": "Admin",
-    "accessName": "Admin",
-    "privileges": "All"
+    "roles": "Moderator",
+    "phoneNumber": "01115696965",
+    "active": true,
+    "lockout": true,
+    "emailConfirmed": true,
+    "twoFactorAuth": true,
+    "accessFailed": 0,
+    "creationTime": "9/13/2023 6:07 AM",
+    "modificationTime": "9/13/2023 6:07 AM"
   },
   {
     "id": "USR-456",
     "name": "Khaled Afify",
     "email": "khaledafify@gmail.com",
     "jobTitle": "Software Engineer",
-    "dashboardType": "Super Admin",
-    "accessName": "Super Admin",
-    "privileges": "All"
+    "roles": "Supporter, Moderator",
+    "phoneNumber": "0123456789",
+    "active": true,
+    "lockout": false,
+    "emailConfirmed": false,
+    "twoFactorAuth": true,
+    "accessFailed": 0,
+    "creationTime": "9/13/2023 6:07 AM",
+    "modificationTime": "9/13/2023 6:07 AM"
   },
   {
     "id": "USR-789",
     "name": "Soha El Hadary",
     "email": "sohaelhadary@gmail.com",
     "jobTitle": "Project Manager",
-    "dashboardType": "Super Admin",
-    "accessName": "Super Admin",
-    "privileges": "All"
+    "roles": "Manager, Moderator",
+    "phoneNumber": "01293847566",
+    "active": false,
+    "lockout": true,
+    "emailConfirmed": true,
+    "twoFactorAuth": false,
+    "accessFailed": 0,
+    "creationTime": "9/13/2023 6:07 AM",
+    "modificationTime": "9/13/2023 6:07 AM"
   }
 ]

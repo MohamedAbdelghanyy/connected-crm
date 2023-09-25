@@ -1,0 +1,29 @@
+[
+  {
+    "id": "ROL-123",
+    "date": "9/21/2023 2:23 PM",
+    "action": "LoginSucceeded",
+    "ipAddress": "156.204.223.254",
+    "browser": "Chrome",
+    "identity": "Identity",
+    "fullName": "Mohamed Abdelghany"
+  },
+  {
+    "id": "ROL-123",
+    "date": "2/11/2023 5:30 PM",
+    "action": "ErrorLoggingIn",
+    "ipAddress": "129.291.11.34",
+    "browser": "Microsoft Edge",
+    "identity": "Identity",
+    "fullName": "Khaled Afify"
+  },
+  {
+    "id": "ROL-123",
+    "date": "9/21/2023 2:23 PM",
+    "action": "PasswordChanged",
+    "ipAddress": "16.104.22.192",
+    "browser": "Mozilla/5.0",
+    "identity": "Identity",
+    "fullName": "Soha El Hadary"
+  }
+]
