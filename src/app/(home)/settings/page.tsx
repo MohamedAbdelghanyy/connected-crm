@@ -18,10 +18,6 @@ import { Grid } from "@mui/material"
 import { useRouter } from "next/navigation"
 import * as React from "react"
 
-export const metadata = {
-  title: "Settings",
-}
-
 export default function SettingsPage() {
   const router = useRouter()
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
