@@ -183,9 +183,9 @@ export const dashboardConfig: DashboardConfig = {
       icon: "languages",
     },
     {
-      title: "Language Text",
-      href: "/language-text",
-      icon: "languageText",
+      title: "Language Texts",
+      href: "/language-texts",
+      icon: "languageTexts",
     },
   ],
 }

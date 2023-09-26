@@ -1,0 +1,23 @@
+[
+  {
+    "id": "LNG-123",
+    "displayName": "Deutsch",
+    "cultureName": "de-DE",
+    "uiCultureName": "de-DE",
+    "enabled": true
+  },
+  {
+    "id": "LNG-456",
+    "displayName": "English (Default Language)",
+    "cultureName": "en",
+    "uiCultureName": "en",
+    "enabled": true
+  },
+  {
+    "id": "LNG-789",
+    "displayName": "Español",
+    "cultureName": "es",
+    "uiCultureName": "es",
+    "enabled": false
+  }
+]

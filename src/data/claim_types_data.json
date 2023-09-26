@@ -1,0 +1,29 @@
+[
+  {
+    "id": "CT-123",
+    "name": "Test",
+    "valueType": "String",
+    "description": "This is a description",
+    "regex": "Test",
+    "required": false,
+    "isStatic": true
+  },
+  {
+    "id": "CT-456",
+    "name": "Test 2",
+    "valueType": "String",
+    "description": "This is a description 2",
+    "regex": "Test",
+    "required": true,
+    "isStatic": true
+  },
+  {
+    "id": "CT-789",
+    "name": "Test 3",
+    "valueType": "String",
+    "description": "This is a description 3",
+    "regex": "Test",
+    "required": true,
+    "isStatic": false
+  }
+]

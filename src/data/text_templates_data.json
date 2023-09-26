@@ -1,0 +1,26 @@
+[
+  {
+    "id": "TMP-123",
+    "name": "Simple message template for emails",
+    "inline": true,
+    "isLayout": false,
+    "layout": "Abp.StandardEmailTemplates.Layout",
+    "default": ""
+  },
+  {
+    "id": "TMP-456",
+    "name": "Default email layout template",
+    "inline": true,
+    "isLayout": true,
+    "layout": "",
+    "default": ""
+  },
+  {
+    "id": "TMP-789",
+    "name": "Password reset email",
+    "inline": true,
+    "isLayout": false,
+    "layout": "Abp.StandardEmailTemplates.Layout",
+    "default": ""
+  }
+]

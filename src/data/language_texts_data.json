@@ -1,0 +1,23 @@
+[
+  {
+    "id": "TXT-123",
+    "key": "'{0}' and '{1}' do not match.",
+    "baseValue": "»{0}« in »{1}« se ne ujemata.",
+    "value": "'{0}' et '{1}' ne correspondent pas.",
+    "resourceName": "AbpValidation"
+  },
+  {
+    "id": "TXT-456",
+    "key": "{0} is not valid.",
+    "baseValue": "{0} ni veljaven.",
+    "value": "'{0} n'est pas valide.",
+    "resourceName": "AbpValidation"
+  },
+  {
+    "id": "TXT-789",
+    "key": "{0}Milliseconds",
+    "baseValue": "{0} milisekund",
+    "value": "{0} millisecondes",
+    "resourceName": "AbpAuditLogging"
+  }
+]

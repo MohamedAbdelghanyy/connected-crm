@@ -1,0 +1,26 @@
+[
+  {
+    "id": "ALOG-123",
+    "request": "200 POST /connect/token",
+    "user": "admin",
+    "ipAddress": "156.204.223.254",
+    "date": "2/11/2023 5:30 PM",
+    "duration": 34
+  },
+  {
+    "id": "ALOG-456",
+    "request": "200 POST /connect/token",
+    "user": "admin",
+    "ipAddress": "25.124.199.12",
+    "date": "2/11/2023 5:30 PM",
+    "duration": 121
+  },
+  {
+    "id": "ALOG-789",
+    "request": "200 POST /connect/token",
+    "user": "admin",
+    "ipAddress": "34.123.11.112",
+    "date": "2/11/2023 5:30 PM",
+    "duration": 28
+  }
+]

@@ -113,7 +113,7 @@ export const Icons = {
   auditLogs: ScrollTextIcon,
   developers: Code2,
   languages: GlobeIcon,
-  languageText: LanguagesIcon,
+  languageTexts: LanguagesIcon,
   gitHub: ({ ...props }: LucideProps) => (
     <svg
       aria-hidden="true"

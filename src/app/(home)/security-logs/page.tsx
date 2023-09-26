@@ -19,12 +19,12 @@ async function getSecurityLogs() {
   return logs
 }
 
-export default async function LogsPage() {
+export default async function SecurityLogsPage() {
   const logs = await getSecurityLogs()
   return (
     <>
       <DashboardShell className="mb-1">
-        <DashboardHeader heading="Logs" text="Manage security logs"></DashboardHeader>
+        <DashboardHeader heading="Security Logs" text="Manage security logs"></DashboardHeader>
       </DashboardShell>
       <div className="m-2">
           {logs.length > 0 ? (
