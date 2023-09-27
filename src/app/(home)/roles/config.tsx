@@ -6,7 +6,20 @@ import { ToolbarProps, ToolbarSearchListProps } from "@/components/table/data-ta
 import { Checkbox } from "@/components/ui/checkbox"
 import { ColumnDef } from "@tanstack/react-table"
 
-const rolesActionList: ActionListProps[] = [
+export let rolesActionList: ActionListProps[] = [
+  {
+    type: "button",
+    label: "Permissions",
+    action: (id: string) => {
+      console.log('Permissions: ' + id)
+    }
+  }, {
+    type: "button",
+    label: "Claims",
+    action: (id: string) => {
+      console.log('Claims: ' + id)
+    }
+  },
   {
     type: "button",
     label: "Edit",

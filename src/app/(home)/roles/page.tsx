@@ -5,11 +5,10 @@ import { EmptyPlaceholder } from "@/components/empty-placeholder"
 import { DashboardHeader } from "@/components/header"
 import { Icons } from "@/components/icons"
 import { DashboardShell } from "@/components/shell"
-import { DataTable } from "@/components/table/data-table"
 import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
-import { rolesTableColumns, rolesTableToolbar, rolesTableToolbarSearchList } from "./config"
+import RolesPageContent from "./page-content"
 
 export const metadata = {
   title: "Roles",
@@ -23,8 +22,26 @@ async function getRoles() {
   return roles
 }
 
+async function getPermissions() {
+  const data = await fs.readFile(
+    path.join(process.cwd(), "src/data/roles_permissions_data.json")
+  )
+  const permissions = JSON.parse(data.toString())
+  return permissions
+}
+
+async function getClaims() {
+  const data = await fs.readFile(
+    path.join(process.cwd(), "src/data/claim_types_data.json")
+  )
+  const claims = JSON.parse(data.toString())
+  return claims
+}
+
 export default async function RolesPage() {
   const roles = await getRoles()
+  const permissions = await getPermissions()
+  const claims = await getClaims()
   return (
     <>
       <DashboardShell className="mb-1">
@@ -34,7 +51,7 @@ export default async function RolesPage() {
       </DashboardShell>
       <div className="m-2">
         {roles.length > 0 ? (
-          <DataTable data={roles} columns={rolesTableColumns} toolbar={rolesTableToolbar} toolbarSearchList={rolesTableToolbarSearchList} />
+          <RolesPageContent roles={roles} permissions={permissions} claims={claims} />
         ) : (<EmptyPlaceholder>
           <EmptyPlaceholder.Icon name="post" />
           <EmptyPlaceholder.Title>No Roles</EmptyPlaceholder.Title>

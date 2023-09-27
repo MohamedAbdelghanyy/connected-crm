@@ -1,0 +1,203 @@
+{
+    "general": [
+        {
+            "id": "PER1",
+            "name": "Role Management",
+            "subPermissions": [
+                {
+                    "id": "PER11",
+                    "name": "Create",
+                    "subPermissions": null
+                },
+                {
+                    "id": "PER12",
+                    "name": "Edit",
+                    "subPermissions": null
+                },
+                {
+                    "id": "PER13",
+                    "name": "Delete",
+                    "subPermissions": null
+                },
+                {
+                    "id": "PER14",
+                    "name": "Change Permissions",
+                    "subPermissions": null
+                },
+                {
+                    "id": "PER15",
+                    "name": "View Change History",
+                    "subPermissions": null
+                }
+            ]
+        },
+        {
+            "id": "PER2",
+            "name": "User Management",
+            "subPermissions": [
+                {
+                    "id": "PER21",
+                    "name": "Create",
+                    "subPermissions": null
+                },
+                {
+                    "id": "PER22",
+                    "name": "Edit",
+                    "subPermissions": [
+                        {
+                            "id": "PER222",
+                            "name": "Test",
+                            "subPermissions": [
+                                {
+                                    "id": "PER2222",
+                                    "name": "Test 2",
+                                    "subPermissions": [
+                                        {
+                                            "id": "PER22222",
+                                            "name": "Test 3",
+                                            "subPermissions": null
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "PER23",
+                    "name": "Delete",
+                    "subPermissions": null
+                },
+                {
+                    "id": "PER24",
+                    "name": "Change Permissions",
+                    "subPermissions": null
+                },
+                {
+                    "id": "PER25",
+                    "name": "View Change History",
+                    "subPermissions": null
+                },
+                {
+                    "id": "PER26",
+                    "name": "Impersonantion",
+                    "subPermissions": null
+                },
+                {
+                    "id": "PER27",
+                    "name": "Import",
+                    "subPermissions": null
+                }
+            ]
+        },
+        {
+            "id": "PER3",
+            "name": "Organization Unit Management",
+            "subPermissions": [
+                {
+                    "id": "PER31",
+                    "name": "Managing organization tree",
+                    "subPermissions": null
+                },
+                {
+                    "id": "PER32",
+                    "name": "Managing roles",
+                    "subPermissions": null
+                },
+                {
+                    "id": "PER33",
+                    "name": "Managing users",
+                    "subPermissions": null
+                }
+            ]
+        },
+        {
+            "id": "PER4",
+            "name": "Claim Management",
+            "subPermissions": [
+                {
+                    "id": "PER41",
+                    "name": "Create",
+                    "subPermissions": null
+                },
+                {
+                    "id": "PER42",
+                    "name": "Edit",
+                    "subPermissions": null
+                },
+                {
+                    "id": "PER43",
+                    "name": "Delete",
+                    "subPermissions": null
+                }
+            ]
+        },
+        {
+            "id": "PER5",
+            "name": "Settings Management",
+            "subPermissions": null
+        },
+        {
+            "id": "PER6",
+            "name": "Security Logs",
+            "subPermissions": null
+        }
+    ],
+    "language": [
+        {
+            "id": "PER1",
+            "name": "Languages",
+            "subPermissions": [
+                {
+                    "id": "PER11",
+                    "name": "Create Language",
+                    "subPermissions": null
+                },
+                {
+                    "id": "PER12",
+                    "name": "Edit Language",
+                    "subPermissions": null
+                },
+                {
+                    "id": "PER13",
+                    "name": "Change Default Language",
+                    "subPermissions": null
+                },
+                {
+                    "id": "PER14",
+                    "name": "Delete Language",
+                    "subPermissions": null
+                }
+            ]
+        },
+        {
+            "id": "PER2",
+            "name": "Language Texts",
+            "subPermissions": [
+                {
+                    "id": "PER21",
+                    "name": "Edit Language Texts",
+                    "subPermissions": null
+                }
+            ]
+        }
+    ],
+    "other": [
+        {
+            "id": "PER1",
+            "name": "Account Setting Management",
+            "subPermissions": null
+        },
+        {
+            "id": "PER2",
+            "name": "Text Templates",
+            "subPermissions": [
+                {
+                    "id": "PER21",
+                    "name": "Edit Contents",
+                    "subPermissions": null
+                }
+            ]
+        }
+    ]
+}
