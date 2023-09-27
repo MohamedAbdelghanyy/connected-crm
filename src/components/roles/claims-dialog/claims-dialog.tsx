@@ -81,7 +81,7 @@ export default function ClaimsDialog({ showDialog, setShowDialog, claims, role }
                   <SelectContent>
                     {claims.map((claim: any) => {
                       return (
-                        <SelectItem value={claim.id}>
+                        <SelectItem key={claim.id} value={claim.id}>
                           <span className="font-medium">{claim.name}</span>
                         </SelectItem>
                       )
