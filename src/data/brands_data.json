@@ -2,16 +2,19 @@
   {
     "id": "BRD-123",
     "image": "https://connectedapp20200512063146.azurewebsites.net/api/connectedadmin/GetImage/8e34fdcb-abcd-4f5d-9883-415de76bc4de.png",
-    "name": "BMW"
+    "name": "BMW",
+    "category": "Automotive"
   },
   {
     "id": "BRD-456",
     "image": "https://connectedapp20200512063146.azurewebsites.net/api/connectedadmin/GetImage/8371cad1-46ab-4a16-9878-93a30e509fa4.jpeg",
-    "name": "Rolex"
+    "name": "Rolex",
+    "category": "Lifestyle"
   },
   {
     "id": "BRD-789",
     "image": "https://connectedapp20200512063146.azurewebsites.net/api/connectedadmin/GetImage/e08680e9-4032-48e8-9518-3decadf57555.jpg",
-    "name": "Emaar"
+    "name": "Emaar",
+    "category": "Realestate"
   }
 ]

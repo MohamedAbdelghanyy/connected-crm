@@ -10,6 +10,27 @@ import { Check, X } from "lucide-react"
 const usersActionList: ActionListProps[] = [
   {
     type: "button",
+    label: "Permissions",
+    action: (id: string) => {
+      console.log('Permissions: ' + id)
+    }
+  },
+  {
+    type: "button",
+    label: "Claims",
+    action: (id: string) => {
+      console.log('Claims: ' + id)
+    }
+  },
+  {
+    type: "button",
+    label: "Lock",
+    action: (id: string) => {
+      console.log('Lock: ' + id)
+    }
+  },
+  {
+    type: "button",
     label: "View",
     action: (id: string) => {
       console.log('View: ' + id)

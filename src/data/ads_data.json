@@ -1,14 +1,14 @@
 [
   {
     "id": "AD-123",
-    "logo": "https://connectedapp20200512063146.azurewebsites.net/api/connectedadmin/GetImage/2ec4d5ee-7d6a-437c-93ad-d05738e735be.png",
+    "image": "https://connectedapp20200512063146.azurewebsites.net/api/connectedadmin/GetImage/2ec4d5ee-7d6a-437c-93ad-d05738e735be.png",
     "title": "Priority Reservations at Four Seasons Nile Plaza Hotel",
     "advertiser": "Four Seasons",
     "date": "18/10/2022"
   },
   {
     "id": "AD-456",
-    "logo": "https://connectedapp20200512063146.azurewebsites.net/api/connectedadmin/GetImage/581b743a-0414-4db7-90ef-7c39cbaa4004.png",
+    "image": "https://connectedapp20200512063146.azurewebsites.net/api/connectedadmin/GetImage/581b743a-0414-4db7-90ef-7c39cbaa4004.png",
     "title": "Experience Luxury and own Audemars Piguet Watches Immediately",
     "advertiser": "Audemars Piguet",
     "date": "17/10/2022"

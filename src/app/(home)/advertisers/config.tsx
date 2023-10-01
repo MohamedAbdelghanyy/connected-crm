@@ -21,6 +21,19 @@ const advertisersActionList : ActionListProps[] = [
     action: (id: string) => {
       console.log('Delete: ' + id)
     }
+  },
+  {
+    type: "dropdown",
+    label: "More",
+    subActions: [
+      {
+        type: "button",
+        label: "Advertisements",
+        action: (id: string) => {
+          console.log('Advertisements: ' + id)
+        }
+      }
+    ]
   }
 ]
 

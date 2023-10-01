@@ -5,6 +5,7 @@ import { DashboardHeader } from "@/components/header"
 import { DashboardShell } from "@/components/shell"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Grid } from "@mui/material"
 import { useRouter } from "next/navigation"
@@ -18,9 +19,9 @@ export default function AddBrandPage() {
   const add = () => {
     console.log("Added");
   }
-  
+
   return (
-    <>       
+    <>
       <DashboardShell className="mb-1">
         <DashboardHeader heading="Add Brand" text="Enter brand's details"></DashboardHeader>
       </DashboardShell>
@@ -45,6 +46,25 @@ export default function AddBrandPage() {
                 <div className="space-y-2">
                   <Label htmlFor="name">Brand Name</Label>
                   <Input id="name" placeholder="Enter brand's name" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="category">Category</Label>
+                  <Select>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select category" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="automotive">
+                        <span className="font-medium">Automotive</span>
+                      </SelectItem>
+                      <SelectItem value="lifestyle">
+                        <span className="font-medium">Lifestyle</span>
+                      </SelectItem>
+                      <SelectItem value="realestate">
+                        <span className="font-medium">Realestate</span>
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
             </TabsContent>

@@ -6,7 +6,28 @@ import { ToolbarProps, ToolbarSearchListProps } from "@/components/table/data-ta
 import { Checkbox } from "@/components/ui/checkbox"
 import { ColumnDef } from "@tanstack/react-table"
 
-const merchantsActionList : ActionListProps[] = [
+const merchantsActionList: ActionListProps[] = [
+  {
+    type: "button",
+    label: "View",
+    action: (id: string) => {
+      console.log('View: ' + id)
+    }
+  },
+  {
+    type: "button",
+    label: "Edit",
+    action: (id: string) => {
+      console.log('Edit: ' + id)
+    }
+  },
+  {
+    type: "button",
+    label: "Delete",
+    action: (id: string) => {
+      console.log('Delete: ' + id)
+    }
+  },
   {
     type: "dropdown",
     label: "Change Status",
@@ -35,25 +56,31 @@ const merchantsActionList : ActionListProps[] = [
     ]
   },
   {
-    type: "button",
-    label: "View",
-    action: (id: string) => {
-      console.log('View: ' + id)
-    }
-  },
-  {
-    type: "button",
-    label: "Edit",
-    action: (id: string) => {
-      console.log('Edit: ' + id)
-    }
-  },
-  {
-    type: "button",
-    label: "Delete",
-    action: (id: string) => {
-      console.log('Delete: ' + id)
-    }
+    type: "dropdown",
+    label: "More",
+    subActions: [
+      {
+        type: "button",
+        label: "Items",
+        action: (id: string) => {
+          console.log('Items: ' + id)
+        }
+      },
+      {
+        type: "button",
+        label: "Highlights",
+        action: (id: string) => {
+          console.log('Highlights: ' + id)
+        }
+      },
+      {
+        type: "button",
+        label: "Activity Log",
+        action: (id: string) => {
+          console.log('Log: ' + id)
+        }
+      },
+    ]
   }
 ]
 
@@ -73,7 +100,7 @@ const statuses = [
   }
 ]
 
-export const merchantsTableToolbar : ToolbarProps[] = [
+export const merchantsTableToolbar: ToolbarProps[] = [
   {
     key: "status",
     title: "Status",
@@ -81,7 +108,7 @@ export const merchantsTableToolbar : ToolbarProps[] = [
   }
 ]
 
-export const merchantsTableToolbarSearchList : ToolbarSearchListProps[] = [
+export const merchantsTableToolbarSearchList: ToolbarSearchListProps[] = [
   {
     key: 'id',
     title: 'ID'
@@ -257,6 +284,6 @@ export const merchantsTableColumns: ColumnDef<MerchantsProps>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }) => <DataTableRowActions row={row} actionList={merchantsActionList}  />,
+    cell: ({ row }) => <DataTableRowActions row={row} actionList={merchantsActionList} />,
   },
 ]

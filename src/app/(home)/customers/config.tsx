@@ -7,7 +7,28 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Checkbox } from "@/components/ui/checkbox"
 import { ColumnDef } from "@tanstack/react-table"
 
-const customersActionList : ActionListProps[] = [
+const customersActionList: ActionListProps[] = [
+  {
+    type: "button",
+    label: "View",
+    action: (id: string) => {
+      console.log('View: ' + id)
+    }
+  },
+  {
+    type: "button",
+    label: "Edit",
+    action: (id: string) => {
+      console.log('Edit: ' + id)
+    }
+  },
+  {
+    type: "button",
+    label: "Delete",
+    action: (id: string) => {
+      console.log('Delete: ' + id)
+    }
+  },
   {
     type: "dropdown",
     label: "Change Status",
@@ -36,32 +57,31 @@ const customersActionList : ActionListProps[] = [
     ]
   },
   {
-    type: "button",
-    label: "Activity Log",
-    action: (id: string) => {
-      console.log('Log: ' + id)
-    }
-  },
-  {
-    type: "button",
-    label: "View",
-    action: (id: string) => {
-      console.log('View: ' + id)
-    }
-  },
-  {
-    type: "button",
-    label: "Edit",
-    action: (id: string) => {
-      console.log('Edit: ' + id)
-    }
-  },
-  {
-    type: "button",
-    label: "Delete",
-    action: (id: string) => {
-      console.log('Delete: ' + id)
-    }
+    type: "dropdown",
+    label: "More",
+    subActions: [
+      {
+        type: "button",
+        label: "Items",
+        action: (id: string) => {
+          console.log('Items: ' + id)
+        }
+      },
+      {
+        type: "button",
+        label: "Highlights",
+        action: (id: string) => {
+          console.log('Highlights: ' + id)
+        }
+      },
+      {
+        type: "button",
+        label: "Activity Log",
+        action: (id: string) => {
+          console.log('Log: ' + id)
+        }
+      },
+    ]
   }
 ]
 
@@ -97,7 +117,7 @@ const statuses = [
   },
 ]
 
-export const customersTableToolbar : ToolbarProps[] = [
+export const customersTableToolbar: ToolbarProps[] = [
   {
     key: "source",
     title: "Source",
@@ -110,7 +130,7 @@ export const customersTableToolbar : ToolbarProps[] = [
   }
 ]
 
-export const customersTableToolbarSearchList : ToolbarSearchListProps[] = [
+export const customersTableToolbarSearchList: ToolbarSearchListProps[] = [
   {
     key: 'id',
     title: 'ID'
@@ -206,8 +226,8 @@ export const customersTableColumns: ColumnDef<CustomersProps>[] = [
     ),
     cell: ({ row }) => {
       return (
-        <Avatar style={{width: "50px", height: "50px"}}>
-          <AvatarImage src={row.getValue("avatar")} alt="avatar" style={{objectFit: "cover"}} />
+        <Avatar style={{ width: "50px", height: "50px" }}>
+          <AvatarImage src={row.getValue("avatar")} alt="avatar" style={{ objectFit: "cover" }} />
           <AvatarFallback>{String(row.getValue("name")).charAt(0)}</AvatarFallback>
         </Avatar>
       )
@@ -373,6 +393,6 @@ export const customersTableColumns: ColumnDef<CustomersProps>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }) => <DataTableRowActions row={row} actionList={customersActionList}  />,
+    cell: ({ row }) => <DataTableRowActions row={row} actionList={customersActionList} />,
   },
 ]

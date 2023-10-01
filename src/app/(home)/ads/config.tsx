@@ -6,8 +6,9 @@ import { ToolbarProps, ToolbarSearchListProps } from "@/components/table/data-ta
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Checkbox } from "@/components/ui/checkbox"
 import { ColumnDef } from "@tanstack/react-table"
+import Link from "next/link"
 
-const adsActionList : ActionListProps[] = [
+const adsActionList: ActionListProps[] = [
   {
     type: "button",
     label: "Edit",
@@ -24,9 +25,9 @@ const adsActionList : ActionListProps[] = [
   }
 ]
 
-export const adsTableToolbar : ToolbarProps[] = []
+export const adsTableToolbar: ToolbarProps[] = []
 
-export const adsTableToolbarSearchList : ToolbarSearchListProps[] = [
+export const adsTableToolbarSearchList: ToolbarSearchListProps[] = [
   {
     key: 'id',
     title: 'ID'
@@ -85,15 +86,15 @@ export const adsTableColumns: ColumnDef<AdsProps>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "logo",
+    accessorKey: "image",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Logo" />
+      <DataTableColumnHeader column={column} title="Image" />
     ),
     cell: ({ row }) => {
       return (
-        <Avatar style={{width: "150px", height: "100px", borderRadius: "5px"}}>
-          <AvatarImage src={row.getValue("logo")} alt="avatar" style={{objectFit: "cover"}} />
-          <AvatarFallback>{row.getValue("name")}</AvatarFallback>
+        <Avatar style={{ width: "150px", height: "100px", borderRadius: "5px" }}>
+          <AvatarImage src={row.getValue("image")} alt="avatar" style={{ objectFit: "cover" }} />
+          <AvatarFallback>{row.getValue("id")}</AvatarFallback>
         </Avatar>
       )
     },
@@ -108,7 +109,7 @@ export const adsTableColumns: ColumnDef<AdsProps>[] = [
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("advertiser")}
+            <Link href={'#'}>{row.getValue("advertiser")}</Link>
           </span>
         </div>
       )
@@ -146,6 +147,6 @@ export const adsTableColumns: ColumnDef<AdsProps>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }) => <DataTableRowActions row={row} actionList={adsActionList}  />,
+    cell: ({ row }) => <DataTableRowActions row={row} actionList={adsActionList} />,
   },
 ]

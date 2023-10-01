@@ -20,6 +20,19 @@ const tagsActionList : ActionListProps[] = [
     action: (id: string) => {
       console.log('Delete: ' + id)
     }
+  },
+  {
+    type: "dropdown",
+    label: "More",
+    subActions: [
+      {
+        type: "button",
+        label: "Items",
+        action: (id: string) => {
+          console.log('Items: ' + id)
+        }
+      }
+    ]
   }
 ]
 

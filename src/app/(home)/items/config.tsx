@@ -7,8 +7,23 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Checkbox } from "@/components/ui/checkbox"
 import { ColumnDef } from "@tanstack/react-table"
 import { Check, X } from "lucide-react"
+import Link from "next/link"
 
-const itemsActionList : ActionListProps[] = [
+const itemsActionList: ActionListProps[] = [
+  {
+    type: "button",
+    label: "Edit",
+    action: (id: string) => {
+      console.log('Edit: ' + id)
+    }
+  },
+  {
+    type: "button",
+    label: "Delete",
+    action: (id: string) => {
+      console.log('Delete: ' + id)
+    }
+  },
   {
     type: "dropdown",
     label: "Change Status",
@@ -57,18 +72,17 @@ const itemsActionList : ActionListProps[] = [
     ]
   },
   {
-    type: "button",
-    label: "Edit",
-    action: (id: string) => {
-      console.log('Edit: ' + id)
-    }
-  },
-  {
-    type: "button",
-    label: "Delete",
-    action: (id: string) => {
-      console.log('Delete: ' + id)
-    }
+    type: "dropdown",
+    label: "More",
+    subActions: [
+      {
+        type: "button",
+        label: "Highlights",
+        action: (id: string) => {
+          console.log('Highlights: ' + id)
+        }
+      }
+    ]
   }
 ]
 
@@ -104,7 +118,7 @@ const statuses = [
   },
 ]
 
-export const itemsTableToolbar : ToolbarProps[] = [
+export const itemsTableToolbar: ToolbarProps[] = [
   {
     key: "status",
     title: "Status",
@@ -112,7 +126,7 @@ export const itemsTableToolbar : ToolbarProps[] = [
   }
 ]
 
-export const itemsTableToolbarSearchList : ToolbarSearchListProps[] = [
+export const itemsTableToolbarSearchList: ToolbarSearchListProps[] = [
   {
     key: 'id',
     title: 'ID'
@@ -233,8 +247,8 @@ export const itemsTableColumns: ColumnDef<ItemsProps>[] = [
     ),
     cell: ({ row }) => {
       return (
-        <Avatar style={{width: "150px", height: "100px", borderRadius: "5px"}}>
-          <AvatarImage src={row.getValue("image")} alt="avatar" style={{objectFit: "cover"}} />
+        <Avatar style={{ width: "150px", height: "100px", borderRadius: "5px" }}>
+          <AvatarImage src={row.getValue("image")} alt="avatar" style={{ objectFit: "cover" }} />
           <AvatarFallback>{row.getValue("name")}</AvatarFallback>
         </Avatar>
       )
@@ -280,7 +294,7 @@ export const itemsTableColumns: ColumnDef<ItemsProps>[] = [
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("category")}
+            <Link href={'#'}>{row.getValue("category")}</Link>
           </span>
         </div>
       )
@@ -295,7 +309,7 @@ export const itemsTableColumns: ColumnDef<ItemsProps>[] = [
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("brand")}
+            <Link href={'#'}>{row.getValue("brand")}</Link>
           </span>
         </div>
       )
@@ -310,7 +324,7 @@ export const itemsTableColumns: ColumnDef<ItemsProps>[] = [
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("owner")}
+            <Link href={'#'}>{row.getValue("owner")}</Link>
           </span>
         </div>
       )
@@ -482,6 +496,6 @@ export const itemsTableColumns: ColumnDef<ItemsProps>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }) => <DataTableRowActions row={row} actionList={itemsActionList}  />,
+    cell: ({ row }) => <DataTableRowActions row={row} actionList={itemsActionList} />,
   },
 ]

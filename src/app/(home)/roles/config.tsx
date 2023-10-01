@@ -22,6 +22,13 @@ export let rolesActionList: ActionListProps[] = [
   },
   {
     type: "button",
+    label: "View",
+    action: (id: string) => {
+      console.log('View: ' + id)
+    }
+  },
+  {
+    type: "button",
     label: "Edit",
     action: (id: string) => {
       console.log('Edit: ' + id)

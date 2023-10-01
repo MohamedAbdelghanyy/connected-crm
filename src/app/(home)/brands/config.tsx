@@ -6,8 +6,16 @@ import { ToolbarProps, ToolbarSearchListProps } from "@/components/table/data-ta
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Checkbox } from "@/components/ui/checkbox"
 import { ColumnDef } from "@tanstack/react-table"
+import Link from "next/link"
 
-const brandsActionList : ActionListProps[] = [
+const brandsActionList: ActionListProps[] = [
+  {
+    type: "button",
+    label: "View",
+    action: (id: string) => {
+      console.log('View: ' + id)
+    }
+  },
   {
     type: "button",
     label: "Edit",
@@ -24,9 +32,9 @@ const brandsActionList : ActionListProps[] = [
   }
 ]
 
-export const brandsTableToolbar : ToolbarProps[] = []
+export const brandsTableToolbar: ToolbarProps[] = []
 
-export const brandsTableToolbarSearchList : ToolbarSearchListProps[] = [
+export const brandsTableToolbarSearchList: ToolbarSearchListProps[] = [
   {
     key: 'id',
     title: 'ID'
@@ -34,6 +42,10 @@ export const brandsTableToolbarSearchList : ToolbarSearchListProps[] = [
   {
     key: 'name',
     title: 'Name'
+  },
+  {
+    key: 'category',
+    title: 'Category'
   }
 ]
 
@@ -41,6 +53,7 @@ interface BrandsProps {
   id: string
   image: string
   name: string
+  category: string
 }
 
 export const brandsTableColumns: ColumnDef<BrandsProps>[] = [
@@ -81,8 +94,8 @@ export const brandsTableColumns: ColumnDef<BrandsProps>[] = [
     ),
     cell: ({ row }) => {
       return (
-        <Avatar style={{width: "150px", height: "100px", borderRadius: "5px", backgroundColor: "#FFF"}}>
-          <AvatarImage src={row.getValue("image")} alt="avatar" style={{objectFit: "cover"}} />
+        <Avatar style={{ width: "150px", height: "100px", borderRadius: "5px", backgroundColor: "#FFF" }}>
+          <AvatarImage src={row.getValue("image")} alt="avatar" style={{ objectFit: "cover" }} />
           <AvatarFallback>{row.getValue("name")}</AvatarFallback>
         </Avatar>
       )
@@ -105,7 +118,22 @@ export const brandsTableColumns: ColumnDef<BrandsProps>[] = [
     },
   },
   {
+    accessorKey: "category",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Category" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex space-x-2">
+          <span className="max-w-[500px] truncate font-medium">
+            <Link href={"#"}>{row.getValue("category")}</Link>
+          </span>
+        </div>
+      )
+    },
+  },
+  {
     id: "actions",
-    cell: ({ row }) => <DataTableRowActions row={row} actionList={brandsActionList}  />,
+    cell: ({ row }) => <DataTableRowActions row={row} actionList={brandsActionList} />,
   },
 ]

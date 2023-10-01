@@ -10,6 +10,13 @@ import { ColumnDef } from "@tanstack/react-table"
 const highlightsActionList : ActionListProps[] = [
   {
     type: "button",
+    label: "View",
+    action: (id: string) => {
+      console.log('View: ' + id)
+    }
+  },
+  {
+    type: "button",
     label: "Edit",
     action: (id: string) => {
       console.log('Edit: ' + id)
@@ -21,6 +28,26 @@ const highlightsActionList : ActionListProps[] = [
     action: (id: string) => {
       console.log('Delete: ' + id)
     }
+  },
+  {
+    type: "dropdown",
+    label: "More",
+    subActions: [
+      {
+        type: "button",
+        label: "Item",
+        action: (id: string) => {
+          console.log('Item: ' + id)
+        }
+      },
+      {
+        type: "button",
+        label: "Author",
+        action: (id: string) => {
+          console.log('User: ' + id)
+        }
+      }
+    ]
   }
 ]
 
