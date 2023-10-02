@@ -58,6 +58,33 @@ const customersActionList: ActionListProps[] = [
   },
   {
     type: "dropdown",
+    label: "Assign To",
+    subActions: [
+      {
+        type: "button",
+        label: "Mohamed Abdelghany",
+        action: (id: string) => {
+          console.log('Moh: ' + id)
+        }
+      },
+      {
+        type: "button",
+        label: "Khaled Afify",
+        action: (id: string) => {
+          console.log('Khal: ' + id)
+        }
+      },
+      {
+        type: "button",
+        label: "Soha El Hadary",
+        action: (id: string) => {
+          console.log('Soh: ' + id)
+        }
+      }
+    ]
+  },
+  {
+    type: "dropdown",
     label: "More",
     subActions: [
       {

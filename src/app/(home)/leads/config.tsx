@@ -6,7 +6,29 @@ import { ToolbarProps, ToolbarSearchListProps } from "@/components/table/data-ta
 import { Checkbox } from "@/components/ui/checkbox"
 import { ColumnDef } from "@tanstack/react-table"
 
-const leadsActionList : ActionListProps[] = [
+const leadsActionList: ActionListProps[] = [
+  
+  {
+    type: "button",
+    label: "View",
+    action: (id: string) => {
+      console.log('View: ' + id)
+    }
+  },
+  {
+    type: "button",
+    label: "Edit",
+    action: (id: string) => {
+      console.log('Edit: ' + id)
+    }
+  },
+  {
+    type: "button",
+    label: "Delete",
+    action: (id: string) => {
+      console.log('Delete: ' + id)
+    }
+  },
   {
     type: "dropdown",
     label: "Set Priority",
@@ -89,39 +111,24 @@ const leadsActionList : ActionListProps[] = [
     ]
   },
   {
-    type: "button",
-    label: "Convert Into User",
-    action: (id: string) => {
-      console.log('Convert: ' + id)
-    }
-  },
-  {
-    type: "button",
-    label: "Move To Not Interested",
-    action: (id: string) => {
-      console.log('Not Interested: ' + id)
-    }
-  },
-  {
-    type: "button",
-    label: "View",
-    action: (id: string) => {
-      console.log('View: ' + id)
-    }
-  },
-  {
-    type: "button",
-    label: "Edit",
-    action: (id: string) => {
-      console.log('Edit: ' + id)
-    }
-  },
-  {
-    type: "button",
-    label: "Delete",
-    action: (id: string) => {
-      console.log('Delete: ' + id)
-    }
+    type: "dropdown",
+    label: "Move",
+    subActions: [
+      {
+        type: "button",
+        label: "Convert Into User",
+        action: (id: string) => {
+          console.log('Convert: ' + id)
+        }
+      },
+      {
+        type: "button",
+        label: "Move To Not Interested",
+        action: (id: string) => {
+          console.log('Not Interested: ' + id)
+        }
+      },
+    ]
   }
 ]
 
@@ -157,7 +164,7 @@ const priorities = [
   },
 ]
 
-export const leadsTableToolbar : ToolbarProps[] = [
+export const leadsTableToolbar: ToolbarProps[] = [
   {
     key: "status",
     title: "Status",
@@ -170,7 +177,7 @@ export const leadsTableToolbar : ToolbarProps[] = [
   }
 ]
 
-export const leadsTableToolbarSearchList : ToolbarSearchListProps[] = [
+export const leadsTableToolbarSearchList: ToolbarSearchListProps[] = [
   {
     key: 'id',
     title: 'ID'
@@ -435,6 +442,6 @@ export const leadsTableColumns: ColumnDef<LeadsProps>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }) => <DataTableRowActions row={row} actionList={leadsActionList}  />,
+    cell: ({ row }) => <DataTableRowActions row={row} actionList={leadsActionList} />,
   },
 ]
