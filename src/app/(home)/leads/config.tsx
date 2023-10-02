@@ -7,7 +7,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { ColumnDef } from "@tanstack/react-table"
 
 const leadsActionList: ActionListProps[] = [
-  
+
   {
     type: "button",
     label: "View",
@@ -31,104 +31,123 @@ const leadsActionList: ActionListProps[] = [
   },
   {
     type: "dropdown",
-    label: "Set Priority",
+    label: "Actions",
     subActions: [
       {
-        type: "button",
-        label: "High",
-        action: (id: string) => {
-          console.log('High: ' + id)
-        }
+        type: "dropdown",
+        label: "Set Priority",
+        subActions: [
+          {
+            type: "button",
+            label: "High",
+            action: (id: string) => {
+              console.log('High: ' + id)
+            }
+          },
+          {
+            type: "button",
+            label: "Medium",
+            action: (id: string) => {
+              console.log('Medium: ' + id)
+            }
+          },
+          {
+            type: "button",
+            label: "Low",
+            action: (id: string) => {
+              console.log('Low: ' + id)
+            }
+          }
+        ]
       },
       {
-        type: "button",
-        label: "Medium",
-        action: (id: string) => {
-          console.log('Medium: ' + id)
-        }
+        type: "dropdown",
+        label: "Change Status",
+        subActions: [
+          {
+            type: "button",
+            label: "Active",
+            action: (id: string) => {
+              console.log('Active: ' + id)
+            }
+          },
+          {
+            type: "button",
+            label: "Qualified",
+            action: (id: string) => {
+              console.log('Qualified: ' + id)
+            }
+          },
+          {
+            type: "button",
+            label: "Unqualified",
+            action: (id: string) => {
+              console.log('Unqualified: ' + id)
+            }
+          }
+        ]
       },
       {
-        type: "button",
-        label: "Low",
-        action: (id: string) => {
-          console.log('Low: ' + id)
-        }
-      }
-    ]
+        type: "dropdown",
+        label: "Assign To",
+        subActions: [
+          {
+            type: "button",
+            label: "Mohamed Abdelghany",
+            action: (id: string) => {
+              console.log('Moh: ' + id)
+            }
+          },
+          {
+            type: "button",
+            label: "Khaled Afify",
+            action: (id: string) => {
+              console.log('Khal: ' + id)
+            }
+          },
+          {
+            type: "button",
+            label: "Soha El Hadary",
+            action: (id: string) => {
+              console.log('Soh: ' + id)
+            }
+          }
+        ]
+      },
+      {
+        type: "dropdown",
+        label: "Move",
+        subActions: [
+          {
+            type: "button",
+            label: "Convert Into User",
+            action: (id: string) => {
+              console.log('Convert: ' + id)
+            }
+          },
+          {
+            type: "button",
+            label: "Move To Not Interested",
+            action: (id: string) => {
+              console.log('Not Interested: ' + id)
+            }
+          },
+        ]
+      },
+    ],
   },
   {
     type: "dropdown",
-    label: "Change Status",
+    label: "More",
     subActions: [
       {
         type: "button",
-        label: "Active",
+        label: "Requests",
         action: (id: string) => {
-          console.log('Active: ' + id)
+          console.log('Requests: ' + id)
         }
       },
-      {
-        type: "button",
-        label: "Qualified",
-        action: (id: string) => {
-          console.log('Qualified: ' + id)
-        }
-      },
-      {
-        type: "button",
-        label: "Unqualified",
-        action: (id: string) => {
-          console.log('Unqualified: ' + id)
-        }
-      }
-    ]
-  },
-  {
-    type: "dropdown",
-    label: "Assign To",
-    subActions: [
-      {
-        type: "button",
-        label: "Mohamed Abdelghany",
-        action: (id: string) => {
-          console.log('Moh: ' + id)
-        }
-      },
-      {
-        type: "button",
-        label: "Khaled Afify",
-        action: (id: string) => {
-          console.log('Khal: ' + id)
-        }
-      },
-      {
-        type: "button",
-        label: "Soha El Hadary",
-        action: (id: string) => {
-          console.log('Soh: ' + id)
-        }
-      }
-    ]
-  },
-  {
-    type: "dropdown",
-    label: "Move",
-    subActions: [
-      {
-        type: "button",
-        label: "Convert Into User",
-        action: (id: string) => {
-          console.log('Convert: ' + id)
-        }
-      },
-      {
-        type: "button",
-        label: "Move To Not Interested",
-        action: (id: string) => {
-          console.log('Not Interested: ' + id)
-        }
-      },
-    ]
+    ],
   }
 ]
 

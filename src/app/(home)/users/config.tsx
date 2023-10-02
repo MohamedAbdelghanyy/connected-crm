@@ -10,27 +10,6 @@ import { Check, X } from "lucide-react"
 const usersActionList: ActionListProps[] = [
   {
     type: "button",
-    label: "Permissions",
-    action: (id: string) => {
-      console.log('Permissions: ' + id)
-    }
-  },
-  {
-    type: "button",
-    label: "Claims",
-    action: (id: string) => {
-      console.log('Claims: ' + id)
-    }
-  },
-  {
-    type: "button",
-    label: "Lock",
-    action: (id: string) => {
-      console.log('Lock: ' + id)
-    }
-  },
-  {
-    type: "button",
     label: "View",
     action: (id: string) => {
       console.log('View: ' + id)
@@ -49,6 +28,60 @@ const usersActionList: ActionListProps[] = [
     action: (id: string) => {
       console.log('Delete: ' + id)
     }
+  },
+  {
+    type: "dropdown",
+    label: "Security",
+    subActions: [
+      {
+        type: "button",
+        label: "Permissions",
+        action: (id: string) => {
+          console.log('Permissions: ' + id)
+        }
+      },
+      {
+        type: "button",
+        label: "Claims",
+        action: (id: string) => {
+          console.log('Claims: ' + id)
+        }
+      },
+      {
+        type: "button",
+        label: "Lock",
+        action: (id: string) => {
+          console.log('Lock: ' + id)
+        }
+      }
+    ]
+  },
+{
+    type: "dropdown",
+    label: "More",
+    subActions: [
+      {
+        type: "button",
+        label: "Leads",
+        action: (id: string) => {
+          console.log('Leads: ' + id)
+        }
+      },
+      {
+        type: "button",
+        label: "Customers",
+        action: (id: string) => {
+          console.log('Customers: ' + id)
+        }
+      },
+      {
+        type: "button",
+        label: "Requests",
+        action: (id: string) => {
+          console.log('Requests: ' + id)
+        }
+      },
+    ]
   }
 ]
 

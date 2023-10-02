@@ -103,6 +103,13 @@ const customersActionList: ActionListProps[] = [
       },
       {
         type: "button",
+        label: "Requests",
+        action: (id: string) => {
+          console.log('Requests: ' + id)
+        }
+      },
+      {
+        type: "button",
         label: "Activity Log",
         action: (id: string) => {
           console.log('Log: ' + id)
