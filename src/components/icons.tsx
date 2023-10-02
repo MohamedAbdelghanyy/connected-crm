@@ -45,7 +45,8 @@ import {
   FileQuestionIcon,
   ScrollTextIcon,
   GlobeIcon,
-  LanguagesIcon
+  LanguagesIcon,
+  MailIcon
 } from "lucide-react"
 
 export type Icon = LucideIcon
@@ -99,6 +100,7 @@ export const Icons = {
   advertisers: User,
   notifications: BellRing,
   integrations: Workflow,
+  requests: MailIcon,
   leads: CableIcon,
   whatsapp: MessageCircleIcon,
   topActiveCustomers: MedalIcon,

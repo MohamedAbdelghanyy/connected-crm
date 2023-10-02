@@ -1,0 +1,24 @@
+[
+  {
+    "id": "RQ-123",
+    "customerName": "Mohamed Abdelghany",
+    "customerMobile": "+201115696965",
+    "itemName": "BMW X7",
+    "appointment": null,
+    "createdBy": "Soha El Hadary",
+    "creationDate": "16/10/2023 10:30:00 AM",
+    "notes": "None",
+    "status": "dealClosed"
+  },
+  {
+    "id": "RQ-456",
+    "customerName": "Ahmed Zaki",
+    "customerMobile": "+201115696965",
+    "itemName": "Rolex",
+    "appointment": "17/10/2023 12:10:00 PM",
+    "createdBy": "Customer",
+    "creationDate": "12/10/2023 09:10:00 AM",
+    "notes": "None",
+    "status": "scheduled"
+  }
+]
