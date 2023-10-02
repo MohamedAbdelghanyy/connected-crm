@@ -99,6 +99,11 @@ export const dashboardConfig: DashboardConfig = {
       title: "Sales",
     },
     {
+      title: "Requests",
+      href: "/requests",
+      icon: "requests",
+    },
+    {
       title: "Leads",
       href: "/leads",
       icon: "leads",
@@ -140,7 +145,7 @@ export const dashboardConfig: DashboardConfig = {
       icon: "roles",
     },
     {
-      title: "Dashboard Users",
+      title: "Users",
       href: "/users",
       icon: "users",
     },
