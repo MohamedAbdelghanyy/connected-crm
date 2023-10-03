@@ -1,0 +1,16 @@
+[
+  {
+    "id": "CALL-123",
+    "customerID": "USR-123",
+    "userID": "USR-123",
+    "result": "No Answer",
+    "date": "18/10/2022"
+  },
+  {
+    "id": "CALL-456",
+    "customerID": "USR-456",
+    "userID": "USR-456",
+    "result": "Done",
+    "date": "19/10/2022"
+  }
+]

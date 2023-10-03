@@ -1,0 +1,26 @@
+[
+  {
+    "id": "SUB-123",
+    "customerID": "USR-123",
+    "customerName": "Mohamed Abdelghany",
+    "subscriptionType": "Gold",
+    "subscriptionPrice": "10$",
+    "from": "18/10/2022",
+    "to": "17/11/2022",
+    "isRefundAllowed": true,
+    "isActive": true,
+    "isRefunded": false
+  },
+  {
+    "id": "SUB-456",
+    "customerID": "USR-456",
+    "customerName": "Soha El Hadary",
+    "subscriptionType": "Platinum",
+    "subscriptionPrice": "20$",
+    "from": "28/10/2022",
+    "to": "27/11/2022",
+    "isRefundAllowed": true,
+    "isActive": false,
+    "isRefunded": true
+  }
+]

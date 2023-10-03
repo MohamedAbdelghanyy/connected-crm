@@ -1,0 +1,14 @@
+[
+    {
+        "id": "HST-123",
+        "customerID": "USR-123",
+        "details": "User changed his password",
+        "date": "18/10/2022"
+    },
+    {
+        "id": "HST-456",
+        "customerID": "USR-123",
+        "details": "User changed his profile picture",
+        "date": "18/10/2022"
+    }
+]

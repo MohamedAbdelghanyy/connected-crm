@@ -1,0 +1,14 @@
+[
+  {
+    "id": "WL-123",
+    "customerID": "USR-123",
+    "itemID": "ITM-123",
+    "date": "18/10/2022"
+  },
+  {
+    "id": "WL-456",
+    "customerID": "USR-456",
+    "itemID": "ITM-456",
+    "date": "19/10/2022"
+  }
+]
