@@ -16,11 +16,11 @@ function ItemSkeleton() {
   )
 }
 
-export default function ItemsLoading() {
+export default function ProductsLoading() {
   return (
     <DashboardShell className="mb-1">
-      <DashboardHeader heading="Items" text="Manage your items">
-        <Link href="/items/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" />Add Item</Link>
+      <DashboardHeader heading="Products" text="Manage your products">
+        <Link href="/products/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" />Add Product</Link>
       </DashboardHeader>
       <div className="divide-border-200 divide-y rounded-md border">
         <ItemSkeleton />

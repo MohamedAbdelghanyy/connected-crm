@@ -89,7 +89,7 @@ export const Icons = {
   laptop: Laptop,
   customers: User,
   merchants: User,
-  items: LayoutList,
+  products: LayoutList,
   categories: Grid,
   highlights: Flashlight,
   brands: Box,

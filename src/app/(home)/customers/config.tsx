@@ -89,9 +89,9 @@ const customersActionList: ActionListProps[] = [
     subActions: [
       {
         type: "button",
-        label: "Items",
+        label: "Products",
         action: (id: string) => {
-          console.log('Items: ' + id)
+          console.log('Products: ' + id)
         }
       },
       {

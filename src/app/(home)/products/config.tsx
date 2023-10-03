@@ -9,7 +9,7 @@ import { ColumnDef } from "@tanstack/react-table"
 import { Check, X } from "lucide-react"
 import Link from "next/link"
 
-const itemsActionList: ActionListProps[] = [
+const productsActionList: ActionListProps[] = [
   {
     type: "button",
     label: "Edit",
@@ -118,7 +118,7 @@ const statuses = [
   },
 ]
 
-export const itemsTableToolbar: ToolbarProps[] = [
+export const productsTableToolbar: ToolbarProps[] = [
   {
     key: "status",
     title: "Status",
@@ -126,7 +126,7 @@ export const itemsTableToolbar: ToolbarProps[] = [
   }
 ]
 
-export const itemsTableToolbarSearchList: ToolbarSearchListProps[] = [
+export const productsTableToolbarSearchList: ToolbarSearchListProps[] = [
   {
     key: 'id',
     title: 'ID'
@@ -189,7 +189,7 @@ export const itemsTableToolbarSearchList: ToolbarSearchListProps[] = [
   }
 ]
 
-interface ItemsProps {
+interface ProductsProps {
   id: string
   image: string
   name: string
@@ -209,7 +209,7 @@ interface ItemsProps {
   status: string
 }
 
-export const itemsTableColumns: ColumnDef<ItemsProps>[] = [
+export const productsTableColumns: ColumnDef<ProductsProps>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -496,6 +496,6 @@ export const itemsTableColumns: ColumnDef<ItemsProps>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }) => <DataTableRowActions row={row} actionList={itemsActionList} />,
+    cell: ({ row }) => <DataTableRowActions row={row} actionList={productsActionList} />,
   },
 ]

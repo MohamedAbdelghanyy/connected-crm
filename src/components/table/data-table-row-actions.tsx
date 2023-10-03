@@ -15,7 +15,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
-import { MoreHorizontalIcon, SettingsIcon } from "lucide-react"
+import { SettingsIcon } from "lucide-react"
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>
@@ -39,12 +39,12 @@ export function DataTableRowActions<TData>({
       <DropdownMenuTrigger asChild>
         <Button
           //variant="ghost"
-          style={{width: "100%"}}
+          style={{ width: "100%" }}
           className="flex h-8 w-8 p-3 data-[state=open]:bg-muted"
         >
           {/* <MoreHorizontalIcon className="h-4 w-4" />*/}
           <SettingsIcon className="h-4 w-4" />
-          <p className="ml-1" style={{fontSize: "12px"}}>Actions</p>
+          <p className="ml-1" style={{ fontSize: "12px" }}>Actions</p>
           <span className="sr-only">Open menu</span>
         </Button>
       </DropdownMenuTrigger>
@@ -54,37 +54,37 @@ export function DataTableRowActions<TData>({
             <>
               {
                 action.action ?
-                (<DropdownMenuItem
-                  key={action.label}
-                  onClick={() => {
-                  if(action.action){
-                    action.action(row.getValue('id'))
-                  }
-                }}>{action.label}</DropdownMenuItem>) 
-                : action.subActions ? (
-                  <DropdownMenuSub>
-                  <DropdownMenuSubTrigger>
-                    <span>{action.label}</span>
-                  </DropdownMenuSubTrigger>
-                  <DropdownMenuPortal>
-                    <DropdownMenuSubContent>
-                    {
-                      action.subActions.map((subAction) => (
-                      <DropdownMenuItem
-                        key={subAction.label}
-                        onClick={() =>{
-                          if(subAction.action){
-                            subAction.action(row.getValue('id'));
-                          }
-                        }}>
-                        <span>{subAction.label}</span>
-                      </DropdownMenuItem>
-                      ))}
-                    </DropdownMenuSubContent>
-                  </DropdownMenuPortal>
-                </DropdownMenuSub>) : (<></>)
+                  (<DropdownMenuItem
+                    key={action.label}
+                    onClick={() => {
+                      if (action.action) {
+                        action.action(row.getValue('id'))
+                      }
+                    }}>{action.label}</DropdownMenuItem>)
+                  : action.subActions ? (
+                    <DropdownMenuSub>
+                      <DropdownMenuSubTrigger>
+                        <span>{action.label}</span>
+                      </DropdownMenuSubTrigger>
+                      <DropdownMenuPortal>
+                        <DropdownMenuSubContent>
+                          {
+                            action.subActions.map((subAction) => (
+                              <DropdownMenuItem
+                                key={subAction.label}
+                                onClick={() => {
+                                  if (subAction.action) {
+                                    subAction.action(row.getValue('id'));
+                                  }
+                                }}>
+                                <span>{subAction.label}</span>
+                              </DropdownMenuItem>
+                            ))}
+                        </DropdownMenuSubContent>
+                      </DropdownMenuPortal>
+                    </DropdownMenuSub>) : (<></>)
               }
-              {i+1 < actionList.length && <DropdownMenuSeparator />}
+              {i + 1 < actionList.length && <DropdownMenuSeparator />}
             </>
           )
         })}

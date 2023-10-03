@@ -35,9 +35,9 @@ export const dashboardConfig: DashboardConfig = {
       title: "Catalog",
     },
     {
-      title: "Items",
-      href: "/items",
-      icon: "items",
+      title: "Products",
+      href: "/products",
+      icon: "products",
     },
     {
       title: "Categories",
