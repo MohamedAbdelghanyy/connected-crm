@@ -11,8 +11,8 @@ const customersActionList: ActionListProps[] = [
   {
     type: "button",
     label: "View",
-    action: (id: string) => {
-      console.log('View: ' + id)
+    redirect: (id: string) => {
+      return "/customers/" + id;
     }
   },
   {
@@ -81,40 +81,6 @@ const customersActionList: ActionListProps[] = [
           console.log('Soh: ' + id)
         }
       }
-    ]
-  },
-  {
-    type: "dropdown",
-    label: "More",
-    subActions: [
-      {
-        type: "button",
-        label: "Products",
-        action: (id: string) => {
-          console.log('Products: ' + id)
-        }
-      },
-      {
-        type: "button",
-        label: "Highlights",
-        action: (id: string) => {
-          console.log('Highlights: ' + id)
-        }
-      },
-      {
-        type: "button",
-        label: "Requests",
-        action: (id: string) => {
-          console.log('Requests: ' + id)
-        }
-      },
-      {
-        type: "button",
-        label: "Activity Log",
-        action: (id: string) => {
-          console.log('Log: ' + id)
-        }
-      },
     ]
   }
 ]
