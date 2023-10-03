@@ -2,7 +2,7 @@ import { DashboardConfig } from "@/types"
 
 export const dashboardConfig: DashboardConfig = {
   mainNav: [
-    
+
   ],
   sidebarNav: [
     {
@@ -21,11 +21,6 @@ export const dashboardConfig: DashboardConfig = {
       href: "/customers",
       icon: "customers",
     },
-    /*{
-      title: "Add Customer",
-      href: "/customers/add",
-      icon: "customers",
-    },*/
     {
       title: "Merchants",
       href: "/merchants",
@@ -107,6 +102,11 @@ export const dashboardConfig: DashboardConfig = {
       title: "Leads",
       href: "/leads",
       icon: "leads",
+    },
+    {
+      title: "Subscriptions",
+      href: "/subscriptions",
+      icon: "subscriptions",
     },
     {
       title: "Whatsapp",

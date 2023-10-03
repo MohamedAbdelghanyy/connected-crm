@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 import { SettingsIcon } from "lucide-react"
+import { useRouter } from 'next/navigation'
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>
@@ -25,6 +26,7 @@ interface DataTableRowActionsProps<TData> {
 export interface ActionListProps {
   type: string,
   label: string;
+  redirect?: (id: string) => string;
   action?: (id: string) => void;
   subActions?: ActionListProps[];
 }
@@ -33,6 +35,8 @@ export function DataTableRowActions<TData>({
   row,
   actionList
 }: DataTableRowActionsProps<TData>) {
+
+  const { push } = useRouter();
 
   return (
     <DropdownMenu>
@@ -53,12 +57,14 @@ export function DataTableRowActions<TData>({
           return (
             <>
               {
-                action.action ?
+                action.action || action.redirect ?
                   (<DropdownMenuItem
                     key={action.label}
                     onClick={() => {
                       if (action.action) {
-                        action.action(row.getValue('id'))
+                        action.action(row.getValue('id'));
+                      }else if(action.redirect){
+                        push(action.redirect(row.getValue('id')));
                       }
                     }}>{action.label}</DropdownMenuItem>)
                   : action.subActions ? (
@@ -75,6 +81,8 @@ export function DataTableRowActions<TData>({
                                 onClick={() => {
                                   if (subAction.action) {
                                     subAction.action(row.getValue('id'));
+                                  }else if(subAction.redirect){
+                                    push(subAction.redirect(row.getValue('id')));
                                   }
                                 }}>
                                 <span>{subAction.label}</span>
