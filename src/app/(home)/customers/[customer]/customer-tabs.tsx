@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Grid } from "@mui/material"
+import { useRouter } from "next/navigation"
 import * as React from "react"
 import { notificationsTableColumns, notificationsTableToolbar, notificationsTableToolbarSearchList } from "../../notifications/config"
 import { productsTableColumns, productsTableToolbar, productsTableToolbarSearchList } from "../../products/config"
@@ -17,8 +18,15 @@ import { subscriptionsTableColumns, subscriptionsTableToolbar, subscriptionsTabl
 export default function CustomerTabs({ customer, products, wishlist, interests, calls, subscriptions, notifications, appointments, internalNotes, stats, history }: any) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
   const [activeTab, setActiveTab] = React.useState("info")
+  const { push } = useRouter();
 
-  return (
+  React.useEffect(() => {
+    if (!customer) {
+      push("/customers");
+    }
+  }, [])
+
+  return customer ? (
     <>
       <DashboardShell className="mb-1">
         <DashboardHeader heading={customer.name} text={customer.id}></DashboardHeader>
@@ -175,5 +183,5 @@ export default function CustomerTabs({ customer, products, wishlist, interests, 
         </Tabs>
       </div>
     </>
-  )
+  ) : <></>
 }
