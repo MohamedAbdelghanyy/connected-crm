@@ -151,6 +151,7 @@ export const requestsTableToolbarSearchList: ToolbarSearchListProps[] = [
 
 interface RequestsProps {
   id: string
+  customerID: string
   customerName: string
   customerMobile: string
   itemName: string
@@ -201,7 +202,7 @@ export const requestsTableColumns: ColumnDef<RequestsProps>[] = [
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            <Link href={"#"}>{row.getValue("customerName")}</Link>
+            <Link href={"/customers/"+row.original.customerID}>{row.getValue("customerName")}</Link>
           </span>
         </div>
       )
