@@ -1,8 +1,6 @@
 import { promises as fs } from "fs";
 import path from "path";
 
-import { GetStaticProps } from "next";
-import { ParsedUrlQuery } from "querystring";
 import CustomerTabs from "./customer-tabs";
 
 export const metadata = {
@@ -122,23 +120,14 @@ async function getHistory() {
   return history
 }
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const { customer } = context.params as { customer: string }
-  return {
-    props: {
-      customer: customer
-    }
-  }
-}
-
-export default async function CustomerPage({ params }: { params: { customer: string } }) {
-  const customer = await getCustomer(params.customer)
-  const products = await getProducts(params.customer)
+export default async function CustomerPage({ params: { customer }, }: { params: { customer: string } }) {
+  const customerD = await getCustomer(customer)
+  const products = await getProducts(customer)
   const wishlist = await getWishlist()
   const interests = await getInterests()
   const calls = await getCalls()
-  const subscriptions = await getSubscriptions(params.customer)
-  const notifications = await getNotifications(params.customer)
+  const subscriptions = await getSubscriptions(customer)
+  const notifications = await getNotifications(customer)
   const appointments = await getAppointments()
   const internalNotes = await getInternalNotes()
   const stats = await getStats()
@@ -147,7 +136,7 @@ export default async function CustomerPage({ params }: { params: { customer: str
   return (
     <>
       <CustomerTabs
-        customer={customer}
+        customer={customerD}
         products={products}
         wishlist={wishlist}
         interests={interests}
