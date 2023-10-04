@@ -128,9 +128,9 @@ interface CPageProps {
 
 export async function generateStaticParams() {
   return [
-    {customer: "USR-123"},
+    /*{customer: "USR-123"},
     {customer: "USR-456"},
-    {customer: "USR-789"}
+    {customer: "USR-789"}*/
   ]
 } 
 
