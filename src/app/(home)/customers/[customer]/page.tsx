@@ -125,6 +125,15 @@ interface CPageProps {
   params: { customer: string }
 }
 
+
+export async function generateStaticParams() {
+  return [
+    {customer: "USR-123"},
+    {customer: "USR-456"},
+    {customer: "USR-789"}
+  ]
+} 
+
 export default async function CustomerPage({ params }: CPageProps) {
   const customer = await getCustomer(params.customer)
   const products = await getProducts(params.customer)
