@@ -120,14 +120,15 @@ async function getHistory() {
   return history
 }
 
-export default async function CustomerPage({ params: { customer }, }: { params: { customer: string } }) {
-  const customerD = await getCustomer(customer)
-  const products = await getProducts(customer)
+export default async function CustomerPage({ params }: { params: { customer: string } }) {
+  let customerID = params.customer
+  const customer = await getCustomer(customerID)
+  const products = await getProducts(customerID)
   const wishlist = await getWishlist()
   const interests = await getInterests()
   const calls = await getCalls()
-  const subscriptions = await getSubscriptions(customer)
-  const notifications = await getNotifications(customer)
+  const subscriptions = await getSubscriptions(customerID)
+  const notifications = await getNotifications(customerID)
   const appointments = await getAppointments()
   const internalNotes = await getInternalNotes()
   const stats = await getStats()
@@ -136,7 +137,7 @@ export default async function CustomerPage({ params: { customer }, }: { params: 
   return (
     <>
       <CustomerTabs
-        customer={customerD}
+        customer={customer}
         products={products}
         wishlist={wishlist}
         interests={interests}
