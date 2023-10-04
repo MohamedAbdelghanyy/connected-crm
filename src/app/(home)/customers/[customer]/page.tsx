@@ -121,7 +121,11 @@ async function getHistory() {
   return history
 }
 
-export default async function CustomerPage({ params }: { params: { customer: string } }) {
+interface CPageProps {
+  params: { customer: string }
+}
+
+export default async function CustomerPage({ params }: CPageProps) {
   const customer = await getCustomer(params.customer)
   const products = await getProducts(params.customer)
   const wishlist = await getWishlist()
