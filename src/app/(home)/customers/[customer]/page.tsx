@@ -1,7 +1,8 @@
 import { promises as fs } from "fs";
 import path from "path";
 
-//import { useRouter } from "next/navigation";
+import { GetStaticProps } from "next";
+import { ParsedUrlQuery } from "querystring";
 import CustomerTabs from "./customer-tabs";
 
 export const metadata = {
@@ -121,20 +122,16 @@ async function getHistory() {
   return history
 }
 
-interface CPageProps {
-  params: { customer: string }
+export const getStaticProps: GetStaticProps = async (context) => {
+  const { customer } = context.params as { customer: string }
+  return {
+    props: {
+      customer: customer
+    }
+  }
 }
 
-
-export async function generateStaticParams() {
-  return [
-    /*{customer: "USR-123"},
-    {customer: "USR-456"},
-    {customer: "USR-789"}*/
-  ]
-} 
-
-export default async function CustomerPage({ params }: CPageProps) {
+export default async function CustomerPage({ params }: { params: { customer: string } }) {
   const customer = await getCustomer(params.customer)
   const products = await getProducts(params.customer)
   const wishlist = await getWishlist()
