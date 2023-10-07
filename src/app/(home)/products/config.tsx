@@ -12,6 +12,13 @@ import Link from "next/link"
 const productsActionList: ActionListProps[] = [
   {
     type: "button",
+    label: "View",
+    redirect: (id: string) => {
+      return "/products/" + id;
+    }
+  },
+  {
+    type: "button",
     label: "Edit",
     action: (id: string) => {
       console.log('Edit: ' + id)
@@ -196,6 +203,7 @@ interface ProductsProps {
   price: number
   brand: string
   category: string
+  ownerID: string
   owner: string
   soldByConnected: boolean
   views: number
@@ -324,7 +332,7 @@ export const productsTableColumns: ColumnDef<ProductsProps>[] = [
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            <Link href={'#'}>{row.getValue("owner")}</Link>
+            <Link href={'/merchants/' + row.original.ownerID}>{row.getValue("owner")}</Link>
           </span>
         </div>
       )

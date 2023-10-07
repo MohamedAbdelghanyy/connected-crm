@@ -1,0 +1,18 @@
+[
+  {
+    "id": "ATT-1",
+    "key": "attribute-0",
+    "displayName": "Color",
+    "value": "Red",
+    "itemID": "ITM-1",
+    "itemName": "BMW X7"
+  },
+  {
+    "id": "ATT-2",
+    "key": "attribute-1",
+    "displayName": "Man. Year",
+    "value": "2022",
+    "itemID": "ITM-1",
+    "itemName": "BMW X7"
+  }
+]
