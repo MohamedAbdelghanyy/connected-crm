@@ -81,6 +81,11 @@ export const dashboardConfig: DashboardConfig = {
       title: "Marketing",
     },
     {
+      title: "Wishlists",
+      href: "/wishlists",
+      icon: "wishlists",
+    },
+    {
       title: "Notifications",
       href: "/notifications",
       icon: "notifications",
@@ -94,19 +99,34 @@ export const dashboardConfig: DashboardConfig = {
       title: "Sales",
     },
     {
-      title: "Requests",
-      href: "/requests",
-      icon: "requests",
-    },
-    {
       title: "Leads",
       href: "/leads",
       icon: "leads",
     },
     {
+      title: "Requests",
+      href: "/requests",
+      icon: "requests",
+    },
+    {
+      title: "Calls",
+      href: "/calls",
+      icon: "calls",
+    },
+    {
+      title: "Appointments",
+      href: "/appointments",
+      icon: "appointments",
+    },
+    {
       title: "Subscriptions",
       href: "/subscriptions",
       icon: "subscriptions",
+    },
+    {
+      title: "Internal Notes",
+      href: "/internal-notes",
+      icon: "internalNotes",
     },
     {
       title: "Whatsapp",

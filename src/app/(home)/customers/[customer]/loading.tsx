@@ -11,7 +11,7 @@ function ItemSkeleton() {
   )
 }
 
-export default function CustomersLoading() {
+export default function CustomerLoading() {
   return (
     <DashboardShell className="mb-1">
       <Skeleton className="h-20" />

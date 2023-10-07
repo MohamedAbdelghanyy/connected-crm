@@ -6,45 +6,37 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { ColumnDef } from "@tanstack/react-table"
 import Link from "next/link"
 
-export const notificationsTableToolbar: ToolbarProps[] = []
+export const wishlistsTableToolbar: ToolbarProps[] = []
 
-export const notificationsTableToolbarSearchList: ToolbarSearchListProps[] = [
+export const wishlistsTableToolbarSearchList: ToolbarSearchListProps[] = [
   {
     key: 'id',
     title: 'ID'
   },
   {
-    key: 'receiverID',
-    title: 'Receiver'
+    key: 'itemName',
+    title: 'Item Name'
   },
   {
-    key: 'title',
-    title: 'Title'
+    key: 'customerName',
+    title: 'Customer Name'
   },
   {
-    key: 'description',
-    title: 'Description'
+    key: 'addingDate',
+    title: 'Adding Date'
   },
-  {
-    key: 'navigateTo',
-    title: 'Navigate To'
-  },
-  {
-    key: 'date',
-    title: 'Date'
-  }
 ]
 
-interface NotificationsProps {
+interface WishlistsProps {
   id: string
-  receiverID: string
-  title: string
-  description: string
-  navigateTo: string
-  date: string
+  itemID: string
+  itemName: string
+  customerID: string
+  customerName: string
+  addingDate: string
 }
 
-export const notificationsTableColumns: ColumnDef<NotificationsProps>[] = [
+export const wishlistsTableColumns: ColumnDef<WishlistsProps>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -76,78 +68,48 @@ export const notificationsTableColumns: ColumnDef<NotificationsProps>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "title",
+    accessorKey: "itemName",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Title" />
+      <DataTableColumnHeader column={column} title="Item Name" />
     ),
     cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("title")}
-          </span>
-        </div>
-      )
-    }
-  },
-  {
-    accessorKey: "description",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Description" />
-    ),
-    cell: ({ row }) => {
-      return (
-        <div className="flex space-x-2">
-          <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("description")}
+            <Link href={"/products/" + row.original.itemID}>{row.getValue("itemName")}</Link>
           </span>
         </div>
       )
     },
   },
   {
-    accessorKey: "receiverName",
+    accessorKey: "customerName",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Receiver Name" />
+      <DataTableColumnHeader column={column} title="Customer Name" />
     ),
     cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            <Link href={row.original.receiverID}>{row.getValue("receiverName")}</Link>
+            <Link href={"/customers/" + row.original.customerID}>{row.getValue("customerName")}</Link>
           </span>
         </div>
       )
     },
   },
   {
-    accessorKey: "navigateTo",
+    accessorKey: "addingDate",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Navigate To" />
+      <DataTableColumnHeader column={column} title="Adding Date" />
     ),
     cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("navigateTo")}
+            {row.getValue("addingDate")}
           </span>
         </div>
       )
     },
-  },
-  {
-    accessorKey: "date",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Date" />
-    ),
-    cell: ({ row }) => {
-      return (
-        <div className="flex space-x-2">
-          <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("date")}
-          </span>
-        </div>
-      )
-    },
-  },
+  }
 ]

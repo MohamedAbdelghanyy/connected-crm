@@ -29,20 +29,20 @@ export default async function CustomersPage() {
     <>
       <DashboardShell className="mb-1">
         <DashboardHeader heading="Customers" text="Manage your customers">
-          <Link href="/customers/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" />Add Customer</Link>
+          <Link href="/customers/add" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Customer</Link>
         </DashboardHeader>
       </DashboardShell>
       <div className="m-2">
-          {customers.length > 0 ? (
-            <DataTable data={customers} columns={customersTableColumns} toolbar={customersTableToolbar} toolbarSearchList={customersTableToolbarSearchList} />
-          ) : (<EmptyPlaceholder>
-            <EmptyPlaceholder.Icon name="post" />
-            <EmptyPlaceholder.Title>No Customers</EmptyPlaceholder.Title>
-            <EmptyPlaceholder.Description>
-              You don&apos;t have any customer yet.
-            </EmptyPlaceholder.Description>
-            <Link href="/customers/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Customer</Link>
-          </EmptyPlaceholder>)}
+        {customers.length > 0 ? (
+          <DataTable data={customers} columns={customersTableColumns} toolbar={customersTableToolbar} toolbarSearchList={customersTableToolbarSearchList} />
+        ) : (<EmptyPlaceholder>
+          <EmptyPlaceholder.Icon name="post" />
+          <EmptyPlaceholder.Title>No Customers</EmptyPlaceholder.Title>
+          <EmptyPlaceholder.Description>
+            You don&apos;t have any customer yet.
+          </EmptyPlaceholder.Description>
+          <Link href="/customers/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Customer</Link>
+        </EmptyPlaceholder>)}
       </div>
     </>
   )

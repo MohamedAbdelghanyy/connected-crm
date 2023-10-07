@@ -1,16 +1,26 @@
 [
   {
-    "id": "APP-123",
+    "id": "NOT-123",
     "customerID": "USR-123",
+    "customerName": "Mohamed Abdelghany",
+    "addedByID": "USR-789",
+    "addedBy": "Khaled Afify",
+    "itemID": "ITM-1",
+    "itemName": "BMW",
     "title": "Note",
     "description": "This is a description",
     "date": "20/10/2022 08:25:00 PM"
   },
   {
-    "id": "APP-456",
+    "id": "NOT-456",
     "customerID": "USR-456",
+    "customerName": "Soha El Hadary",
+    "addedByID": "USR-789",
+    "addedBy": "Khaled Afify",
+    "itemID": "ITM-2",
+    "itemName": "Rolex",
     "title": "Note 2",
     "description": "This is a description 2",
-    "date": "20/10/2022 08:25:00 PM"
+    "date": "25/10/2022 09:35:00 PM"
   }
 ]

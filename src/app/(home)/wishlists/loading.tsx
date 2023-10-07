@@ -1,10 +1,6 @@
 import { DashboardHeader } from "@/components/header"
-import { Icons } from "@/components/icons"
 import { DashboardShell } from "@/components/shell"
-import { buttonVariants } from "@/components/ui/button"
 import { Skeleton } from "@/components/ui/skeleton"
-import { cn } from "@/lib/utils"
-import Link from "next/link"
 
 function ItemSkeleton() {
   return (
@@ -16,12 +12,10 @@ function ItemSkeleton() {
   )
 }
 
-export default function CustomersLoading() {
+export default function WishlistsLoading() {
   return (
     <DashboardShell className="mb-1">
-      <DashboardHeader heading="Customers" text="Manage your customers">
-        <Link href="/customers/add" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Customer</Link>
-      </DashboardHeader>
+      <DashboardHeader heading="Wishlists" text="List all wishlists"></DashboardHeader>
       <div className="divide-border-200 divide-y rounded-md border">
         <ItemSkeleton />
         <ItemSkeleton />

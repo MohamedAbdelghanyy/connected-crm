@@ -8,14 +8,19 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Textarea } from "@/components/ui/textarea"
 import { Grid } from "@mui/material"
 import { useRouter } from "next/navigation"
 import * as React from "react"
+import { appointmentsTableColumns, appointmentsTableToolbar, appointmentsTableToolbarSearchList } from "../../appointments/config"
+import { callsTableColumns, callsTableToolbar, callsTableToolbarSearchList } from "../../calls/config"
+import { internalNotesTableColumns, internalNotesTableToolbar, internalNotesTableToolbarSearchList } from "../../internal-notes/config"
 import { notificationsTableColumns, notificationsTableToolbar, notificationsTableToolbarSearchList } from "../../notifications/config"
 import { productsTableColumns, productsTableToolbar, productsTableToolbarSearchList } from "../../products/config"
 import { subscriptionsTableColumns, subscriptionsTableToolbar, subscriptionsTableToolbarSearchList } from "../../subscriptions/config"
+import { wishlistsTableColumns, wishlistsTableToolbar, wishlistsTableToolbarSearchList } from "../../wishlists/config"
 
-export default function CustomerTabs({ customer, products, wishlist, interests, calls, subscriptions, notifications, appointments, internalNotes, stats, history }: any) {
+export default function CustomerTabs({ customer, products, wishlist, calls, subscriptions, notifications, appointments, internalNotes, stats, history }: any) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
   const [activeTab, setActiveTab] = React.useState("info")
   const { push } = useRouter();
@@ -47,27 +52,24 @@ export default function CustomerTabs({ customer, products, wishlist, interests, 
                   <TabsTrigger value="wishlist" className="w-full">Wishlist</TabsTrigger>
                 </Grid>
                 <Grid item sm={2.4} xs={6}>
-                  <TabsTrigger value="interests" className="w-full">Interests</TabsTrigger>
-                </Grid>
-                <Grid item sm={2.4} xs={6}>
                   <TabsTrigger value="calls" className="w-full">Calls</TabsTrigger>
                 </Grid>
-                <Grid item sm={2} xs={6}>
+                <Grid item sm={2.4} xs={6}>
                   <TabsTrigger value="subscriptions" className="w-full">Subscriptions</TabsTrigger>
                 </Grid>
-                <Grid item sm={2} xs={6}>
+                <Grid item sm={2.4} xs={6}>
                   <TabsTrigger value="notifications" className="w-full">Notifications</TabsTrigger>
                 </Grid>
-                <Grid item sm={2} xs={6}>
+                <Grid item sm={2.4} xs={6}>
                   <TabsTrigger value="appointments" className="w-full">Appointments</TabsTrigger>
                 </Grid>
-                <Grid item sm={2} xs={6}>
+                <Grid item sm={2.4} xs={6}>
                   <TabsTrigger value="internalNotes" className="w-full">Internal Notes</TabsTrigger>
                 </Grid>
-                <Grid item sm={2} xs={6}>
+                <Grid item sm={2.4} xs={6}>
                   <TabsTrigger value="stats" className="w-full">Stats</TabsTrigger>
                 </Grid>
-                <Grid item sm={2} xs={6}>
+                <Grid item sm={2.4} xs={6}>
                   <TabsTrigger value="history" className="w-full">History</TabsTrigger>
                 </Grid>
               </Grid>
@@ -130,7 +132,7 @@ export default function CustomerTabs({ customer, products, wishlist, interests, 
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="interests">Interests</Label>
-                  <Input id="interests" value={customer.interests} readOnly />
+                  <Textarea id="interests" value={customer.interests} readOnly />
                 </div>
               </div>
             </TabsContent>
@@ -139,13 +141,25 @@ export default function CustomerTabs({ customer, products, wishlist, interests, 
                 <div className="space-y-2">
                   {products.length > 0 ? (
                     <DataTable data={products} columns={productsTableColumns} toolbar={productsTableToolbar} toolbarSearchList={productsTableToolbarSearchList} />
-                  ) : (<EmptyPlaceholder>
-                    <EmptyPlaceholder.Icon name="post" />
-                    <EmptyPlaceholder.Title>No Products</EmptyPlaceholder.Title>
-                    <EmptyPlaceholder.Description>
-                      {customer.name} doesn&apos;t have any products yet.
-                    </EmptyPlaceholder.Description>
-                  </EmptyPlaceholder>)}
+                  ) : (<CustomEmptyPlaceHolder title={'Products'} customerName={customer.name} />)}
+                </div>
+              </div>
+            </TabsContent>
+            <TabsContent value="wishlist" forceMount={true} hidden={activeTab !== "wishlist"}>
+              <div className="space-y-4 py-2 pb-4">
+                <div className="space-y-2">
+                  {wishlist.length > 0 ? (
+                    <DataTable data={wishlist} columns={wishlistsTableColumns} toolbar={wishlistsTableToolbar} toolbarSearchList={wishlistsTableToolbarSearchList} />
+                  ) : (<CustomEmptyPlaceHolder title={'Wishlist'} customerName={customer.name} />)}
+                </div>
+              </div>
+            </TabsContent>
+            <TabsContent value="calls" forceMount={true} hidden={activeTab !== "calls"}>
+              <div className="space-y-4 py-2 pb-4">
+                <div className="space-y-2">
+                  {calls.length > 0 ? (
+                    <DataTable data={calls} columns={callsTableColumns} toolbar={callsTableToolbar} toolbarSearchList={callsTableToolbarSearchList} />
+                  ) : (<CustomEmptyPlaceHolder title={'Calls'} customerName={customer.name} />)}
                 </div>
               </div>
             </TabsContent>
@@ -154,13 +168,7 @@ export default function CustomerTabs({ customer, products, wishlist, interests, 
                 <div className="space-y-2">
                   {notifications.length > 0 ? (
                     <DataTable data={notifications} columns={notificationsTableColumns} toolbar={notificationsTableToolbar} toolbarSearchList={notificationsTableToolbarSearchList} />
-                  ) : (<EmptyPlaceholder>
-                    <EmptyPlaceholder.Icon name="post" />
-                    <EmptyPlaceholder.Title>No Notifications</EmptyPlaceholder.Title>
-                    <EmptyPlaceholder.Description>
-                      {customer.name} doesn&apos;t have any notifications yet.
-                    </EmptyPlaceholder.Description>
-                  </EmptyPlaceholder>)}
+                  ) : (<CustomEmptyPlaceHolder title={'Notifications'} customerName={customer.name} />)}
                 </div>
               </div>
             </TabsContent>
@@ -169,13 +177,25 @@ export default function CustomerTabs({ customer, products, wishlist, interests, 
                 <div className="space-y-2">
                   {subscriptions.length > 0 ? (
                     <DataTable data={subscriptions} columns={subscriptionsTableColumns} toolbar={subscriptionsTableToolbar} toolbarSearchList={subscriptionsTableToolbarSearchList} />
-                  ) : (<EmptyPlaceholder>
-                    <EmptyPlaceholder.Icon name="post" />
-                    <EmptyPlaceholder.Title>No Subscriptions</EmptyPlaceholder.Title>
-                    <EmptyPlaceholder.Description>
-                      {customer.name} doesn&apos;t have any subscriptions yet.
-                    </EmptyPlaceholder.Description>
-                  </EmptyPlaceholder>)}
+                  ) : (<CustomEmptyPlaceHolder title={'Subscriptions'} customerName={customer.name} />)}
+                </div>
+              </div>
+            </TabsContent>
+            <TabsContent value="appointments" forceMount={true} hidden={activeTab !== "appointments"}>
+              <div className="space-y-4 py-2 pb-4">
+                <div className="space-y-2">
+                  {appointments.length > 0 ? (
+                    <DataTable data={appointments} columns={appointmentsTableColumns} toolbar={appointmentsTableToolbar} toolbarSearchList={appointmentsTableToolbarSearchList} />
+                  ) : (<CustomEmptyPlaceHolder title={'Appointments'} customerName={customer.name} />)}
+                </div>
+              </div>
+            </TabsContent>
+            <TabsContent value="internalNotes" forceMount={true} hidden={activeTab !== "internalNotes"}>
+              <div className="space-y-4 py-2 pb-4">
+                <div className="space-y-2">
+                  {internalNotes.length > 0 ? (
+                    <DataTable data={internalNotes} columns={internalNotesTableColumns} toolbar={internalNotesTableToolbar} toolbarSearchList={internalNotesTableToolbarSearchList} />
+                  ) : (<CustomEmptyPlaceHolder title={'Internal Notes'} customerName={customer.name} />)}
                 </div>
               </div>
             </TabsContent>
@@ -184,4 +204,15 @@ export default function CustomerTabs({ customer, products, wishlist, interests, 
       </div>
     </>
   ) : <></>
+}
+
+
+function CustomEmptyPlaceHolder({ title, customerName }: any) {
+  return (<EmptyPlaceholder>
+    <EmptyPlaceholder.Icon name="post" />
+    <EmptyPlaceholder.Title>No {title}</EmptyPlaceholder.Title>
+    <EmptyPlaceholder.Description>
+      {customerName} doesn&apos;t have any {title} yet.
+    </EmptyPlaceholder.Description>
+  </EmptyPlaceholder>);
 }

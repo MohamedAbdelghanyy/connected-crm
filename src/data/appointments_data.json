@@ -2,15 +2,25 @@
   {
     "id": "APP-123",
     "customerID": "USR-123",
+    "customerName": "Mohamed Abdelghany",
+    "assignedToID": "USR-789",
+    "assignedTo": "Khaled Afify",
+    "itemID": "ITM-1",
     "item": "BMW X7",
     "slot": "3:00 PM - 6:00 PM",
-    "date": "18/10/2022"
+    "date": "18/10/2022",
+    "status": "scheduled"
   },
   {
     "id": "APP-456",
     "customerID": "USR-456",
-    "item": "BMW X7",
+    "customerName": "Soha El Hadary",
+    "assignedToID": "USR-789",
+    "assignedTo": "Khaled Afify",
+    "itemID": "ITM-2",
+    "item": "Rolex",
     "slot": "3:00 PM - 6:00 PM",
-    "date": "20/10/2022 08:25:00 PM"
+    "date": "20/10/2022",
+    "status": "done"
   }
 ]

@@ -4,6 +4,7 @@ import FormAddButton from "@/components/forms/form-add-button"
 import { DashboardHeader } from "@/components/header"
 import { DashboardShell } from "@/components/shell"
 import { Input } from "@/components/ui/input"
+import InterestsInput from "@/components/ui/interests-input"
 import { Label } from "@/components/ui/label"
 import {
   Select,
@@ -14,6 +15,7 @@ import {
 } from "@/components/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Grid } from "@mui/material"
+import { useTheme } from "next-themes"
 import { useRouter } from "next/navigation"
 import * as React from "react"
 
@@ -21,13 +23,14 @@ export default function AddCustomerPage() {
   const router = useRouter()
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
   const [activeTab, setActiveTab] = React.useState("general")
+  const { theme } = useTheme();
 
   const add = () => {
     console.log("Added");
   }
-  
+
   return (
-    <>       
+    <>
       <DashboardShell className="mb-1">
         <DashboardHeader heading="Add Customer" text="Enter customer's details"></DashboardHeader>
       </DashboardShell>
@@ -138,22 +141,7 @@ export default function AddCustomerPage() {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="interests">Interests</Label>
-                  <Select>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select customer's interests" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="automotive">
-                        <span className="font-medium">Automotive</span>
-                      </SelectItem>
-                      <SelectItem value="lifestyle">
-                        <span className="font-medium">Lifestyle</span>
-                      </SelectItem>
-                      <SelectItem value="realestate">
-                        <span className="font-medium">Realestate</span>
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
+                  <InterestsInput theme={theme} />
                 </div>
               </div>
             </TabsContent>

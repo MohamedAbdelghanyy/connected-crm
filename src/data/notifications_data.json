@@ -5,7 +5,9 @@
     "description": "This is a test notification",
     "receiverID": "USR-123",
     "receiverName": "Mohamed Abdelghany",
-    "navigateTo": "None",
+    "itemID": "ITM-1",
+    "itemName": "BMW",
+    "navigateTo": "Item",
     "date": "18/10/2022 12:10:00 PM"
   },
   {
@@ -14,7 +16,9 @@
     "description": "This is a test notification 2",
     "receiverID": null,
     "receiverName": "All",
-    "navigateTo": "Action Center",
+    "itemID": "ITM-2",
+    "itemName": "Rolex",
+    "navigateTo": "Item",
     "date": "20/10/2022 08:25:00 PM"
   }
 ]

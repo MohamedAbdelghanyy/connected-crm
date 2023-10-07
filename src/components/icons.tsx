@@ -47,7 +47,11 @@ import {
   GlobeIcon,
   LanguagesIcon,
   MailIcon,
-  CreditCardIcon
+  CreditCardIcon,
+  PhoneCallIcon,
+  FileHeartIcon,
+  CalendarClockIcon,
+  StickyNoteIcon
 } from "lucide-react"
 
 export type Icon = LucideIcon
@@ -99,11 +103,15 @@ export const Icons = {
   locations: MapPinIcon,
   ads: Zap,
   advertisers: User,
+  wishlists: FileHeartIcon,
   notifications: BellRing,
   integrations: Workflow,
-  requests: MailIcon,
   leads: CableIcon,
+  requests: MailIcon,
   subscriptions: CreditCardIcon,
+  calls: PhoneCallIcon,
+  appointments: CalendarClockIcon,
+  internalNotes: StickyNoteIcon,
   whatsapp: MessageCircleIcon,
   topActiveCustomers: MedalIcon,
   mostLikedItems: ThumbsUpIcon,

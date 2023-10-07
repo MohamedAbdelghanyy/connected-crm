@@ -1,21 +1,39 @@
 "use client"
 
 import { DataTableColumnHeader } from "@/components/table/data-table-column-header"
+import { ActionListProps } from "@/components/table/data-table-row-actions"
 import { ToolbarProps, ToolbarSearchListProps } from "@/components/table/data-table-toolbar"
 import { Checkbox } from "@/components/ui/checkbox"
 import { ColumnDef } from "@tanstack/react-table"
 import Link from "next/link"
 
-export const notificationsTableToolbar: ToolbarProps[] = []
+const internalNotesActionList: ActionListProps[] = [
+  {
+    type: "button",
+    label: "Edit",
+    action: (id: string) => {
+      console.log('Edit: ' + id)
+    }
+  },
+  {
+    type: "button",
+    label: "Delete",
+    action: (id: string) => {
+      console.log('Delete: ' + id)
+    }
+  }
+]
 
-export const notificationsTableToolbarSearchList: ToolbarSearchListProps[] = [
+export const internalNotesTableToolbar: ToolbarProps[] = []
+
+export const internalNotesTableToolbarSearchList: ToolbarSearchListProps[] = [
   {
     key: 'id',
     title: 'ID'
   },
   {
-    key: 'receiverID',
-    title: 'Receiver'
+    key: 'customerName',
+    title: 'Customer Name'
   },
   {
     key: 'title',
@@ -26,8 +44,8 @@ export const notificationsTableToolbarSearchList: ToolbarSearchListProps[] = [
     title: 'Description'
   },
   {
-    key: 'navigateTo',
-    title: 'Navigate To'
+    key: 'addedBy',
+    title: 'Added By'
   },
   {
     key: 'date',
@@ -35,16 +53,18 @@ export const notificationsTableToolbarSearchList: ToolbarSearchListProps[] = [
   }
 ]
 
-interface NotificationsProps {
+interface InternalNotesProps {
   id: string
-  receiverID: string
+  customerID: string
+  customerName: string
+  addedByID: string
+  addedBy: string
   title: string
   description: string
-  navigateTo: string
   date: string
 }
 
-export const notificationsTableColumns: ColumnDef<NotificationsProps>[] = [
+export const internalNotesTableColumns: ColumnDef<InternalNotesProps>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -76,6 +96,22 @@ export const notificationsTableColumns: ColumnDef<NotificationsProps>[] = [
     enableHiding: false,
   },
   {
+    accessorKey: "customerName",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Customer Name" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex space-x-2">
+          <span className="max-w-[500px] truncate font-medium">
+            <Link href={"/customers/" + row.original.customerID}>{row.getValue("customerName")}</Link>
+          </span>
+        </div>
+      )
+    },
+  },
+
+  {
     accessorKey: "title",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Title" />
@@ -88,7 +124,7 @@ export const notificationsTableColumns: ColumnDef<NotificationsProps>[] = [
           </span>
         </div>
       )
-    }
+    },
   },
   {
     accessorKey: "description",
@@ -106,30 +142,15 @@ export const notificationsTableColumns: ColumnDef<NotificationsProps>[] = [
     },
   },
   {
-    accessorKey: "receiverName",
+    accessorKey: "addedBy",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Receiver Name" />
+      <DataTableColumnHeader column={column} title="Added By" />
     ),
     cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            <Link href={row.original.receiverID}>{row.getValue("receiverName")}</Link>
-          </span>
-        </div>
-      )
-    },
-  },
-  {
-    accessorKey: "navigateTo",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Navigate To" />
-    ),
-    cell: ({ row }) => {
-      return (
-        <div className="flex space-x-2">
-          <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("navigateTo")}
+            <Link href={"/users/" + row.original.addedByID}>{row.getValue("addedBy")}</Link>
           </span>
         </div>
       )
@@ -149,5 +170,5 @@ export const notificationsTableColumns: ColumnDef<NotificationsProps>[] = [
         </div>
       )
     },
-  },
+  }
 ]

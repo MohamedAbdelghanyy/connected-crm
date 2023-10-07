@@ -16,11 +16,11 @@ function ItemSkeleton() {
   )
 }
 
-export default function CustomersLoading() {
+export default function AppointmentsLoading() {
   return (
     <DashboardShell className="mb-1">
-      <DashboardHeader heading="Customers" text="Manage your customers">
-        <Link href="/customers/add" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Customer</Link>
+      <DashboardHeader heading="Appointments" text="Manage all appointments">
+        <Link href="/appointments/add" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Appointment</Link>
       </DashboardHeader>
       <div className="divide-border-200 divide-y rounded-md border">
         <ItemSkeleton />

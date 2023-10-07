@@ -36,28 +36,32 @@ async function getProducts(customerID: string) {
   return userProducts
 }
 
-async function getWishlist() {
+async function getWishlist(customerID: string) {
   const data = await fs.readFile(
     path.join(process.cwd(), "src/data/wishlists_data.json")
   )
   const wishlist = JSON.parse(data.toString())
-  return wishlist
+  let userWishlist = [];
+  for (let i = 0; i < wishlist.length; i++) {
+    if (wishlist[i].customerID == customerID) {
+      userWishlist.push(wishlist[i]);
+    }
+  }
+  return userWishlist
 }
 
-async function getInterests() {
-  const data = await fs.readFile(
-    path.join(process.cwd(), "src/data/interests_data.json")
-  )
-  const interests = JSON.parse(data.toString())
-  return interests
-}
-
-async function getCalls() {
+async function getCalls(customerID: string) {
   const data = await fs.readFile(
     path.join(process.cwd(), "src/data/calls_data.json")
   )
   const calls = JSON.parse(data.toString())
-  return calls
+  let userCalls = [];
+  for (let i = 0; i < calls.length; i++) {
+    if (calls[i].customerID == customerID) {
+      userCalls.push(calls[i]);
+    }
+  }
+  return userCalls
 }
 
 async function getSubscriptions(customerID: string) {
@@ -88,20 +92,32 @@ async function getNotifications(customerID: string) {
   return userNotifications
 }
 
-async function getAppointments() {
+async function getAppointments(customerID: string) {
   const data = await fs.readFile(
     path.join(process.cwd(), "src/data/appointments_data.json")
   )
   const appointments = JSON.parse(data.toString())
-  return appointments
+  let userAppointments = [];
+  for (let i = 0; i < appointments.length; i++) {
+    if (appointments[i].customerID == customerID) {
+      userAppointments.push(appointments[i]);
+    }
+  }
+  return userAppointments
 }
 
-async function getInternalNotes() {
+async function getInternalNotes(customerID: string) {
   const data = await fs.readFile(
     path.join(process.cwd(), "src/data/internal_notes_data.json")
   )
   const internalNotes = JSON.parse(data.toString())
-  return internalNotes
+  let userInternalNotes = [];
+  for (let i = 0; i < internalNotes.length; i++) {
+    if (internalNotes[i].customerID == customerID) {
+      userInternalNotes.push(internalNotes[i]);
+    }
+  }
+  return userInternalNotes
 }
 
 async function getStats() {
@@ -124,13 +140,12 @@ export default async function CustomerPage({ params }: { params: { customer: str
   let customerID = params.customer
   const customer = await getCustomer(customerID)
   const products = await getProducts(customerID)
-  const wishlist = await getWishlist()
-  const interests = await getInterests()
-  const calls = await getCalls()
+  const wishlist = await getWishlist(customerID)
+  const calls = await getCalls(customerID)
   const subscriptions = await getSubscriptions(customerID)
   const notifications = await getNotifications(customerID)
-  const appointments = await getAppointments()
-  const internalNotes = await getInternalNotes()
+  const appointments = await getAppointments(customerID)
+  const internalNotes = await getInternalNotes(customerID)
   const stats = await getStats()
   const history = await getHistory()
 
@@ -140,7 +155,6 @@ export default async function CustomerPage({ params }: { params: { customer: str
         customer={customer}
         products={products}
         wishlist={wishlist}
-        interests={interests}
         calls={calls}
         subscriptions={subscriptions}
         notifications={notifications}
