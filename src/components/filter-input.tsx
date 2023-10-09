@@ -44,8 +44,6 @@ export function FilterInput<TData>({
     setIsOpenMenu(false);
    }
 
-   console.log(toolbarSearchList)
-
   return (
     <>
       <Grid container spacing={1}>
