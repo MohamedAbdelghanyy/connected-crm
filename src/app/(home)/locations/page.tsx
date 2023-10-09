@@ -25,25 +25,26 @@ async function getLocations() {
 
 export default async function LocationsPage() {
   const locations = await getLocations()
-  return (
-    <>
-      <DashboardShell className="mb-1">
-        <DashboardHeader heading="Locations" text="Manage your locations">
-          <Link href="/locations/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" />Add Location</Link>
-        </DashboardHeader>
-      </DashboardShell>
-      <div className="m-2">
-          {locations.length > 0 ? (
-            <DataTable data={locations} columns={locationsTableColumns} toolbar={locationsTableToolbar} toolbarSearchList={locationsTableToolbarSearchList} />
-          ) : (<EmptyPlaceholder>
-            <EmptyPlaceholder.Icon name="post" />
-            <EmptyPlaceholder.Title>No Locations</EmptyPlaceholder.Title>
-            <EmptyPlaceholder.Description>
-              You don&apos;t have any locations yet.
-            </EmptyPlaceholder.Description>
-            <Link href="/locations/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Location</Link>
-          </EmptyPlaceholder>)}
-      </div>
-    </>
-  )
+  return <>
+    <DashboardShell className="mb-1">
+      <DashboardHeader heading="Locations" text="Manage your locations">
+        <Link href="/locations/add" className={cn(buttonVariants({  }))} legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Location</div></Link>
+      </DashboardHeader>
+    </DashboardShell>
+    <div className="m-2">
+        {locations.length > 0 ? (
+          <DataTable data={locations} columns={locationsTableColumns} toolbar={locationsTableToolbar} toolbarSearchList={locationsTableToolbarSearchList} />
+        ) : (<EmptyPlaceholder>
+          <EmptyPlaceholder.Icon name="post" />
+          <EmptyPlaceholder.Title>No Locations</EmptyPlaceholder.Title>
+          <EmptyPlaceholder.Description>
+            You don&apos;t have any locations yet.
+          </EmptyPlaceholder.Description>
+          <Link
+            href="/locations/add"
+            className={cn(buttonVariants({ variant: "outline" }))}
+            legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Location</div></Link>
+        </EmptyPlaceholder>)}
+    </div>
+  </>;
 }

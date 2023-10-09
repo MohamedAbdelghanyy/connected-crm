@@ -20,7 +20,7 @@ export default function ClaimTypesLoading() {
   return (
     <DashboardShell className="mb-1">
       <DashboardHeader heading="Claim Types" text="Manage your claim types">
-        <Link href="/claim-types/add" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Type</Link>
+        <Link href="/claim-types/add" className={cn(buttonVariants({}))} legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Type</div></Link>
       </DashboardHeader>
       <div className="divide-border-200 divide-y rounded-md border">
         <ItemSkeleton />
@@ -31,5 +31,5 @@ export default function ClaimTypesLoading() {
         <ItemSkeleton />
       </div>
     </DashboardShell>
-  )
+  );
 }

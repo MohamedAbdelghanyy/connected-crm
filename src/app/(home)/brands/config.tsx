@@ -126,10 +126,10 @@ export const brandsTableColumns: ColumnDef<BrandsProps>[] = [
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            <Link href={"#"}>{row.getValue("category")}</Link>
+            <Link href={"#"} legacyBehavior>{row.getValue("category")}</Link>
           </span>
         </div>
-      )
+      );
     },
   },
   {

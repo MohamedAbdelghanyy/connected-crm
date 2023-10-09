@@ -25,25 +25,29 @@ async function getTextTemplates() {
 
 export default async function TextTemplatesPage() {
   const textTemplates = await getTextTemplates()
-  return (
-    <>
-      <DashboardShell className="mb-1">
-        <DashboardHeader heading="Text Templates" text="Manage your text templates">
-          <Link href="/text-templates/add" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Template</Link>
-        </DashboardHeader>
-      </DashboardShell>
-      <div className="m-2">
-        {textTemplates.length > 0 ? (
-          <DataTable data={textTemplates} columns={textTemplatesTableColumns} toolbar={textTemplatesTableToolbar} toolbarSearchList={textTemplatesTableToolbarSearchList} />
-        ) : (<EmptyPlaceholder>
-          <EmptyPlaceholder.Icon name="post" />
-          <EmptyPlaceholder.Title>No Templates</EmptyPlaceholder.Title>
-          <EmptyPlaceholder.Description>
-            You don&apos;t have any templates yet.
-          </EmptyPlaceholder.Description>
-          <Link href="/text-templates/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Template</Link>
-        </EmptyPlaceholder>)}
-      </div>
-    </>
-  )
+  return <>
+    <DashboardShell className="mb-1">
+      <DashboardHeader heading="Text Templates" text="Manage your text templates">
+        <Link
+          href="/text-templates/add"
+          className={cn(buttonVariants({}))}
+          legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Template</div></Link>
+      </DashboardHeader>
+    </DashboardShell>
+    <div className="m-2">
+      {textTemplates.length > 0 ? (
+        <DataTable data={textTemplates} columns={textTemplatesTableColumns} toolbar={textTemplatesTableToolbar} toolbarSearchList={textTemplatesTableToolbarSearchList} />
+      ) : (<EmptyPlaceholder>
+        <EmptyPlaceholder.Icon name="post" />
+        <EmptyPlaceholder.Title>No Templates</EmptyPlaceholder.Title>
+        <EmptyPlaceholder.Description>
+          You don&apos;t have any templates yet.
+        </EmptyPlaceholder.Description>
+        <Link
+          href="/text-templates/add"
+          className={cn(buttonVariants({ variant: "outline" }))}
+          legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Template</div></Link>
+      </EmptyPlaceholder>)}
+    </div>
+  </>;
 }

@@ -25,25 +25,26 @@ async function getCalls() {
 
 export default async function CallsPage() {
   const calls = await getCalls()
-  return (
-    <>
-      <DashboardShell className="mb-1">
-        <DashboardHeader heading="Calls" text="Manage all calls">
-          <Link href="/calls/add" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Call</Link>
-        </DashboardHeader>
-      </DashboardShell>
-      <div className="m-2">
-        {calls.length > 0 ? (
-          <DataTable data={calls} columns={callsTableColumns} toolbar={callsTableToolbar} toolbarSearchList={callsTableToolbarSearchList} />
-        ) : (<EmptyPlaceholder>
-          <EmptyPlaceholder.Icon name="post" />
-          <EmptyPlaceholder.Title>No Calls</EmptyPlaceholder.Title>
-          <EmptyPlaceholder.Description>
-            You don&apos;t have any calls yet.
-          </EmptyPlaceholder.Description>
-          <Link href="/calls/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Call</Link>
-        </EmptyPlaceholder>)}
-      </div>
-    </>
-  )
+  return <>
+    <DashboardShell className="mb-1">
+      <DashboardHeader heading="Calls" text="Manage all calls">
+        <Link href="/calls/add" className={cn(buttonVariants({}))} legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Call</div></Link>
+      </DashboardHeader>
+    </DashboardShell>
+    <div className="m-2">
+      {calls.length > 0 ? (
+        <DataTable data={calls} columns={callsTableColumns} toolbar={callsTableToolbar} toolbarSearchList={callsTableToolbarSearchList} />
+      ) : (<EmptyPlaceholder>
+        <EmptyPlaceholder.Icon name="post" />
+        <EmptyPlaceholder.Title>No Calls</EmptyPlaceholder.Title>
+        <EmptyPlaceholder.Description>
+          You don&apos;t have any calls yet.
+        </EmptyPlaceholder.Description>
+        <Link
+          href="/calls/add"
+          className={cn(buttonVariants({ variant: "outline" }))}
+          legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Call</div></Link>
+      </EmptyPlaceholder>)}
+    </div>
+  </>;
 }

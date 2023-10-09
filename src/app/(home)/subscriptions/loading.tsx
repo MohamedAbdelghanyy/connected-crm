@@ -20,7 +20,10 @@ export default function SubscriptionsLoading() {
   return (
     <DashboardShell className="mb-1">
       <DashboardHeader heading="Subscriptions" text="Manage your subscriptions">
-        <Link href="/subscriptions/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" />Add Subscription</Link>
+        <Link
+          href="/subscriptions/add"
+          className={cn(buttonVariants({  }))}
+          legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Subscription</div></Link>
       </DashboardHeader>
       <div className="divide-border-200 divide-y rounded-md border">
         <ItemSkeleton />
@@ -31,5 +34,5 @@ export default function SubscriptionsLoading() {
         <ItemSkeleton />
       </div>
     </DashboardShell>
-  )
+  );
 }

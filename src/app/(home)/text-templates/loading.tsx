@@ -20,7 +20,10 @@ export default function TextTemplatesLoading() {
   return (
     <DashboardShell className="mb-1">
       <DashboardHeader heading="Text Templates" text="Manage your text templates">
-        <Link href="/text-templates/add" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Template</Link>
+        <Link
+          href="/text-templates/add"
+          className={cn(buttonVariants({}))}
+          legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Template</div></Link>
       </DashboardHeader>
       <div className="divide-border-200 divide-y rounded-md border">
         <ItemSkeleton />
@@ -31,5 +34,5 @@ export default function TextTemplatesLoading() {
         <ItemSkeleton />
       </div>
     </DashboardShell>
-  )
+  );
 }

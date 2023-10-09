@@ -25,25 +25,26 @@ async function getMerchants() {
 
 export default async function MerchantsPage() {
   const merchants = await getMerchants()
-  return (
-    <>
-      <DashboardShell className="mb-1">
-        <DashboardHeader heading="Merchants" text="Manage your merchants">
-          <Link href="/merchants/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" />Add Merchant</Link>
-        </DashboardHeader>
-      </DashboardShell>
-      <div className="m-2">
-          {merchants.length > 0 ? (
-            <DataTable data={merchants} columns={merchantsTableColumns} toolbar={merchantsTableToolbar} toolbarSearchList={merchantsTableToolbarSearchList} />
-          ) : (<EmptyPlaceholder>
-            <EmptyPlaceholder.Icon name="post" />
-            <EmptyPlaceholder.Title>No Merchants</EmptyPlaceholder.Title>
-            <EmptyPlaceholder.Description>
-              You don&apos;t have any merchants yet.
-            </EmptyPlaceholder.Description>
-            <Link href="/merchants/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Merchant</Link>
-          </EmptyPlaceholder>)}
-      </div>
-    </>
-  )
+  return <>
+    <DashboardShell className="mb-1">
+      <DashboardHeader heading="Merchants" text="Manage your merchants">
+        <Link href="/merchants/add" className={cn(buttonVariants({  }))} legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Merchant</div></Link>
+      </DashboardHeader>
+    </DashboardShell>
+    <div className="m-2">
+        {merchants.length > 0 ? (
+          <DataTable data={merchants} columns={merchantsTableColumns} toolbar={merchantsTableToolbar} toolbarSearchList={merchantsTableToolbarSearchList} />
+        ) : (<EmptyPlaceholder>
+          <EmptyPlaceholder.Icon name="post" />
+          <EmptyPlaceholder.Title>No Merchants</EmptyPlaceholder.Title>
+          <EmptyPlaceholder.Description>
+            You don&apos;t have any merchants yet.
+          </EmptyPlaceholder.Description>
+          <Link
+            href="/merchants/add"
+            className={cn(buttonVariants({ variant: "outline" }))}
+            legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Merchant</div></Link>
+        </EmptyPlaceholder>)}
+    </div>
+  </>;
 }

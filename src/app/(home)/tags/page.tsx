@@ -25,25 +25,26 @@ async function getTags() {
 
 export default async function TagsPage() {
   const tags = await getTags()
-  return (
-    <>
-      <DashboardShell className="mb-1">
-        <DashboardHeader heading="Tags" text="Manage your tags">
-          <Link href="/tags/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" />Add Tag</Link>
-        </DashboardHeader>
-      </DashboardShell>
-      <div className="m-2">
-          {tags.length > 0 ? (
-            <DataTable data={tags} columns={tagsTableColumns} toolbar={tagsTableToolbar} toolbarSearchList={tagsTableToolbarSearchList} />
-          ) : (<EmptyPlaceholder>
-            <EmptyPlaceholder.Icon name="post" />
-            <EmptyPlaceholder.Title>No Tags</EmptyPlaceholder.Title>
-            <EmptyPlaceholder.Description>
-              You don&apos;t have any tags yet.
-            </EmptyPlaceholder.Description>
-            <Link href="/tags/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Tag</Link>
-          </EmptyPlaceholder>)}
-      </div>
-    </>
-  )
+  return <>
+    <DashboardShell className="mb-1">
+      <DashboardHeader heading="Tags" text="Manage your tags">
+        <Link href="/tags/add" className={cn(buttonVariants({  }))} legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Tag</div></Link>
+      </DashboardHeader>
+    </DashboardShell>
+    <div className="m-2">
+        {tags.length > 0 ? (
+          <DataTable data={tags} columns={tagsTableColumns} toolbar={tagsTableToolbar} toolbarSearchList={tagsTableToolbarSearchList} />
+        ) : (<EmptyPlaceholder>
+          <EmptyPlaceholder.Icon name="post" />
+          <EmptyPlaceholder.Title>No Tags</EmptyPlaceholder.Title>
+          <EmptyPlaceholder.Description>
+            You don&apos;t have any tags yet.
+          </EmptyPlaceholder.Description>
+          <Link
+            href="/tags/add"
+            className={cn(buttonVariants({ variant: "outline" }))}
+            legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Tag</div></Link>
+        </EmptyPlaceholder>)}
+    </div>
+  </>;
 }

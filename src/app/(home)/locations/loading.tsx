@@ -20,7 +20,7 @@ export default function LocationsLoading() {
   return (
     <DashboardShell className="mb-1">
       <DashboardHeader heading="Locations" text="Manage your locations">
-        <Link href="/locations/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" />Add Location</Link>
+        <Link href="/locations/add" className={cn(buttonVariants({  }))} legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Location</div></Link>
       </DashboardHeader>
       <div className="divide-border-200 divide-y rounded-md border">
         <ItemSkeleton />
@@ -31,5 +31,5 @@ export default function LocationsLoading() {
         <ItemSkeleton />
       </div>
     </DashboardShell>
-  )
+  );
 }

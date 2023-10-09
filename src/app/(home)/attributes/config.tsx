@@ -143,10 +143,10 @@ export const attributesTableColumns: ColumnDef<AttributesProps>[] = [
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            <Link href={"/products/" + row.original.itemID}>{row.getValue("itemName")}</Link>
+            <Link href={"/products/" + row.original.itemID} legacyBehavior>{row.getValue("itemName")}</Link>
           </span>
         </div>
-      )
+      );
     },
   },
   {

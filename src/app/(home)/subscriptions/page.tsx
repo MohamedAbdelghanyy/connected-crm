@@ -25,25 +25,29 @@ async function getSubscriptions() {
 
 export default async function AdsPage() {
   const subscriptions = await getSubscriptions()
-  return (
-    <>
-      <DashboardShell className="mb-1">
-        <DashboardHeader heading="Subscriptions" text="Manage your subscriptions">
-          <Link href="/subscriptions/add" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Subscription</Link>
-        </DashboardHeader>
-      </DashboardShell>
-      <div className="m-2">
-        {subscriptions.length > 0 ? (
-          <DataTable data={subscriptions} columns={subscriptionsTableColumns} toolbar={subscriptionsTableToolbar} toolbarSearchList={subscriptionsTableToolbarSearchList} />
-        ) : (<EmptyPlaceholder>
-          <EmptyPlaceholder.Icon name="post" />
-          <EmptyPlaceholder.Title>No Subscriptions</EmptyPlaceholder.Title>
-          <EmptyPlaceholder.Description>
-            You don&apos;t have any subscriptions yet.
-          </EmptyPlaceholder.Description>
-          <Link href="/subscriptions/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Subscription</Link>
-        </EmptyPlaceholder>)}
-      </div>
-    </>
-  )
+  return <>
+    <DashboardShell className="mb-1">
+      <DashboardHeader heading="Subscriptions" text="Manage your subscriptions">
+        <Link
+          href="/subscriptions/add"
+          className={cn(buttonVariants({}))}
+          legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Subscription</div></Link>
+      </DashboardHeader>
+    </DashboardShell>
+    <div className="m-2">
+      {subscriptions.length > 0 ? (
+        <DataTable data={subscriptions} columns={subscriptionsTableColumns} toolbar={subscriptionsTableToolbar} toolbarSearchList={subscriptionsTableToolbarSearchList} />
+      ) : (<EmptyPlaceholder>
+        <EmptyPlaceholder.Icon name="post" />
+        <EmptyPlaceholder.Title>No Subscriptions</EmptyPlaceholder.Title>
+        <EmptyPlaceholder.Description>
+          You don&apos;t have any subscriptions yet.
+        </EmptyPlaceholder.Description>
+        <Link
+          href="/subscriptions/add"
+          className={cn(buttonVariants({ variant: "outline" }))}
+          legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Subscription</div></Link>
+      </EmptyPlaceholder>)}
+    </div>
+  </>;
 }

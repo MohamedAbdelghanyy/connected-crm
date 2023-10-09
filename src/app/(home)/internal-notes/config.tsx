@@ -104,10 +104,10 @@ export const internalNotesTableColumns: ColumnDef<InternalNotesProps>[] = [
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            <Link href={"/customers/" + row.original.customerID}>{row.getValue("customerName")}</Link>
+            <Link href={"/customers/" + row.original.customerID} legacyBehavior>{row.getValue("customerName")}</Link>
           </span>
         </div>
-      )
+      );
     },
   },
 
@@ -150,10 +150,10 @@ export const internalNotesTableColumns: ColumnDef<InternalNotesProps>[] = [
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            <Link href={"/users/" + row.original.addedByID}>{row.getValue("addedBy")}</Link>
+            <Link href={"/users/" + row.original.addedByID} legacyBehavior>{row.getValue("addedBy")}</Link>
           </span>
         </div>
-      )
+      );
     },
   },
   {

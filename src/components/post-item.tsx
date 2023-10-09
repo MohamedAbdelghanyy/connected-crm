@@ -14,7 +14,7 @@ export function PostItem({ post }: PostItemProps) {
         <Link
           href={`/editor/${post.id}`}
           className="font-semibold hover:underline"
-        >
+          legacyBehavior>
           {post.title}
         </Link>
         <div>
@@ -25,7 +25,7 @@ export function PostItem({ post }: PostItemProps) {
       </div>
       <PostOperations post={{ id: post.id, title: post.title, published:"", createdAt: "" }} />
     </div>
-  )
+  );
 }
 
 PostItem.Skeleton = function PostItemSkeleton() {

@@ -25,25 +25,26 @@ async function getClaimTypes() {
 
 export default async function ClaimTypesPage() {
   const claimTypes = await getClaimTypes()
-  return (
-    <>
-      <DashboardShell className="mb-1">
-        <DashboardHeader heading="Claim Types" text="Manage your claim types">
-          <Link href="/claim-types/add" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Type</Link>
-        </DashboardHeader>
-      </DashboardShell>
-      <div className="m-2">
-        {claimTypes.length > 0 ? (
-          <DataTable data={claimTypes} columns={claimTypesTableColumns} toolbar={claimTypesTableToolbar} toolbarSearchList={claimTypesTableToolbarSearchList} />
-        ) : (<EmptyPlaceholder>
-          <EmptyPlaceholder.Icon name="post" />
-          <EmptyPlaceholder.Title>No Types</EmptyPlaceholder.Title>
-          <EmptyPlaceholder.Description>
-            You don&apos;t have any types yet.
-          </EmptyPlaceholder.Description>
-          <Link href="/claim-types/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Type</Link>
-        </EmptyPlaceholder>)}
-      </div>
-    </>
-  )
+  return <>
+    <DashboardShell className="mb-1">
+      <DashboardHeader heading="Claim Types" text="Manage your claim types">
+        <Link href="/claim-types/add" className={cn(buttonVariants({}))} legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Type</div></Link>
+      </DashboardHeader>
+    </DashboardShell>
+    <div className="m-2">
+      {claimTypes.length > 0 ? (
+        <DataTable data={claimTypes} columns={claimTypesTableColumns} toolbar={claimTypesTableToolbar} toolbarSearchList={claimTypesTableToolbarSearchList} />
+      ) : (<EmptyPlaceholder>
+        <EmptyPlaceholder.Icon name="post" />
+        <EmptyPlaceholder.Title>No Types</EmptyPlaceholder.Title>
+        <EmptyPlaceholder.Description>
+          You don&apos;t have any types yet.
+        </EmptyPlaceholder.Description>
+        <Link
+          href="/claim-types/add"
+          className={cn(buttonVariants({ variant: "outline" }))}
+          legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Type</div></Link>
+      </EmptyPlaceholder>)}
+    </div>
+  </>;
 }

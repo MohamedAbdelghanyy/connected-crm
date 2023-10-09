@@ -25,25 +25,29 @@ async function getAdvertisers() {
 
 export default async function advertisersPage() {
   const advertisers = await getAdvertisers()
-  return (
-    <>
-      <DashboardShell className="mb-1">
-        <DashboardHeader heading="Advertisers" text="Manage your advertisers">
-          <Link href="/advertisers/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" />Add Advertiser</Link>
-        </DashboardHeader>
-      </DashboardShell>
-      <div className="m-2">
-          {advertisers.length > 0 ? (
-            <DataTable data={advertisers} columns={advertisersTableColumns} toolbar={advertisersTableToolbar} toolbarSearchList={advertisersTableToolbarSearchList} />
-          ) : (<EmptyPlaceholder>
-            <EmptyPlaceholder.Icon name="post" />
-            <EmptyPlaceholder.Title>No Advertisers</EmptyPlaceholder.Title>
-            <EmptyPlaceholder.Description>
-              You don&apos;t have any advertisers yet.
-            </EmptyPlaceholder.Description>
-            <Link href="/advertisers/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Advertiser</Link>
-          </EmptyPlaceholder>)}
-      </div>
-    </>
-  )
+  return <>
+    <DashboardShell className="mb-1">
+      <DashboardHeader heading="Advertisers" text="Manage your advertisers">
+        <Link
+          href="/advertisers/add"
+          className={cn(buttonVariants({  }))}
+          legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Advertiser</div></Link>
+      </DashboardHeader>
+    </DashboardShell>
+    <div className="m-2">
+        {advertisers.length > 0 ? (
+          <DataTable data={advertisers} columns={advertisersTableColumns} toolbar={advertisersTableToolbar} toolbarSearchList={advertisersTableToolbarSearchList} />
+        ) : (<EmptyPlaceholder>
+          <EmptyPlaceholder.Icon name="post" />
+          <EmptyPlaceholder.Title>No Advertisers</EmptyPlaceholder.Title>
+          <EmptyPlaceholder.Description>
+            You don&apos;t have any advertisers yet.
+          </EmptyPlaceholder.Description>
+          <Link
+            href="/advertisers/add"
+            className={cn(buttonVariants({ variant: "outline" }))}
+            legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Advertiser</div></Link>
+        </EmptyPlaceholder>)}
+    </div>
+  </>;
 }

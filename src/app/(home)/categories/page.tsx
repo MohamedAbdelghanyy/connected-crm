@@ -25,25 +25,29 @@ async function getCategories() {
 
 export default async function CategoriesPage() {
   const categories = await getCategories()
-  return (
-    <>
-      <DashboardShell className="mb-1">
-        <DashboardHeader heading="Categories" text="Manage your categories">
-          <Link href="/categories/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" />Add Category</Link>
-        </DashboardHeader>
-      </DashboardShell>
-      <div className="m-2">
-          {categories.length > 0 ? (
-            <DataTable data={categories} columns={categoriesTableColumns} toolbar={categoriesTableToolbar} toolbarSearchList={categoriesTableToolbarSearchList} />
-          ) : (<EmptyPlaceholder>
-            <EmptyPlaceholder.Icon name="post" />
-            <EmptyPlaceholder.Title>No Categories</EmptyPlaceholder.Title>
-            <EmptyPlaceholder.Description>
-              You don&apos;t have any categories yet.
-            </EmptyPlaceholder.Description>
-            <Link href="/categories/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Category</Link>
-          </EmptyPlaceholder>)}
-      </div>
-    </>
-  )
+  return <>
+    <DashboardShell className="mb-1">
+      <DashboardHeader heading="Categories" text="Manage your categories">
+        <Link
+          href="/categories/add"
+          className={cn(buttonVariants({  }))}
+          legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Category</div></Link>
+      </DashboardHeader>
+    </DashboardShell>
+    <div className="m-2">
+        {categories.length > 0 ? (
+          <DataTable data={categories} columns={categoriesTableColumns} toolbar={categoriesTableToolbar} toolbarSearchList={categoriesTableToolbarSearchList} />
+        ) : (<EmptyPlaceholder>
+          <EmptyPlaceholder.Icon name="post" />
+          <EmptyPlaceholder.Title>No Categories</EmptyPlaceholder.Title>
+          <EmptyPlaceholder.Description>
+            You don&apos;t have any categories yet.
+          </EmptyPlaceholder.Description>
+          <Link
+            href="/categories/add"
+            className={cn(buttonVariants({ variant: "outline" }))}
+            legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Category</div></Link>
+        </EmptyPlaceholder>)}
+    </div>
+  </>;
 }

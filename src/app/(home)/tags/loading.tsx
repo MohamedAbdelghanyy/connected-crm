@@ -20,7 +20,7 @@ export default function TagsLoading() {
   return (
     <DashboardShell className="mb-1">
       <DashboardHeader heading="Product Tags" text="Manage your tags">
-        <Link href="/tags/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" />Add Tag</Link>
+        <Link href="/tags/add" className={cn(buttonVariants({  }))} legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Tag</div></Link>
       </DashboardHeader>
       <div className="divide-border-200 divide-y rounded-md border">
         <ItemSkeleton />
@@ -31,5 +31,5 @@ export default function TagsLoading() {
         <ItemSkeleton />
       </div>
     </DashboardShell>
-  )
+  );
 }

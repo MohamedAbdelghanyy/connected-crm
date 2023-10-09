@@ -25,25 +25,26 @@ async function getAds() {
 
 export default async function AdsPage() {
   const ads = await getAds()
-  return (
-    <>
-      <DashboardShell className="mb-1">
-        <DashboardHeader heading="Ads" text="Manage your ads">
-          <Link href="/ads/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" />Add Ad.</Link>
-        </DashboardHeader>
-      </DashboardShell>
-      <div className="m-2">
-          {ads.length > 0 ? (
-            <DataTable data={ads} columns={adsTableColumns} toolbar={adsTableToolbar} toolbarSearchList={adsTableToolbarSearchList} />
-          ) : (<EmptyPlaceholder>
-            <EmptyPlaceholder.Icon name="post" />
-            <EmptyPlaceholder.Title>No Ads</EmptyPlaceholder.Title>
-            <EmptyPlaceholder.Description>
-              You don&apos;t have any ads yet.
-            </EmptyPlaceholder.Description>
-            <Link href="/ads/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Ad.</Link>
-          </EmptyPlaceholder>)}
-      </div>
-    </>
-  )
+  return <>
+    <DashboardShell className="mb-1">
+      <DashboardHeader heading="Ads" text="Manage your ads">
+        <Link href="/ads/add" className={cn(buttonVariants({  }))} legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Ad.</div></Link>
+      </DashboardHeader>
+    </DashboardShell>
+    <div className="m-2">
+        {ads.length > 0 ? (
+          <DataTable data={ads} columns={adsTableColumns} toolbar={adsTableToolbar} toolbarSearchList={adsTableToolbarSearchList} />
+        ) : (<EmptyPlaceholder>
+          <EmptyPlaceholder.Icon name="post" />
+          <EmptyPlaceholder.Title>No Ads</EmptyPlaceholder.Title>
+          <EmptyPlaceholder.Description>
+            You don&apos;t have any ads yet.
+          </EmptyPlaceholder.Description>
+          <Link
+            href="/ads/add"
+            className={cn(buttonVariants({ variant: "outline" }))}
+            legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Ad.</div></Link>
+        </EmptyPlaceholder>)}
+    </div>
+  </>;
 }
