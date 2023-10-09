@@ -162,7 +162,8 @@ export default function InterestsInput({ theme }: any) {
       <div {...getRootProps()}>
         <InputWrapper ref={setAnchorEl} theme={currentTheme} className={focused ? 'focused' : ''}>
           {value.map((option: CategoryOptionType, index: number) => (
-            <StyledTag label={option.name} {...getTagProps({ index })} />
+            <div key={index}><StyledTag label={option.name} {...getTagProps({ index })} /></div>
+            
           ))}
           <input {...getInputProps()} placeholder='Type and select category' />
         </InputWrapper>
