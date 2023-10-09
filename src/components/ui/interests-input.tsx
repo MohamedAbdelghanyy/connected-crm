@@ -171,7 +171,7 @@ export default function InterestsInput({ theme }: any) {
         groupedOptions.length > 0 ? (
           <Listbox {...getListboxProps()} theme={currentTheme}>
             {(groupedOptions as typeof categories).map((option, index) => (
-              <li {...getOptionProps({ option, index })}>
+              <li key={index} {...getOptionProps({ option, index })}>
                 <span style={{ color: theme == "dark" ? "#fff" : "#000" }}>{option.name}</span>
               </li>
             ))}
