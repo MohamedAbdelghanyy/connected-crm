@@ -20,7 +20,7 @@ export default function TopicsLoading() {
   return (
     <DashboardShell className="mb-1">
       <DashboardHeader heading="Topics" text="Manage your topics">
-        <Link href="/topics/add" className={cn(buttonVariants({  }))} legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Topic</div></Link>
+        <Link href="/topics/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" />Add Topic</Link>
       </DashboardHeader>
       <div className="divide-border-200 divide-y rounded-md border">
         <ItemSkeleton />
@@ -31,5 +31,5 @@ export default function TopicsLoading() {
         <ItemSkeleton />
       </div>
     </DashboardShell>
-  );
+  )
 }

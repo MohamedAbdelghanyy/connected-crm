@@ -28,13 +28,11 @@ export function MainNav({ items, sideItems, children }: MainNavProps) {
 
   return (
     <div className="flex gap-6 md:gap-10">
-      <Link href="/" className="hidden items-center space-x-2 md:flex" legacyBehavior>
-        <div>
-          <Icons.logo width="30px" height="30px" color={theme === "light" ? "#000" : "#fff"} />
-          <span className="hidden font-bold sm:inline-block">
-            {siteConfig.name}
-          </span>
-        </div>
+      <Link href="/" className="hidden items-center space-x-2 md:flex">
+        <Icons.logo width="30px" height="30px" color={theme === "light" ? "#000" : "#fff"} />
+        <span className="hidden font-bold sm:inline-block">
+          {siteConfig.name}
+        </span>
       </Link>
       {items?.length ? (
         <nav className="hidden gap-6 md:flex">
@@ -49,7 +47,7 @@ export function MainNav({ items, sideItems, children }: MainNavProps) {
                   : "text-foreground/60",
                 item.disabled && "cursor-not-allowed opacity-80"
               )}
-              legacyBehavior>
+            >
               {item.title}
             </Link>
           ))}
@@ -66,5 +64,5 @@ export function MainNav({ items, sideItems, children }: MainNavProps) {
         <MobileNav items={items} sideItems={sideItems} toggleMobileMenu={toggleMobileMenu}>{children}</MobileNav>
       )}
     </div>
-  );
+  )
 }

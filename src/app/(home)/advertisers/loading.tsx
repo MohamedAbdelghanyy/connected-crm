@@ -20,10 +20,7 @@ export default function AdvertiserLoading() {
   return (
     <DashboardShell className="mb-1">
       <DashboardHeader heading="Advertisers" text="Manage your advertisers">
-        <Link
-          href="/advertisers/add"
-          className={cn(buttonVariants({  }))}
-          legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Advertiser</div></Link>
+        <Link href="/advertisers/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" />Add Advertiser</Link>
       </DashboardHeader>
       <div className="divide-border-200 divide-y rounded-md border">
         <ItemSkeleton />
@@ -34,5 +31,5 @@ export default function AdvertiserLoading() {
         <ItemSkeleton />
       </div>
     </DashboardShell>
-  );
+  )
 }

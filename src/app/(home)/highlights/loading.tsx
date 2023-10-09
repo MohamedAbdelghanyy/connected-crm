@@ -20,10 +20,7 @@ export default function HighlightsLoading() {
   return (
     <DashboardShell className="mb-1">
       <DashboardHeader heading="Highlights" text="Manage your highlights">
-        <Link
-          href="/highlights/add"
-          className={cn(buttonVariants({  }))}
-          legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Highlight</div></Link>
+        <Link href="/highlights/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" />Add Highlight</Link>
       </DashboardHeader>
       <div className="divide-border-200 divide-y rounded-md border">
         <ItemSkeleton />
@@ -34,5 +31,5 @@ export default function HighlightsLoading() {
         <ItemSkeleton />
       </div>
     </DashboardShell>
-  );
+  )
 }

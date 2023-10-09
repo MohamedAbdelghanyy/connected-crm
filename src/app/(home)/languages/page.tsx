@@ -25,26 +25,25 @@ async function getLanguages() {
 
 export default async function LanguagesPage() {
   const languages = await getLanguages()
-  return <>
-    <DashboardShell className="mb-1">
-      <DashboardHeader heading="Languages" text="Manage your languages">
-        <Link href="/languages/add" className={cn(buttonVariants({}))} legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Language</div></Link>
-      </DashboardHeader>
-    </DashboardShell>
-    <div className="m-2">
-      {languages.length > 0 ? (
-        <DataTable data={languages} columns={languagesTableColumns} toolbar={languagesTableToolbar} toolbarSearchList={languagesTableToolbarSearchList} />
-      ) : (<EmptyPlaceholder>
-        <EmptyPlaceholder.Icon name="post" />
-        <EmptyPlaceholder.Title>No Languages</EmptyPlaceholder.Title>
-        <EmptyPlaceholder.Description>
-          You don&apos;t have any languages yet.
-        </EmptyPlaceholder.Description>
-        <Link
-          href="/languages/add"
-          className={cn(buttonVariants({ variant: "outline" }))}
-          legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Language</div></Link>
-      </EmptyPlaceholder>)}
-    </div>
-  </>;
+  return (
+    <>
+      <DashboardShell className="mb-1">
+        <DashboardHeader heading="Languages" text="Manage your languages">
+          <Link href="/languages/add" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Language</Link>
+        </DashboardHeader>
+      </DashboardShell>
+      <div className="m-2">
+        {languages.length > 0 ? (
+          <DataTable data={languages} columns={languagesTableColumns} toolbar={languagesTableToolbar} toolbarSearchList={languagesTableToolbarSearchList} />
+        ) : (<EmptyPlaceholder>
+          <EmptyPlaceholder.Icon name="post" />
+          <EmptyPlaceholder.Title>No Languages</EmptyPlaceholder.Title>
+          <EmptyPlaceholder.Description>
+            You don&apos;t have any languages yet.
+          </EmptyPlaceholder.Description>
+          <Link href="/languages/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Language</Link>
+        </EmptyPlaceholder>)}
+      </div>
+    </>
+  )
 }

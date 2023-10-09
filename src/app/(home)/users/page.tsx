@@ -25,26 +25,25 @@ async function getUsers() {
 
 export default async function UsersPage() {
   const users = await getUsers()
-  return <>
-    <DashboardShell className="mb-1">
-      <DashboardHeader heading="Users" text="Manage your users">
-        <Link href="/users/add" className={cn(buttonVariants({}))} legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add User</div></Link>
-      </DashboardHeader>
-    </DashboardShell>
-    <div className="m-2">
-      {users.length > 0 ? (
-        <DataTable data={users} columns={usersTableColumns} toolbar={usersTableToolbar} toolbarSearchList={usersTableToolbarSearchList} />
-      ) : (<EmptyPlaceholder>
-        <EmptyPlaceholder.Icon name="post" />
-        <EmptyPlaceholder.Title>No Users</EmptyPlaceholder.Title>
-        <EmptyPlaceholder.Description>
-          You don&apos;t have any user yet.
-        </EmptyPlaceholder.Description>
-        <Link
-          href="/users/add"
-          className={cn(buttonVariants({ variant: "outline" }))}
-          legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add User</div></Link>
-      </EmptyPlaceholder>)}
-    </div>
-  </>;
+  return (
+    <>
+      <DashboardShell className="mb-1">
+        <DashboardHeader heading="Users" text="Manage your users">
+          <Link href="/users/add" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add User</Link>
+        </DashboardHeader>
+      </DashboardShell>
+      <div className="m-2">
+        {users.length > 0 ? (
+          <DataTable data={users} columns={usersTableColumns} toolbar={usersTableToolbar} toolbarSearchList={usersTableToolbarSearchList} />
+        ) : (<EmptyPlaceholder>
+          <EmptyPlaceholder.Icon name="post" />
+          <EmptyPlaceholder.Title>No Users</EmptyPlaceholder.Title>
+          <EmptyPlaceholder.Description>
+            You don&apos;t have any user yet.
+          </EmptyPlaceholder.Description>
+          <Link href="/users/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add User</Link>
+        </EmptyPlaceholder>)}
+      </div>
+    </>
+  )
 }

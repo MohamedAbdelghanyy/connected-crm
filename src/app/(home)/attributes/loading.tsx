@@ -20,10 +20,7 @@ export default function AttributesLoading() {
   return (
     <DashboardShell className="mb-1">
       <DashboardHeader heading="Attributes" text="Manage your attributes">
-        <Link
-          href="/attributes/add"
-          className={cn(buttonVariants({  }))}
-          legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Attributes</div></Link>
+        <Link href="/attributes/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" />Add Attributes</Link>
       </DashboardHeader>
       <div className="divide-border-200 divide-y rounded-md border">
         <ItemSkeleton />
@@ -34,5 +31,5 @@ export default function AttributesLoading() {
         <ItemSkeleton />
       </div>
     </DashboardShell>
-  );
+  )
 }

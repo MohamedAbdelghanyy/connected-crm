@@ -42,26 +42,25 @@ export default async function RolesPage() {
   const roles = await getRoles()
   const permissions = await getPermissions()
   const claims = await getClaims()
-  return <>
-    <DashboardShell className="mb-1">
-      <DashboardHeader heading="Roles" text="Manage your roles">
-        <Link href="/roles/add" className={cn(buttonVariants({}))} legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Role</div></Link>
-      </DashboardHeader>
-    </DashboardShell>
-    <div className="m-2">
-      {roles.length > 0 ? (
-        <RolesPageContent roles={roles} permissions={permissions} claims={claims} />
-      ) : (<EmptyPlaceholder>
-        <EmptyPlaceholder.Icon name="post" />
-        <EmptyPlaceholder.Title>No Roles</EmptyPlaceholder.Title>
-        <EmptyPlaceholder.Description>
-          You don&apos;t have any roles yet.
-        </EmptyPlaceholder.Description>
-        <Link
-          href="/roles/add"
-          className={cn(buttonVariants({ variant: "outline" }))}
-          legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Role</div></Link>
-      </EmptyPlaceholder>)}
-    </div>
-  </>;
+  return (
+    <>
+      <DashboardShell className="mb-1">
+        <DashboardHeader heading="Roles" text="Manage your roles">
+          <Link href="/roles/add" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Role</Link>
+        </DashboardHeader>
+      </DashboardShell>
+      <div className="m-2">
+        {roles.length > 0 ? (
+          <RolesPageContent roles={roles} permissions={permissions} claims={claims} />
+        ) : (<EmptyPlaceholder>
+          <EmptyPlaceholder.Icon name="post" />
+          <EmptyPlaceholder.Title>No Roles</EmptyPlaceholder.Title>
+          <EmptyPlaceholder.Description>
+            You don&apos;t have any roles yet.
+          </EmptyPlaceholder.Description>
+          <Link href="/roles/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Role</Link>
+        </EmptyPlaceholder>)}
+      </div>
+    </>
+  )
 }

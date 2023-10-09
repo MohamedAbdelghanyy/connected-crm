@@ -20,7 +20,7 @@ export default function LeadLoading() {
   return (
     <DashboardShell className="mb-1">
       <DashboardHeader heading="Leads" text="Manage your leads">
-        <Link href="/leads/add" className={cn(buttonVariants({  }))} legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Lead</div></Link>
+        <Link href="/leads/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" />Add Lead</Link>
       </DashboardHeader>
       <div className="divide-border-200 divide-y rounded-md border">
         <ItemSkeleton />
@@ -31,5 +31,5 @@ export default function LeadLoading() {
         <ItemSkeleton />
       </div>
     </DashboardShell>
-  );
+  )
 }

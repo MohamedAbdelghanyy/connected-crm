@@ -20,7 +20,7 @@ export default function UsersLoading() {
   return (
     <DashboardShell className="mb-1">
       <DashboardHeader heading="Users" text="Manage your users">
-        <Link href="/users/add" className={cn(buttonVariants({}))} legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add User</div></Link>
+        <Link href="/users/add" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add User</Link>
       </DashboardHeader>
       <div className="divide-border-200 divide-y rounded-md border">
         <ItemSkeleton />
@@ -31,5 +31,5 @@ export default function UsersLoading() {
         <ItemSkeleton />
       </div>
     </DashboardShell>
-  );
+  )
 }

@@ -20,7 +20,7 @@ export default function LanguagesLoading() {
   return (
     <DashboardShell className="mb-1">
       <DashboardHeader heading="Languages" text="Manage your languages">
-        <Link href="/languages/add" className={cn(buttonVariants({}))} legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Languages</div></Link>
+        <Link href="/languages/add" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Languages</Link>
       </DashboardHeader>
       <div className="divide-border-200 divide-y rounded-md border">
         <ItemSkeleton />
@@ -31,5 +31,5 @@ export default function LanguagesLoading() {
         <ItemSkeleton />
       </div>
     </DashboardShell>
-  );
+  )
 }

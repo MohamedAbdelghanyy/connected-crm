@@ -302,10 +302,10 @@ export const productsTableColumns: ColumnDef<ProductsProps>[] = [
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            <Link href={'#'} legacyBehavior>{row.getValue("category")}</Link>
+            <Link href={'#'}>{row.getValue("category")}</Link>
           </span>
         </div>
-      );
+      )
     },
   },
   {
@@ -317,10 +317,10 @@ export const productsTableColumns: ColumnDef<ProductsProps>[] = [
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            <Link href={'#'} legacyBehavior>{row.getValue("brand")}</Link>
+            <Link href={'#'}>{row.getValue("brand")}</Link>
           </span>
         </div>
-      );
+      )
     },
   },
   {
@@ -332,10 +332,10 @@ export const productsTableColumns: ColumnDef<ProductsProps>[] = [
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            <Link href={'/merchants/' + row.original.ownerID} legacyBehavior>{row.getValue("owner")}</Link>
+            <Link href={'/merchants/' + row.original.ownerID}>{row.getValue("owner")}</Link>
           </span>
         </div>
-      );
+      )
     },
   },
   {

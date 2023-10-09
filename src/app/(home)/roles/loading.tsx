@@ -20,7 +20,7 @@ export default function RolesLoading() {
   return (
     <DashboardShell className="mb-1">
       <DashboardHeader heading="Roles" text="Manage your roles">
-        <Link href="/roles/add" className={cn(buttonVariants({}))} legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Role</div></Link>
+        <Link href="/roles/add" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Role</Link>
       </DashboardHeader>
       <div className="divide-border-200 divide-y rounded-md border">
         <ItemSkeleton />
@@ -31,5 +31,5 @@ export default function RolesLoading() {
         <ItemSkeleton />
       </div>
     </DashboardShell>
-  );
+  )
 }

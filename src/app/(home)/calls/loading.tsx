@@ -20,7 +20,7 @@ export default function CallsLoading() {
   return (
     <DashboardShell className="mb-1">
       <DashboardHeader heading="Calls" text="Manage all calls">
-        <Link href="/calls/add" className={cn(buttonVariants({}))} legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Call</div></Link>
+        <Link href="/calls/add" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Call</Link>
       </DashboardHeader>
       <div className="divide-border-200 divide-y rounded-md border">
         <ItemSkeleton />
@@ -31,5 +31,5 @@ export default function CallsLoading() {
         <ItemSkeleton />
       </div>
     </DashboardShell>
-  );
+  )
 }

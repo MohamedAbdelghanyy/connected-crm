@@ -25,26 +25,25 @@ async function getAttributes() {
 
 export default async function AttributesPage() {
   const attributes = await getAttributes()
-  return <>
-    <DashboardShell className="mb-1">
-      <DashboardHeader heading="Attributes" text="Manage your attributes">
-        <Link href="/attributes/add" className={cn(buttonVariants({}))} legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Attribute</div></Link>
-      </DashboardHeader>
-    </DashboardShell>
-    <div className="m-2">
-      {attributes.length > 0 ? (
-        <DataTable data={attributes} columns={attributesTableColumns} toolbar={attributesTableToolbar} toolbarSearchList={attributesTableToolbarSearchList} />
-      ) : (<EmptyPlaceholder>
-        <EmptyPlaceholder.Icon name="post" />
-        <EmptyPlaceholder.Title>No Attributes</EmptyPlaceholder.Title>
-        <EmptyPlaceholder.Description>
-          You don&apos;t have any attributes yet.
-        </EmptyPlaceholder.Description>
-        <Link
-          href="/attributes/add"
-          className={cn(buttonVariants({ variant: "outline" }))}
-          legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Attribute</div></Link>
-      </EmptyPlaceholder>)}
-    </div>
-  </>;
+  return (
+    <>
+      <DashboardShell className="mb-1">
+        <DashboardHeader heading="Attributes" text="Manage your attributes">
+          <Link href="/attributes/add" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Attribute</Link>
+        </DashboardHeader>
+      </DashboardShell>
+      <div className="m-2">
+        {attributes.length > 0 ? (
+          <DataTable data={attributes} columns={attributesTableColumns} toolbar={attributesTableToolbar} toolbarSearchList={attributesTableToolbarSearchList} />
+        ) : (<EmptyPlaceholder>
+          <EmptyPlaceholder.Icon name="post" />
+          <EmptyPlaceholder.Title>No Attributes</EmptyPlaceholder.Title>
+          <EmptyPlaceholder.Description>
+            You don&apos;t have any attributes yet.
+          </EmptyPlaceholder.Description>
+          <Link href="/attributes/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Attribute</Link>
+        </EmptyPlaceholder>)}
+      </div>
+    </>
+  )
 }

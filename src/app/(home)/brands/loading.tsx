@@ -20,7 +20,7 @@ export default function BrandsLoading() {
   return (
     <DashboardShell className="mb-1">
       <DashboardHeader heading="Brands" text="Manage your brands">
-        <Link href="/brands/add" className={cn(buttonVariants({  }))} legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Brand</div></Link>
+        <Link href="/brands/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" />Add Brand</Link>
       </DashboardHeader>
       <div className="divide-border-200 divide-y rounded-md border">
         <ItemSkeleton />
@@ -31,5 +31,5 @@ export default function BrandsLoading() {
         <ItemSkeleton />
       </div>
     </DashboardShell>
-  );
+  )
 }

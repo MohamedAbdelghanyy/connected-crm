@@ -1,10 +1,11 @@
-import Link from "next/link"
 import * as React from "react"
+import Link from "next/link"
 
-import { Icons } from "@/components/icons"
-import { useLockBody } from "@/hooks/use-lock-body"
-import { cn } from "@/lib/utils"
 import { MainNavItem, SidebarNavItem } from "@/types"
+import { siteConfig } from "@/config/site"
+import { cn } from "@/lib/utils"
+import { useLockBody } from "@/hooks/use-lock-body"
+import { Icons } from "@/components/icons"
 
 interface MobileNavProps {
   items: MainNavItem[]
@@ -22,7 +23,7 @@ export function MobileNav({ items, sideItems, toggleMobileMenu, children }: Mobi
         "fixed inset-0 top-16 z-50 grid h-[calc(100vh-4rem)] grid-flow-row auto-rows-max overflow-auto shadow-md animate-in slide-in-from-bottom-80 md:hidden"
       )}
     >
-      <div className="relative z-20 grid gap-6 rounded-md bg-popover text-popover-foreground shadow-md" style={{ width: "100vw", paddingLeft: "60px", paddingTop: "20px", paddingBottom: "20px" }}>
+      <div className="relative z-20 grid gap-6 rounded-md bg-popover text-popover-foreground shadow-md" style={{width: "100vw", paddingLeft: "60px", paddingTop: "20px", paddingBottom: "20px"}}>
         <nav className="grid grid-flow-row auto-rows-max text-sm">
           {items.map((item, index) => (
             <Link
@@ -32,34 +33,32 @@ export function MobileNav({ items, sideItems, toggleMobileMenu, children }: Mobi
                 "flex w-full items-center rounded-md p-2 text-sm font-medium hover:underline",
                 item.disabled && "cursor-not-allowed opacity-60"
               )}
-              legacyBehavior>
+            >
               {item.title}
             </Link>
           ))}
           {sideItems.map((sideItem, index) => {
             const Icon = Icons[sideItem.icon || "arrowRight"]
-            return sideItem.href ? (
+            return  sideItem.href? (
               <Link
                 key={index}
-                onClick={() => toggleMobileMenu()}
+                onClick={()=>toggleMobileMenu()}
                 href={sideItem.disabled ? "#" : String(sideItem.href)}
                 className={cn(
                   "flex w-full items-center rounded-md p-2 text-sm font-medium hover:underline",
                   sideItem.disabled && "cursor-not-allowed opacity-60"
                 )}
-                legacyBehavior>
-                <div>
-                  <Icon className="mr-2 h-4 w-4" />
-                  {sideItem.title}
-                </div>
+              >
+                <Icon className="mr-2 h-4 w-4" />
+                {sideItem.title}
               </Link>
-            ) : (
+            ):(
               <span className="mt-5 ml-2">{sideItem.title}</span>
-            );
+            )
           })}
         </nav>
         {children}
       </div>
     </div>
-  );
+  )
 }

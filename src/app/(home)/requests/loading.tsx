@@ -20,7 +20,7 @@ export default function RequestsLoading() {
   return (
     <DashboardShell className="mb-1">
       <DashboardHeader heading="Requests" text="Manage all requests">
-        <Link href="/requests/add" className={cn(buttonVariants({}))} legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Request</div></Link>
+        <Link href="/requests/add" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Request</Link>
       </DashboardHeader>
       <div className="divide-border-200 divide-y rounded-md border">
         <ItemSkeleton />
@@ -31,5 +31,5 @@ export default function RequestsLoading() {
         <ItemSkeleton />
       </div>
     </DashboardShell>
-  );
+  )
 }

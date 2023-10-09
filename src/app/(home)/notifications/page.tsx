@@ -25,29 +25,25 @@ async function getNotifications() {
 
 export default async function NotificationsPage() {
   const notifications = await getNotifications()
-  return <>
-    <DashboardShell className="mb-1">
-      <DashboardHeader heading="Notifications" text="Manage your notifications">
-        <Link
-          href="/notifications/send"
-          className={cn(buttonVariants({}))}
-          legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Send Notification</div></Link>
-      </DashboardHeader>
-    </DashboardShell>
-    <div className="m-2">
-      {notifications.length > 0 ? (
-        <DataTable data={notifications} columns={notificationsTableColumns} toolbar={notificationsTableToolbar} toolbarSearchList={notificationsTableToolbarSearchList} />
-      ) : (<EmptyPlaceholder>
-        <EmptyPlaceholder.Icon name="post" />
-        <EmptyPlaceholder.Title>No Notifications</EmptyPlaceholder.Title>
-        <EmptyPlaceholder.Description>
-          You don&apos;t have any notifications yet.
-        </EmptyPlaceholder.Description>
-        <Link
-          href="/notifications/send"
-          className={cn(buttonVariants({ variant: "outline" }))}
-          legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Send Notification</div></Link>
-      </EmptyPlaceholder>)}
-    </div>
-  </>;
+  return (
+    <>
+      <DashboardShell className="mb-1">
+        <DashboardHeader heading="Notifications" text="Manage your notifications">
+          <Link href="/notifications/send" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Send Notification</Link>
+        </DashboardHeader>
+      </DashboardShell>
+      <div className="m-2">
+        {notifications.length > 0 ? (
+          <DataTable data={notifications} columns={notificationsTableColumns} toolbar={notificationsTableToolbar} toolbarSearchList={notificationsTableToolbarSearchList} />
+        ) : (<EmptyPlaceholder>
+          <EmptyPlaceholder.Icon name="post" />
+          <EmptyPlaceholder.Title>No Notifications</EmptyPlaceholder.Title>
+          <EmptyPlaceholder.Description>
+            You don&apos;t have any notifications yet.
+          </EmptyPlaceholder.Description>
+          <Link href="/notifications/send" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Send Notification</Link>
+        </EmptyPlaceholder>)}
+      </div>
+    </>
+  )
 }

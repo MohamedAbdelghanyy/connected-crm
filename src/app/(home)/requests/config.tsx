@@ -202,10 +202,10 @@ export const requestsTableColumns: ColumnDef<RequestsProps>[] = [
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            <Link href={"/customers/"+row.original.customerID} legacyBehavior>{row.getValue("customerName")}</Link>
+            <Link href={"/customers/"+row.original.customerID}>{row.getValue("customerName")}</Link>
           </span>
         </div>
-      );
+      )
     },
   },
   {
@@ -232,10 +232,10 @@ export const requestsTableColumns: ColumnDef<RequestsProps>[] = [
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            <Link href={"#"} legacyBehavior>{row.getValue("itemName")}</Link>
+            <Link href={"#"}>{row.getValue("itemName")}</Link>
           </span>
         </div>
-      );
+      )
     },
   },
   {

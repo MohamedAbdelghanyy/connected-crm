@@ -25,29 +25,25 @@ async function getHighlights() {
 
 export default async function HighlightsPage() {
   const highlights = await getHighlights()
-  return <>
-    <DashboardShell className="mb-1">
-      <DashboardHeader heading="Highlights" text="Manage your highlights">
-        <Link
-          href="/highlights/add"
-          className={cn(buttonVariants({  }))}
-          legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Highlight</div></Link>
-      </DashboardHeader>
-    </DashboardShell>
-    <div className="m-2">
-        {highlights.length > 0 ? (
-          <DataTable data={highlights} columns={highlightsTableColumns} toolbar={highlightsTableToolbar} toolbarSearchList={highlightsTableToolbarSearchList} />
-        ) : (<EmptyPlaceholder>
-          <EmptyPlaceholder.Icon name="post" />
-          <EmptyPlaceholder.Title>No Highlights</EmptyPlaceholder.Title>
-          <EmptyPlaceholder.Description>
-            You don&apos;t have any highlight yet.
-          </EmptyPlaceholder.Description>
-          <Link
-            href="/highlights/add"
-            className={cn(buttonVariants({ variant: "outline" }))}
-            legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Highlight</div></Link>
-        </EmptyPlaceholder>)}
-    </div>
-  </>;
+  return (
+    <>
+      <DashboardShell className="mb-1">
+        <DashboardHeader heading="Highlights" text="Manage your highlights">
+          <Link href="/highlights/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" />Add Highlight</Link>
+        </DashboardHeader>
+      </DashboardShell>
+      <div className="m-2">
+          {highlights.length > 0 ? (
+            <DataTable data={highlights} columns={highlightsTableColumns} toolbar={highlightsTableToolbar} toolbarSearchList={highlightsTableToolbarSearchList} />
+          ) : (<EmptyPlaceholder>
+            <EmptyPlaceholder.Icon name="post" />
+            <EmptyPlaceholder.Title>No Highlights</EmptyPlaceholder.Title>
+            <EmptyPlaceholder.Description>
+              You don&apos;t have any highlight yet.
+            </EmptyPlaceholder.Description>
+            <Link href="/highlights/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Highlight</Link>
+          </EmptyPlaceholder>)}
+      </div>
+    </>
+  )
 }

@@ -26,26 +26,25 @@ async function getProducts() {
 
 export default async function ProductsPage() {
   const products = await getProducts()
-  return <>
-    <DashboardShell className="mb-1">
-      <DashboardHeader heading="Products" text="Manage your products">
-        <Link href="/products/add" className={cn(buttonVariants({  }))} legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Product</div></Link>
-      </DashboardHeader>
-    </DashboardShell>
-    <div className="m-2">
-        {products.length > 0 ? (
-          <DataTable data={products} columns={productsTableColumns} toolbar={productsTableToolbar} toolbarSearchList={productsTableToolbarSearchList} />
-        ) : (<EmptyPlaceholder>
-          <EmptyPlaceholder.Icon name="post" />
-          <EmptyPlaceholder.Title>No Products</EmptyPlaceholder.Title>
-          <EmptyPlaceholder.Description>
-            You don&apos;t have any products yet.
-          </EmptyPlaceholder.Description>
-          <Link
-            href="/products/add"
-            className={cn(buttonVariants({ variant: "outline" }))}
-            legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Product</div></Link>
-        </EmptyPlaceholder>)}
-    </div>
-  </>;
+  return (
+    <>
+      <DashboardShell className="mb-1">
+        <DashboardHeader heading="Products" text="Manage your products">
+          <Link href="/products/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" />Add Product</Link>
+        </DashboardHeader>
+      </DashboardShell>
+      <div className="m-2">
+          {products.length > 0 ? (
+            <DataTable data={products} columns={productsTableColumns} toolbar={productsTableToolbar} toolbarSearchList={productsTableToolbarSearchList} />
+          ) : (<EmptyPlaceholder>
+            <EmptyPlaceholder.Icon name="post" />
+            <EmptyPlaceholder.Title>No Products</EmptyPlaceholder.Title>
+            <EmptyPlaceholder.Description>
+              You don&apos;t have any products yet.
+            </EmptyPlaceholder.Description>
+            <Link href="/products/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Product</Link>
+          </EmptyPlaceholder>)}
+      </div>
+    </>
+  )
 }

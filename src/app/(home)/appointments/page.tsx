@@ -25,29 +25,25 @@ async function getAppointments() {
 
 export default async function AppointmentsPage() {
   const appointments = await getAppointments()
-  return <>
-    <DashboardShell className="mb-1">
-      <DashboardHeader heading="Appointments" text="Manage all appointments">
-        <Link
-          href="/appointments/add"
-          className={cn(buttonVariants({}))}
-          legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Appointment</div></Link>
-      </DashboardHeader>
-    </DashboardShell>
-    <div className="m-2">
-      {appointments.length > 0 ? (
-        <DataTable data={appointments} columns={appointmentsTableColumns} toolbar={appointmentsTableToolbar} toolbarSearchList={appointmentsTableToolbarSearchList} />
-      ) : (<EmptyPlaceholder>
-        <EmptyPlaceholder.Icon name="post" />
-        <EmptyPlaceholder.Title>No Appointments</EmptyPlaceholder.Title>
-        <EmptyPlaceholder.Description>
-          You don&apos;t have any appointments yet.
-        </EmptyPlaceholder.Description>
-        <Link
-          href="/appointments/add"
-          className={cn(buttonVariants({ variant: "outline" }))}
-          legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Appointment</div></Link>
-      </EmptyPlaceholder>)}
-    </div>
-  </>;
+  return (
+    <>
+      <DashboardShell className="mb-1">
+        <DashboardHeader heading="Appointments" text="Manage all appointments">
+          <Link href="/appointments/add" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Appointment</Link>
+        </DashboardHeader>
+      </DashboardShell>
+      <div className="m-2">
+        {appointments.length > 0 ? (
+          <DataTable data={appointments} columns={appointmentsTableColumns} toolbar={appointmentsTableToolbar} toolbarSearchList={appointmentsTableToolbarSearchList} />
+        ) : (<EmptyPlaceholder>
+          <EmptyPlaceholder.Icon name="post" />
+          <EmptyPlaceholder.Title>No Appointments</EmptyPlaceholder.Title>
+          <EmptyPlaceholder.Description>
+            You don&apos;t have any appointments yet.
+          </EmptyPlaceholder.Description>
+          <Link href="/appointments/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Appointment</Link>
+        </EmptyPlaceholder>)}
+      </div>
+    </>
+  )
 }

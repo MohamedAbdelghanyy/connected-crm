@@ -25,26 +25,25 @@ async function getLeads() {
 
 export default async function LeadsPage() {
   const leads = await getLeads()
-  return <>
-    <DashboardShell className="mb-1">
-      <DashboardHeader heading="Leads" text="Manage your leads">
-        <Link href="/leads/add" className={cn(buttonVariants({  }))} legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Lead</div></Link>
-      </DashboardHeader>
-    </DashboardShell>
-    <div className="m-2">
-        {leads.length > 0 ? (
-          <DataTable data={leads} columns={leadsTableColumns} toolbar={leadsTableToolbar} toolbarSearchList={leadsTableToolbarSearchList} />
-        ) : (<EmptyPlaceholder>
-          <EmptyPlaceholder.Icon name="post" />
-          <EmptyPlaceholder.Title>No Leads</EmptyPlaceholder.Title>
-          <EmptyPlaceholder.Description>
-            You don&apos;t have any lead yet.
-          </EmptyPlaceholder.Description>
-          <Link
-            href="/leads/add"
-            className={cn(buttonVariants({ variant: "outline" }))}
-            legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Lead</div></Link>
-        </EmptyPlaceholder>)}
-    </div>
-  </>;
+  return (
+    <>
+      <DashboardShell className="mb-1">
+        <DashboardHeader heading="Leads" text="Manage your leads">
+          <Link href="/leads/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" />Add Lead</Link>
+        </DashboardHeader>
+      </DashboardShell>
+      <div className="m-2">
+          {leads.length > 0 ? (
+            <DataTable data={leads} columns={leadsTableColumns} toolbar={leadsTableToolbar} toolbarSearchList={leadsTableToolbarSearchList} />
+          ) : (<EmptyPlaceholder>
+            <EmptyPlaceholder.Icon name="post" />
+            <EmptyPlaceholder.Title>No Leads</EmptyPlaceholder.Title>
+            <EmptyPlaceholder.Description>
+              You don&apos;t have any lead yet.
+            </EmptyPlaceholder.Description>
+            <Link href="/leads/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Lead</Link>
+          </EmptyPlaceholder>)}
+      </div>
+    </>
+  )
 }

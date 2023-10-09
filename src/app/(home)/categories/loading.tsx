@@ -20,10 +20,7 @@ export default function CategoriesLoading() {
   return (
     <DashboardShell className="mb-1">
       <DashboardHeader heading="Categories" text="Manage your categories">
-        <Link
-          href="/categories/add"
-          className={cn(buttonVariants({  }))}
-          legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Category</div></Link>
+        <Link href="/categories/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" />Add Category</Link>
       </DashboardHeader>
       <div className="divide-border-200 divide-y rounded-md border">
         <ItemSkeleton />
@@ -34,5 +31,5 @@ export default function CategoriesLoading() {
         <ItemSkeleton />
       </div>
     </DashboardShell>
-  );
+  )
 }

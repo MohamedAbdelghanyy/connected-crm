@@ -25,29 +25,25 @@ async function getInternalNotes() {
 
 export default async function InternalNotesPage() {
   const internalNotes = await getInternalNotes()
-  return <>
-    <DashboardShell className="mb-1">
-      <DashboardHeader heading="Internal Notes" text="Manage all notes">
-        <Link
-          href="/internal-notes/add"
-          className={cn(buttonVariants({}))}
-          legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Note</div></Link>
-      </DashboardHeader>
-    </DashboardShell>
-    <div className="m-2">
-      {internalNotes.length > 0 ? (
-        <DataTable data={internalNotes} columns={internalNotesTableColumns} toolbar={internalNotesTableToolbar} toolbarSearchList={internalNotesTableToolbarSearchList} />
-      ) : (<EmptyPlaceholder>
-        <EmptyPlaceholder.Icon name="post" />
-        <EmptyPlaceholder.Title>No Notes</EmptyPlaceholder.Title>
-        <EmptyPlaceholder.Description>
-          You don&apos;t have any notes yet.
-        </EmptyPlaceholder.Description>
-        <Link
-          href="/internal-notes/add"
-          className={cn(buttonVariants({ variant: "outline" }))}
-          legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Add Note</div></Link>
-      </EmptyPlaceholder>)}
-    </div>
-  </>;
+  return (
+    <>
+      <DashboardShell className="mb-1">
+        <DashboardHeader heading="Internal Notes" text="Manage all notes">
+          <Link href="/internal-notes/add" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Note</Link>
+        </DashboardHeader>
+      </DashboardShell>
+      <div className="m-2">
+        {internalNotes.length > 0 ? (
+          <DataTable data={internalNotes} columns={internalNotesTableColumns} toolbar={internalNotesTableToolbar} toolbarSearchList={internalNotesTableToolbarSearchList} />
+        ) : (<EmptyPlaceholder>
+          <EmptyPlaceholder.Icon name="post" />
+          <EmptyPlaceholder.Title>No Notes</EmptyPlaceholder.Title>
+          <EmptyPlaceholder.Description>
+            You don&apos;t have any notes yet.
+          </EmptyPlaceholder.Description>
+          <Link href="/internal-notes/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Note</Link>
+        </EmptyPlaceholder>)}
+      </div>
+    </>
+  )
 }

@@ -20,10 +20,7 @@ export default function NotificationsLoading() {
   return (
     <DashboardShell className="mb-1">
       <DashboardHeader heading="Notifications" text="Manage your notifications">
-        <Link
-          href="/notifications/send"
-          className={cn(buttonVariants({  }))}
-          legacyBehavior><div><Icons.add className="mr-2 h-4 w-4" />Send Notification</div></Link>
+        <Link href="/notifications/send" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" />Send Notification</Link>
       </DashboardHeader>
       <div className="divide-border-200 divide-y rounded-md border">
         <ItemSkeleton />
@@ -34,5 +31,5 @@ export default function NotificationsLoading() {
         <ItemSkeleton />
       </div>
     </DashboardShell>
-  );
+  )
 }
