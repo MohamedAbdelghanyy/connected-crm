@@ -114,7 +114,7 @@ export const notificationsTableColumns: ColumnDef<NotificationsProps>[] = [
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            <Link href={"/customer/" + row.original.receiverID}>{row.getValue("receiverName")}</Link>
+            <Link href={"/customers/" + row.original.receiverID}>{row.getValue("receiverName")}</Link>
           </span>
         </div>
       )
