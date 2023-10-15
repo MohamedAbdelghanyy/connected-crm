@@ -29,49 +29,49 @@ const top10SharedItems = [
     shares: 725
   },
   {
-    id: "ITM-1",
+    id: "ITM-4",
     name: "Rolex",
     image: "https://connectedapp20200512063146.azurewebsites.net/api/connectedadmin/GetImage/dbe4eb7e-545c-4384-96f6-20940f796bc3.jpg",
     owner: "Mohamed Abdelghany",
     shares: 659
   },
   {
-    id: "ITM-1",
+    id: "ITM-5",
     name: "BMW X7",
     image: "https://connectedapp20200512063146.azurewebsites.net/api/connectedadmin/GetImage/dbe4eb7e-545c-4384-96f6-20940f796bc3.jpg",
     owner: "Mohamed Abdelghany",
     shares: 538
   },
   {
-    id: "ITM-1",
+    id: "ITM-6",
     name: "BMW X7",
     image: "https://connectedapp20200512063146.azurewebsites.net/api/connectedadmin/GetImage/dbe4eb7e-545c-4384-96f6-20940f796bc3.jpg",
     owner: "Mohamed Abdelghany",
     shares: 492
   },
   {
-    id: "ITM-1",
+    id: "ITM-7",
     name: "BMW X7",
     image: "https://connectedapp20200512063146.azurewebsites.net/api/connectedadmin/GetImage/dbe4eb7e-545c-4384-96f6-20940f796bc3.jpg",
     owner: "Mohamed Abdelghany",
     shares: 372
   },
   {
-    id: "ITM-1",
+    id: "ITM-8",
     name: "BMW X7",
     image: "https://connectedapp20200512063146.azurewebsites.net/api/connectedadmin/GetImage/dbe4eb7e-545c-4384-96f6-20940f796bc3.jpg",
     owner: "Mohamed Abdelghany",
     shares: 293
   },
   {
-    id: "ITM-1",
+    id: "ITM-9",
     name: "BMW X7",
     image: "https://connectedapp20200512063146.azurewebsites.net/api/connectedadmin/GetImage/dbe4eb7e-545c-4384-96f6-20940f796bc3.jpg",
     owner: "Mohamed Abdelghany",
     shares: 192
   },
   {
-    id: "ITM-1",
+    id: "ITM-10",
     name: "BMW X7",
     image: "https://connectedapp20200512063146.azurewebsites.net/api/connectedadmin/GetImage/dbe4eb7e-545c-4384-96f6-20940f796bc3.jpg",
     owner: "Mohamed Abdelghany",
@@ -92,7 +92,7 @@ export function Top10Shared() {
         <div style={{ maxHeight: "60vh", overflow: "hidden scroll" }}>
           <div className="space-y-4">
             {top10SharedItems.map((product) => {
-              return <div className="flex items-center">
+              return <div className="flex items-center" key={product.id}>
                 <Avatar className="h-9 w-9" style={{ width: "150px", height: "100px", borderRadius: "5px" }}>
                   <AvatarImage src={product.image} alt="avatar" style={{ objectFit: "cover" }} />
                   <AvatarFallback>{product.name}</AvatarFallback>
