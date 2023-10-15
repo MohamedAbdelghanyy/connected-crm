@@ -29,10 +29,42 @@ export const options = {
   plugins: {
     legend: {
       position: 'top' as const,
-    },
-    title: {
-      display: false,
-      text: 'Chart.js Line Chart',
+      onClick: (click: any, legendItem: any, legend: any) => {
+        const datasets = legend.legendItems.map((dataset: any, index: any) => {
+          return dataset.text;
+        });
+        const index = datasets.indexOf(legendItem.text);
+        if (legend.chart.isDatasetVisible(index) === true) {
+          legend.chart.hide(index);
+        } else {
+          legend.chart.show(index);
+        }
+      },
+      labels: {
+        usePointStyle: true,
+        generateLabels: (chart: any) => {
+          let visibility: any = [];
+          for (let i = 0; i < chart.data.datasets.length; i++) {
+            if (chart.isDatasetVisible(i) === true) {
+              visibility.push('rgba(255, 255, 255, 0.8)');
+            } else {
+              visibility.push('rgba(255, 255, 255, 0.3)');
+            }
+          }
+          return chart.data.datasets.map(
+            (dataset: any, index: any) => ({
+              text: dataset.label,
+              fillStyle: dataset.backgroundColor,
+              strokeStyle: dataset.borderColor,
+              fontColor: visibility[index]
+            })
+          )
+        },
+      },
+      title: {
+        display: false,
+        text: 'Chart.js Line Chart',
+      },
     },
   },
 };
@@ -48,6 +80,7 @@ export const data = {
       data: labels.map(() => Math.floor(Math.random() * 900)),
       borderColor: 'rgb(0, 255, 0)',
       backgroundColor: 'rgba(0, 255, 0, 0.25)',
+      hidden: true,
     },
     {
       fill: true,
@@ -55,6 +88,7 @@ export const data = {
       data: labels.map(() => Math.floor(Math.random() * 900)),
       borderColor: 'rgb(255, 0, 0)',
       backgroundColor: 'rgba(255, 0, 0, 0.25)',
+      hidden: true,
     },
     {
       fill: true,
@@ -62,6 +96,7 @@ export const data = {
       data: labels.map(() => Math.floor(Math.random() * 900)),
       borderColor: 'rgb(255, 255, 0)',
       backgroundColor: 'rgba(255, 255, 0, 0.25)',
+      hidden: true,
     },
     {
       fill: true,
@@ -69,6 +104,7 @@ export const data = {
       data: labels.map(() => Math.floor(Math.random() * 900)),
       borderColor: 'rgb(53, 162, 235)',
       backgroundColor: 'rgba(53, 162, 235, 0.25)',
+      hidden: true,
     },
     {
       fill: true,
@@ -76,6 +112,7 @@ export const data = {
       data: labels.map(() => Math.floor(Math.random() * 900)),
       borderColor: 'rgb(255, 165, 0)',
       backgroundColor: 'rgba(255, 165, 0, 0.25)',
+      hidden: true,
     },
     {
       fill: true,
@@ -83,6 +120,7 @@ export const data = {
       data: labels.map(() => Math.floor(Math.random() * 900)),
       borderColor: 'rgb(255, 0, 255)',
       backgroundColor: 'rgba(255, 0, 255, 0.25)',
+      hidden: true,
     },
     {
       fill: true,
@@ -90,6 +128,7 @@ export const data = {
       data: labels.map(() => Math.floor(Math.random() * 900)),
       borderColor: 'rgb(128, 0, 128)',
       backgroundColor: 'rgba(128, 0, 128, 0.25)',
+      hidden: true,
     },
   ],
 };
