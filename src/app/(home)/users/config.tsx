@@ -11,8 +11,8 @@ const usersActionList: ActionListProps[] = [
   {
     type: "button",
     label: "View",
-    action: (id: string) => {
-      console.log('View: ' + id)
+    redirect: (id: string) => {
+      return "/users/" + id;
     }
   },
   {
@@ -56,7 +56,7 @@ const usersActionList: ActionListProps[] = [
       }
     ]
   },
-{
+  {
     type: "dropdown",
     label: "More",
     subActions: [

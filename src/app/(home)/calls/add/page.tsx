@@ -69,6 +69,22 @@ export default function AddCallPage() {
                     </SelectContent>
                   </Select>
                 </div>
+                <div className="space-y-2">
+                  <Label htmlFor="item">Item</Label>
+                  <Select>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select item" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="bmw">
+                        <span className="font-medium">BMW X7</span>
+                      </SelectItem>
+                      <SelectItem value="rolex">
+                        <span className="font-medium">Rolex</span>
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
             </TabsContent>
             <TabsContent value="other" forceMount={true} hidden={activeTab !== "other"}>

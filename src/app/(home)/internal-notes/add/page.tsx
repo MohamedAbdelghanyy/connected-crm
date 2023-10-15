@@ -67,6 +67,25 @@ export default function AddInternalNotePage() {
                   </Select>
                 </div>
                 <div className="space-y-2">
+                  <Label htmlFor="item">Item</Label>
+                  <Select>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select item" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Item 1">
+                        <span className="font-medium">Item 1</span>
+                      </SelectItem>
+                      <SelectItem value="Item 2">
+                        <span className="font-medium">Item 2</span>
+                      </SelectItem>
+                      <SelectItem value="Item 3">
+                        <span className="font-medium">Item 3</span>
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
                   <Label htmlFor="title">Title</Label>
                   <Input id="title" placeholder="Enter title" />
                 </div>

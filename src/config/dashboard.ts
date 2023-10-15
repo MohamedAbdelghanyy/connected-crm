@@ -14,6 +14,11 @@ export const dashboardConfig: DashboardConfig = {
       icon: "post",
     },
     {
+      title: "CEO Dashboard",
+      href: "/ceo-dashboard",
+      icon: "post",
+    },
+    {
       title: "Customers",
     },
     {

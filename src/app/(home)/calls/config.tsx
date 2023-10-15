@@ -102,6 +102,10 @@ export const callsTableToolbarSearchList: ToolbarSearchListProps[] = [
     title: 'Customer Name'
   },
   {
+    key: 'itemName',
+    title: 'Item Name'
+  },
+  {
     key: 'assignedTo',
     title: 'Assigned To'
   },
@@ -119,6 +123,8 @@ interface CallsProps {
   id: string
   customerID: string
   customerName: string
+  itemID: string
+  itemName: string
   assignedToID: string
   assignedTo: string
   callDate: string
@@ -166,6 +172,21 @@ export const callsTableColumns: ColumnDef<CallsProps>[] = [
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
             <Link href={"/customers/" + row.original.customerID}>{row.getValue("customerName")}</Link>
+          </span>
+        </div>
+      )
+    },
+  },
+  {
+    accessorKey: "itemName",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Item Name" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex space-x-2">
+          <span className="max-w-[500px] truncate font-medium">
+            <Link href={"/items/" + row.original.itemID}>{row.getValue("itemName")}</Link>
           </span>
         </div>
       )
