@@ -8,8 +8,10 @@ import { Icons } from "@/components/icons"
 import { DashboardShell } from "@/components/shell"
 import { DataTable } from "@/components/table/data-table"
 import { buttonVariants } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
+import ImportLeads from "@/components/forms/import-leads"
 
 export const metadata = {
   title: "Leads",
@@ -29,20 +31,23 @@ export default async function LeadsPage() {
     <>
       <DashboardShell className="mb-1">
         <DashboardHeader heading="Leads" text="Manage your leads">
-          <Link href="/leads/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" />Add Lead</Link>
+          <div>
+            <ImportLeads />
+            <Link href="/leads/add" className={cn(buttonVariants({})) + " ml-2"}><Icons.add className="mr-2 h-4 w-4" />Add Lead</Link>
+          </div>
         </DashboardHeader>
       </DashboardShell>
       <div className="m-2">
-          {leads.length > 0 ? (
-            <DataTable data={leads} columns={leadsTableColumns} toolbar={leadsTableToolbar} toolbarSearchList={leadsTableToolbarSearchList} />
-          ) : (<EmptyPlaceholder>
-            <EmptyPlaceholder.Icon name="post" />
-            <EmptyPlaceholder.Title>No Leads</EmptyPlaceholder.Title>
-            <EmptyPlaceholder.Description>
-              You don&apos;t have any lead yet.
-            </EmptyPlaceholder.Description>
-            <Link href="/leads/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Lead</Link>
-          </EmptyPlaceholder>)}
+        {leads.length > 0 ? (
+          <DataTable data={leads} columns={leadsTableColumns} toolbar={leadsTableToolbar} toolbarSearchList={leadsTableToolbarSearchList} />
+        ) : (<EmptyPlaceholder>
+          <EmptyPlaceholder.Icon name="post" />
+          <EmptyPlaceholder.Title>No Leads</EmptyPlaceholder.Title>
+          <EmptyPlaceholder.Description>
+            You don&apos;t have any lead yet.
+          </EmptyPlaceholder.Description>
+          <Link href="/leads/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Lead</Link>
+        </EmptyPlaceholder>)}
       </div>
     </>
   )

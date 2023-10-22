@@ -51,7 +51,8 @@ import {
   PhoneCallIcon,
   FileHeartIcon,
   CalendarClockIcon,
-  StickyNoteIcon
+  StickyNoteIcon,
+  UploadIcon
 } from "lucide-react"
 
 export type Icon = LucideIcon
@@ -126,6 +127,7 @@ export const Icons = {
   developers: Code2,
   languages: GlobeIcon,
   languageTexts: LanguagesIcon,
+  uploadFile: UploadIcon,
   gitHub: ({ ...props }: LucideProps) => (
     <svg
       aria-hidden="true"

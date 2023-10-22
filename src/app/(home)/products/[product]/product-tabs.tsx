@@ -4,22 +4,21 @@ import { EmptyPlaceholder } from "@/components/empty-placeholder"
 import { DashboardHeader } from "@/components/header"
 import { DashboardShell } from "@/components/shell"
 import { DataTable } from "@/components/table/data-table"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Textarea } from "@/components/ui/textarea"
 import { Grid } from "@mui/material"
 import { useRouter } from "next/navigation"
 import * as React from "react"
 import { appointmentsTableColumns, appointmentsTableToolbar, appointmentsTableToolbarSearchList } from "../../appointments/config"
+import { attributesTableColumns, attributesTableToolbar, attributesTableToolbarSearchList } from "../../attributes/config"
 import { callsTableColumns, callsTableToolbar, callsTableToolbarSearchList } from "../../calls/config"
 import { internalNotesTableColumns, internalNotesTableToolbar, internalNotesTableToolbarSearchList } from "../../internal-notes/config"
 import { notificationsTableColumns, notificationsTableToolbar, notificationsTableToolbarSearchList } from "../../notifications/config"
-import { productsTableColumns, productsTableToolbar, productsTableToolbarSearchList } from "../../products/config"
 import { subscriptionsTableColumns, subscriptionsTableToolbar, subscriptionsTableToolbarSearchList } from "../../subscriptions/config"
 import { wishlistsTableColumns, wishlistsTableToolbar, wishlistsTableToolbarSearchList } from "../../wishlists/config"
-import { attributesTableColumns, attributesTableToolbar, attributesTableToolbarSearchList } from "../../attributes/config"
-import { Textarea } from "@/components/ui/textarea"
+import StatisticsPage from "../../stats/page"
 
 export default function ProductTabs({ product, attributes, wishlist, calls, subscriptions, notifications, appointments, internalNotes, stats, history }: any) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
@@ -187,6 +186,13 @@ export default function ProductTabs({ product, attributes, wishlist, calls, subs
                   {internalNotes.length > 0 ? (
                     <DataTable data={internalNotes} columns={internalNotesTableColumns} toolbar={internalNotesTableToolbar} toolbarSearchList={internalNotesTableToolbarSearchList} />
                   ) : (<ProductEmptyPlaceHolder title={'Internal Notes'} productName={product.name} />)}
+                </div>
+              </div>
+            </TabsContent>
+            <TabsContent value="calls" forceMount={true} hidden={activeTab !== "stats"}>
+              <div className="space-y-4 py-2 pb-4">
+                <div className="space-y-2">
+                  <StatisticsPage />
                 </div>
               </div>
             </TabsContent>
