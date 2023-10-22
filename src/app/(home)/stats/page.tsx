@@ -7,10 +7,6 @@ import {
 import { EyeIcon, HeartIcon, PhoneCallIcon, ThumbsUpIcon } from "lucide-react"
 import { StatisticsCharts } from "./components/charts/stats-charts"
 
-export const metadata = {
-  title: "Statistics",
-}
-
 export default function StatisticsPage() {
   return (
     <>
