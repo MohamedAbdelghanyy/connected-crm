@@ -106,6 +106,20 @@ async function getAppointments(customerID: string) {
   return userAppointments
 }
 
+async function getRequests(customerID: string) {
+  const data = await fs.readFile(
+    path.join(process.cwd(), "src/data/requests_data.json")
+  )
+  const requests = JSON.parse(data.toString())
+  let userRequests = [];
+  for (let i = 0; i < requests.length; i++) {
+    if (requests[i].customerID == customerID) {
+      userRequests.push(requests[i]);
+    }
+  }
+  return userRequests
+}
+
 async function getInternalNotes(customerID: string) {
   const data = await fs.readFile(
     path.join(process.cwd(), "src/data/internal_notes_data.json")
@@ -144,6 +158,7 @@ export default async function CustomerPage({ params }: { params: { customer: str
   const calls = await getCalls(customerID)
   const subscriptions = await getSubscriptions(customerID)
   const notifications = await getNotifications(customerID)
+  const requests = await getRequests(customerID)
   const appointments = await getAppointments(customerID)
   const internalNotes = await getInternalNotes(customerID)
   const stats = await getStats()
@@ -158,6 +173,7 @@ export default async function CustomerPage({ params }: { params: { customer: str
         calls={calls}
         subscriptions={subscriptions}
         notifications={notifications}
+        requests={requests}
         appointments={appointments}
         internalNotes={internalNotes}
         stats={stats}

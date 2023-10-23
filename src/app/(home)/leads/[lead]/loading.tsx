@@ -11,7 +11,7 @@ function ItemSkeleton() {
   )
 }
 
-export default function UserLoading() {
+export default function LeadsLoading() {
   return (
     <DashboardShell className="mb-1">
       <Skeleton className="h-20" />

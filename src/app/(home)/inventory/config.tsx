@@ -3,16 +3,18 @@
 import { DataTableColumnHeader } from "@/components/table/data-table-column-header"
 import { ActionListProps, DataTableRowActions } from "@/components/table/data-table-row-actions"
 import { ToolbarProps, ToolbarSearchListProps } from "@/components/table/data-table-toolbar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Checkbox } from "@/components/ui/checkbox"
 import { ColumnDef } from "@tanstack/react-table"
 import { Check, X } from "lucide-react"
+import Link from "next/link"
 
-const usersActionList: ActionListProps[] = [
+const productsActionList: ActionListProps[] = [
   {
     type: "button",
     label: "View",
-    action: (id: string) => {
-      console.log('View: ' + id)
+    redirect: (id: string) => {
+      return "/products/" + id;
     }
   },
   {
@@ -31,29 +33,49 @@ const usersActionList: ActionListProps[] = [
   },
   {
     type: "dropdown",
-    label: "Security",
+    label: "Change Status",
     subActions: [
       {
         type: "button",
-        label: "Permissions",
+        label: "Activate",
         action: (id: string) => {
-          console.log('Permissions: ' + id)
+          console.log('Activate: ' + id)
         }
       },
       {
         type: "button",
-        label: "Claims",
+        label: "De-activate",
         action: (id: string) => {
-          console.log('Claims: ' + id)
+          console.log('De-activate: ' + id)
         }
       },
       {
         type: "button",
-        label: "Lock",
+        label: "Ban",
         action: (id: string) => {
-          console.log('Lock: ' + id)
+          console.log('Ban: ' + id)
         }
       }
+    ]
+  },
+  {
+    type: "dropdown",
+    label: "Requests",
+    subActions: [
+      {
+        type: "button",
+        label: "Create Request",
+        action: (id: string) => {
+          console.log('Create Req.: ' + id)
+        }
+      },
+      {
+        type: "button",
+        label: "View Requests",
+        action: (id: string) => {
+          console.log('View Req.: ' + id)
+        }
+      },
     ]
   },
   {
@@ -62,44 +84,18 @@ const usersActionList: ActionListProps[] = [
     subActions: [
       {
         type: "button",
-        label: "Leads",
+        label: "Highlights",
         action: (id: string) => {
-          console.log('Leads: ' + id)
+          console.log('Highlights: ' + id)
         }
-      },
-      {
-        type: "button",
-        label: "Customers",
-        action: (id: string) => {
-          console.log('Customers: ' + id)
-        }
-      },
-      {
-        type: "button",
-        label: "Requests",
-        action: (id: string) => {
-          console.log('Requests: ' + id)
-        }
-      },
+      }
     ]
   }
 ]
 
-// Options
-const roleNames = [
-  {
-    value: "Admin",
-    label: "Admin",
-  },
-  {
-    value: "Super Admin",
-    label: "Super Admin",
-  }
-]
+export const productsTableToolbar: ToolbarProps[] = []
 
-export const usersTableToolbar: ToolbarProps[] = []
-
-export const usersTableToolbarSearchList: ToolbarSearchListProps[] = [
+export const productsTableToolbarSearchList: ToolbarSearchListProps[] = [
   {
     key: 'id',
     title: 'ID'
@@ -109,68 +105,69 @@ export const usersTableToolbarSearchList: ToolbarSearchListProps[] = [
     title: 'Name'
   },
   {
-    key: 'email',
-    title: 'Email'
+    key: 'price',
+    title: 'Price'
   },
   {
-    key: 'jobTitle',
-    title: 'Job Title'
+    key: 'category',
+    title: 'Category'
   },
   {
-    key: 'roles',
-    title: 'Roles'
+    key: 'brand',
+    title: 'Brand'
   },
   {
-    key: 'phoneNumber',
-    title: 'Phone Number'
+    key: 'views',
+    title: 'Views'
   },
   {
-    key: 'active',
-    title: 'Active'
+    key: 'wishlisted',
+    title: 'Wishlisted'
   },
   {
-    key: 'lockout',
-    title: 'Lock Out'
+    key: 'interactions',
+    title: 'Interactions'
   },
   {
-    key: 'emailConfirmed',
-    title: 'Email Confirmed'
+    key: 'noOfRequests',
+    title: 'No. Of Requests'
   },
   {
-    key: 'twoFactorAuth',
-    title: 'Two Factor Auth'
+    key: 'dateItemAdded',
+    title: 'Adding Date'
   },
   {
-    key: 'accessFailed',
-    title: 'Access Failed'
+    key: 'dateItemReserved',
+    title: 'Reservation Date'
   },
   {
-    key: 'creationTime',
-    title: 'Creation Time'
+    key: 'dateItemSold',
+    title: 'Sold Out Date'
   },
   {
-    key: 'modificationTime',
-    title: 'Modification Time'
+    key: 'lastupdated',
+    title: 'Last Updated'
   }
 ]
 
-interface UsersProps {
+interface ProductsProps {
   id: string
+  image: string
   name: string
-  email: string
-  jobTitle: string
-  roles: string
-  phoneNumber: string
-  active: boolean
-  lockout: boolean
-  emailConfirmed: boolean
-  twoFactorAuth: boolean
-  accessFailed: number
-  creationTime: string
-  modificationTime: string
+  price: number
+  brand: string
+  category: string
+  views: number
+  wishlisted: number
+  interactions: number
+  noOfRequests: number
+  dateItemAdded: string
+  dateItemReserved: string
+  dateItemSold: string
+  lastupdated: string
 }
 
-export const usersTableColumns: ColumnDef<UsersProps>[] = [
+export const productsTableColumns: ColumnDef<ProductsProps>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -193,10 +190,6 @@ export const usersTableColumns: ColumnDef<UsersProps>[] = [
     enableHiding: false,
   },
   {
-    id: "actions",
-    cell: ({ row }) => <DataTableRowActions row={row} actionList={usersActionList} />,
-  },
-  {
     accessorKey: "id",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="ID" />
@@ -204,6 +197,21 @@ export const usersTableColumns: ColumnDef<UsersProps>[] = [
     cell: ({ row }) => <div className="w-[80px]">{row.getValue("id")}</div>,
     enableSorting: false,
     enableHiding: false,
+  },
+  {
+    accessorKey: "image",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Image" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <Avatar style={{ width: "150px", height: "100px", borderRadius: "5px" }}>
+          <AvatarImage src={row.getValue("image")} alt="avatar" style={{ objectFit: "cover" }} />
+          <AvatarFallback>{row.getValue("name")}</AvatarFallback>
+        </Avatar>
+      )
+    },
+    enableSorting: false,
   },
   {
     accessorKey: "name",
@@ -221,176 +229,172 @@ export const usersTableColumns: ColumnDef<UsersProps>[] = [
     },
   },
   {
-    accessorKey: "email",
+    accessorKey: "price",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Email" />
+      <DataTableColumnHeader column={column} title="Price" />
     ),
     cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("email")}
+            {row.getValue("price")}
           </span>
         </div>
       )
     },
   },
   {
-    accessorKey: "jobTitle",
+    accessorKey: "category",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Job Title" />
+      <DataTableColumnHeader column={column} title="Category" />
     ),
     cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("jobTitle")}
+            <Link href={'#'}>{row.getValue("category")}</Link>
           </span>
         </div>
       )
     },
   },
   {
-    accessorKey: "roles",
+    accessorKey: "brand",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Roles" />
+      <DataTableColumnHeader column={column} title="Brand" />
     ),
     cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("roles")}
+            <Link href={'#'}>{row.getValue("brand")}</Link>
           </span>
         </div>
       )
     },
   },
   {
-    accessorKey: "phoneNumber",
+    accessorKey: "views",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Phone Number" />
+      <DataTableColumnHeader column={column} title="Views" />
     ),
     cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("phoneNumber")}
+            {row.getValue("views")}
           </span>
         </div>
       )
     },
   },
   {
-    accessorKey: "active",
+    accessorKey: "wishlisted",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Active" />
-    ),
-    cell: ({ row }) => {
-      return (
-        <div className="space-x-2">
-          <center>
-            <span className="max-w-[500px] truncate font-medium">
-              {row.getValue("active") ? (<Check color="green" />) : (<X color="red" />)}
-            </span>
-          </center>
-        </div>
-      )
-    },
-  },
-  {
-    accessorKey: "lockout",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Lockout" />
-    ),
-    cell: ({ row }) => {
-      return (
-        <div className="space-x-2">
-          <center>
-            <span className="max-w-[500px] truncate font-medium">
-              {row.getValue("lockout") ? (<Check color="green" />) : (<X color="red" />)}
-            </span>
-          </center>
-        </div>
-      )
-    },
-  },
-  {
-    accessorKey: "emailConfirmed",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Email Confirmed" />
-    ),
-    cell: ({ row }) => {
-      return (
-        <div className="space-x-2">
-          <center>
-            <span className="max-w-[500px] truncate font-medium">
-              {row.getValue("emailConfirmed") ? (<Check color="green" />) : (<X color="red" />)}
-            </span>
-          </center>
-        </div>
-      )
-    },
-  },
-  {
-    accessorKey: "twoFactorAuth",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Two Factor Auth" />
-    ),
-    cell: ({ row }) => {
-      return (
-        <div className="space-x-2">
-          <center>
-            <span className="max-w-[500px] truncate font-medium">
-              {row.getValue("twoFactorAuth") ? (<Check color="green" />) : (<X color="red" />)}
-            </span>
-          </center>
-        </div>
-      )
-    },
-  },
-  {
-    accessorKey: "accessFailed",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Access Failed" />
+      <DataTableColumnHeader column={column} title="Wishlisted" />
     ),
     cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("accessFailed")}
+            {row.getValue("wishlisted")}
           </span>
         </div>
       )
     },
   },
   {
-    accessorKey: "creationTime",
+    accessorKey: "interactions",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Creation Time" />
+      <DataTableColumnHeader column={column} title="Interactions" />
     ),
     cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("creationTime")}
+            {row.getValue("interactions")}
           </span>
         </div>
       )
     },
   },
   {
-    accessorKey: "modificationTime",
+    accessorKey: "noOfRequests",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Modification Time" />
+      <DataTableColumnHeader column={column} title="Requests" />
     ),
     cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("modificationTime")}
+            {row.getValue("noOfRequests")}
           </span>
         </div>
       )
     },
+  },
+  {
+    accessorKey: "dateItemAdded",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Adding Date" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex space-x-2">
+          <span className="max-w-[500px] truncate font-medium">
+            {row.getValue("dateItemAdded")}
+          </span>
+        </div>
+      )
+    },
+  },
+  {
+    accessorKey: "dateItemReserved",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Reservation Date" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex space-x-2">
+          <span className="max-w-[500px] truncate font-medium">
+            {row.getValue("dateItemReserved")}
+          </span>
+        </div>
+      )
+    },
+  },
+  {
+    accessorKey: "dateItemSold",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Sold Out Date" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex space-x-2">
+          <span className="max-w-[500px] truncate font-medium">
+            {row.getValue("dateItemSold")}
+          </span>
+        </div>
+      )
+    },
+  },
+  {
+    accessorKey: "lastupdated",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Last Updated" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex space-x-2">
+          <span className="max-w-[500px] truncate font-medium">
+            {row.getValue("lastupdated")}
+          </span>
+        </div>
+      )
+    },
+  },
+  {
+    id: "actions",
+    cell: ({ row }) => <DataTableRowActions row={row} actionList={productsActionList} />,
   },
 ]

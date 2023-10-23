@@ -32,6 +32,14 @@ export const dashboardConfig: DashboardConfig = {
       icon: "merchants",
     },
     {
+      title: "Inventory",
+    },
+    {
+      title: "Inventory",
+      href: "/inventory",
+      icon: "inventory",
+    },
+    {
       title: "Catalog",
     },
     {

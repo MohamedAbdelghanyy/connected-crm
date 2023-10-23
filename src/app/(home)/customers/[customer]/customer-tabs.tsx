@@ -19,8 +19,9 @@ import { notificationsTableColumns, notificationsTableToolbar, notificationsTabl
 import { productsTableColumns, productsTableToolbar, productsTableToolbarSearchList } from "../../products/config"
 import { subscriptionsTableColumns, subscriptionsTableToolbar, subscriptionsTableToolbarSearchList } from "../../subscriptions/config"
 import { wishlistsTableColumns, wishlistsTableToolbar, wishlistsTableToolbarSearchList } from "../../wishlists/config"
+import { requestsTableColumns, requestsTableToolbar, requestsTableToolbarSearchList } from "../../requests/config"
 
-export default function CustomerTabs({ customer, products, wishlist, calls, subscriptions, notifications, appointments, internalNotes, stats, history }: any) {
+export default function CustomerTabs({ customer, products, wishlist, calls, subscriptions, notifications, requests, appointments, internalNotes, stats, history }: any) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
   const [activeTab, setActiveTab] = React.useState("info")
   const { push } = useRouter();
@@ -42,19 +43,22 @@ export default function CustomerTabs({ customer, products, wishlist, calls, subs
           <div>
             <TabsList className="w-full h-full">
               <Grid container spacing={1}>
-                <Grid item sm={2.4} xs={6}>
+                <Grid item sm={2} xs={6}>
                   <TabsTrigger value="info" className="w-full">Info</TabsTrigger>
                 </Grid>
-                <Grid item sm={2.4} xs={6}>
+                <Grid item sm={2} xs={6}>
                   <TabsTrigger value="products" className="w-full">Products</TabsTrigger>
                 </Grid>
-                <Grid item sm={2.4} xs={6}>
+                <Grid item sm={2} xs={6}>
                   <TabsTrigger value="wishlist" className="w-full">Wishlist</TabsTrigger>
                 </Grid>
-                <Grid item sm={2.4} xs={6}>
+                <Grid item sm={2} xs={6}>
+                  <TabsTrigger value="requests" className="w-full">Requests</TabsTrigger>
+                </Grid>
+                <Grid item sm={2} xs={6}>
                   <TabsTrigger value="calls" className="w-full">Calls</TabsTrigger>
                 </Grid>
-                <Grid item sm={2.4} xs={6}>
+                <Grid item sm={2} xs={6}>
                   <TabsTrigger value="subscriptions" className="w-full">Subscriptions</TabsTrigger>
                 </Grid>
                 <Grid item sm={2.4} xs={6}>
@@ -178,6 +182,15 @@ export default function CustomerTabs({ customer, products, wishlist, calls, subs
                   {subscriptions.length > 0 ? (
                     <DataTable data={subscriptions} columns={subscriptionsTableColumns} toolbar={subscriptionsTableToolbar} toolbarSearchList={subscriptionsTableToolbarSearchList} />
                   ) : (<CustomEmptyPlaceHolder title={'Subscriptions'} customerName={customer.name} />)}
+                </div>
+              </div>
+            </TabsContent>
+            <TabsContent value="requests" forceMount={true} hidden={activeTab !== "requests"}>
+              <div className="space-y-4 py-2 pb-4">
+                <div className="space-y-2">
+                  {requests.length > 0 ? (
+                    <DataTable data={requests} columns={requestsTableColumns} toolbar={requestsTableToolbar} toolbarSearchList={requestsTableToolbarSearchList} />
+                  ) : (<CustomEmptyPlaceHolder title={'Requests'} customerName={customer.name} />)}
                 </div>
               </div>
             </TabsContent>

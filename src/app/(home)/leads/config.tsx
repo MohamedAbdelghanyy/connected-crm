@@ -7,12 +7,11 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { ColumnDef } from "@tanstack/react-table"
 
 const leadsActionList: ActionListProps[] = [
-
   {
     type: "button",
     label: "View",
-    action: (id: string) => {
-      console.log('View: ' + id)
+    redirect: (id: string) => {
+      return "/leads/" + id;
     }
   },
   {

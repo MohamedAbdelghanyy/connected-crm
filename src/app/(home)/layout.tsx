@@ -2,9 +2,9 @@
 import ChangeCountrySelect from "@/components/change-country"
 import { MainNav } from "@/components/main-nav"
 import { DashboardNav } from "@/components/nav"
+import { NotificationsNav } from "@/components/notifications-nav"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { UserAccountNav } from "@/components/user-account-nav"
 import { dashboardConfig } from "@/config/dashboard"
 
@@ -24,6 +24,7 @@ export default async function DashboardLayout({
             <MainNav items={dashboardConfig.mainNav} sideItems={dashboardConfig.sidebarNav} />
             <div className="flex h-16 items-center py-4">
               <ChangeCountrySelect />
+              <NotificationsNav />
               <UserAccountNav
                 user={{
                   name: "Mohamed Abdelghany",

@@ -196,7 +196,7 @@ export const requestsTableColumns: ColumnDef<RequestsProps>[] = [
   {
     accessorKey: "customerName",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Customer Name" />
+      <DataTableColumnHeader column={column} title="Name" />
     ),
     cell: ({ row }) => {
       return (
@@ -211,7 +211,7 @@ export const requestsTableColumns: ColumnDef<RequestsProps>[] = [
   {
     accessorKey: "customerMobile",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Customer Mobile" />
+      <DataTableColumnHeader column={column} title="Mobile" />
     ),
     cell: ({ row }) => {
       return (
