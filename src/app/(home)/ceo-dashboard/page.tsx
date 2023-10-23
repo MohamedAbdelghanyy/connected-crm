@@ -10,6 +10,9 @@ import { Top10ContactOwner } from "./components/top-10/top-10-contact-owner"
 import { Top10Searched } from "./components/top-10/top-10-searched"
 import { Top10Shared } from "./components/top-10/top-10-shared"
 import { Top10Viewed } from "./components/top-10/top-10-viewed"
+import { EmptyPlaceholder } from "@/components/empty-placeholder"
+import { DataTable } from "@/components/table/data-table"
+import { DashboardAppointments } from "./components/dashboard-appointments"
 
 export const metadata = {
   title: "Dashboard",
@@ -128,6 +131,7 @@ export default function CEODashboardPage() {
       </div>
       <div className="mt-4">
         <DashboardCharts />
+        <DashboardAppointments />
         <Grid container spacing={2}>
           <Grid item lg={6} xs={12}>
             <Top10Viewed />
