@@ -77,24 +77,24 @@ export function DataTableRowActions<TData>({
                           {
                             action.subActions.map((subAction) => (
                               subAction.subActions ? (
-                                <DropdownMenuSub>
+                                <DropdownMenuSub key={subAction.label}>
                                   <DropdownMenuSubTrigger>
                                     <span>{subAction.label}</span>
                                   </DropdownMenuSubTrigger>
                                   <DropdownMenuPortal>
                                     <DropdownMenuSubContent>
                                       {
-                                        subAction.subActions.map((subAction) => (
+                                        subAction.subActions.map((subAction2) => (
                                           <DropdownMenuItem
-                                            key={subAction.label}
+                                            key={subAction2.label}
                                             onClick={() => {
-                                              if (subAction.action) {
-                                                subAction.action(row.getValue('id'));
-                                              } else if (subAction.redirect) {
-                                                push(subAction.redirect(row.getValue('id')));
+                                              if (subAction2.action) {
+                                                subAction2.action(row.getValue('id'));
+                                              } else if (subAction2.redirect) {
+                                                push(subAction2.redirect(row.getValue('id')));
                                               }
                                             }}>
-                                            <span>{subAction.label}</span>
+                                            <span>{subAction2.label}</span>
                                           </DropdownMenuItem>
                                         ))}
                                     </DropdownMenuSubContent>
