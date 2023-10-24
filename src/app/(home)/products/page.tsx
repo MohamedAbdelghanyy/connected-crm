@@ -30,20 +30,23 @@ export default async function ProductsPage() {
     <>
       <DashboardShell className="mb-1">
         <DashboardHeader heading="Products" text="Manage your products">
-          <Link href="/products/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" />Add Product</Link>
+          <div>
+            <Link href="/products/add" className={cn(buttonVariants({})) + ' mr-2'}><Icons.add className="mr-2 h-4 w-4" />Add Product</Link>
+            <Link href="/products/deleted" className={cn(buttonVariants({}))}><Icons.delete className="mr-2 h-4 w-4" />Deleted Products</Link>
+          </div>
         </DashboardHeader>
       </DashboardShell>
       <div className="m-2">
-          {products.length > 0 ? (
-            <DataTable data={products} columns={productsTableColumns} toolbar={productsTableToolbar} toolbarSearchList={productsTableToolbarSearchList} />
-          ) : (<EmptyPlaceholder>
-            <EmptyPlaceholder.Icon name="post" />
-            <EmptyPlaceholder.Title>No Products</EmptyPlaceholder.Title>
-            <EmptyPlaceholder.Description>
-              You don&apos;t have any products yet.
-            </EmptyPlaceholder.Description>
-            <Link href="/products/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Product</Link>
-          </EmptyPlaceholder>)}
+        {products.length > 0 ? (
+          <DataTable data={products} columns={productsTableColumns} toolbar={productsTableToolbar} toolbarSearchList={productsTableToolbarSearchList} />
+        ) : (<EmptyPlaceholder>
+          <EmptyPlaceholder.Icon name="post" />
+          <EmptyPlaceholder.Title>No Products</EmptyPlaceholder.Title>
+          <EmptyPlaceholder.Description>
+            You don&apos;t have any products yet.
+          </EmptyPlaceholder.Description>
+          <Link href="/products/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Product</Link>
+        </EmptyPlaceholder>)}
       </div>
     </>
   )

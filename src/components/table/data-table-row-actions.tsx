@@ -63,7 +63,7 @@ export function DataTableRowActions<TData>({
                     onClick={() => {
                       if (action.action) {
                         action.action(row.getValue('id'));
-                      }else if(action.redirect){
+                      } else if (action.redirect) {
                         push(action.redirect(row.getValue('id')));
                       }
                     }}>{action.label}</DropdownMenuItem>)
@@ -76,17 +76,41 @@ export function DataTableRowActions<TData>({
                         <DropdownMenuSubContent>
                           {
                             action.subActions.map((subAction) => (
-                              <DropdownMenuItem
-                                key={subAction.label}
-                                onClick={() => {
-                                  if (subAction.action) {
-                                    subAction.action(row.getValue('id'));
-                                  }else if(subAction.redirect){
-                                    push(subAction.redirect(row.getValue('id')));
-                                  }
-                                }}>
-                                <span>{subAction.label}</span>
-                              </DropdownMenuItem>
+                              subAction.subActions ? (
+                                <DropdownMenuSub>
+                                  <DropdownMenuSubTrigger>
+                                    <span>{subAction.label}</span>
+                                  </DropdownMenuSubTrigger>
+                                  <DropdownMenuPortal>
+                                    <DropdownMenuSubContent>
+                                      {
+                                        subAction.subActions.map((subAction) => (
+                                          <DropdownMenuItem
+                                            key={subAction.label}
+                                            onClick={() => {
+                                              if (subAction.action) {
+                                                subAction.action(row.getValue('id'));
+                                              } else if (subAction.redirect) {
+                                                push(subAction.redirect(row.getValue('id')));
+                                              }
+                                            }}>
+                                            <span>{subAction.label}</span>
+                                          </DropdownMenuItem>
+                                        ))}
+                                    </DropdownMenuSubContent>
+                                  </DropdownMenuPortal>
+                                </DropdownMenuSub>) :
+                                (<DropdownMenuItem
+                                  key={subAction.label}
+                                  onClick={() => {
+                                    if (subAction.action) {
+                                      subAction.action(row.getValue('id'));
+                                    } else if (subAction.redirect) {
+                                      push(subAction.redirect(row.getValue('id')));
+                                    }
+                                  }}>
+                                  <span>{subAction.label}</span>
+                                </DropdownMenuItem>)
                             ))}
                         </DropdownMenuSubContent>
                       </DropdownMenuPortal>

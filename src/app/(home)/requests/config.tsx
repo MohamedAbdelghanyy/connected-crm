@@ -12,8 +12,8 @@ const requestsActionList: ActionListProps[] = [
   {
     type: "button",
     label: "View",
-    action: (id: string) => {
-      console.log('View: ' + id)
+    redirect: (id: string) => {
+      return "/requests/" + id;
     }
   },
   {

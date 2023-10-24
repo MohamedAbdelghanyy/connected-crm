@@ -54,7 +54,8 @@ import {
   X,
   Zap,
   type IconNode as LucideIcon,
-  Package
+  Package,
+  Trash2
 } from "lucide-react"
 
 export type Icon = LucideIcon
@@ -87,6 +88,7 @@ export const Icons = {
   billing: CreditCard,
   ellipsis: MoreVertical,
   add: Plus,
+  delete: Trash2,
   warning: AlertTriangle,
   user: User,
   arrowRight: ArrowRight,
