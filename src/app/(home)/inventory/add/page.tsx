@@ -2,6 +2,7 @@
 
 import FormAddButton from "@/components/forms/form-add-button"
 import { DashboardHeader } from "@/components/header"
+import ImagesTable from "@/components/images-table/images-table"
 import { DashboardShell } from "@/components/shell"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -140,24 +141,7 @@ export default function AddItemPage() {
               </div>
             </TabsContent>
             <TabsContent value="media" forceMount={true} hidden={activeTab !== "media"}>
-              <div className="space-y-4 py-2 pb-4">
-                <div className="space-y-2">
-                  <Label htmlFor="thumbnail">Thumbnail</Label>
-                  <Input type="file" id="thumbnail" />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="mediaLow">Media Low</Label>
-                  <Input type="file" id="mediaLow" />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="mediaMid">MediaHigh</Label>
-                  <Input type="file" id="mediaMid" />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="mediaHigh">MediaHigh</Label>
-                  <Input type="file" id="mediaHigh" />
-                </div>
-              </div>
+              <ImagesTable showAddButton={true} />
             </TabsContent>
             <TabsContent value="price" forceMount={true} hidden={activeTab !== "price"}>
               <div className="space-y-4 py-2 pb-4">

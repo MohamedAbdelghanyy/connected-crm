@@ -2,6 +2,7 @@
 
 import { EmptyPlaceholder } from "@/components/empty-placeholder"
 import { DashboardHeader } from "@/components/header"
+import ImagesTable from "@/components/images-table/images-table"
 import { DashboardShell } from "@/components/shell"
 import { DataTable } from "@/components/table/data-table"
 import { Input } from "@/components/ui/input"
@@ -16,9 +17,9 @@ import { attributesTableColumns, attributesTableToolbar, attributesTableToolbarS
 import { callsTableColumns, callsTableToolbar, callsTableToolbarSearchList } from "../../calls/config"
 import { internalNotesTableColumns, internalNotesTableToolbar, internalNotesTableToolbarSearchList } from "../../internal-notes/config"
 import { notificationsTableColumns, notificationsTableToolbar, notificationsTableToolbarSearchList } from "../../notifications/config"
+import StatisticsPage from "../../stats/page"
 import { subscriptionsTableColumns, subscriptionsTableToolbar, subscriptionsTableToolbarSearchList } from "../../subscriptions/config"
 import { wishlistsTableColumns, wishlistsTableToolbar, wishlistsTableToolbarSearchList } from "../../wishlists/config"
-import StatisticsPage from "../../stats/page"
 
 export default function ProductTabs({ product, attributes, wishlist, calls, subscriptions, notifications, appointments, internalNotes, stats, history }: any) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
@@ -107,6 +108,13 @@ export default function ProductTabs({ product, attributes, wishlist, calls, subs
                 <div className="space-y-2">
                   <Label htmlFor="status">Status</Label>
                   <Input id="status" value={product.status} readOnly />
+                </div>
+              </div>
+            </TabsContent>
+            <TabsContent value="media" forceMount={true} hidden={activeTab !== "media"}>
+              <div className="space-y-4 py-2 pb-4">
+                <div style={{ marginTop: '-14px' }}>
+                  <ImagesTable showAddButton={false} />
                 </div>
               </div>
             </TabsContent>

@@ -2,6 +2,7 @@
 
 import FormAddButton from "@/components/forms/form-add-button"
 import { DashboardHeader } from "@/components/header"
+import ImagesTable from "@/components/images-table/images-table"
 import { DashboardShell } from "@/components/shell"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -36,9 +37,9 @@ export default function AddItemPage() {
   const add = () => {
     console.log("Added");
   }
-  
+
   return (
-    <>       
+    <>
       <DashboardShell className="mb-1">
         <DashboardHeader heading="Add Item" text="Enter item's details"></DashboardHeader>
       </DashboardShell>
@@ -159,29 +160,12 @@ export default function AddItemPage() {
               </div>
             </TabsContent>
             <TabsContent value="media" forceMount={true} hidden={activeTab !== "media"}>
-              <div className="space-y-4 py-2 pb-4">
-                <div className="space-y-2">
-                  <Label htmlFor="thumbnail">Thumbnail</Label>
-                  <Input type="file" id="thumbnail" />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="mediaLow">Media Low</Label>
-                  <Input type="file" id="mediaLow" />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="mediaMid">MediaHigh</Label>
-                  <Input type="file" id="mediaMid" />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="mediaHigh">MediaHigh</Label>
-                  <Input type="file" id="mediaHigh" />
-                </div>
-              </div>
+              <ImagesTable showAddButton={true} />
             </TabsContent>
             <TabsContent value="price" forceMount={true} hidden={activeTab !== "price"}>
               <div className="space-y-4 py-2 pb-4">
-                <div className="space-y-2" style={{justifyContent: "space-between", display: "flex"}}>
-                  <Label style={{textAlign: "left"}} className="mt-3">Enable Show Price</Label>
+                <div className="space-y-2" style={{ justifyContent: "space-between", display: "flex" }}>
+                  <Label style={{ textAlign: "left" }} className="mt-3">Enable Show Price</Label>
                   <Switch
                     id="enableShowPrice"
                     checked={enableShowPrice}
@@ -294,43 +278,43 @@ export default function AddItemPage() {
                   <Label htmlFor="categoryIndex">Category Index</Label>
                   <Input type="number" id="categoryIndex" placeholder="Enter index" />
                 </div>
-                <div className="space-y-2" style={{justifyContent: "space-between", display: "flex"}}>
-                  <Label style={{textAlign: "left"}} className="mt-3">Summer Product</Label>
+                <div className="space-y-2" style={{ justifyContent: "space-between", display: "flex" }}>
+                  <Label style={{ textAlign: "left" }} className="mt-3">Summer Product</Label>
                   <Switch
                     checked={isSummerProduct}
                     onCheckedChange={setIsSummerProduct}
                   />
                 </div>
-                <div className="space-y-2" style={{justifyContent: "space-between", display: "flex"}}>
-                  <Label style={{textAlign: "left"}} className="mt-3">Request Camera Professional</Label>
+                <div className="space-y-2" style={{ justifyContent: "space-between", display: "flex" }}>
+                  <Label style={{ textAlign: "left" }} className="mt-3">Request Camera Professional</Label>
                   <Switch
                     checked={requestCamera}
                     onCheckedChange={setRequestCamera}
                   />
                 </div>
-                <div className="space-y-2" style={{justifyContent: "space-between", display: "flex"}}>
-                  <Label style={{textAlign: "left"}} className="mt-3">Request Pricing Consultancy</Label>
+                <div className="space-y-2" style={{ justifyContent: "space-between", display: "flex" }}>
+                  <Label style={{ textAlign: "left" }} className="mt-3">Request Pricing Consultancy</Label>
                   <Switch
                     checked={requestPricing}
                     onCheckedChange={setRequestPricing}
                   />
                 </div>
-                <div className="space-y-2" style={{justifyContent: "space-between", display: "flex"}}>
-                  <Label style={{textAlign: "left"}} className="mt-3">VIP Services</Label>
+                <div className="space-y-2" style={{ justifyContent: "space-between", display: "flex" }}>
+                  <Label style={{ textAlign: "left" }} className="mt-3">VIP Services</Label>
                   <Switch
                     checked={requestVIP}
                     onCheckedChange={setRequestVIP}
                   />
                 </div>
-                <div className="space-y-2" style={{justifyContent: "space-between", display: "flex"}}>
-                  <Label style={{textAlign: "left"}} className="mt-3">Sponsored</Label>
+                <div className="space-y-2" style={{ justifyContent: "space-between", display: "flex" }}>
+                  <Label style={{ textAlign: "left" }} className="mt-3">Sponsored</Label>
                   <Switch
                     checked={isSponsored}
                     onCheckedChange={setIsSponsored}
                   />
                 </div>
-                <div className="space-y-2" style={{justifyContent: "space-between", display: "flex"}}>
-                  <Label style={{textAlign: "left"}} className="mt-3">Sold By Connected</Label>
+                <div className="space-y-2" style={{ justifyContent: "space-between", display: "flex" }}>
+                  <Label style={{ textAlign: "left" }} className="mt-3">Sold By Connected</Label>
                   <Switch
                     checked={isSoldByConnected}
                     onCheckedChange={setIsSoldByConnected}

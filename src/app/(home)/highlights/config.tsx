@@ -7,7 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Checkbox } from "@/components/ui/checkbox"
 import { ColumnDef } from "@tanstack/react-table"
 
-const highlightsActionList : ActionListProps[] = [
+const highlightsActionList: ActionListProps[] = [
   {
     type: "button",
     label: "View",
@@ -51,9 +51,9 @@ const highlightsActionList : ActionListProps[] = [
   }
 ]
 
-export const highlightsTableToolbar : ToolbarProps[] = []
+export const highlightsTableToolbar: ToolbarProps[] = []
 
-export const highlightsTableToolbarSearchList : ToolbarSearchListProps[] = [
+export const highlightsTableToolbarSearchList: ToolbarSearchListProps[] = [
   {
     key: 'id',
     title: 'ID'
@@ -108,8 +108,8 @@ export const highlightsTableColumns: ColumnDef<HighlightsProps>[] = [
     ),
     cell: ({ row }) => {
       return (
-        <Avatar style={{width: "150px", height: "100px", borderRadius: "5px", backgroundColor: "#FFF"}}>
-          <AvatarImage src={row.getValue("image")} alt="avatar" style={{objectFit: "cover"}} />
+        <Avatar style={{ width: "150px", height: "100px", borderRadius: "5px", backgroundColor: "#FFF" }}>
+          <AvatarImage src={row.getValue("image")} alt="avatar" style={{ objectFit: "cover" }} />
           <AvatarFallback>{row.getValue("name")}</AvatarFallback>
         </Avatar>
       )
@@ -133,6 +133,6 @@ export const highlightsTableColumns: ColumnDef<HighlightsProps>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }) => <DataTableRowActions row={row} actionList={highlightsActionList}  />,
+    cell: ({ row }) => <DataTableRowActions row={row} actionList={highlightsActionList} />,
   },
 ]
