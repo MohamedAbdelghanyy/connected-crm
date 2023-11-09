@@ -28,7 +28,7 @@ export function TechDashboardSecurityLogs() {
   return (
     <Card className="col-span-4">
       <CardHeader>
-        <CardTitle className="text-md font-medium">Today's Security Logs</CardTitle>
+        <CardTitle className="text-md font-medium">{"Today's Security Logs"}</CardTitle>
       </CardHeader>
       <CardContent>
         {securityLogs.length > 0 ? (

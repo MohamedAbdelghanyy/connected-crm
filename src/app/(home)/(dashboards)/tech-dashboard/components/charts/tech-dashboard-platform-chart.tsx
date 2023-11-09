@@ -78,7 +78,7 @@ export function TechDashboardPlatformChart() {
                   <SelectValue placeholder={months[(new Date().getMonth())]} />
                 </SelectTrigger>
                 <SelectContent>
-                  {months.map((month) => (<SelectItem value={month}>{month}</SelectItem>))}
+                  {months.map((month) => (<SelectItem key={month} value={month}>{month}</SelectItem>))}
                 </SelectContent>
               </Select>
             </div>

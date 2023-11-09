@@ -26,7 +26,7 @@ export function TechDashboardAuditLogs() {
   return (
     <Card className="col-span-4">
       <CardHeader>
-        <CardTitle className="text-md font-medium">Today's Audit Logs</CardTitle>
+        <CardTitle className="text-md font-medium">{"Today's Audit Logs"}</CardTitle>
       </CardHeader>
       <CardContent>
         {auditLogs.length > 0 ? (

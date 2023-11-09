@@ -22,7 +22,7 @@ export function SalesDashboardAppointments() {
   return (
     <Card className="col-span-4">
       <CardHeader>
-        <CardTitle className="text-md font-medium">Today's Appointments</CardTitle>
+        <CardTitle className="text-md font-medium">{"Today's Appointments"}</CardTitle>
       </CardHeader>
       <CardContent>
         {appointments.length > 0 ? (

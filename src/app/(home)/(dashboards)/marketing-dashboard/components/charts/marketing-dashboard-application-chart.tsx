@@ -75,7 +75,7 @@ export function MarketingDashboardApplicationChart() {
                   <SelectValue placeholder={months[(new Date().getMonth())]} />
                 </SelectTrigger>
                 <SelectContent>
-                  {months.map((month) => (<SelectItem value={month}>{month}</SelectItem>))}
+                  {months.map((month) => (<SelectItem key={month} value={month}>{month}</SelectItem>))}
                 </SelectContent>
               </Select>
             </div>
@@ -83,7 +83,7 @@ export function MarketingDashboardApplicationChart() {
         </Grid>
       </CardHeader>
       <CardContent>
-        <Doughnut data={chartData} options={options}/>
+        <Doughnut data={chartData} options={options} />
       </CardContent>
     </Card>
   );

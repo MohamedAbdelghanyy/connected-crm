@@ -22,7 +22,7 @@ export function SalesDashboardCalls() {
   return (
     <Card className="col-span-4">
       <CardHeader>
-        <CardTitle className="text-md font-medium">Today's Calls</CardTitle>
+        <CardTitle className="text-md font-medium">{"Today's Calls"}</CardTitle>
       </CardHeader>
       <CardContent>
         {calls.length > 0 ? (
