@@ -1,6 +1,6 @@
 import { EmptyPlaceholder } from "@/components/empty-placeholder";
 import { DataTable } from "@/components/table/data-table";
-import { appointmentsTableColumns, appointmentsTableToolbar, appointmentsTableToolbarSearchList } from "../../appointments/config";
+import { appointmentsTableColumns, appointmentsTableToolbar, appointmentsTableToolbarSearchList } from "../../../appointments/config";
 
 const appointments = [
   {

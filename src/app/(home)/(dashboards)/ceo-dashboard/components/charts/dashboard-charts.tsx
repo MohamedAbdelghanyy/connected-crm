@@ -194,7 +194,7 @@ export function DashboardCharts() {
           </Grid>
         </Grid>
       </CardHeader>
-      <CardContent className="pl-2">
+      <CardContent>
         <Bar options={options} data={chartData} />
       </CardContent>
     </Card>

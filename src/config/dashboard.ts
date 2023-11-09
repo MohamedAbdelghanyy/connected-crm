@@ -19,6 +19,26 @@ export const dashboardConfig: DashboardConfig = {
       icon: "post",
     },
     {
+      title: "Sales Dashboard",
+      href: "/sales-dashboard",
+      icon: "post",
+    },
+    {
+      title: "Marketing Dashboard",
+      href: "/marketing-dashboard",
+      icon: "post",
+    },
+    {
+      title: "Tech Dashboard",
+      href: "/tech-dashboard",
+      icon: "post",
+    },
+    {
+      title: "Admin Dashboard",
+      href: "/admin-dashboard",
+      icon: "post",
+    },
+    {
       title: "Customers",
     },
     {

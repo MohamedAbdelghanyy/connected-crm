@@ -6,13 +6,11 @@ import {
 } from "@/components/ui/card"
 import Grid from '@mui/material/Grid'
 import { DashboardCharts } from "./components/charts/dashboard-charts"
-import { Top10ContactOwner } from "./components/top-10/top-10-contact-owner"
-import { Top10Searched } from "./components/top-10/top-10-searched"
-import { Top10Shared } from "./components/top-10/top-10-shared"
-import { Top10Viewed } from "./components/top-10/top-10-viewed"
-import { EmptyPlaceholder } from "@/components/empty-placeholder"
-import { DataTable } from "@/components/table/data-table"
 import { DashboardAppointments } from "./components/dashboard-appointments"
+import { Top10Viewed } from "../marketing-dashboard/top-10/top-10-viewed"
+import { Top10Shared } from "../marketing-dashboard/top-10/top-10-shared"
+import { Top10Searched } from "../marketing-dashboard/top-10/top-10-searched"
+import { Top10ContactOwner } from "../marketing-dashboard/top-10/top-10-contact-owner"
 
 export const metadata = {
   title: "Dashboard",
@@ -46,7 +44,7 @@ export default function CEODashboardPage() {
             </svg>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">12529</div>
+            <div className="text-2xl font-bold">{(12529).toLocaleString()}</div>
             <p className="text-xs text-muted-foreground">
               +1871 from last month
             </p>
@@ -95,7 +93,7 @@ export default function CEODashboardPage() {
             </svg>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">5273</div>
+            <div className="text-2xl font-bold">{(5273).toLocaleString()}</div>
             <p className="text-xs text-muted-foreground">
               +106 since yesterday
             </p>
@@ -122,7 +120,7 @@ export default function CEODashboardPage() {
             </svg>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">2350</div>
+            <div className="text-2xl font-bold">{(2350).toLocaleString()}</div>
             <p className="text-xs text-muted-foreground">
               +230 from last month
             </p>
