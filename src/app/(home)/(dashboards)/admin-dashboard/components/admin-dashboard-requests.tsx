@@ -22,7 +22,7 @@ export function AdminDashboardRequests() {
   return (
     <Card className="col-span-4">
       <CardHeader>
-        <CardTitle className="text-md font-medium">Today's Requests</CardTitle>
+        <CardTitle className="text-md font-medium">{"Today's Requests"}</CardTitle>
       </CardHeader>
       <CardContent>
         {requests.length > 0 ? (

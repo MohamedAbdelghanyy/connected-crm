@@ -10,10 +10,10 @@ import { MarketingDashboardApplicationChart } from "./components/charts/marketin
 import { MarketingDashboardMainChart } from "./components/charts/marketing-dashboard-main-chart"
 import { MarketingDashboardRequestsChart } from "./components/charts/marketing-dashboard-requests-chart"
 import { MarketingDashboardUsersChart } from "./components/charts/marketing-dashboard-users-chart"
-import { Top10ContactOwner } from "./top-10/top-10-contact-owner"
-import { Top10Searched } from "./top-10/top-10-searched"
-import { Top10Shared } from "./top-10/top-10-shared"
-import { Top10Viewed } from "./top-10/top-10-viewed"
+import { Top10ContactOwner } from "./components/top-10/top-10-contact-owner"
+import { Top10Searched } from "./components/top-10/top-10-searched"
+import { Top10Shared } from "./components/top-10/top-10-shared"
+import { Top10Viewed } from "./components/top-10/top-10-viewed"
 
 export const metadata = {
   title: "Marketing Dashboard",

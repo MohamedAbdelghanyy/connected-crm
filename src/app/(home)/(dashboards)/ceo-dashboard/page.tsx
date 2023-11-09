@@ -7,10 +7,10 @@ import {
 import Grid from '@mui/material/Grid'
 import { DashboardCharts } from "./components/charts/dashboard-charts"
 import { DashboardAppointments } from "./components/dashboard-appointments"
-import { Top10Viewed } from "../marketing-dashboard/top-10/top-10-viewed"
-import { Top10Shared } from "../marketing-dashboard/top-10/top-10-shared"
-import { Top10Searched } from "../marketing-dashboard/top-10/top-10-searched"
-import { Top10ContactOwner } from "../marketing-dashboard/top-10/top-10-contact-owner"
+import { Top10Viewed } from "../marketing-dashboard/components/top-10/top-10-viewed"
+import { Top10Shared } from "../marketing-dashboard/components/top-10/top-10-shared"
+import { Top10Searched } from "../marketing-dashboard/components/top-10/top-10-searched"
+import { Top10ContactOwner } from "../marketing-dashboard/components/top-10/top-10-contact-owner"
 
 export const metadata = {
   title: "Dashboard",
