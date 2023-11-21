@@ -7,7 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Checkbox } from "@/components/ui/checkbox"
 import { ColumnDef } from "@tanstack/react-table"
 
-const currenciesActionList : ActionListProps[] = [
+const countriesActionList: ActionListProps[] = [
   {
     type: "button",
     label: "Edit",
@@ -24,9 +24,9 @@ const currenciesActionList : ActionListProps[] = [
   }
 ]
 
-export const currenciesTableToolbar : ToolbarProps[] = []
+export const countriesTableToolbar: ToolbarProps[] = []
 
-export const currenciesTableToolbarSearchList : ToolbarSearchListProps[] = [
+export const countriesTableToolbarSearchList: ToolbarSearchListProps[] = [
   {
     key: 'id',
     title: 'ID'
@@ -35,14 +35,19 @@ export const currenciesTableToolbarSearchList : ToolbarSearchListProps[] = [
     key: 'name',
     title: 'Name'
   },
+  {
+    key: 'flag',
+    title: 'Flag'
+  }
 ]
 
-interface CurrenciesProps {
+interface CountriesProps {
   id: string
   name: string
+  flag: string
 }
 
-export const currenciesTableColumns: ColumnDef<CurrenciesProps>[] = [
+export const countriesTableColumns: ColumnDef<CountriesProps>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -89,7 +94,21 @@ export const currenciesTableColumns: ColumnDef<CurrenciesProps>[] = [
     },
   },
   {
+    accessorKey: "flag",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Flag" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <Avatar style={{ width: "60px", borderRadius: "5px" }}>
+          <AvatarImage src={row.getValue("flag")} alt="avatar" style={{ objectFit: "cover" }} />
+          <AvatarFallback>{row.getValue("name")}</AvatarFallback>
+        </Avatar>
+      )
+    },
+  },
+  {
     id: "actions",
-    cell: ({ row }) => <DataTableRowActions row={row} actionList={currenciesActionList}  />,
+    cell: ({ row }) => <DataTableRowActions row={row} actionList={countriesActionList} />,
   },
 ]

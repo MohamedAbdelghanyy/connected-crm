@@ -1,17 +1,14 @@
 [
   {
     "id": "CURR-123",
-    "name": "EGP",
-    "conversionRate": 1
+    "name": "EGP"
   },
   {
     "id": "CURR-456",
-    "name": "USD",
-    "conversionRate": 50.1
+    "name": "USD"
   },
   {
     "id": "CURR-789",
-    "name": "SAR",
-    "conversionRate": 11.9
+    "name": "SAR"
   }
 ]

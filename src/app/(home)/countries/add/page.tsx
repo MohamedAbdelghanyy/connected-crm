@@ -6,12 +6,11 @@ import { DashboardShell } from "@/components/shell"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Textarea } from "@/components/ui/textarea"
 import { Grid } from "@mui/material"
 import { useRouter } from "next/navigation"
 import * as React from "react"
 
-export default function AddCurrencyPage() {
+export default function AddCountryPage() {
   const router = useRouter()
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
   const [activeTab, setActiveTab] = React.useState("general")
@@ -23,7 +22,7 @@ export default function AddCurrencyPage() {
   return (
     <>
       <DashboardShell className="mb-1">
-        <DashboardHeader heading="Add Currency" text="Enter currency's details"></DashboardHeader>
+        <DashboardHeader heading="Add Country" text="Enter country's details"></DashboardHeader>
       </DashboardShell>
       <div className="space-y-4 pb-4 px-2">
         <div className="space-y-2"></div>
@@ -41,8 +40,12 @@ export default function AddCurrencyPage() {
             <TabsContent value="general" forceMount={true} hidden={activeTab !== "general"}>
               <div className="space-y-4 py-2 pb-4">
                 <div className="space-y-2">
-                  <Label htmlFor="name">Currency Name</Label>
-                  <Input id="name" placeholder="Enter currency's name" />
+                  <Label htmlFor="name">Country Name</Label>
+                  <Input id="name" placeholder="Enter country's name" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="flag">Flag</Label>
+                  <Input type="file" id="flag" placeholder="Select country flag" />
                 </div>
               </div>
             </TabsContent>

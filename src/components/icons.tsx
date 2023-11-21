@@ -56,7 +56,8 @@ import {
   type IconNode as LucideIcon,
   Package,
   Trash2,
-  BanknoteIcon
+  BanknoteIcon,
+  FlagIcon
 } from "lucide-react"
 
 export type Icon = LucideIcon
@@ -124,6 +125,7 @@ export const Icons = {
   mostLikedItems: ThumbsUpIcon,
   mostWishlistedItems: HeartIcon,
   currencies: BanknoteIcon,
+  countries: FlagIcon,
   organizationUnits: LayoutPanelTopIcon,
   roles: ShieldCheckIcon,
   users: User,
