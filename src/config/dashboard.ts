@@ -188,6 +188,11 @@ export const dashboardConfig: DashboardConfig = {
       title: "Administration",
     },
     {
+      title: "Currencies",
+      href: "/currencies",
+      icon: "currencies",
+    },
+    {
       title: "Organization Units",
       href: "/organization-units",
       icon: "organizationUnits",

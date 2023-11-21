@@ -11,7 +11,7 @@ import { Grid } from "@mui/material"
 import { useRouter } from "next/navigation"
 import * as React from "react"
 
-export default function AddCategoryPage() {
+export default function AddCurrencyPage() {
   const router = useRouter()
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
   const [activeTab, setActiveTab] = React.useState("general")
@@ -23,7 +23,7 @@ export default function AddCategoryPage() {
   return (
     <>
       <DashboardShell className="mb-1">
-        <DashboardHeader heading="Add Category" text="Enter category's details"></DashboardHeader>
+        <DashboardHeader heading="Add Currency" text="Enter currency's details"></DashboardHeader>
       </DashboardShell>
       <div className="space-y-4 pb-4 px-2">
         <div className="space-y-2"></div>
@@ -31,11 +31,8 @@ export default function AddCategoryPage() {
           <div>
             <TabsList className="w-full h-full">
               <Grid container spacing={2}>
-                <Grid item sm={6} xs={6}>
+                <Grid item sm={12} xs={12}>
                   <TabsTrigger value="general" className="w-full">General</TabsTrigger>
-                </Grid>
-                <Grid item sm={6} xs={6}>
-                  <TabsTrigger value="media" className="w-full">Media</TabsTrigger>
                 </Grid>
               </Grid>
             </TabsList>
@@ -44,20 +41,12 @@ export default function AddCategoryPage() {
             <TabsContent value="general" forceMount={true} hidden={activeTab !== "general"}>
               <div className="space-y-4 py-2 pb-4">
                 <div className="space-y-2">
-                  <Label htmlFor="name">Category Name</Label>
-                  <Input id="name" placeholder="Enter category's name" />
+                  <Label htmlFor="name">Currency Name</Label>
+                  <Input id="name" placeholder="Enter currency's name" />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="metaData">Metadata</Label>
-                  <Textarea id="metaData" placeholder="Enter metadata" />
-                </div>
-              </div>
-            </TabsContent>
-            <TabsContent value="media" forceMount={true} hidden={activeTab !== "media"}>
-              <div className="space-y-4 py-2 pb-4">
-                <div className="space-y-2">
-                  <Label htmlFor="image">Image</Label>
-                  <Input type="file" id="image" placeholder="Upload Category Image" />
+                  <Label htmlFor="conversionRate">Conversion Rate</Label>
+                  <Input id="conversionRate" placeholder="Enter conversion rate" />
                 </div>
               </div>
             </TabsContent>

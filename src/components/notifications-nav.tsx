@@ -1,3 +1,4 @@
+"use client"
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
@@ -10,6 +11,8 @@ import {
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import { Icons } from "./icons";
+import { errorHandler } from "./ui/custom/error-handler";
+import { toast } from "./ui/use-toast";
 
 export function NotificationsNav() {
 
@@ -47,7 +50,15 @@ export function NotificationsNav() {
           {notificationsList.length > 0 ? (
             <DropdownMenuGroup>
               {notificationsList.map((notification) => {
-                return (<DropdownMenuItem key={notification.id} className="p-4">
+                return (<DropdownMenuItem
+                  key={notification.id}
+                  className="p-4"
+                  onClick={
+                    () => {
+                      errorHandler(toast, "ERRX");
+                    }
+                  }
+                >
                   <Icons.notifications className="mr-2 h-6 w-6" />
                   <div className="ml-2" style={{ display: "block" }}>
                     <span><b>{notification.title}</b></span><br />

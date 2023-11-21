@@ -109,6 +109,10 @@ export default function ProductTabs({ product, attributes, wishlist, calls, subs
                   <Label htmlFor="status">Status</Label>
                   <Input id="status" value={product.status} readOnly />
                 </div>
+                <div className="space-y-2">
+                  <Label htmlFor="metaData">Metadata</Label>
+                  <Textarea id="metaData" placeholder="Enter metadata" readOnly />
+                </div>
               </div>
             </TabsContent>
             <TabsContent value="media" forceMount={true} hidden={activeTab !== "media"}>

@@ -320,6 +320,10 @@ export default function AddItemPage() {
                     onCheckedChange={setIsSoldByConnected}
                   />
                 </div>
+                <div className="space-y-2">
+                  <Label htmlFor="metaData">Metadata</Label>
+                  <Textarea id="metaData" placeholder="Enter metadata" />
+                </div>
               </div>
             </TabsContent>
             <FormAddButton isLoading={isLoading} callback={add} />
