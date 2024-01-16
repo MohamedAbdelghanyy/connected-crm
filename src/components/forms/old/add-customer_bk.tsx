@@ -96,7 +96,7 @@ export default function AddCustomerBK({
               <div className="space-y-2">
                 <Label htmlFor="customertype">Customer Type</Label>
                 <Select>
-                  <SelectTrigger>
+                  <SelectTrigger aria-label="customertype">
                     <SelectValue placeholder="Select customer type" />
                   </SelectTrigger>
                   <SelectContent>

@@ -9,11 +9,6 @@ export const dashboardConfig: DashboardConfig = {
       title: "Dashboard",
     },
     {
-      title: "Dashboard",
-      href: "/dashboard",
-      icon: "post",
-    },
-    {
       title: "CEO Dashboard",
       href: "/ceo-dashboard",
       icon: "post",
@@ -51,14 +46,14 @@ export const dashboardConfig: DashboardConfig = {
       href: "/merchants",
       icon: "merchants",
     },
-    {
+    /*{
       title: "Inventory",
     },
     {
       title: "Inventory",
       href: "/inventory",
       icon: "inventory",
-    },
+    },*/
     {
       title: "Catalog",
     },
@@ -91,11 +86,6 @@ export const dashboardConfig: DashboardConfig = {
       title: "Topics",
       href: "/topics",
       icon: "topics",
-    },
-    {
-      title: "Locations",
-      href: "/locations",
-      icon: "locations",
     },
     {
       title: "Ads",

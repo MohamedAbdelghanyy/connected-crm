@@ -53,7 +53,7 @@ export default function SettingsPage() {
                 <div className="space-y-4 py-2 pb-4 pt-4">
                   <h1>General</h1>
                   <div className="flex items-center space-x-2">
-                    <Checkbox id="selfRegistration" />
+                    <Checkbox id="selfRegistration" aria-label="selfRegistration" />
                     <label
                       htmlFor="selfRegistration"
                       className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -62,7 +62,7 @@ export default function SettingsPage() {
                     </label>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <Checkbox id="authWithLocalAccount" />
+                    <Checkbox id="authWithLocalAccount" aria-label="authWithLocalAccount" />
                     <label
                       htmlFor="authWithLocalAccount"
                       className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -76,7 +76,7 @@ export default function SettingsPage() {
                   <div className="space-y-2">
                     <Label htmlFor="twoFactorAuth">Status</Label>
                     <Select>
-                      <SelectTrigger>
+                      <SelectTrigger aria-label="twoFactorAuth">
                         <SelectValue placeholder="Select" />
                       </SelectTrigger>
                       <SelectContent>
@@ -93,7 +93,7 @@ export default function SettingsPage() {
                     </Select>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <Checkbox id="allowChange" />
+                    <Checkbox id="allowChange" aria-label="allowChange" />
                     <label
                       htmlFor="allowChange"
                       className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -102,7 +102,7 @@ export default function SettingsPage() {
                     </label>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <Checkbox id="remember" />
+                    <Checkbox id="remember" aria-label="remember" />
                     <label
                       htmlFor="remember"
                       className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -118,14 +118,14 @@ export default function SettingsPage() {
                 <h1>Password Settings</h1>
                 <div className="space-y-2">
                   <Label htmlFor="requiredLength">Required length</Label>
-                  <Input type="number" id="length" placeholder="Enter the required length" />
+                  <Input type="number" aria-label="requiredLength" id="length" placeholder="Enter the required length" />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="requiredCharacters">Required Unique Characters Number</Label>
-                  <Input type="number" id="requiredCharacters" placeholder="Enter the required unique charecters number" />
+                  <Input type="number" aria-label="requiredCharacters" id="requiredCharacters" placeholder="Enter the required unique charecters number" />
                 </div>
                 <div className="flex items-center space-x-2">
-                  <Checkbox id="nonAlpha" />
+                  <Checkbox id="nonAlpha" aria-label="nonAlpha" />
                   <label
                     htmlFor="nonAlpha"
                     className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -134,7 +134,7 @@ export default function SettingsPage() {
                   </label>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <Checkbox id="lowerCase" />
+                  <Checkbox id="lowerCase" aria-label="lowerCase" />
                   <label
                     htmlFor="lowerCase"
                     className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -143,7 +143,7 @@ export default function SettingsPage() {
                   </label>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <Checkbox id="upperCase" />
+                  <Checkbox id="upperCase" aria-label="upperCase" />
                   <label
                     htmlFor="upperCase"
                     className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -152,7 +152,7 @@ export default function SettingsPage() {
                   </label>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <Checkbox id="digit" />
+                  <Checkbox id="digit" aria-label="digit" />
                   <label
                     htmlFor="upperCase"
                     className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -161,7 +161,7 @@ export default function SettingsPage() {
                   </label>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <Checkbox id="remember" />
+                  <Checkbox id="remember" aria-label="remember" />
                   <label
                     htmlFor="remember"
                     className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -173,7 +173,7 @@ export default function SettingsPage() {
               <div className="space-y-4 py-2 pb-4 pt-4">
                 <h1>Password Renewing Settings</h1>
                 <div className="flex items-center space-x-2">
-                  <Checkbox id="periodicallyChange" />
+                  <Checkbox id="periodicallyChange" aria-label="periodicallyChange" />
                   <label
                     htmlFor="periodicallyChange"
                     className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -183,13 +183,13 @@ export default function SettingsPage() {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="period">Password change period(days)</Label>
-                  <Input type="number" id="period" placeholder="Enter the period" />
+                  <Input type="number" aria-label="period" id="period" placeholder="Enter the period" />
                 </div>
               </div>
               <div className="space-y-4 py-2 pb-4 pt-4">
                 <h1>Lockout Settings</h1>
                 <div className="flex items-center space-x-2">
-                  <Checkbox id="enableLockout" />
+                  <Checkbox id="enableLockout" aria-label="enableLockout" />
                   <label
                     htmlFor="enableLockout"
                     className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -199,17 +199,17 @@ export default function SettingsPage() {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="duration">Lockout Duration</Label>
-                  <Input type="number" id="duration" placeholder="Enter the duration" />
+                  <Input type="number" aria-label="duration" id="duration" placeholder="Enter the duration" />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="maxAttempts">Max Failed Access Attempts</Label>
-                  <Input type="number" id="maxAttempts" placeholder="Enter the max attempts" />
+                  <Input type="number" aria-label="maxAttempts" id="maxAttempts" placeholder="Enter the max attempts" />
                 </div>
               </div>
               <div className="space-y-4 py-2 pb-4 pt-4">
                 <h1>SignIn Settings</h1>
                 <div className="flex items-center space-x-2">
-                  <Checkbox id="requireConfirmedEmail" />
+                  <Checkbox id="requireConfirmedEmail" aria-label="requireConfirmedEmail" />
                   <label
                     htmlFor="requireConfirmedEmail"
                     className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -218,7 +218,7 @@ export default function SettingsPage() {
                   </label>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <Checkbox id="allowPhoneConfirm" />
+                  <Checkbox id="allowPhoneConfirm" aria-label="allowPhoneConfirm" />
                   <label
                     htmlFor="allowPhoneConfirm"
                     className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -227,7 +227,7 @@ export default function SettingsPage() {
                   </label>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <Checkbox id="requireConfirmedPhone" />
+                  <Checkbox id="requireConfirmedPhone" aria-label="requireConfirmedPhone" />
                   <label
                     htmlFor="requireConfirmedPhone"
                     className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -239,7 +239,7 @@ export default function SettingsPage() {
               <div className="space-y-4 py-2 pb-4 pt-4">
                 <h1>User Settings</h1>
                 <div className="flex items-center space-x-2">
-                  <Checkbox id="allowChangeEmail" />
+                  <Checkbox id="allowChangeEmail" aria-label="allowChangeEmail" />
                   <label
                     htmlFor="allowChangeEmail"
                     className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -248,7 +248,7 @@ export default function SettingsPage() {
                   </label>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <Checkbox id="allowChangeUsername" />
+                  <Checkbox id="allowChangeUsername" aria-label="allowChangeUsername" />
                   <label
                     htmlFor="allowChangeUsername"
                     className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"

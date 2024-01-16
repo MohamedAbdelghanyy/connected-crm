@@ -4,17 +4,17 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Grid } from '@mui/material';
 import {
-  LineElement,
   CategoryScale,
   Chart as ChartJS,
   Filler,
   Legend,
+  LineElement,
   LinearScale,
   PointElement,
   Tooltip,
 } from 'chart.js';
-import { useEffect, useState } from 'react';
-import { Bar, Line } from 'react-chartjs-2';
+import { useCallback, useEffect, useState } from 'react';
+import { Line } from 'react-chartjs-2';
 
 ChartJS.register(
   CategoryScale,
@@ -40,7 +40,9 @@ export const options = {
 
 export function SalesDashboardTargetChart() {
 
-  const getChartData = () => {
+  const [chartLabels, setChartLabels] = useState([]);
+
+  const getChartData = useCallback(() => {
     return {
       labels: chartLabels,
       datasets: [
@@ -60,8 +62,8 @@ export function SalesDashboardTargetChart() {
         },
       ],
     }
-  }
-  const [chartLabels, setChartLabels] = useState([]);
+  }, [chartLabels]);
+
   const [chartData, setChartData] = useState(getChartData());
 
   useEffect(() => {
@@ -70,7 +72,7 @@ export function SalesDashboardTargetChart() {
 
   useEffect(() => {
     setChartData(getChartData());
-  }, [chartLabels]);
+  }, [chartLabels, getChartData]);
 
   const changeLabels = (type: string) => {
     let newLabels: any = [];

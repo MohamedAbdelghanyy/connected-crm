@@ -1,8 +1,7 @@
 "use client"
 
-import * as React from "react"
-import { useRouter } from "next/navigation"
-import { cn } from "@/lib/utils"
+import { Icons } from "@/components/icons"
+import { Button, ButtonProps, buttonVariants } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -20,13 +19,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { toast } from "@/components/ui/use-toast"
-import { Icons } from "@/components/icons"
-import { Button } from "@/components/ui/button"
-import { ButtonProps, buttonVariants } from "@/components/ui/button"
+import { Switch } from "@/components/ui/switch"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Textarea } from "@/components/ui/textarea"
-import { Switch } from "@/components/ui/switch"
+import { toast } from "@/components/ui/use-toast"
+import { cn } from "@/lib/utils"
+import { useRouter } from "next/navigation"
+import * as React from "react"
 
 
 export default function AddItem({
@@ -50,7 +49,7 @@ export default function AddItem({
   const [isSponsored, setIsSponsored] = React.useState(false)
 
   async function saveItem() {
-    if(itemNameRef.current && itemNameRef.current.value){
+    if (itemNameRef.current && itemNameRef.current.value) {
       setIsLoading(true)
 
       const response = await fetch("/api/posts", {
@@ -71,7 +70,7 @@ export default function AddItem({
           description: "An error occurred while adding " + itemNameRef.current.value + ", Please try again.",
           variant: "destructive",
         })
-      }else{
+      } else {
         setShowNewItemDialog(false);
         return toast({
           title: "Success",
@@ -83,11 +82,11 @@ export default function AddItem({
       router.refresh()
     }
   }
-  
+
   return (
     <>
       <button
-        onClick={() =>{
+        onClick={() => {
           setShowNewItemDialog(true);
         }}
         className={cn(
@@ -98,13 +97,13 @@ export default function AddItem({
         Add Item
       </button>
       <Dialog open={showNewItemDialog} onOpenChange={setShowNewItemDialog}>
-        <DialogContent style={{maxWidth: "45rem"}}>
+        <DialogContent style={{ maxWidth: "45rem" }}>
           <DialogHeader className="ml-4 mt-4">
             <DialogTitle>Add Item</DialogTitle>
             <DialogDescription>
               Enter item details
             </DialogDescription>
-          </DialogHeader>            
+          </DialogHeader>
           <Tabs defaultValue={activeTab} onValueChange={setActiveTab}>
             <div className="ml-4 mr-4">
               <TabsList className="grid w-full grid-cols-6">
@@ -116,21 +115,21 @@ export default function AddItem({
                 <TabsTrigger value="settings">Settings</TabsTrigger>
               </TabsList>
             </div>
-            <div style={{maxHeight: "60vh", overflow: "hidden scroll", padding: "0px 10px 0px 20px",}}>
+            <div style={{ maxHeight: "60vh", overflow: "hidden scroll", padding: "0px 10px 0px 20px", }}>
               <TabsContent value="general" forceMount={true} hidden={activeTab !== "general"}>
                 <div className="space-y-4 py-2 pb-4">
                   <div className="space-y-2">
                     <Label htmlFor="name">Name</Label>
-                    <Input id="name" placeholder="Enter item name" ref={itemNameRef} />
+                    <Input id="name" aria-label="name" placeholder="Enter item name" ref={itemNameRef} />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="description">Description</Label>
-                    <Textarea id="description" placeholder="Enter item description" />
+                    <Textarea id="description" aria-label="description" placeholder="Enter item description" />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="brand">Brand</Label>
                     <Select>
-                      <SelectTrigger>
+                      <SelectTrigger aria-label="brand">
                         <SelectValue placeholder="Select brand" />
                       </SelectTrigger>
                       <SelectContent>
@@ -149,7 +148,7 @@ export default function AddItem({
                   <div className="space-y-2">
                     <Label htmlFor="category">Category</Label>
                     <Select>
-                      <SelectTrigger>
+                      <SelectTrigger aria-label="category">
                         <SelectValue placeholder="Select category" />
                       </SelectTrigger>
                       <SelectContent>
@@ -168,7 +167,7 @@ export default function AddItem({
                   <div className="space-y-2">
                     <Label htmlFor="owner">Owner</Label>
                     <Select>
-                      <SelectTrigger>
+                      <SelectTrigger aria-label="owner">
                         <SelectValue placeholder="Select owner" />
                       </SelectTrigger>
                       <SelectContent>
@@ -178,8 +177,8 @@ export default function AddItem({
                         <SelectItem value="khaledafify">
                           <span className="font-medium">Khaled Afify</span>
                         </SelectItem>
-                        <SelectItem value="sohaelhadary">
-                          <span className="font-medium">Soha El Hadary</span>
+                        <SelectItem value="test">
+                          <span className="font-medium">Test Test</span>
                         </SelectItem>
                       </SelectContent>
                     </Select>
@@ -187,7 +186,7 @@ export default function AddItem({
                   <div className="space-y-2">
                     <Label htmlFor="status">Status</Label>
                     <Select>
-                      <SelectTrigger>
+                      <SelectTrigger aria-label="status">
                         <SelectValue placeholder="Select status" />
                       </SelectTrigger>
                       <SelectContent>
@@ -209,27 +208,28 @@ export default function AddItem({
                 <div className="space-y-4 py-2 pb-4">
                   <div className="space-y-2">
                     <Label htmlFor="thumbnail">Thumbnail</Label>
-                    <Input type="file" id="thumbnail" />
+                    <Input type="file" aria-label="thumbnail" id="thumbnail" />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="mediaLow">Media Low</Label>
-                    <Input type="file" id="mediaLow" />
+                    <Input type="file" aria-label="mediaLow" id="mediaLow" />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="mediaMid">MediaHigh</Label>
-                    <Input type="file" id="mediaMid" />
+                    <Label htmlFor="mediaMid">Media Medium</Label>
+                    <Input type="file" aria-label="mediaMid" id="mediaMid" />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="mediaHigh">MediaHigh</Label>
-                    <Input type="file" id="mediaHigh" />
+                    <Label htmlFor="mediaHigh">Media High</Label>
+                    <Input type="file" aria-label="mediaHigh" id="mediaHigh" />
                   </div>
                 </div>
               </TabsContent>
               <TabsContent value="price" forceMount={true} hidden={activeTab !== "price"}>
                 <div className="space-y-4 py-2 pb-4">
-                  <div className="space-y-2" style={{justifyContent: "space-between", display: "flex"}}>
-                    <Label style={{textAlign: "left"}} className="mt-3">Enable Show Price</Label>
+                  <div className="space-y-2" style={{ justifyContent: "space-between", display: "flex" }}>
+                    <Label style={{ textAlign: "left" }} className="mt-3">Enable Show Price</Label>
                     <Switch
+                      aria-label="enableShowPrice"
                       id="enableShowPrice"
                       checked={enableShowPrice}
                       onCheckedChange={setEnableShowPrice}
@@ -239,12 +239,12 @@ export default function AddItem({
                     <>
                       <div className="space-y-2">
                         <Label htmlFor="price">Price</Label>
-                        <Input type="number" id="price" placeholder="Enter price" />
+                        <Input type="number" aria-label="price" id="price" placeholder="Enter price" />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="currency">Currency</Label>
                         <Select>
-                          <SelectTrigger>
+                          <SelectTrigger aria-label="currency">
                             <SelectValue placeholder="Select currency" />
                           </SelectTrigger>
                           <SelectContent>
@@ -262,7 +262,7 @@ export default function AddItem({
                   {!enableShowPrice && (
                     <div className="space-y-2">
                       <Label htmlFor="showPriceLabel">Show Price Label</Label>
-                      <Input id="showPriceLabel" placeholder="Enter show price label" />
+                      <Input id="showPriceLabel" aria-label="showPriceLabel" placeholder="Enter show price label" />
                     </div>
                   )}
                 </div>
@@ -272,7 +272,7 @@ export default function AddItem({
                   <div className="space-y-2">
                     <Label htmlFor="location">Location</Label>
                     <Select>
-                      <SelectTrigger>
+                      <SelectTrigger aria-label="location">
                         <SelectValue placeholder="Select location" />
                       </SelectTrigger>
                       <SelectContent>
@@ -290,11 +290,11 @@ export default function AddItem({
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="latitude">Latitude</Label>
-                    <Input id="latitude" placeholder="Enter latitude" />
+                    <Input id="latitude" aria-label="latitude" placeholder="Enter latitude" />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="longitude">Longitude</Label>
-                    <Input id="longitude" placeholder="Enter longitude" />
+                    <Input id="longitude" aria-label="longitude" placeholder="Enter longitude" />
                   </div>
                 </div>
               </TabsContent>
@@ -304,7 +304,7 @@ export default function AddItem({
                   <div className="space-y-2">
                     <Label htmlFor="country">Country</Label>
                     <Select>
-                      <SelectTrigger>
+                      <SelectTrigger aria-label="country">
                         <SelectValue placeholder="Select country" />
                       </SelectTrigger>
                       <SelectContent>
@@ -320,7 +320,7 @@ export default function AddItem({
                   <div className="space-y-2">
                     <Label htmlFor="tags">Tags</Label>
                     <Select>
-                      <SelectTrigger>
+                      <SelectTrigger aria-label="tags">
                         <SelectValue placeholder="Select tags" />
                       </SelectTrigger>
                       <SelectContent>
@@ -335,42 +335,42 @@ export default function AddItem({
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="pinnedIndex">Pinned Index</Label>
-                    <Input type="number" id="pinnedIndex" placeholder="Enter index" />
+                    <Input type="number" aria-label="pinnedIndex" id="pinnedIndex" placeholder="Enter index" />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="categoryIndex">Category Index</Label>
-                    <Input type="number" id="categoryIndex" placeholder="Enter index" />
+                    <Input type="number" aria-label="categoryIndex" id="categoryIndex" placeholder="Enter index" />
                   </div>
-                  <div className="space-y-2" style={{justifyContent: "space-between", display: "flex"}}>
-                    <Label style={{textAlign: "left"}} className="mt-3">Summer Product</Label>
+                  <div className="space-y-2" style={{ justifyContent: "space-between", display: "flex" }}>
+                    <Label style={{ textAlign: "left" }} className="mt-3">Summer Product</Label>
                     <Switch
                       checked={isSummerProduct}
                       onCheckedChange={setIsSummerProduct}
                     />
                   </div>
-                  <div className="space-y-2" style={{justifyContent: "space-between", display: "flex"}}>
-                    <Label style={{textAlign: "left"}} className="mt-3">Request Camera Professional</Label>
+                  <div className="space-y-2" style={{ justifyContent: "space-between", display: "flex" }}>
+                    <Label style={{ textAlign: "left" }} className="mt-3">Request Camera Professional</Label>
                     <Switch
                       checked={requestCamera}
                       onCheckedChange={setRequestCamera}
                     />
                   </div>
-                  <div className="space-y-2" style={{justifyContent: "space-between", display: "flex"}}>
-                    <Label style={{textAlign: "left"}} className="mt-3">Request Pricing Consultancy</Label>
+                  <div className="space-y-2" style={{ justifyContent: "space-between", display: "flex" }}>
+                    <Label style={{ textAlign: "left" }} className="mt-3">Request Pricing Consultancy</Label>
                     <Switch
                       checked={requestPricing}
                       onCheckedChange={setRequestPricing}
                     />
                   </div>
-                  <div className="space-y-2" style={{justifyContent: "space-between", display: "flex"}}>
-                    <Label style={{textAlign: "left"}} className="mt-3">VIP Services</Label>
+                  <div className="space-y-2" style={{ justifyContent: "space-between", display: "flex" }}>
+                    <Label style={{ textAlign: "left" }} className="mt-3">VIP Services</Label>
                     <Switch
                       checked={requestVIP}
                       onCheckedChange={setRequestVIP}
                     />
                   </div>
-                  <div className="space-y-2" style={{justifyContent: "space-between", display: "flex"}}>
-                    <Label style={{textAlign: "left"}} className="mt-3">Sponsored</Label>
+                  <div className="space-y-2" style={{ justifyContent: "space-between", display: "flex" }}>
+                    <Label style={{ textAlign: "left" }} className="mt-3">Sponsored</Label>
                     <Switch
                       checked={isSponsored}
                       onCheckedChange={setIsSponsored}

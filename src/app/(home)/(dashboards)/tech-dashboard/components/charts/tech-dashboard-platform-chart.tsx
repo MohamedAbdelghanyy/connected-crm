@@ -9,7 +9,7 @@ import {
   Legend,
   Tooltip
 } from 'chart.js';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 
 ChartJS.register(
@@ -32,7 +32,10 @@ export const options = {
 
 export function TechDashboardPlatformChart() {
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  const getChartData = () => {
+
+  const [chartLabel, setChartLabel] = useState(months[(new Date().getMonth())]);
+
+  const getChartData = useCallback(() => {
     return {
       labels: ['Web', 'Android', 'iOS'],
       datasets: [
@@ -56,13 +59,13 @@ export function TechDashboardPlatformChart() {
           hoverOffset: 2,
         }]
     };
-  }
-  const [chartLabel, setChartLabel] = useState(months[(new Date().getMonth())]);
+  }, []);
+
   const [chartData, setChartData] = useState(getChartData());
 
   useEffect(() => {
     setChartData(getChartData());
-  }, [chartLabel]);
+  }, [chartLabel, getChartData]);
 
   return (
     <Card className="col-span-4">
@@ -86,7 +89,7 @@ export function TechDashboardPlatformChart() {
         </Grid>
       </CardHeader>
       <CardContent>
-        <Doughnut data={chartData} options={options}/>
+        <Doughnut data={chartData} options={options} />
       </CardContent>
     </Card>
   );

@@ -75,7 +75,7 @@ const merchantsActionList: ActionListProps[] = [
       },
       {
         type: "button",
-        label: "Soha El Hadary",
+        label: "Test Test",
         action: (id: string) => {
           console.log('Soh: ' + id)
         }
@@ -145,6 +145,10 @@ export const merchantsTableToolbarSearchList: ToolbarSearchListProps[] = [
     title: 'Name'
   },
   {
+    key: 'email',
+    title: 'Email'
+  },
+  {
     key: 'category',
     title: 'Category'
   },
@@ -169,6 +173,7 @@ export const merchantsTableToolbarSearchList: ToolbarSearchListProps[] = [
 interface MerchantsProps {
   id: string
   name: string
+  email: string
   category: string
   contactName: string
   contactNumber: string
@@ -217,6 +222,21 @@ export const merchantsTableColumns: ColumnDef<MerchantsProps>[] = [
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
             {row.getValue("name")}
+          </span>
+        </div>
+      )
+    },
+  },
+  {
+    accessorKey: "email",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Email" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex space-x-2">
+          <span className="max-w-[500px] truncate font-medium">
+            {row.getValue("email")}
           </span>
         </div>
       )

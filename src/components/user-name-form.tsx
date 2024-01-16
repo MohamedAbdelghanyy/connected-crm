@@ -1,10 +1,9 @@
 "use client"
 
-import * as React from "react"
 import { useRouter } from "next/navigation"
-import * as z from "zod"
+import * as React from "react"
 
-import { cn } from "@/lib/utils"
+import { Icons } from "@/components/icons"
 import { buttonVariants } from "@/components/ui/button"
 import {
   Card,
@@ -17,10 +16,10 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { toast } from "@/components/ui/use-toast"
-import { Icons } from "@/components/icons"
+import { cn } from "@/lib/utils"
 
 interface UserNameFormProps extends React.HTMLAttributes<HTMLFormElement> {
-  user: {id: number, name: string}
+  user: { id: number, name: string }
 }
 
 
@@ -31,7 +30,7 @@ export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
   async function onSubmit(data: FormData) {
     setIsSaving(true)
 
-    
+
 
     setIsSaving(false)
 
@@ -53,7 +52,7 @@ export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
   return (
     <form
       className={cn(className)}
-      onSubmit={()=>{}}
+      onSubmit={() => { }}
       {...props}
     >
       <Card>
@@ -70,6 +69,7 @@ export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
               Name
             </Label>
             <Input
+              aria-label="name"
               id="name"
               className="w-[400px]"
               size={32}

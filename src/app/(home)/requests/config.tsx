@@ -77,7 +77,7 @@ const requestsActionList: ActionListProps[] = [
       },
       {
         type: "button",
-        label: "Soha El Hadary",
+        label: "Test Test",
         action: (id: string) => {
           console.log('Soh: ' + id)
         }
@@ -116,11 +116,11 @@ export const requestsTableToolbarSearchList: ToolbarSearchListProps[] = [
     title: 'ID'
   },
   {
-    key: 'customerName',
+    key: 'requestorName',
     title: 'Customer Name'
   },
   {
-    key: 'customerMobile',
+    key: 'requestorMobile',
     title: 'Customer Mobile'
   },
   {
@@ -151,9 +151,9 @@ export const requestsTableToolbarSearchList: ToolbarSearchListProps[] = [
 
 interface RequestsProps {
   id: string
-  customerID: string
-  customerName: string
-  customerMobile: string
+  requestorID: string
+  requestorName: string
+  requestorMobile: string
   itemName: string
   appointment: string
   createdBy: string
@@ -194,7 +194,7 @@ export const requestsTableColumns: ColumnDef<RequestsProps>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "customerName",
+    accessorKey: "requestorName",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Name" />
     ),
@@ -202,14 +202,14 @@ export const requestsTableColumns: ColumnDef<RequestsProps>[] = [
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            <Link href={"/customers/"+row.original.customerID}>{row.getValue("customerName")}</Link>
+            <Link href={"/customers/"+row.original.requestorID}>{row.getValue("requestorName")}</Link>
           </span>
         </div>
       )
     },
   },
   {
-    accessorKey: "customerMobile",
+    accessorKey: "requestorMobile",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Mobile" />
     ),
@@ -217,7 +217,7 @@ export const requestsTableColumns: ColumnDef<RequestsProps>[] = [
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("customerMobile")}
+            {row.getValue("requestorMobile")}
           </span>
         </div>
       )

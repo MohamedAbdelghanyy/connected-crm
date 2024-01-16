@@ -8,7 +8,7 @@ export default function DashboardPage() {
 
   useEffect(() => {
      push('/login');
-  }, []);
+  }, [push]);
 
   return (
     <></>

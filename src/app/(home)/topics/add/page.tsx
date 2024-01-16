@@ -1,70 +1,99 @@
 "use client"
 
-import FormAddButton from "@/components/forms/form-add-button"
+import _ from "@/@lodash/@lodash"
+import FormButton from "@/components/forms/form-button"
 import { DashboardHeader } from "@/components/header"
 import { DashboardShell } from "@/components/shell"
-import { Input } from "@/components/ui/input"
+import { CustomInput } from "@/components/ui/custom-input"
+import { errorHandler } from "@/components/ui/custom/error-handler"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Textarea } from "@/components/ui/textarea"
+import { toast } from "@/components/ui/use-toast"
+import { TopicObject } from "@/config/forms/defaultObjects"
+import { TopicValidation } from "@/config/forms/validation"
+import axios from "@/services/axios"
+import { yupResolver } from "@hookform/resolvers/yup"
 import { Grid } from "@mui/material"
 import { useRouter } from "next/navigation"
 import * as React from "react"
+import { Controller, FormProvider, useForm } from "react-hook-form"
 
 export default function AddTopicPage() {
-  const router = useRouter()
-  const [isLoading, setIsLoading] = React.useState<boolean>(false)
-  const [activeTab, setActiveTab] = React.useState("general")
+  const router = useRouter();
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [activeTab, setActiveTab] = React.useState("general");
+
+  const methods = useForm({
+    mode: 'onChange',
+    defaultValues: TopicObject.empty,
+    resolver: yupResolver(TopicValidation.mainSchema),
+  });
+  const { control, formState, getValues } = methods;
+  const { isValid, dirtyFields, errors } = formState;
 
   const add = () => {
-    console.log("Added");
+    setIsLoading(true);
+    axios.post('/app/topic', getValues())
+      .then(function (response) {
+        toast({
+          title: "Success",
+          description: getValues().name + " was successfully added.",
+          variant: "success",
+        });
+        router.push('/topics/' + response.data.result.id);
+      })
+      .catch(function (error) {
+        errorHandler(toast, error);
+        setIsLoading(false);
+      });
   }
-  
+
   return (
-    <>       
-      <DashboardShell className="mb-1">
-        <DashboardHeader heading="Add Topic" text="Enter topic's details"></DashboardHeader>
-      </DashboardShell>
-      <div className="space-y-4 pb-4 px-2">
-        <div className="space-y-2"></div>
-        <Tabs defaultValue={activeTab} onValueChange={setActiveTab} orientation="vertical">
-          <div>
-            <TabsList className="w-full h-full">
-              <Grid container spacing={2}>
-                <Grid item sm={6} xs={6}>
-                  <TabsTrigger value="general" className="w-full">General</TabsTrigger>
+    <>
+      <FormProvider {...methods}>
+        <DashboardShell className="mb-1">
+          <DashboardHeader heading="Add Topic" text="Enter topic's details"></DashboardHeader>
+        </DashboardShell>
+        <div className="space-y-4 pb-4 px-2">
+          <div className="space-y-2"></div>
+          <Tabs defaultValue={activeTab} onValueChange={setActiveTab} orientation="vertical">
+            <div>
+              <TabsList className="w-full h-full">
+                <Grid container spacing={2}>
+                  <Grid item sm={12} xs={12}>
+                    <TabsTrigger value="general" className="w-full">General</TabsTrigger>
+                  </Grid>
                 </Grid>
-                <Grid item sm={6} xs={6}>
-                  <TabsTrigger value="media" className="w-full">Media</TabsTrigger>
-                </Grid>
-              </Grid>
-            </TabsList>
-          </div>
-          <div className="w-full">
-            <TabsContent value="general" forceMount={true} hidden={activeTab !== "general"}>
-              <div className="space-y-4 py-2 pb-4">
-                <div className="space-y-2">
-                  <Label htmlFor="name">Topic Name</Label>
-                  <Input id="name" placeholder="Enter topic's name" />
+              </TabsList>
+            </div>
+            <div className="w-full">
+              <TabsContent value="general" forceMount={true} hidden={activeTab !== "general"}>
+                <div className="space-y-4 py-2 pb-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="name">Topic Name</Label>
+                    <Controller
+                      name="name"
+                      control={control}
+                      render={({ field }) => (
+                        <CustomInput
+                          {...field}
+                          aria-label="name"
+                          id="name"
+                          placeholder="Enter Topic Name"
+                          isError={!!errors.name}
+                          errorText={errors?.name?.message?.toString()}
+                          required
+                        />
+                      )}
+                    />
+                  </div>
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="details">Details</Label>
-                  <Textarea id="details" placeholder="Enter topic's details" />
-                </div>
-              </div>
               </TabsContent>
-            <TabsContent value="media" forceMount={true} hidden={activeTab !== "media"}>
-              <div className="space-y-4 py-2 pb-4">
-                <div className="space-y-2">
-                  <Label htmlFor="image">Image</Label>
-                  <Input type="file" id="image" placeholder="Upload Topic Image" />
-                </div>
-              </div>
-            </TabsContent>
-            <FormAddButton isLoading={isLoading} callback={add} />
-          </div>
-        </Tabs>
-      </div>
+              <FormButton label="Add" isLoading={isLoading} callback={add} isEnabled={!_.isEmpty(dirtyFields) && isValid} />
+            </div>
+          </Tabs>
+        </div>
+      </FormProvider>
     </>
   )
 }

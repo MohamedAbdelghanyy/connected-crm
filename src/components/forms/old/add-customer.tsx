@@ -97,7 +97,7 @@ export default function AddCustomer({
               <div className="space-y-2">
                 <Label htmlFor="customertype">Customer Type</Label>
                 <Select>
-                  <SelectTrigger>
+                  <SelectTrigger aria-label="cutomertype">
                     <SelectValue placeholder="Select customer type" />
                   </SelectTrigger>
                   <SelectContent>
@@ -112,24 +112,24 @@ export default function AddCustomer({
               </div>
               <div className="space-y-2">
                 <Label htmlFor="name">Full Name</Label>
-                <Input id="name" placeholder="Enter customer's name" ref={userNameRef} />
+                <Input id="name" aria-label="name" placeholder="Enter customer's name" ref={userNameRef} />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="mobile">Mobile</Label>
-                <Input type="number" id="mobile" placeholder="+201XXXXXXXXX" />
+                <Input type="number" aria-label="mobile" id="mobile" placeholder="+201XXXXXXXXX" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
-                <Input type="email" id="email" placeholder="example@example.com" />
+                <Input type="email" aria-label="email" id="email" placeholder="example@example.com" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="age">Age</Label>
-                <Input type="number" id="age" placeholder="Enter customer's age" />
+                <Input type="number" aria-label="age" id="age" placeholder="Enter customer's age" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="gender">Gender</Label>
                 <Select>
-                  <SelectTrigger>
+                  <SelectTrigger aria-label="gender">
                     <SelectValue placeholder="Select customer's gender" />
                   </SelectTrigger>
                   <SelectContent>
@@ -145,7 +145,7 @@ export default function AddCustomer({
               <div className="space-y-2">
                 <Label htmlFor="country">Country</Label>
                 <Select>
-                  <SelectTrigger>
+                  <SelectTrigger aria-label="country">
                     <SelectValue placeholder="Select customer's country" />
                   </SelectTrigger>
                   <SelectContent>
@@ -160,20 +160,20 @@ export default function AddCustomer({
               </div>
               <div className="space-y-2">
                 <Label htmlFor="address">Address</Label>
-                <Input type="text" id="address" placeholder="Enter customer's address" />
+                <Input type="text" aria-label="address" id="address" placeholder="Enter customer's address" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="occupation">Occupation</Label>
-                <Input type="text" id="occupation" placeholder="Enter customer's occupation" />
+                <Input type="text" aria-label="occupation" id="occupation" placeholder="Enter customer's occupation" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="company">Company</Label>
-                <Input type="text" id="company" placeholder="Enter customer's company" />
+                <Input type="text" aria-label="company" id="company" placeholder="Enter customer's company" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="interests">Interests</Label>
                 <Select>
-                  <SelectTrigger>
+                  <SelectTrigger aria-label="interests">
                     <SelectValue placeholder="Select customer's interests" />
                   </SelectTrigger>
                   <SelectContent>

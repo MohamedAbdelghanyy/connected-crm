@@ -75,7 +75,7 @@ export default function ClaimsDialog({ showDialog, setShowDialog, claims, role }
               <div className="space-y-2">
                 <Label htmlFor="type">Type</Label>
                 <Select>
-                  <SelectTrigger>
+                  <SelectTrigger aria-label="type">
                     <SelectValue placeholder="Select claim type" />
                   </SelectTrigger>
                   <SelectContent>
@@ -91,7 +91,7 @@ export default function ClaimsDialog({ showDialog, setShowDialog, claims, role }
               </div>
               <div className="space-y-2">
                 <Label htmlFor="value">Value</Label>
-                <Input id="value" placeholder="Enter claim value" />
+                <Input id="value" aria-label="value" placeholder="Enter claim value" />
               </div>
               <Button className="mb-2" style={{ width: "100%" }}>
                 Add Claim

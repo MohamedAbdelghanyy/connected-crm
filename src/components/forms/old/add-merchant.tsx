@@ -1,8 +1,7 @@
 "use client"
 
-import * as React from "react"
-import { useRouter } from "next/navigation"
-import { cn } from "@/lib/utils"
+import { Icons } from "@/components/icons"
+import { Button, ButtonProps, buttonVariants } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -21,9 +20,9 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { toast } from "@/components/ui/use-toast"
-import { Icons } from "@/components/icons"
-import { Button } from "@/components/ui/button"
-import { ButtonProps, buttonVariants } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
+import { useRouter } from "next/navigation"
+import * as React from "react"
 
 export default function AddMerchant({
   className,
@@ -36,7 +35,7 @@ export default function AddMerchant({
   const userNameRef = React.useRef<HTMLInputElement>(null);
 
   async function saveMerchant() {
-    if(userNameRef.current && userNameRef.current.value){
+    if (userNameRef.current && userNameRef.current.value) {
       setIsLoading(true)
 
       const response = await fetch("/api/posts", {
@@ -57,7 +56,7 @@ export default function AddMerchant({
           description: "An error occurred while adding " + userNameRef.current.value + ", Please try again.",
           variant: "destructive",
         })
-      }else{
+      } else {
         setShowNewMerchantDialog(false);
         return toast({
           title: "Success",
@@ -69,11 +68,11 @@ export default function AddMerchant({
       router.refresh()
     }
   }
-  
+
   return (
     <>
       <button
-        onClick={() =>{
+        onClick={() => {
           setShowNewMerchantDialog(true);
         }}
         className={cn(
@@ -91,16 +90,16 @@ export default function AddMerchant({
               Enter merchant details
             </DialogDescription>
           </DialogHeader>
-          <div style={{maxHeight: "60vh", overflow: "hidden scroll", padding: "0px 10px 0px 20px",}}>
+          <div style={{ maxHeight: "60vh", overflow: "hidden scroll", padding: "0px 10px 0px 20px", }}>
             <div className="space-y-4 py-2 pb-4">
               <div className="space-y-2">
                 <Label htmlFor="name">Name</Label>
-                <Input id="name" placeholder="Enter merchant's name" ref={userNameRef} />
+                <Input id="name" aria-label="name" placeholder="Enter merchant's name" ref={userNameRef} />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="category">Category</Label>
                 <Select>
-                  <SelectTrigger>
+                  <SelectTrigger aria-label="category">
                     <SelectValue placeholder="Select merchant's category" />
                   </SelectTrigger>
                   <SelectContent>
@@ -115,19 +114,15 @@ export default function AddMerchant({
               </div>
               <div className="space-y-2">
                 <Label htmlFor="location">Location</Label>
-                <Input type="text" id="location" placeholder="Enter merchant's location" />
+                <Input type="text" aria-label="location" id="location" placeholder="Enter merchant's location" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="contactName">Person Of Contact Name</Label>
-                <Input type="text" id="contactname" placeholder="Enter person of contact name" />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="contactName">Person Of Contact Number</Label>
-                <Input type="number" id="contactnumber" placeholder="Enter person of contact number" />
+                <Input type="text" aria-label="contactName" id="contactname" placeholder="Enter person of contact name" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="website">Website</Label>
-                <Input type="text" id="website" placeholder="Enter merchant's website" />
+                <Input type="text" aria-label="website" id="website" placeholder="Enter merchant's website" />
               </div>
             </div>
           </div>

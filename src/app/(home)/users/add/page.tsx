@@ -1,7 +1,7 @@
 import { promises as fs } from "fs"
 import path from "path"
 
-import AddUserTabs from "@/components/dashboard-users/add-users-tabs"
+import AddUserTabs from "@/app/(home)/users/add/add-user-tabs"
 import { DashboardHeader } from "@/components/header"
 import { DashboardShell } from "@/components/shell"
 

@@ -88,7 +88,7 @@ export default function AddRootUnit({
             <div className="space-y-4 py-2 pb-4">
               <div className="space-y-2">
                 <Label htmlFor="name">Unit Name</Label>
-                <Input id="name" placeholder="Enter unit name" />
+                <Input id="name" aria-label="name" placeholder="Enter unit name" />
               </div>
             </div>
           </div>

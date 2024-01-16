@@ -94,7 +94,7 @@ export const imagesTableColumns: ColumnDef<ImagesProps>[] = [
       )
     },
   },
-  {
+  /*{
     accessorKey: "low",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Low" />
@@ -123,7 +123,7 @@ export const imagesTableColumns: ColumnDef<ImagesProps>[] = [
       )
     },
     enableSorting: false,
-  },
+  },*/
   {
     accessorKey: "high",
     header: ({ column }) => (

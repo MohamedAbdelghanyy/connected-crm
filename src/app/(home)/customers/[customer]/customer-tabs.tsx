@@ -16,7 +16,7 @@ import { appointmentsTableColumns, appointmentsTableToolbar, appointmentsTableTo
 import { callsTableColumns, callsTableToolbar, callsTableToolbarSearchList } from "../../calls/config"
 import { internalNotesTableColumns, internalNotesTableToolbar, internalNotesTableToolbarSearchList } from "../../internal-notes/config"
 import { notificationsTableColumns, notificationsTableToolbar, notificationsTableToolbarSearchList } from "../../notifications/config"
-import { productsTableColumns, productsTableToolbar, productsTableToolbarSearchList } from "../../products/config"
+import { productsTableColumns, productsTableToolbar, productsTableToolbarSearchList } from "../../products/(list)/config"
 import { subscriptionsTableColumns, subscriptionsTableToolbar, subscriptionsTableToolbarSearchList } from "../../subscriptions/config"
 import { wishlistsTableColumns, wishlistsTableToolbar, wishlistsTableToolbarSearchList } from "../../wishlists/config"
 import { requestsTableColumns, requestsTableToolbar, requestsTableToolbarSearchList } from "../../requests/config"
@@ -30,7 +30,7 @@ export default function CustomerTabs({ customer, products, wishlist, calls, subs
     if (!customer) {
       push("/customers");
     }
-  }, [])
+  }, [customer, push])
 
   return customer ? (
     <>
@@ -92,51 +92,51 @@ export default function CustomerTabs({ customer, products, wishlist, calls, subs
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="name">Full Name</Label>
-                  <Input id="name" value={customer.name} readOnly />
+                  <Input id="name" aria-label="name" value={customer.name} readOnly />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="mobile">Mobile</Label>
-                  <Input type="text" id="mobile" value={customer.mobile} readOnly />
+                  <Input type="text" aria-label="mobile" id="mobile" value={customer.mobile} readOnly />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="email">Email</Label>
-                  <Input type="email" id="email" value={customer.email} readOnly />
+                  <Input type="email" aria-label="email" id="email" value={customer.email} readOnly />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="birthdate">Birthdate</Label>
-                  <Input id="birthdate" value={customer.birthdate} readOnly />
+                  <Input id="birthdate" aria-label="birthdate" value={customer.birthdate} readOnly />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="gender">Gender</Label>
-                  <Input id="gender" value={customer.gender} readOnly />
+                  <Input id="gender" aria-label="gender" value={customer.gender} readOnly />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="address">Address</Label>
-                  <Input type="text" id="address" value={customer.address} readOnly />
+                  <Input type="text" aria-label="address" id="address" value={customer.address} readOnly />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="country">Country</Label>
-                  <Input id="country" value={customer.country} readOnly />
+                  <Input id="country" aria-label="country" value={customer.country} readOnly />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="customerType">Customer Type</Label>
-                  <Input id="customerType" value={customer.customerType} readOnly />
+                  <Input id="customerType" aria-label="customerType" value={customer.customerType} readOnly />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="occupation">Occupation</Label>
-                  <Input id="occupation" value={customer.occupation} readOnly />
+                  <Input id="occupation" aria-label="occupation" value={customer.occupation} readOnly />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="company">Company</Label>
-                  <Input id="company" value={customer.company} readOnly />
+                  <Input id="company" aria-label="company" value={customer.company} readOnly />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="company">Company</Label>
-                  <Input id="company" value={customer.company} readOnly />
+                  <Input id="company" aria-label="company" value={customer.company} readOnly />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="interests">Interests</Label>
-                  <Textarea id="interests" value={customer.interests} readOnly />
+                  <Textarea id="interests" aria-label="interests" value={customer.interests} readOnly />
                 </div>
               </div>
             </TabsContent>

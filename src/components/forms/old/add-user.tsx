@@ -95,20 +95,20 @@ export default function AddUser({
             <div className="space-y-4 py-2 pb-4">
               <div className="space-y-2">
                 <Label htmlFor="name">Full Name</Label>
-                <Input id="name" placeholder="Enter user's name" ref={userNameRef} />
+                <Input id="name" aria-label="name" placeholder="Enter user's name" ref={userNameRef} />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
-                <Input type="email" id="email" placeholder="example@example.com" />
+                <Input type="email" aria-label="email" id="email" placeholder="example@example.com" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="jobTitle">Job Title</Label>
-                <Input type="text" id="jobTitle" placeholder="Enter user's job title" />
+                <Input type="text" aria-label="jobTitle" id="jobTitle" placeholder="Enter user's job title" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="dashboardtype">Dashboard Type</Label>
                 <Select>
-                  <SelectTrigger>
+                  <SelectTrigger aria-label="dashboardtype">
                     <SelectValue placeholder="Select dashboard type" />
                   </SelectTrigger>
                   <SelectContent>
@@ -124,7 +124,7 @@ export default function AddUser({
               <div className="space-y-2">
                 <Label htmlFor="accessName">Access Name</Label>
                 <Select>
-                  <SelectTrigger>
+                  <SelectTrigger aria-label="accessName">
                     <SelectValue placeholder="Select access name" />
                   </SelectTrigger>
                   <SelectContent>
@@ -140,7 +140,7 @@ export default function AddUser({
               <div className="space-y-2">
                 <Label htmlFor="privileges">Privileges</Label>
                 <Select>
-                  <SelectTrigger>
+                  <SelectTrigger aria-label="privileges">
                     <SelectValue placeholder="Select privileges" />
                   </SelectTrigger>
                   <SelectContent>

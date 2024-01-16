@@ -18,7 +18,7 @@ const top10SharedItems = [
     id: "ITM-2",
     name: "Villa",
     image: "https://connectedapp20200512063146.azurewebsites.net/api/connectedadmin/GetImage/dbe4eb7e-545c-4384-96f6-20940f796bc3.jpg",
-    owner: "Soha El Hadary",
+    owner: "Test Test",
     shares: 826
   },
   {

@@ -21,7 +21,7 @@ export default function LeadTabs({ lead, requests }: any) {
     if (!lead) {
       push("/leads");
     }
-  }, [])
+  }, [lead, push])
 
   return lead ? (
     <>
@@ -48,39 +48,39 @@ export default function LeadTabs({ lead, requests }: any) {
               <div className="space-y-4 py-2 pb-4">
                 <div className="space-y-2">
                   <Label htmlFor="name">Name</Label>
-                  <Input id="name" value={lead.name} readOnly />
+                  <Input id="name" aria-label="name" value={lead.name} readOnly />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="mobile">Mobile</Label>
-                  <Input type="text" id="mobile" value={lead.mobile} readOnly />
+                  <Input type="text" aria-label="mobile" id="mobile" value={lead.mobile} readOnly />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="email">Interests</Label>
-                  <Input type="email" id="email" value={lead.interests} readOnly />
+                  <Input type="email" aria-label="email" id="email" value={lead.interests} readOnly />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="buy">Buy</Label>
-                  <Input id="buy" value={lead.buy} readOnly />
+                  <Input id="buy" aria-label="buy" value={lead.buy} readOnly />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="sell">Sell</Label>
-                  <Input id="sell" value={lead.sell} readOnly />
+                  <Input id="sell" aria-label="sell" value={lead.sell} readOnly />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="status">Status</Label>
-                  <Input id="status" value={lead.status} readOnly />
+                  <Input id="status" aria-label="status" value={lead.status} readOnly />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="rating">Rating</Label>
-                  <Input id="rating" value={lead.rating} readOnly />
+                  <Input id="rating" aria-label="rating" value={lead.rating} readOnly />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="notes">Notes</Label>
-                  <Input id="notes" value={lead.notes} readOnly />
+                  <Input id="notes" aria-label="notes" value={lead.notes} readOnly />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="priority">Priority</Label>
-                  <Input id="priority" value={lead.priority} readOnly />
+                  <Input id="priority" aria-label="priority" value={lead.priority} readOnly />
                 </div>
               </div>
             </TabsContent>

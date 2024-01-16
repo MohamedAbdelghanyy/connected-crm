@@ -13,7 +13,7 @@ import { Grid } from "@mui/material"
 import { useRouter } from "next/navigation"
 import * as React from "react"
 import { appointmentsTableColumns, appointmentsTableToolbar, appointmentsTableToolbarSearchList } from "../../appointments/config"
-import { attributesTableColumns, attributesTableToolbar, attributesTableToolbarSearchList } from "../../attributes/config"
+import { attributesTableColumns, attributesTableToolbar, attributesTableToolbarSearchList } from "../../categories/[category]/attributes/(list)/config"
 import { callsTableColumns, callsTableToolbar, callsTableToolbarSearchList } from "../../calls/config"
 import { internalNotesTableColumns, internalNotesTableToolbar, internalNotesTableToolbarSearchList } from "../../internal-notes/config"
 import { notificationsTableColumns, notificationsTableToolbar, notificationsTableToolbarSearchList } from "../../notifications/config"
@@ -30,7 +30,7 @@ export default function ProductTabs({ product, attributes, wishlist, calls, subs
     if (!product) {
       push("/product");
     }
-  }, [])
+  }, [product, push])
 
   return product ? (
     <>
@@ -87,31 +87,31 @@ export default function ProductTabs({ product, attributes, wishlist, calls, subs
               <div className="space-y-4 py-2 pb-4">
                 <div className="space-y-2">
                   <Label htmlFor="name">Product Name</Label>
-                  <Input id="name" value={product.name} readOnly />
+                  <Input id="name" aria-label="name" value={product.name} readOnly />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="description">Description</Label>
-                  <Textarea id="description" value={"No Description"} readOnly />
+                  <Textarea id="description" aria-label="description" value={"No Description"} readOnly />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="brand">Brand</Label>
-                  <Input id="brand" value={product.brand} readOnly />
+                  <Input id="brand" aria-label="brand" value={product.brand} readOnly />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="category">Category</Label>
-                  <Input id="category" value={product.category} readOnly />
+                  <Input id="category"aria-label="category" value={product.category} readOnly />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="owner">Owner</Label>
-                  <Input id="owner" value={product.owner} readOnly />
+                  <Input id="owner" aria-label="owner" value={product.owner} readOnly />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="status">Status</Label>
-                  <Input id="status" value={product.status} readOnly />
+                  <Input id="status" aria-label="status" value={product.status} readOnly />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="metaData">Metadata</Label>
-                  <Textarea id="metaData" placeholder="Enter metadata" readOnly />
+                  <Label htmlFor="slug">Slug</Label>
+                  <Textarea id="slug" aria-label="slug" placeholder="Enter slug" value="Example" readOnly />
                 </div>
               </div>
             </TabsContent>
@@ -126,15 +126,15 @@ export default function ProductTabs({ product, attributes, wishlist, calls, subs
               <div className="space-y-4 py-2 pb-4">
                 <div className="space-y-2">
                   <Label htmlFor="location">Location</Label>
-                  <Input id="location" value={product.location} readOnly />
+                  <Input id="location" aria-label="location" value={product.location} readOnly />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="latitude">Latitude</Label>
-                  <Input id="latitude" value={product.latitude} readOnly />
+                  <Input id="latitude" aria-label="latitude" value={product.latitude} readOnly />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="longitude">Longitude</Label>
-                  <Input id="longitude" value={product.longitude} readOnly />
+                  <Input id="longitude" aria-label="longitude" value={product.longitude} readOnly />
                 </div>
               </div>
             </TabsContent>

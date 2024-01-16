@@ -57,7 +57,9 @@ import {
   Package,
   Trash2,
   BanknoteIcon,
-  FlagIcon
+  FlagIcon,
+  Edit,
+  Trash2Icon
 } from "lucide-react"
 
 export type Icon = LucideIcon
@@ -137,6 +139,7 @@ export const Icons = {
   languages: GlobeIcon,
   languageTexts: LanguagesIcon,
   uploadFile: UploadIcon,
+  edit: Edit,
   gitHub: ({ ...props }: LucideProps) => (
     <svg
       aria-hidden="true"

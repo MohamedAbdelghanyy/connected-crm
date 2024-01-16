@@ -2,6 +2,7 @@
   {
     "id": "MRCH-1",
     "name": "Merchant 1",
+    "email": "merchant@gmail.com",
     "category": "NA",
     "contactName": "Contact 1",
     "contactNumber": "+XXXXXXXXXXX",
@@ -11,6 +12,7 @@
   {
     "id": "MRCH-2",
     "name": "Merchant 2",
+    "email": "merchant2@gmail.com",
     "category": "NA",
     "contactName": "Contact 2",
     "contactNumber": "+XXXXXXXXXXX",
@@ -20,6 +22,7 @@
   {
     "id": "MRCH-3",
     "name": "Merchant 3",
+    "email": "merchant3@gmail.com",
     "category": "NA",
     "contactName": "Contact 3",
     "contactNumber": "+XXXXXXXXXXX",

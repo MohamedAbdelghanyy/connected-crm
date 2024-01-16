@@ -8,7 +8,8 @@ export const errorHandler = (toast: any, err: any) => {
     const showToast = () => {
         toast({
             title: new Date().toLocaleString(),
-            description: "Uh oh! Something went wrong. There was a problem with your request.",
+            description: "Something went wrong. There was a problem with your request.",
+            variant: "destructive",
         })
     }
 

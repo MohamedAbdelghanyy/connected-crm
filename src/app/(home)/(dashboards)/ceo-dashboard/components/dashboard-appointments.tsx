@@ -1,5 +1,6 @@
 import { EmptyPlaceholder } from "@/components/empty-placeholder";
 import { DataTable } from "@/components/table/data-table";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { appointmentsTableColumns, appointmentsTableToolbar, appointmentsTableToolbarSearchList } from "../../../appointments/config";
 
 const appointments = [
@@ -19,15 +20,22 @@ const appointments = [
 
 export function DashboardAppointments() {
   return (<div className="mt-4 mb-4">
-    {appointments.length > 0 ? (
-      <DataTable data={appointments} columns={appointmentsTableColumns} toolbar={appointmentsTableToolbar} toolbarSearchList={appointmentsTableToolbarSearchList} />
-    ) : (<EmptyPlaceholder>
-      <EmptyPlaceholder.Icon name="post" />
-      <EmptyPlaceholder.Title>No Appointments Today</EmptyPlaceholder.Title>
-      <EmptyPlaceholder.Description>
-        You don&apos;t have any appointments today.
-      </EmptyPlaceholder.Description>
-    </EmptyPlaceholder>)
-    }
+    <Card className="col-span-4">
+      <CardHeader>
+        <CardTitle className="text-md font-medium">{"Today's Appointments"}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        {appointments.length > 0 ? (
+          <DataTable data={appointments} columns={appointmentsTableColumns} toolbar={appointmentsTableToolbar} toolbarSearchList={appointmentsTableToolbarSearchList} />
+        ) : (<EmptyPlaceholder>
+          <EmptyPlaceholder.Icon name="post" />
+          <EmptyPlaceholder.Title>No Appointments Today</EmptyPlaceholder.Title>
+          <EmptyPlaceholder.Description>
+            You don&apos;t have any appointments today.
+          </EmptyPlaceholder.Description>
+        </EmptyPlaceholder>)
+        }
+      </CardContent>
+    </Card>
   </div>);
 }

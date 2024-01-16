@@ -88,19 +88,19 @@ export default function AddAdvertiser({
             <div className="space-y-4 py-2 pb-4">
               <div className="space-y-2">
                 <Label htmlFor="logo">Advertiser Logo</Label>
-                <Input type="file" id="logo" placeholder="Upload advertiser's Logo" />
+                <Input type="file" aria-label="logo" id="logo" placeholder="Upload advertiser's Logo" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="name">Advertiser Name</Label>
-                <Input id="name" placeholder="Enter advertiser's name" />
+                <Input id="name" aria-label="name" placeholder="Enter advertiser's name" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="link">Link</Label>
-                <Input id="link" placeholder="Link" />
+                <Input id="link" aria-label="link" placeholder="Link" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="linkTitle">Link Title</Label>
-                <Input id="linkTitle" placeholder="Link Title" />
+                <Input id="linkTitle" aria-label="linkTitle" placeholder="Link Title" />
               </div>
             </div>
           </div>

@@ -88,11 +88,11 @@ export default function AddHighlight({
             <div className="space-y-4 py-2 pb-4">
               <div className="space-y-2">
                 <Label htmlFor="name">Highlight Name</Label>
-                <Input id="name" placeholder="Enter highlight's name" ref={userNameRef} />
+                <Input id="name" aria-label="name" placeholder="Enter highlight's name" ref={userNameRef} />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="image">Image</Label>
-                <Input type="file" id="image" placeholder="Upload Highlight Image" />
+                <Input type="file" aria-label="image" id="image" placeholder="Upload Highlight Image" />
               </div>
             </div>
           </div>

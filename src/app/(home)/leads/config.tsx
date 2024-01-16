@@ -106,7 +106,7 @@ const leadsActionList: ActionListProps[] = [
           },
           {
             type: "button",
-            label: "Soha El Hadary",
+            label: "Test Test",
             action: (id: string) => {
               console.log('Soh: ' + id)
             }

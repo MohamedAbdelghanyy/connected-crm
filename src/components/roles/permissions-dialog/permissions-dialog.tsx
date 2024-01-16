@@ -142,7 +142,7 @@ export default function PermissionsDialog({ showDialog, setShowDialog, permissio
 function generatePermissionsTree(permission: any, marginSize: number) {
   return (<>
     <div className="flex items-center space-x-2" style={{ paddingLeft: marginSize * 6 + "px" }}>
-      <Checkbox id={permission.id} />
+      <Checkbox id={permission.id} aria-label={permission.id} />
       <label
         htmlFor={permission.id}
         className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"

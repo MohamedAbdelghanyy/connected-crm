@@ -32,3 +32,12 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Deployment on Ubuntu Linux
+
+### run the following commands
+- npm install
+- npm run build
+- npm run start
+
+[Click here to read the rest of the configuration related to the linux server with node js](https://medium.com/bina-nusantara-it-division/how-to-deploy-your-next-js-apps-on-linux-server-using-nginx-and-pm2-65834cfecd37)

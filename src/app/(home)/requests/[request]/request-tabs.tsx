@@ -18,7 +18,7 @@ export default function RequestTabs({ request }: any) {
     if (!request) {
       push("/requests");
     }
-  }, [])
+  }, [request, push])
 
   return request ? (
     <>
@@ -42,35 +42,35 @@ export default function RequestTabs({ request }: any) {
               <div className="space-y-4 py-2 pb-4">
                 <div className="space-y-2">
                   <Label htmlFor="name">Name</Label>
-                  <Input id="name" value={request.customerName} readOnly />
+                  <Input id="name" aria-label="name" value={request.customerName} readOnly />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="mobile">Mobile</Label>
-                  <Input type="text" id="mobile" value={request.customerMobile} readOnly />
+                  <Input type="text" aria-label="mobile" id="mobile" value={request.customerMobile} readOnly />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="item">Item</Label>
-                  <Input type="text" id="item" value={request.itemName} readOnly />
+                  <Input type="text" aria-label="item" id="item" value={request.itemName} readOnly />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="appointment">Appointment</Label>
-                  <Input id="appointment" value={request.appointment ? request.appointment : "Not set"} readOnly />
+                  <Input id="appointment" aria-label="appointment" value={request.appointment ? request.appointment : "Not set"} readOnly />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="createdBy">Created By</Label>
-                  <Input id="createdBy" value={request.createdBy} readOnly />
+                  <Input id="createdBy" aria-label="createdBy" value={request.createdBy} readOnly />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="creationDate">Creation Date</Label>
-                  <Input type="text" id="creationDate" value={request.creationDate} readOnly />
+                  <Input type="text" aria-label="creationDate" id="creationDate" value={request.creationDate} readOnly />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="notes">Notes</Label>
-                  <Input id="notes" value={request.notes} readOnly />
+                  <Input id="notes" aria-label="notes" value={request.notes} readOnly />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="status">Status</Label>
-                  <Input id="status" value={request.status} readOnly />
+                  <Input id="status" aria-label="status" value={request.status} readOnly />
                 </div>
               </div>
             </TabsContent>

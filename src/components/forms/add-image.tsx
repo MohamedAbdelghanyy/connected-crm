@@ -84,19 +84,19 @@ export default function AddImage({ users }: any) {
             <div className="space-y-4 py-2 pb-4">
               <div className="space-y-2">
                 <Label htmlFor="displayOrder">Display Order</Label>
-                <Input type="number" id="displayOrder" placeholder="Enter display order" />
+                <Input type="number" aria-label="displayOrder" id="displayOrder" placeholder="Enter display order" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="low">Low</Label>
-                <Input type="file" id="low" />
+                <Input type="file" aria-label="low" id="low" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="medium">Medium</Label>
-                <Input type="file" id="medium" />
+                <Input type="file" aria-label="medium" id="medium" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="high">High</Label>
-                <Input type="file" id="high" />
+                <Input type="file" aria-label="high" id="high" />
               </div>
             </div>
           </div>

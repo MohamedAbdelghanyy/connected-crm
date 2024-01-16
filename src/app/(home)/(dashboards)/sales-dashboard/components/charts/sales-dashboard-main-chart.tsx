@@ -13,7 +13,7 @@ import {
   PointElement,
   Tooltip,
 } from 'chart.js';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 
 ChartJS.register(
@@ -40,7 +40,9 @@ export const options = {
 
 export function SalesDashboardMainChart() {
 
-  const getChartData = () => {
+  const [chartLabels, setChartLabels] = useState([]);
+
+  const getChartData = useCallback(() => {
     return {
       labels: chartLabels,
       datasets: [
@@ -67,8 +69,8 @@ export function SalesDashboardMainChart() {
         },
       ],
     }
-  }
-  const [chartLabels, setChartLabels] = useState([]);
+  }, [chartLabels]);
+
   const [chartData, setChartData] = useState(getChartData());
 
   useEffect(() => {
@@ -77,7 +79,7 @@ export function SalesDashboardMainChart() {
 
   useEffect(() => {
     setChartData(getChartData());
-  }, [chartLabels]);
+  }, [chartLabels, getChartData]);
 
   const changeLabels = (type: string) => {
     let newLabels: any = [];

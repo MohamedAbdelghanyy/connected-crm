@@ -6,16 +6,16 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 const requests = [
   {
     "id": "RQ-456",
-    "customerID": "USR-456",
-    "customerName": "Soha El Hadary",
-    "customerMobile": "+201115696965",
+    "requestorID": "USR-456",
+    "requestorName": "Test Test",
+    "requestorMobile": "+201115696965",
     "itemName": "Rolex",
     "appointment": "17/10/2023 12:10:00 PM",
     "createdBy": "Customer",
     "creationDate": "12/10/2023 09:10:00 AM",
     "notes": "None",
     "status": "scheduled"
-  }
+  },
 ]
 
 export function AdminDashboardRequests() {

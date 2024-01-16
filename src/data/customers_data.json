@@ -22,8 +22,8 @@
   {
     "id": "USR-456",
     "avatar": "https://connectedapp20200512063146.azurewebsites.net/api/connectedadmin/GetImage/6bcf548f-dffa-4218-a109-f27ddcb30317.jpg",
-    "name": "Soha Elhadary",
-    "email": "sohaelhadary@gmail.com",
+    "name": "test",
+    "email": "test@gmail.com",
     "mobile": "+201224466880",
     "birthdate": "21/01/1950",
     "gender": "Male",

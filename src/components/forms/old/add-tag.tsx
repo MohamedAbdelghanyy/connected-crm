@@ -87,8 +87,8 @@ export default function AddTag({
           <div style={{maxHeight: "60vh", overflow: "hidden scroll", padding: "0px 10px 0px 20px",}}>
             <div className="space-y-4 py-2 pb-4">
               <div className="space-y-2">
-                <Label htmlFor="name">Tag</Label>
-                <Input id="name" placeholder="Enter Tag" ref={userNameRef} />
+                <Label htmlFor="tag">Tag</Label>
+                <Input id="tag" aria-label="tag" placeholder="Enter Tag" ref={userNameRef} />
               </div>
             </div>
           </div>

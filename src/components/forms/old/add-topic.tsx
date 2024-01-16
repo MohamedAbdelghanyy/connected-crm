@@ -96,15 +96,15 @@ export default function AddTopic({
             <div className="space-y-4 py-2 pb-4">
               <div className="space-y-2">
                 <Label htmlFor="name">Topic Name</Label>
-                <Input id="name" placeholder="Enter topic's name" ref={userNameRef} />
+                <Input id="name" aria-label="name" placeholder="Enter topic's name" ref={userNameRef} />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="image">Image</Label>
-                <Input type="file" id="image" placeholder="Upload Topic Image" />
+                <Input type="file" aria-label="image" id="image" placeholder="Upload Topic Image" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="details">Details</Label>
-                <Textarea id="details" placeholder="Enter topic's details" />
+                <Textarea id="details" aria-label="details" placeholder="Enter topic's details" />
               </div>
             </div>
           </div>

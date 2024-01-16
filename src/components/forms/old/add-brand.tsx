@@ -88,11 +88,11 @@ export default function AddBrand({
             <div className="space-y-4 py-2 pb-4">
               <div className="space-y-2">
                 <Label htmlFor="name">Brand Name</Label>
-                <Input id="name" placeholder="Enter brand's name" ref={userNameRef} />
+                <Input id="name" aria-label="name" placeholder="Enter brand's name" ref={userNameRef} />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="image">Image</Label>
-                <Input type="file" id="image" placeholder="Upload Brand Image" />
+                <Input type="file" aria-label="image" id="image" placeholder="Upload Brand Image" />
               </div>
             </div>
           </div>

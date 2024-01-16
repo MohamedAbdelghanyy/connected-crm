@@ -88,15 +88,15 @@ export default function AddLocation({
             <div className="space-y-4 py-2 pb-4">
               <div className="space-y-2">
                 <Label htmlFor="name">Name</Label>
-                <Input id="name" placeholder="Enter location name" ref={userNameRef} />
+                <Input id="name" aria-label="name" placeholder="Enter location name" ref={userNameRef} />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="latitude">Latitude</Label>
-                <Input id="latitude" placeholder="Enter location latitude" />
+                <Input id="latitude" aria-label="latitude" placeholder="Enter location latitude" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="longitude">Longitude</Label>
-                <Input id="longitude" placeholder="Enter location longitude" />
+                <Input id="longitude" aria-label="longitude" placeholder="Enter location longitude" />
               </div>
             </div>
           </div>

@@ -2,6 +2,7 @@ import { AutocompleteGetTagProps, useAutocomplete } from '@mui/base/useAutocompl
 import { autocompleteClasses } from '@mui/material/Autocomplete';
 import { createTheme, styled } from '@mui/material/styles';
 import { XCircleIcon } from 'lucide-react';
+import { useEffect } from 'react';
 
 const Root = styled('div')(
   ({ theme }) => `
@@ -132,7 +133,7 @@ const Listbox = styled('ul')(
 `,
 );
 
-export default function InterestsInput({ theme }: any) {
+export default function InterestsInput({ theme, onChange }: any) {
   const {
     getRootProps,
     getInputLabelProps,
@@ -157,13 +158,19 @@ export default function InterestsInput({ theme }: any) {
     },
   });
 
+  useEffect(() => {
+    if (onChange) {
+      onChange(value);
+    }
+  }, [value, onChange])
+
   return (
     <Root>
       <div {...getRootProps()}>
         <InputWrapper ref={setAnchorEl} theme={currentTheme} className={focused ? 'focused' : ''}>
           {value.map((option: CategoryOptionType, index: number) => (
             <div key={index}><StyledTag label={option.name} {...getTagProps({ index })} /></div>
-            
+
           ))}
           <input {...getInputProps()} placeholder='Type and select category' />
         </InputWrapper>
