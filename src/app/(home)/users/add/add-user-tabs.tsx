@@ -1,10 +1,8 @@
-"use client"
-
 import _ from "@/@lodash/@lodash"
 import OrganizationTreeSelect from "@/app/(home)/users/add/organization-tree-select"
 import FormButton from "@/components/forms/form-button"
+import { errorHandler } from "@/components/other/error-handler"
 import { Checkbox } from "@/components/ui/checkbox"
-import { errorHandler } from "@/components/ui/custom/error-handler"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { toast } from "@/components/ui/use-toast"
@@ -13,14 +11,13 @@ import { UserValidation } from "@/config/forms/validation"
 import axios from "@/services/axios"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { Grid } from "@mui/material"
-import { useRouter } from "next/navigation"
 import * as React from "react"
 import { Controller, FormProvider, useForm } from "react-hook-form"
+import { useNavigate } from "react-router-dom"
 import { CustomInput } from "../../../../components/ui/custom-input"
-import { rolesActionList } from "../../roles/(list)/config"
 
 export default function AddUserTabs({ units }: any) {
-  const router = useRouter();
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [activeTab, setActiveTab] = React.useState("general");
   const [allRoles, setAllRoles] = React.useState([]);
@@ -30,7 +27,7 @@ export default function AddUserTabs({ units }: any) {
     defaultValues: UserObject.empty,
     resolver: yupResolver(UserValidation.mainSchema),
   });
-  const { control, formState, getValues, setValue } = methods;
+  const { control, formState, getValues } = methods;
   const { isValid, dirtyFields, errors } = formState;
 
   React.useEffect(() => {
@@ -52,7 +49,7 @@ export default function AddUserTabs({ units }: any) {
           description: getValues().name + " was successfully added.",
           variant: "success",
         });
-        router.push('/users/' + response.data.id);
+        navigate('/users/' + response.data.id);
       })
       .catch(function (error) {
         errorHandler(toast, error);

@@ -1,27 +1,28 @@
-import { errorHandler } from "@/components/ui/custom/error-handler";
+import { errorHandler } from "@/components/other/error-handler";
 import { toast } from "@/components/ui/use-toast";
 import axios from "@/services/axios";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import AttributeValueTabs from "./attribute-value-tabs";
 
-export const metadata = {
-  title: "Attribute Value",
-}
+export default function AttributeValuePage() {
+  const { attributeID } = useParams();
+  const { valueID } = useParams();
+  const [attributeValue, setAttributeValue] = useState();
 
-async function getAttributeValue(attributeID: string, attributeValueID: string) {
-  return await axios.get('/app/specification/' + attributeID + '/value/' + attributeValueID)
-    .then(function (response) {
-      return response.data.result;
-    })
-    .catch(function (error) {
-      errorHandler(toast, error);
-      return null;
-    });
-}
+  async function getAttributeValue() {
+    await axios.get('/app/specification/' + attributeID + '/value/' + valueID)
+      .then(function (response) {
+        setAttributeValue(response.data.result);
+      })
+      .catch(function (error) {
+        errorHandler(toast, error);
+      });
+  }
 
-export default async function AttributeValuePage({ params }: { params: { attribute: string, value: string } }) {
-  const attributeID = params.attribute;
-  const attributeValueID = params.value;
-  const attributeValue = await getAttributeValue(attributeID, attributeValueID);
+  useEffect(() => {
+    getAttributeValue();
+  }, [attributeID, valueID]);
 
   return (
     <AttributeValueTabs

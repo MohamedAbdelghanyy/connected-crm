@@ -1,13 +1,10 @@
-"use client"
-
 import { DataTableColumnHeader } from "@/components/table/data-table-column-header"
 import { ActionListProps, DataTableRowActions } from "@/components/table/data-table-row-actions"
 import { ToolbarProps, ToolbarSearchListProps } from "@/components/table/data-table-toolbar"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Checkbox } from "@/components/ui/checkbox"
 import { ColumnDef } from "@tanstack/react-table"
 
-const currenciesActionList : ActionListProps[] = [
+const currenciesActionList: ActionListProps[] = [
   {
     type: "button",
     label: "View",
@@ -31,9 +28,9 @@ const currenciesActionList : ActionListProps[] = [
   }
 ]
 
-export const currenciesTableToolbar : ToolbarProps[] = []
+export const currenciesTableToolbar: ToolbarProps[] = []
 
-export const currenciesTableToolbarSearchList : ToolbarSearchListProps[] = [
+export const currenciesTableToolbarSearchList: ToolbarSearchListProps[] = [
   {
     key: 'id',
     title: 'ID'
@@ -117,6 +114,6 @@ export const currenciesTableColumns: ColumnDef<CurrenciesProps>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }) => <DataTableRowActions row={row} actionList={currenciesActionList}  />,
+    cell: ({ row }) => <DataTableRowActions row={row} actionList={currenciesActionList} />,
   },
 ]

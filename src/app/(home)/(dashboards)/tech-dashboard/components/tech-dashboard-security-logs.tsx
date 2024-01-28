@@ -1,5 +1,5 @@
 import { securityLogsTableColumns, securityLogsTableToolbar, securityLogsTableToolbarSearchList } from "@/app/(home)/security-logs/config";
-import { EmptyPlaceholder } from "@/components/empty-placeholder";
+import { EmptyPlaceholder } from "@/components/other/empty-placeholder";
 import { DataTable } from "@/components/table/data-table";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 

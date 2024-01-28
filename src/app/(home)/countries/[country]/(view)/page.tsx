@@ -1,14 +1,13 @@
-'use client'
-
-import DynamicFlag from "@/components/custom/dynamic-flag";
-import { EmptyPlaceholder } from "@/components/empty-placeholder";
 import FormButton from "@/components/forms/form-button";
-import { DashboardHeader } from "@/components/header";
-import { Icons } from "@/components/icons";
-import { DashboardShell } from "@/components/shell";
+import DashboardLayout from "@/components/layouts/dashboard-layout";
+import DynamicFlag from "@/components/other/dynamic-flag";
+import { EmptyPlaceholder } from "@/components/other/empty-placeholder";
+import { errorHandler } from "@/components/other/error-handler";
+import { DashboardHeader } from "@/components/other/header";
+import { Icons } from "@/components/other/icons";
+import { DashboardShell } from "@/components/other/shell";
 import { DataTable } from "@/components/table/data-table";
 import { buttonVariants } from "@/components/ui/button";
-import { errorHandler } from "@/components/ui/custom/error-handler";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
@@ -17,19 +16,18 @@ import { toast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
 import axios from "@/services/axios";
 import { Grid } from "@mui/material";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { CountriesProps } from "../../(list)/config";
-import CountryLoading from "./loading";
 import { LocationsProps, locationsTableColumns, locationsTableToolbar, locationsTableToolbarSearchList } from "../locations/(list)/config";
+import CountryLoading from "./loading";
 
-export default function CountryPage({ params }: { params: { country: string } }) {
-  let countryID = parseInt(params.country);
+export default function CountryPage() {
+  const { countryID } = useParams();
   const [country, setCountry] = useState<CountriesProps>();
   const [locations, setLocations] = useState<LocationsProps[]>([]);
   const [activeTab, setActiveTab] = useState("info");
-  const { push } = useRouter();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get('/app/country/' + countryID)
@@ -54,7 +52,7 @@ export default function CountryPage({ params }: { params: { country: string } })
   }, [country, countryID]);
 
   return country ? (
-    <>
+    <DashboardLayout>
       <DashboardShell className="mb-1">
         <DashboardHeader heading={country.name} text={country.id}>
           <div style={{ display: 'flex', flexDirection: 'row' }} className="space-x-2">
@@ -62,7 +60,7 @@ export default function CountryPage({ params }: { params: { country: string } })
               label="Edit"
               isLoading={false}
               callback={() => {
-                push("/countries/" + country.id + "/edit");
+                navigate("/countries/" + country.id + "/edit");
               }}
               isEnabled={true}
             />
@@ -147,7 +145,7 @@ export default function CountryPage({ params }: { params: { country: string } })
               <div className="space-y-4 py-2 pb-4">
                 <DashboardShell className="mb-1">
                   <DashboardHeader heading="" text="Manage country locations">
-                    <Link href={`/countries/${country.id}/locations/add`} className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Location</Link>
+                    <Link to={`/countries/${country.id}/locations/add`} className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Location</Link>
                   </DashboardHeader>
                 </DashboardShell>
                 <div className="m-2">
@@ -159,7 +157,7 @@ export default function CountryPage({ params }: { params: { country: string } })
                     <EmptyPlaceholder.Description>
                       You don&apos;t have any locations yet.
                     </EmptyPlaceholder.Description>
-                    <Link href={`/countries/${country.id}/locations/add`} className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Locations</Link>
+                    <Link to={`/countries/${country.id}/locations/add`} className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Locations</Link>
                   </EmptyPlaceholder>)}
                 </div>
               </div>
@@ -167,17 +165,7 @@ export default function CountryPage({ params }: { params: { country: string } })
           </div>
         </Tabs>
       </div>
-    </>
+    </DashboardLayout>
   )
     : <CountryLoading />
-}
-
-function CustomEmptyPlaceHolder({ title, categoryName }: any) {
-  return (<EmptyPlaceholder>
-    <EmptyPlaceholder.Icon name="post" />
-    <EmptyPlaceholder.Title>No {title}</EmptyPlaceholder.Title>
-    <EmptyPlaceholder.Description>
-      {categoryName} doesn&apos;t have any {title} yet.
-    </EmptyPlaceholder.Description>
-  </EmptyPlaceholder>);
 }

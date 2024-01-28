@@ -1,11 +1,8 @@
-'use client'
-
-import { EmptyPlaceholder } from "@/components/empty-placeholder";
 import FormButton from "@/components/forms/form-button";
-import { DashboardHeader } from "@/components/header";
-import { DashboardShell } from "@/components/shell";
+import { errorHandler } from "@/components/other/error-handler";
+import { DashboardHeader } from "@/components/other/header";
+import { DashboardShell } from "@/components/other/shell";
 import { Badge } from "@/components/ui/badge";
-import { errorHandler } from "@/components/ui/custom/error-handler";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
@@ -13,17 +10,17 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/components/ui/use-toast";
 import axios from "@/services/axios";
 import { Grid } from "@mui/material";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { BrandsProps } from "../../(list)/config";
 import BrandLoading from "./loading";
+import DashboardLayout from "@/components/layouts/dashboard-layout";
 
-export default function BrandPage({ params }: { params: { brand: string } }) {
-  let brandID = params.brand;
+export default function BrandPage() {
+  const { brandID } = useParams();
   const [brand, setBrand] = useState<BrandsProps>();
   const [activeTab, setActiveTab] = useState("info");
-  const { push } = useRouter();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get('/app/brands/' + brandID)
@@ -36,7 +33,7 @@ export default function BrandPage({ params }: { params: { brand: string } }) {
   }, [brandID]);
 
   return brand ? (
-    <>
+    <DashboardLayout>
       <DashboardShell className="mb-1">
         <DashboardHeader heading={brand.name} text={brand.id.toString()}>
           <div style={{ display: 'flex', flexDirection: 'row' }} className="space-x-2">
@@ -44,7 +41,7 @@ export default function BrandPage({ params }: { params: { brand: string } }) {
               label="Edit"
               isLoading={false}
               callback={() => {
-                push("/brands/" + brand.id + "/edit");
+                navigate("/brands/" + brand.id + "/edit");
               }}
               isEnabled={true}
             />
@@ -83,7 +80,7 @@ export default function BrandPage({ params }: { params: { brand: string } }) {
                   <div className="space-x-2">
                     {brand.categories.map((category) =>
                       <Badge key={category.id} style={{ cursor: 'pointer' }}>
-                        <Link href={'/categories/' + category.id}>{category.name}</Link>
+                        <Link to={'/categories/' + category.id}>{category.name}</Link>
                       </Badge>
                     )}
                   </div>
@@ -158,16 +155,6 @@ export default function BrandPage({ params }: { params: { brand: string } }) {
           </div>
         </Tabs>
       </div>
-    </>
+    </DashboardLayout>
   ) : <BrandLoading />
-}
-
-function CustomEmptyPlaceHolder({ title, brandName }: any) {
-  return (<EmptyPlaceholder>
-    <EmptyPlaceholder.Icon name="post" />
-    <EmptyPlaceholder.Title>No {title}</EmptyPlaceholder.Title>
-    <EmptyPlaceholder.Description>
-      {brandName} doesn&apos;t have any {title} yet.
-    </EmptyPlaceholder.Description>
-  </EmptyPlaceholder>);
 }

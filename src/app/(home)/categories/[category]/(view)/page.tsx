@@ -1,38 +1,39 @@
-import { errorHandler } from "@/components/ui/custom/error-handler";
+import { errorHandler } from "@/components/other/error-handler";
 import { toast } from "@/components/ui/use-toast";
 import axios from "@/services/axios";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import CategoryTabs from "./category-tabs";
 
-export const metadata = {
-  title: "Category",
-}
+export default function CategoryPage() {
+  const { categoryID } = useParams();
+  const [category, setCategory] = useState();
+  const [attributes, setAttributes] = useState([]);
 
-async function getCategory(categoryID: string) {
-  return await axios.get('/app/category/' + categoryID)
-    .then(function (response) {
-      return response.data.result;
-    })
-    .catch(function (error) {
-      errorHandler(toast, error);
-      return null;
-    });
-}
+  async function getCategory() {
+    await axios.get('/app/category/' + categoryID)
+      .then(function (response) {
+        setCategory(response.data.result);
+      })
+      .catch(function (error) {
+        errorHandler(toast, error);
+      });
+  }
 
-async function getAttributes(categoryID: string) {
-  return await axios.get('/app/specification/', { params: { CategoryID: categoryID } })
-    .then(function (response) {
-      return response.data.result.items;
-    })
-    .catch(function (error) {
-      errorHandler(toast, error);
-      return null;
-    });
-}
+  async function getAttributes() {
+    await axios.get('/app/specification/', { params: { CategoryID: categoryID } })
+      .then(function (response) {
+        setAttributes(response.data.result.items);
+      })
+      .catch(function (error) {
+        errorHandler(toast, error);
+      });
+  }
 
-export default async function CategoryPage({ params }: { params: { category: string } }) {
-  let categoryID = params.category;
-  const category = await getCategory(categoryID);
-  const attributes = await getAttributes(categoryID);
+  useEffect(() => {
+    getCategory();
+    getAttributes();
+  }, [categoryID]);
 
   return (
     <CategoryTabs

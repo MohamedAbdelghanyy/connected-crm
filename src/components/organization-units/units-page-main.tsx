@@ -1,9 +1,7 @@
-"use client"
-
-import OrganizationData from "@/components/organization-units/tree/organization-data"
-import OrganizationTree from "@/components/organization-units/tree/organization-tree"
-import { Grid } from "@mui/material"
-import { useState } from "react"
+import OrganizationData from "@/components/organization-units/tree/organization-data";
+import OrganizationTree from "@/components/organization-units/tree/organization-tree";
+import { Grid } from "@mui/material";
+import { useState } from "react";
 
 export default function UnitsPageMain({ units, members, roles }: any) {
     const [selectedUnit, setSelectedUnit] = useState(-1);

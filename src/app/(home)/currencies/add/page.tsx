@@ -1,11 +1,10 @@
-"use client"
-
 import _ from "@/@lodash/@lodash"
 import FormButton from "@/components/forms/form-button"
-import { DashboardHeader } from "@/components/header"
-import { DashboardShell } from "@/components/shell"
+import DashboardLayout from "@/components/layouts/dashboard-layout"
+import { errorHandler } from "@/components/other/error-handler"
+import { DashboardHeader } from "@/components/other/header"
+import { DashboardShell } from "@/components/other/shell"
 import { CustomInput } from "@/components/ui/custom-input"
-import { errorHandler } from "@/components/ui/custom/error-handler"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { toast } from "@/components/ui/use-toast"
@@ -14,12 +13,12 @@ import { CurrencyValidation } from "@/config/forms/validation"
 import axios from "@/services/axios"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { Grid } from "@mui/material"
-import { useRouter } from "next/navigation"
 import * as React from "react"
 import { Controller, FormProvider, useForm } from "react-hook-form"
+import { useNavigate } from "react-router-dom"
 
 export default function AddCurrencyPage() {
-  const router = useRouter()
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
   const [activeTab, setActiveTab] = React.useState("general")
   const methods = useForm({
@@ -39,7 +38,7 @@ export default function AddCurrencyPage() {
           description: getValues().name + " was successfully added.",
           variant: "success",
         });
-        router.push('/currencies/' + response.data.result.id);
+        navigate('/currencies/' + response.data.result.id);
       })
       .catch(function (error) {
         errorHandler(toast, error);
@@ -48,10 +47,10 @@ export default function AddCurrencyPage() {
   }
 
   return (
-    <>
+    <DashboardLayout>
       <FormProvider {...methods}>
         <DashboardShell className="mb-1">
-          <DashboardHeader heading="Add Currency" text="Enter currency's details"></DashboardHeader>
+          <DashboardHeader heading="Add Currency" text="Enter currency details"></DashboardHeader>
         </DashboardShell>
         <div className="space-y-4 pb-4 px-2">
           <div className="space-y-2"></div>
@@ -111,6 +110,6 @@ export default function AddCurrencyPage() {
           </Tabs>
         </div>
       </FormProvider>
-    </>
+    </DashboardLayout>
   )
 }

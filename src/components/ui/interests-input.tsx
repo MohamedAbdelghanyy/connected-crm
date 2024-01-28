@@ -136,7 +136,6 @@ const Listbox = styled('ul')(
 export default function InterestsInput({ theme, onChange }: any) {
   const {
     getRootProps,
-    getInputLabelProps,
     getInputProps,
     getTagProps,
     getListboxProps,

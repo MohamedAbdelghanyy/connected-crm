@@ -1,6 +1,5 @@
 import { Column } from "@tanstack/react-table"
 
-import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -9,7 +8,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { ArrowDownIcon, ArrowUpIcon, EyeOffIcon, LucideChevronsUpDown, SortAscIcon } from "lucide-react"
+import { cn } from "@/lib/utils"
+import { ArrowDownIcon, ArrowUpIcon, EyeOffIcon, LucideChevronsUpDown } from "lucide-react"
 
 interface DataTableColumnHeaderProps<TData, TValue>
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -27,7 +27,7 @@ export function DataTableColumnHeader<TData, TValue>({
   }
 
   return (
-    <div className={cn("flex items-center space-x-2", className)} style={{width: "max-content"}}>
+    <div className={cn("flex items-center space-x-2", className)} style={{ width: "max-content" }}>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button

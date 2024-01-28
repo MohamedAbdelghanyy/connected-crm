@@ -1,3 +1,4 @@
+import DashboardLayout from "@/components/layouts/dashboard-layout"
 import {
   Card,
   CardContent,
@@ -13,13 +14,9 @@ import { SalesDashboardTargetChart } from "./components/charts/sales-dashboard-t
 import { SalesDashboardAppointments } from "./components/sales-dashboard-appointments"
 import { SalesDashboardCalls } from "./components/sales-dashboard-calls"
 
-export const metadata = {
-  title: "Dashboard",
-}
-
 export default function SalesDashboardPage() {
   return (
-    <>
+    <DashboardLayout>
       <div className="flex items-center justify-between space-y-2">
         <h2 className="text-4xl mb-1">Dashboard</h2>
       </div>
@@ -101,6 +98,6 @@ export default function SalesDashboardPage() {
           </Grid>
         </Grid>
       </div>
-    </>
+    </DashboardLayout>
   )
 }

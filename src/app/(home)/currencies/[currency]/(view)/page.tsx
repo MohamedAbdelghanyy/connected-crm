@@ -1,30 +1,29 @@
-'use client'
-
-import { EmptyPlaceholder } from "@/components/empty-placeholder";
 import AddExchangeRateDialog from "@/components/forms/add-exchange-rate-dialog";
 import FormButton from "@/components/forms/form-button";
-import { DashboardHeader } from "@/components/header";
-import { DashboardShell } from "@/components/shell";
+import DashboardLayout from "@/components/layouts/dashboard-layout";
+import { EmptyPlaceholder } from "@/components/other/empty-placeholder";
+import { errorHandler } from "@/components/other/error-handler";
+import { DashboardHeader } from "@/components/other/header";
+import { DashboardShell } from "@/components/other/shell";
 import { DataTable } from "@/components/table/data-table";
-import { errorHandler } from "@/components/ui/custom/error-handler";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/components/ui/use-toast";
 import axios from "@/services/axios";
 import { Grid } from "@mui/material";
-import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { CurrenciesProps } from "../../(list)/config";
 import { ExchangeRatesProps, exchangeRatesTableToolbar, exchangeRatesTableToolbarSearchList, exchangeratesTableColumns } from "./exchange-rates-config";
 import CurrencyLoading from "./loading";
 
-export default function CurrencyPage({ params }: { params: { currency: string } }) {
-  let currencyID = params.currency;
+export default function CurrencyPage() {
+  const { currencyID } = useParams();
   const [currency, setCurrency] = useState<CurrenciesProps>();
   const [exchangeRates, setExchangeRates] = useState<ExchangeRatesProps[]>([]);
   const [activeTab, setActiveTab] = useState("info");
-  const { push } = useRouter();
+  const navigate = useNavigate();
 
   const getCurrencyData = useCallback(() => {
     axios.get('/app/currency/' + currencyID)
@@ -47,7 +46,7 @@ export default function CurrencyPage({ params }: { params: { currency: string } 
   }, [getCurrencyData]);
 
   return currency ? (
-    <>
+    <DashboardLayout>
       <DashboardShell className="mb-1">
         <DashboardHeader heading={currency.name} text={currency.id.toString()}>
           <div style={{ display: 'flex', flexDirection: 'row' }} className="space-x-2">
@@ -55,7 +54,7 @@ export default function CurrencyPage({ params }: { params: { currency: string } 
               label="Edit"
               isLoading={false}
               callback={() => {
-                push("/currencies/" + currency.id + "/edit");
+                navigate("/currencies/" + currency.id + "/edit");
               }}
               isEnabled={true}
             />
@@ -126,7 +125,7 @@ export default function CurrencyPage({ params }: { params: { currency: string } 
           </div>
         </Tabs>
       </div>
-    </>
+    </DashboardLayout>
   ) : <CurrencyLoading />
 }
 

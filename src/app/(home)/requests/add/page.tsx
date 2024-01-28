@@ -1,11 +1,10 @@
-"use client"
-
 import _ from "@/@lodash/@lodash"
 import FormButton from "@/components/forms/form-button"
-import { DashboardHeader } from "@/components/header"
-import { DashboardShell } from "@/components/shell"
+import DashboardLayout from "@/components/layouts/dashboard-layout"
+import { DateTimePicker } from "@/components/other/custom/date-time-picker/date-time-picker"
+import { DashboardHeader } from "@/components/other/header"
+import { DashboardShell } from "@/components/other/shell"
 import { CustomTextarea } from "@/components/ui/custom-textarea"
-import { DateTimePicker } from "@/components/ui/custom/date-time-picker/date-time-picker"
 import { Label } from "@/components/ui/label"
 import {
   Select,
@@ -19,12 +18,10 @@ import { RequestObject } from "@/config/forms/defaultObjects"
 import { RequestValidation } from "@/config/forms/validation"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { Grid } from "@mui/material"
-import { useRouter } from "next/navigation"
 import * as React from "react"
 import { Controller, FormProvider, useForm } from "react-hook-form"
 
 export default function AddRequestPage() {
-  const router = useRouter()
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [activeTab, setActiveTab] = React.useState("general");
 
@@ -33,15 +30,17 @@ export default function AddRequestPage() {
     defaultValues: RequestObject.empty,
     resolver: yupResolver(RequestValidation.mainSchema),
   });
-  const { control, formState, watch } = methods;
+  const { control, formState } = methods;
   const { isValid, dirtyFields, errors } = formState;
 
   const add = () => {
+    setIsLoading(true);
     console.log("Added");
+    setIsLoading(false);
   }
 
   return (
-    <>
+    <DashboardLayout>
       <FormProvider {...methods}>
         <DashboardShell className="mb-1">
           <DashboardHeader heading="Add Request" text="Enter request details"></DashboardHeader>
@@ -206,6 +205,6 @@ export default function AddRequestPage() {
           </Tabs>
         </div>
       </FormProvider>
-    </>
+    </DashboardLayout>
   )
 }

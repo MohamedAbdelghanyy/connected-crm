@@ -1,16 +1,10 @@
-"use client"
-
-import { Table } from "@tanstack/react-table"
-
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { DataTableViewOptions } from "./data-table-view-options"
-
+import Grid from '@mui/material/Grid'
+import { Table } from "@tanstack/react-table"
+import { LucideIcon, XCircleIcon } from "lucide-react"
+import { FilterInput } from "../other/filter-input"
 import { DataTableFacetedFilter } from "./data-table-faceted-filter"
-import { Box, LucideIcon, XCircleIcon } from "lucide-react"
-import { FilterInput } from "../filter-input"
-
-import Grid from '@mui/material/Grid';
+import { DataTableViewOptions } from "./data-table-view-options"
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>
@@ -26,8 +20,8 @@ export interface ToolbarSearchListProps {
 export interface ToolbarProps {
   key: string
   title: string
-  options: { 
-    value: string 
+  options: {
+    value: string
     label: string
     icon?: LucideIcon
   }[];
@@ -41,16 +35,16 @@ export function DataTableToolbar<TData>({
   const isFiltered = table.getState().columnFilters.length > 0
 
   let searchInputGridSize = 11;
-  if(toolbar.length > 2){
+  if (toolbar.length > 2) {
     searchInputGridSize = 8;
-  }else if(toolbar.length > 1){
+  } else if (toolbar.length > 1) {
     searchInputGridSize = 9;
-  }else if(toolbar.length > 0){
+  } else if (toolbar.length > 0) {
     searchInputGridSize = 10;
   }
 
-  if(isFiltered){
-    searchInputGridSize-= 2;
+  if (isFiltered) {
+    searchInputGridSize -= 2;
   }
 
   return (
@@ -62,10 +56,10 @@ export function DataTableToolbar<TData>({
             table={table}
           />
         </Grid>
-        <Grid item xs={12} sm={12} md={12-searchInputGridSize} lg={12-searchInputGridSize}>
+        <Grid item xs={12} sm={12} md={12 - searchInputGridSize} lg={12 - searchInputGridSize}>
           {toolbar.map((toolbarItem) => {
             table.getColumn(toolbarItem.key);
-            return  (
+            return (
               <DataTableFacetedFilter
                 key={toolbarItem.key}
                 column={table.getColumn(toolbarItem.key)}
@@ -77,7 +71,7 @@ export function DataTableToolbar<TData>({
           {isFiltered && (
             <Button
               variant="ghost"
-              onClick={() => {table.resetColumnFilters(); searchInputGridSize++;}}
+              onClick={() => { table.resetColumnFilters(); searchInputGridSize++; }}
               className="h-10 px-2 lg:px-3"
             >
               Reset

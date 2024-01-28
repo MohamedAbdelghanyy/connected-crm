@@ -1,3 +1,4 @@
+import DashboardLayout from "@/components/layouts/dashboard-layout"
 import {
   Card,
   CardContent,
@@ -5,20 +6,16 @@ import {
   CardTitle
 } from "@/components/ui/card"
 import Grid from '@mui/material/Grid'
+import { Top10ContactOwner } from "../marketing-dashboard/components/top-10/top-10-contact-owner"
+import { Top10Searched } from "../marketing-dashboard/components/top-10/top-10-searched"
+import { Top10Shared } from "../marketing-dashboard/components/top-10/top-10-shared"
+import { Top10Viewed } from "../marketing-dashboard/components/top-10/top-10-viewed"
 import { DashboardCharts } from "./components/charts/dashboard-charts"
 import { DashboardAppointments } from "./components/dashboard-appointments"
-import { Top10Viewed } from "../marketing-dashboard/components/top-10/top-10-viewed"
-import { Top10Shared } from "../marketing-dashboard/components/top-10/top-10-shared"
-import { Top10Searched } from "../marketing-dashboard/components/top-10/top-10-searched"
-import { Top10ContactOwner } from "../marketing-dashboard/components/top-10/top-10-contact-owner"
-
-export const metadata = {
-  title: "Dashboard",
-}
 
 export default function CEODashboardPage() {
   return (
-    <>
+    <DashboardLayout>
       <div className="flex items-center justify-between space-y-2">
         <h2 className="text-4xl mb-1">Dashboard</h2>
       </div>
@@ -145,6 +142,6 @@ export default function CEODashboardPage() {
           </Grid>
         </Grid>
       </div>
-    </>
+    </DashboardLayout>
   )
 }

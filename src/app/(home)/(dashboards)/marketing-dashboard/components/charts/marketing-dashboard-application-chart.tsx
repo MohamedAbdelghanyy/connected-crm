@@ -1,5 +1,3 @@
-"use client"
-
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Grid } from '@mui/material';
@@ -32,9 +30,9 @@ export const options = {
 
 export function MarketingDashboardApplicationChart() {
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  
+
   const [chartLabel, setChartLabel] = useState(months[(new Date().getMonth())]);
-  
+
   const getChartData = useCallback(() => {
     return {
       labels: ['Installs', 'Un-installs'],
@@ -57,7 +55,7 @@ export function MarketingDashboardApplicationChart() {
         }]
     };
   }, []);
-  
+
   const [chartData, setChartData] = useState(getChartData());
 
   useEffect(() => {

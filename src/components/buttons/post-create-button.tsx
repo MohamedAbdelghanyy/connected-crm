@@ -1,21 +1,18 @@
-"use client"
+import { Icons } from "@/components/other/icons";
+import { ButtonProps, buttonVariants } from "@/components/ui/button";
+import { toast } from "@/components/ui/use-toast";
+import { cn } from "@/lib/utils";
+import * as React from "react";
+import { useNavigate } from "react-router-dom";
 
-import * as React from "react"
-import { useRouter } from "next/navigation"
-
-import { cn } from "@/lib/utils"
-import { ButtonProps, buttonVariants } from "@/components/ui/button"
-import { toast } from "@/components/ui/use-toast"
-import { Icons } from "@/components/icons"
-
-interface PostCreateButtonProps extends ButtonProps {}
+interface PostCreateButtonProps extends ButtonProps { }
 
 export function PostCreateButton({
   className,
   variant,
   ...props
 }: PostCreateButtonProps) {
-  const router = useRouter()
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
 
   async function onClick() {
@@ -52,9 +49,9 @@ export function PostCreateButton({
     const post = await response.json()
 
     // This forces a cache invalidation.
-    router.refresh()
 
-    router.push(`/editor/${post.id}`)
+
+    navigate(`/editor/${post.id}`)
   }
 
   return (

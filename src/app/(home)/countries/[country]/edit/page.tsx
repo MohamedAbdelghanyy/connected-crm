@@ -1,11 +1,10 @@
-'use client'
-
 import _ from "@/@lodash/@lodash";
 import FormButton from "@/components/forms/form-button";
-import { DashboardHeader } from "@/components/header";
-import { DashboardShell } from "@/components/shell";
+import DashboardLayout from "@/components/layouts/dashboard-layout";
+import { errorHandler } from "@/components/other/error-handler";
+import { DashboardHeader } from "@/components/other/header";
+import { DashboardShell } from "@/components/other/shell";
 import { CustomInput } from "@/components/ui/custom-input";
-import { errorHandler } from "@/components/ui/custom/error-handler";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -15,16 +14,17 @@ import { CountryValidation } from "@/config/forms/validation";
 import axios from "@/services/axios";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Grid } from "@mui/material";
-import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect } from "react";
 import { Controller, FormProvider, useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
+import EditCountryLoading from "./loading";
 
-export default function CountryPage({ params }: { params: { country: string } }) {
+export default function EditCountryPage() {
+  const { countryID } = useParams();
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [activeTab, setActiveTab] = React.useState("general");
-  const [countryID, setCountryID] = React.useState("");
   const [country, setCountry] = React.useState(CountryObject.empty);
-  const { push } = useRouter();
+  const navigate = useNavigate();
   const methods = useForm({
     mode: 'onChange',
     defaultValues: country,
@@ -33,7 +33,7 @@ export default function CountryPage({ params }: { params: { country: string } })
   const { control, formState, getValues, reset } = methods;
   const { isValid, dirtyFields, errors } = formState;
 
-  const getCountry = useCallback((countryID: string) => {
+  const getCountry = useCallback(() => {
     axios.get('/app/country/' + countryID)
       .then(function (response) {
         if (response.data.result != null) {
@@ -41,14 +41,14 @@ export default function CountryPage({ params }: { params: { country: string } })
           reset(response.data.result);
         } else {
           errorHandler(toast, "This country was not found");
-          push("/countries");
+          navigate("/countries");
         }
       })
       .catch(function (error) {
         errorHandler(toast, error);
-        push("/countries");
+        navigate("/countries");
       });
-  }, [push, reset]);
+  }, [navigate, reset]);
 
   const edit = () => {
     setIsLoading(true);
@@ -59,7 +59,7 @@ export default function CountryPage({ params }: { params: { country: string } })
           description: getValues().name + " was successfully updated.",
           variant: "success",
         });
-        push('/countries/' + response.data.result.id);
+        navigate('/countries/' + response.data.result.id);
       })
       .catch(function (error) {
         errorHandler(toast, error);
@@ -68,12 +68,11 @@ export default function CountryPage({ params }: { params: { country: string } })
   }
 
   useEffect(() => {
-    setCountryID(params.country);
-    getCountry(params.country);
-  }, [getCountry, params.country]);
+    getCountry();
+  }, [getCountry, countryID]);
 
   return country && country.id != 0 ? (
-    <>
+    <DashboardLayout>
       <FormProvider {...methods}>
         <DashboardShell className="mb-1">
           <DashboardHeader heading={"Edit " + country.name + " Country"} text="Enter country details"></DashboardHeader>
@@ -198,6 +197,6 @@ export default function CountryPage({ params }: { params: { country: string } })
           </Tabs>
         </div>
       </FormProvider>
-    </>
-  ) : <></>
+    </DashboardLayout>
+  ) : <EditCountryLoading />
 }

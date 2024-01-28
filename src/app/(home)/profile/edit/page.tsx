@@ -1,26 +1,25 @@
-'use client'
-
 import _ from "@/@lodash/@lodash";
 import FormButton from "@/components/forms/form-button";
-import { DashboardHeader } from "@/components/header";
-import { DashboardShell } from "@/components/shell";
+import DashboardLayout from "@/components/layouts/dashboard-layout";
+import { errorHandler } from "@/components/other/error-handler";
+import { DashboardHeader } from "@/components/other/header";
+import { DashboardShell } from "@/components/other/shell";
 import { CustomInput } from "@/components/ui/custom-input";
-import { errorHandler } from "@/components/ui/custom/error-handler";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/components/ui/use-toast";
 import { ProfileObject } from "@/config/forms/defaultObjects";
 import { ProfileValidation } from "@/config/forms/validation";
 import axios from "@/services/axios";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import { Controller, FormProvider, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import ProfileEditLoading from "./loading";
 
-export default function ProfileEditPage() {
+export default function EditProfilePage() {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [profile, setProfile] = React.useState(ProfileObject.empty);
-  const { push } = useRouter();
+  const navigate = useNavigate();
   const methods = useForm({
     mode: 'onChange',
     defaultValues: profile,
@@ -32,13 +31,13 @@ export default function ProfileEditPage() {
   const edit = () => {
     setIsLoading(true);
     axios.put('/account/my-profile/', getValues())
-      .then(function (response) {
+      .then(function () {
         toast({
           title: "Success",
           description: "Your profile was successfully updated.",
           variant: "success",
         });
-        push('/profile');
+        navigate('/profile');
       })
       .catch(function (error) {
         errorHandler(toast, error);
@@ -54,17 +53,17 @@ export default function ProfileEditPage() {
           reset(response.data);
         } else {
           errorHandler(toast, "This profile was not found.");
-          push('/profile');
+          navigate('/profile');
         }
       })
       .catch(function (error) {
         errorHandler(toast, error);
-        push('/profile');
+        navigate('/profile');
       });
-  }, [push, reset]);
+  }, [navigate, reset]);
 
   return profile.email != '' && profile.userName != '' ? (
-    <>
+    <DashboardLayout>
       <FormProvider {...methods}>
         <DashboardShell className="mb-1">
           <DashboardHeader heading={"Edit " + profile.name + " Profile"} text="Enter profile details"></DashboardHeader>
@@ -170,6 +169,6 @@ export default function ProfileEditPage() {
           isEnabled={!_.isEmpty(dirtyFields) && isValid}
         />
       </FormProvider>
-    </>
+    </DashboardLayout>
   ) : <ProfileEditLoading />
 }

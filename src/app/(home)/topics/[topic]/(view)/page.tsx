@@ -1,35 +1,34 @@
-'use client'
-
-import { EmptyPlaceholder } from "@/components/empty-placeholder";
 import AddTopicQueryDialog from "@/components/forms/add-topic-query-dialog";
 import AddTopicTagDialog from "@/components/forms/add-topic-tag-dialog";
 import FormButton from "@/components/forms/form-button";
-import { DashboardHeader } from "@/components/header";
-import { DashboardShell } from "@/components/shell";
+import DashboardLayout from "@/components/layouts/dashboard-layout";
+import { EmptyPlaceholder } from "@/components/other/empty-placeholder";
+import { errorHandler } from "@/components/other/error-handler";
+import { DashboardHeader } from "@/components/other/header";
+import { DashboardShell } from "@/components/other/shell";
 import { DataTable } from "@/components/table/data-table";
-import { errorHandler } from "@/components/ui/custom/error-handler";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/components/ui/use-toast";
 import axios from "@/services/axios";
 import { Grid } from "@mui/material";
-import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { TopicsProps } from "../../(list)/config";
 import TopicsLoading from "../../(list)/loading";
 import { TopicQueriesProps, topicQueriesTableColumns, topicQueriesTableToolbar, topicQueriesTableToolbarSearchList } from "./topic-queries-config";
 import { TopicTagsProps, topicTagsTableColumns, topicTagsTableToolbar, topicTagsTableToolbarSearchList } from "./topic-tags-config";
 
-export default function TopicPage({ params }: { params: { topic: string } }) {
-  let topicID = params.topic
+export default function TopicPage() {
+  const { topicID } = useParams();
   const [topic, setTopic] = useState<TopicsProps>();
   const [tags, setTags] = useState<TopicTagsProps[]>([]);
   const [queries, setQueries] = useState<TopicQueriesProps[]>([]);
   const [activeTab, setActiveTab] = useState("info");
-  const { push } = useRouter();
+  const navigate = useNavigate();
 
- const getTopicData = useCallback(() => {
+  const getTopicData = useCallback(() => {
     axios.get('/app/topic/' + topicID)
       .then(function (response) {
         setTopic(response.data.result);
@@ -51,7 +50,7 @@ export default function TopicPage({ params }: { params: { topic: string } }) {
   }, [getTopicData]);
 
   return topic ? (
-    <>
+    <DashboardLayout>
       <DashboardShell className="mb-1">
         <DashboardHeader heading={topic.name} text={topic.id}>
           <div style={{ display: 'flex', flexDirection: 'row' }} className="space-x-2">
@@ -59,7 +58,7 @@ export default function TopicPage({ params }: { params: { topic: string } }) {
               label="Edit"
               isLoading={false}
               callback={() => {
-                push("/topics/" + topic.id + "/edit");
+                navigate("/topics/" + topic.id + "/edit");
               }}
               isEnabled={true}
             />
@@ -145,7 +144,7 @@ export default function TopicPage({ params }: { params: { topic: string } }) {
           </div>
         </Tabs>
       </div>
-    </>
+    </DashboardLayout>
   ) : <TopicsLoading />
 }
 

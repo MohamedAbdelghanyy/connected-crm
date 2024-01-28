@@ -1,9 +1,8 @@
-"use client"
-
 import _ from "@/@lodash/@lodash"
 import FormButton from "@/components/forms/form-button"
-import { DashboardHeader } from "@/components/header"
-import { DashboardShell } from "@/components/shell"
+import DashboardLayout from "@/components/layouts/dashboard-layout"
+import { DashboardHeader } from "@/components/other/header"
+import { DashboardShell } from "@/components/other/shell"
 import { CustomInput } from "@/components/ui/custom-input"
 import { Input } from "@/components/ui/input"
 import InterestsInput from "@/components/ui/interests-input"
@@ -18,15 +17,13 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { LeadObject } from "@/config/forms/defaultObjects"
 import { LeadValidation } from "@/config/forms/validation"
+import { useTheme } from "@/lib/theme-provider"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { Grid } from "@mui/material"
-import { useTheme } from "next-themes"
-import { useRouter } from "next/navigation"
 import * as React from "react"
 import { Controller, FormProvider, useForm } from "react-hook-form"
 
 export default function AddLeadPage() {
-  const router = useRouter()
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [activeTab, setActiveTab] = React.useState("general");
   const { theme } = useTheme();
@@ -40,14 +37,16 @@ export default function AddLeadPage() {
   const { isValid, dirtyFields, errors } = formState;
 
   const add = () => {
+    setIsLoading(true);
     console.log("Added");
+    setIsLoading(false);
   }
 
   return (
-    <>
+    <DashboardLayout>
       <FormProvider {...methods}>
         <DashboardShell className="mb-1">
-          <DashboardHeader heading="Add Lead" text="Enter lead's details"></DashboardHeader>
+          <DashboardHeader heading="Add Lead" text="Enter lead details"></DashboardHeader>
         </DashboardShell>
         <div className="space-y-4 pb-4 px-2">
           <div className="space-y-2"></div>
@@ -300,6 +299,6 @@ export default function AddLeadPage() {
           </Tabs>
         </div>
       </FormProvider>
-    </>
+    </DashboardLayout>
   )
 }

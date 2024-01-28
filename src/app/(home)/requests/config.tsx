@@ -1,11 +1,9 @@
-"use client"
-
 import { DataTableColumnHeader } from "@/components/table/data-table-column-header"
 import { ActionListProps, DataTableRowActions } from "@/components/table/data-table-row-actions"
 import { ToolbarProps, ToolbarSearchListProps } from "@/components/table/data-table-toolbar"
 import { Checkbox } from "@/components/ui/checkbox"
 import { ColumnDef } from "@tanstack/react-table"
-import Link from "next/link"
+import { Link } from "react-router-dom"
 
 const requestsActionList: ActionListProps[] = [
 
@@ -202,7 +200,7 @@ export const requestsTableColumns: ColumnDef<RequestsProps>[] = [
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            <Link href={"/customers/"+row.original.requestorID}>{row.getValue("requestorName")}</Link>
+            <Link to={"/customers/" + row.original.requestorID}>{row.getValue("requestorName")}</Link>
           </span>
         </div>
       )
@@ -232,7 +230,7 @@ export const requestsTableColumns: ColumnDef<RequestsProps>[] = [
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            <Link href={"#"}>{row.getValue("itemName")}</Link>
+            <Link to={"#"}>{row.getValue("itemName")}</Link>
           </span>
         </div>
       )

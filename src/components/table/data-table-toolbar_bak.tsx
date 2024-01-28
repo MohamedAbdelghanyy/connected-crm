@@ -1,14 +1,9 @@
-"use client"
-
-import { Table } from "@tanstack/react-table"
-
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { DataTableViewOptions } from "./data-table-view-options"
-
-import { DataTableFacetedFilter } from "./data-table-faceted-filter"
+import { Table } from "@tanstack/react-table"
 import { LucideIcon, XCircleIcon } from "lucide-react"
-import { FilterInput } from "../filter-input"
+import { FilterInput } from "../other/filter-input"
+import { DataTableFacetedFilter } from "./data-table-faceted-filter"
+import { DataTableViewOptions } from "./data-table-view-options"
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>
@@ -24,8 +19,8 @@ export interface ToolbarSearchListProps {
 export interface ToolbarProps {
   key: string
   title: string
-  options: { 
-    value: string 
+  options: {
+    value: string
     label: string
     icon?: LucideIcon
   }[];
@@ -44,11 +39,11 @@ export function DataTableToolbar<TData>({
         <FilterInput
           toolbarSearchList={toolbarSearchList}
           table={table}
-          //className="h-8 w-[150px] lg:w-[250px]"
+        //className="h-8 w-[150px] lg:w-[250px]"
         />
         {toolbar.map((toolbarItem) => {
           table.getColumn(toolbarItem.key);
-          return  (
+          return (
             <DataTableFacetedFilter
               key={toolbarItem.key}
               column={table.getColumn(toolbarItem.key)}

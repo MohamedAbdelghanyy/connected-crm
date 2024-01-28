@@ -1,8 +1,7 @@
-"use client"
-
 import FormSaveButton from "@/components/forms/form-save-button"
-import { DashboardHeader } from "@/components/header"
-import { DashboardShell } from "@/components/shell"
+import DashboardLayout from "@/components/layouts/dashboard-layout"
+import { DashboardHeader } from "@/components/other/header"
+import { DashboardShell } from "@/components/other/shell"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -15,20 +14,20 @@ import {
 } from "@/components/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Grid } from "@mui/material"
-import { useRouter } from "next/navigation"
 import * as React from "react"
 
 export default function SettingsPage() {
-  const router = useRouter()
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
   const [activeTab, setActiveTab] = React.useState("account")
 
   const save = () => {
+    setIsLoading(true);
     console.log("Save");
+    setIsLoading(false);
   }
 
   return (
-    <>
+    <DashboardLayout>
       <DashboardShell className="mb-1">
         <DashboardHeader heading="Settings" text="Update your prefrences"></DashboardHeader>
       </DashboardShell>
@@ -262,6 +261,6 @@ export default function SettingsPage() {
           </div>
         </Tabs>
       </div>
-    </>
+    </DashboardLayout>
   )
 }

@@ -1,5 +1,3 @@
-"use client"
-
 import { DataTableColumnHeader } from "@/components/table/data-table-column-header"
 import { ToolbarProps, ToolbarSearchListProps } from "@/components/table/data-table-toolbar"
 import { Checkbox } from "@/components/ui/checkbox"

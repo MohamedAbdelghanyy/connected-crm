@@ -1,28 +1,20 @@
-import { promises as fs } from "fs"
-import path from "path"
-
-import { EmptyPlaceholder } from "@/components/empty-placeholder"
-import { DashboardHeader } from "@/components/header"
-import { DashboardShell } from "@/components/shell"
+import DashboardLayout from "@/components/layouts/dashboard-layout"
+import { EmptyPlaceholder } from "@/components/other/empty-placeholder"
+import { DashboardHeader } from "@/components/other/header"
+import { DashboardShell } from "@/components/other/shell"
 import { DataTable } from "@/components/table/data-table"
+import { useEffect, useState } from "react"
 import { wishlistsTableColumns, wishlistsTableToolbar, wishlistsTableToolbarSearchList } from "./config"
 
-export const metadata = {
-  title: "Wishlists",
-}
+export default function WishlistsPage() {
+  const [wishlists, setWishlists] = useState([]);
 
-async function getWishlists() {
-  const data = await fs.readFile(
-    path.join(process.cwd(), "src/data/wishlists_data.json")
-  )
-  const wishlists = JSON.parse(data.toString())
-  return wishlists
-}
+  useEffect(() => {
+    setWishlists([]);
+  }, []);
 
-export default async function WishlistsPage() {
-  const wishlists = await getWishlists()
   return (
-    <>
+    <DashboardLayout>
       <DashboardShell className="mb-1">
         <DashboardHeader heading="Wishlists" text="Manage all wishlists"></DashboardHeader>
       </DashboardShell>
@@ -37,6 +29,6 @@ export default async function WishlistsPage() {
           </EmptyPlaceholder.Description>
         </EmptyPlaceholder>)}
       </div>
-    </>
+    </DashboardLayout>
   )
 }

@@ -1,9 +1,8 @@
-"use client"
-
-import { EmptyPlaceholder } from "@/components/empty-placeholder"
 import FormButton from "@/components/forms/form-button"
-import { DashboardHeader } from "@/components/header"
-import { DashboardShell } from "@/components/shell"
+import DashboardLayout from "@/components/layouts/dashboard-layout"
+import { EmptyPlaceholder } from "@/components/other/empty-placeholder"
+import { DashboardHeader } from "@/components/other/header"
+import { DashboardShell } from "@/components/other/shell"
 import { DataTable } from "@/components/table/data-table"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Input } from "@/components/ui/input"
@@ -12,9 +11,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { formatToDateTime } from "@/lib/dateFormats"
 import { Grid } from "@mui/material"
 import { Check, X } from "lucide-react"
-import { useRouter } from "next/navigation"
 import * as React from "react"
+import { useNavigate } from "react-router-dom"
 import { deleteUser } from "../../(list)/config"
+import UsersLoading from "../../(list)/loading"
 import { appointmentsTableColumns, appointmentsTableToolbar, appointmentsTableToolbarSearchList } from "../../../appointments/config"
 import { callsTableColumns, callsTableToolbar, callsTableToolbarSearchList } from "../../../calls/config"
 import { internalNotesTableColumns, internalNotesTableToolbar, internalNotesTableToolbarSearchList } from "../../../internal-notes/config"
@@ -24,19 +24,18 @@ import { requestsTableColumns, requestsTableToolbar, requestsTableToolbarSearchL
 import { subscriptionsTableColumns, subscriptionsTableToolbar, subscriptionsTableToolbarSearchList } from "../../../subscriptions/config"
 import { wishlistsTableColumns, wishlistsTableToolbar, wishlistsTableToolbarSearchList } from "../../../wishlists/config"
 
-export default function UserTabs({ user, products, wishlist, calls, subscriptions, notifications, requests, appointments, internalNotes, stats, history }: any) {
-  const [isLoading, setIsLoading] = React.useState<boolean>(false)
-  const [activeTab, setActiveTab] = React.useState("info")
-  const { push } = useRouter();
+export default function UserTabs({ user, products, wishlist, calls, subscriptions, notifications, requests, appointments, internalNotes }: any) {
+  const [activeTab, setActiveTab] = React.useState("info");
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     if (!user) {
-      push("/users");
+      navigate("/users");
     }
-  }, [user, push]);
+  }, [user, navigate]);
 
   return user ? (
-    <>
+    <DashboardLayout>
       <DashboardShell className="mb-1">
         <DashboardHeader heading={user.name} text={user.id}>
           <div style={{ display: 'flex', flexDirection: 'row' }} className="space-x-2">
@@ -44,7 +43,7 @@ export default function UserTabs({ user, products, wishlist, calls, subscription
               label="Edit"
               isLoading={false}
               callback={() => {
-                push("/users/" + user.id + "/edit");
+                navigate("/users/" + user.id + "/edit");
               }}
               isEnabled={true}
             />
@@ -237,8 +236,8 @@ export default function UserTabs({ user, products, wishlist, calls, subscription
           </div>
         </Tabs>
       </div>
-    </>
-  ) : <></>
+    </DashboardLayout>
+  ) : <UsersLoading />
 }
 
 

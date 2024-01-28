@@ -1,30 +1,29 @@
-"use client"
-
-import { EmptyPlaceholder } from "@/components/empty-placeholder"
-import { DashboardHeader } from "@/components/header"
-import { DashboardShell } from "@/components/shell"
+import DashboardLayout from "@/components/layouts/dashboard-layout"
+import { EmptyPlaceholder } from "@/components/other/empty-placeholder"
+import { DashboardHeader } from "@/components/other/header"
+import { DashboardShell } from "@/components/other/shell"
 import { DataTable } from "@/components/table/data-table"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Grid } from "@mui/material"
-import { useRouter } from "next/navigation"
 import * as React from "react"
+import { useNavigate } from "react-router-dom"
 import { requestsTableColumns, requestsTableToolbar, requestsTableToolbarSearchList } from "../../requests/config"
+import LeadLoading from "../loading"
 
 export default function LeadTabs({ lead, requests }: any) {
-  const [isLoading, setIsLoading] = React.useState<boolean>(false)
-  const [activeTab, setActiveTab] = React.useState("info")
-  const { push } = useRouter();
+  const [activeTab, setActiveTab] = React.useState("info");
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     if (!lead) {
-      push("/leads");
+      navigate("/leads");
     }
-  }, [lead, push])
+  }, [lead, navigate])
 
   return lead ? (
-    <>
+    <DashboardLayout>
       <DashboardShell className="mb-1">
         <DashboardHeader heading={lead.name} text={lead.id}></DashboardHeader>
       </DashboardShell>
@@ -96,8 +95,8 @@ export default function LeadTabs({ lead, requests }: any) {
           </div>
         </Tabs>
       </div>
-    </>
-  ) : <></>
+    </DashboardLayout>
+  ) : <LeadLoading />
 }
 
 

@@ -1,12 +1,10 @@
-"use client"
-
 import { DataTableColumnHeader } from "@/components/table/data-table-column-header"
 import { ToolbarProps, ToolbarSearchListProps } from "@/components/table/data-table-toolbar"
 import { buttonVariants } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { cn } from "@/lib/utils"
 import { ColumnDef } from "@tanstack/react-table"
-import Link from "next/link"
+import { Link } from "react-router-dom"
 
 export const rolesWidgetTableToolbar: ToolbarProps[] = []
 
@@ -41,7 +39,7 @@ export const rolesWidgetTableColumns: ColumnDef<RolesWidgetProps>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }) => <Link href="#" className={cn(buttonVariants({}))}>Delete</Link>
+    cell: () => <Link to="#" className={cn(buttonVariants({}))}>Delete</Link>
   },
   {
     accessorKey: "name",

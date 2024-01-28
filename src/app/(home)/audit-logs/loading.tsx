@@ -1,5 +1,6 @@
-import { DashboardHeader } from "@/components/header"
-import { DashboardShell } from "@/components/shell"
+import DashboardLayout from "@/components/layouts/dashboard-layout"
+import { DashboardHeader } from "@/components/other/header"
+import { DashboardShell } from "@/components/other/shell"
 import { Skeleton } from "@/components/ui/skeleton"
 
 function ItemSkeleton() {
@@ -14,16 +15,18 @@ function ItemSkeleton() {
 
 export default function AuditLogsLoading() {
   return (
-    <DashboardShell className="mb-1">
-      <DashboardHeader heading="Audit Logs" text="Manage your audit logs"></DashboardHeader>
-      <div className="divide-border-200 divide-y rounded-md border">
-        <ItemSkeleton />
-        <ItemSkeleton />
-        <ItemSkeleton />
-        <ItemSkeleton />
-        <ItemSkeleton />
-        <ItemSkeleton />
-      </div>
-    </DashboardShell>
+    <DashboardLayout>
+      <DashboardShell className="mb-1">
+        <DashboardHeader heading="Audit Logs" text="Manage your audit logs"></DashboardHeader>
+        <div className="divide-border-200 divide-y rounded-md border">
+          <ItemSkeleton />
+          <ItemSkeleton />
+          <ItemSkeleton />
+          <ItemSkeleton />
+          <ItemSkeleton />
+          <ItemSkeleton />
+        </div>
+      </DashboardShell>
+    </DashboardLayout>
   )
 }

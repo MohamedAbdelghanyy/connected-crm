@@ -1,10 +1,8 @@
-"use client"
-
+import { errorHandler } from "@/components/other/error-handler"
 import { DataTableColumnHeader } from "@/components/table/data-table-column-header"
 import { ActionListProps, DataTableRowActions } from "@/components/table/data-table-row-actions"
 import { ToolbarProps, ToolbarSearchListProps } from "@/components/table/data-table-toolbar"
 import { Checkbox } from "@/components/ui/checkbox"
-import { errorHandler } from "@/components/ui/custom/error-handler"
 import { toast } from "@/components/ui/use-toast"
 import axios from "@/services/axios"
 import { ColumnDef } from "@tanstack/react-table"
@@ -12,7 +10,7 @@ import { Check, X } from "lucide-react"
 
 export async function deleteUser(userID: string) {
   return await axios.delete('/identity/users/' + userID)
-    .then(function (response) {
+    .then(function () {
       toast({
         title: "Success",
         description: "User was successfully deleted.",
@@ -316,7 +314,7 @@ export const usersTableColumns: ColumnDef<UsersProps>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Roles" />
     ),
-    cell: ({ row }) => {
+    cell: () => {
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">

@@ -1,13 +1,10 @@
-"use client"
-
 import { DataTableColumnHeader } from "@/components/table/data-table-column-header"
 import { ActionListProps, DataTableRowActions } from "@/components/table/data-table-row-actions"
 import { ToolbarProps, ToolbarSearchListProps } from "@/components/table/data-table-toolbar"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Checkbox } from "@/components/ui/checkbox"
 import { ColumnDef } from "@tanstack/react-table"
-import { Check, X } from "lucide-react"
-import Link from "next/link"
+import { Link } from "react-router-dom"
 
 const productsActionList: ActionListProps[] = [
   {
@@ -252,7 +249,7 @@ export const productsTableColumns: ColumnDef<ProductsProps>[] = [
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            <Link href={'#'}>{row.getValue("category")}</Link>
+            <Link to={'#'}>{row.getValue("category")}</Link>
           </span>
         </div>
       )
@@ -267,7 +264,7 @@ export const productsTableColumns: ColumnDef<ProductsProps>[] = [
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            <Link href={'#'}>{row.getValue("brand")}</Link>
+            <Link to={'#'}>{row.getValue("brand")}</Link>
           </span>
         </div>
       )

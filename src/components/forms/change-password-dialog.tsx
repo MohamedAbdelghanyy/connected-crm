@@ -1,7 +1,5 @@
-"use client"
-
 import _ from "@/@lodash/@lodash"
-import { Icons } from "@/components/icons"
+import { Icons } from "@/components/other/icons"
 import { Button, ButtonProps, buttonVariants } from "@/components/ui/button"
 import {
   Dialog,
@@ -17,18 +15,14 @@ import { ChangePasswordValidation } from "@/config/forms/validation"
 import { cn } from "@/lib/utils"
 import axios from "@/services/axios"
 import { yupResolver } from "@hookform/resolvers/yup"
-import { useRouter } from "next/navigation"
 import * as React from "react"
 import { Controller, FormProvider, useForm } from "react-hook-form"
 import { CustomInput } from "../ui/custom-input"
 import { toast } from "../ui/use-toast"
 
 export default function ChangePasswordDialog({
-  className,
   variant,
-  ...props
 }: ButtonProps) {
-  const router = useRouter()
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
   const [showDialog, setShowDialog] = React.useState(false)
   const methods = useForm({
@@ -42,7 +36,7 @@ export default function ChangePasswordDialog({
   async function savePassword() {
     setIsLoading(true);
     axios.post('/account/my-profile/change-password', getValues())
-      .then(function (response) {
+      .then(function () {
         toast({
           title: "Success",
           description: "Your password was successfully updated.",

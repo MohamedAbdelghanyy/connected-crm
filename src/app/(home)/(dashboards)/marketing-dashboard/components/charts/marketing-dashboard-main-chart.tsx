@@ -1,5 +1,3 @@
-"use client"
-
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Grid } from '@mui/material';
@@ -40,7 +38,7 @@ export const options = {
 
 export function MarketingDashboardMainChart() {
 
-  
+
   const [chartLabels, setChartLabels] = useState([]);
 
   const getChartData = useCallback(() => {
@@ -71,7 +69,7 @@ export function MarketingDashboardMainChart() {
       ],
     }
   }, [chartLabels]);
-  
+
   const [chartData, setChartData] = useState(getChartData());
 
   useEffect(() => {

@@ -1,12 +1,8 @@
-"use client"
-
 import { DataTableColumnHeader } from "@/components/table/data-table-column-header"
-import { ActionListProps, DataTableRowActions } from "@/components/table/data-table-row-actions"
+import { DataTableRowActions } from "@/components/table/data-table-row-actions"
 import { ToolbarProps, ToolbarSearchListProps } from "@/components/table/data-table-toolbar"
 import { Checkbox } from "@/components/ui/checkbox"
 import { ColumnDef } from "@tanstack/react-table"
-
-const exchangeRatesActionList: ActionListProps[] = [];
 
 export const exchangeRatesTableToolbar: ToolbarProps[] = []
 
@@ -157,6 +153,7 @@ export const exchangeratesTableColumns: ColumnDef<ExchangeRatesProps>[] = [
         type: "button",
         label: "Edit",
         action: (id: string) => {
+          console.log(id);
           //window.location.href += "/exchangeRates/" + id + "/edit";
         }
       },

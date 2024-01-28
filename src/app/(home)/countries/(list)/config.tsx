@@ -1,6 +1,4 @@
-"use client"
-
-import DynamicFlag from "@/components/custom/dynamic-flag"
+import DynamicFlag from "@/components/other/dynamic-flag"
 import { DataTableColumnHeader } from "@/components/table/data-table-column-header"
 import { ActionListProps, DataTableRowActions } from "@/components/table/data-table-row-actions"
 import { ToolbarProps, ToolbarSearchListProps } from "@/components/table/data-table-toolbar"

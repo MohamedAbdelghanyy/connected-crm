@@ -1,5 +1,5 @@
 import { callsTableColumns, callsTableToolbar, callsTableToolbarSearchList } from "@/app/(home)/calls/config";
-import { EmptyPlaceholder } from "@/components/empty-placeholder";
+import { EmptyPlaceholder } from "@/components/other/empty-placeholder";
 import { DataTable } from "@/components/table/data-table";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 

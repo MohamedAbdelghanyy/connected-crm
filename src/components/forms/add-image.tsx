@@ -1,6 +1,4 @@
-"use client"
-
-import { Icons } from "@/components/icons"
+import { Icons } from "@/components/other/icons"
 import { Button, buttonVariants } from "@/components/ui/button"
 import {
   Dialog,
@@ -12,13 +10,11 @@ import {
 } from "@/components/ui/dialog"
 import { toast } from "@/components/ui/use-toast"
 import { cn } from "@/lib/utils"
-import { useRouter } from "next/navigation"
 import * as React from "react"
 import { Input } from "../ui/input"
 import { Label } from "../ui/label"
 
-export default function AddImage({ users }: any) {
-  const router = useRouter()
+export default function AddImage() {
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
   const [showDialog, setShowDialog] = React.useState(false)
   const userNameRef = React.useRef<HTMLInputElement>(null);
@@ -54,7 +50,7 @@ export default function AddImage({ users }: any) {
       }
 
       // This forces a cache invalidation.
-      router.refresh()
+
     }
   }
 

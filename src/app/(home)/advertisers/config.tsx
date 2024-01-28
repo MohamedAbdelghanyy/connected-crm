@@ -1,5 +1,3 @@
-"use client"
-
 import { DataTableColumnHeader } from "@/components/table/data-table-column-header"
 import { ActionListProps, DataTableRowActions } from "@/components/table/data-table-row-actions"
 import { ToolbarProps, ToolbarSearchListProps } from "@/components/table/data-table-toolbar"
@@ -7,7 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Checkbox } from "@/components/ui/checkbox"
 import { ColumnDef } from "@tanstack/react-table"
 
-const advertisersActionList : ActionListProps[] = [
+const advertisersActionList: ActionListProps[] = [
   {
     type: "button",
     label: "Edit",
@@ -37,9 +35,9 @@ const advertisersActionList : ActionListProps[] = [
   }
 ]
 
-export const advertisersTableToolbar : ToolbarProps[] = []
+export const advertisersTableToolbar: ToolbarProps[] = []
 
-export const advertisersTableToolbarSearchList : ToolbarSearchListProps[] = [
+export const advertisersTableToolbarSearchList: ToolbarSearchListProps[] = [
   {
     key: 'id',
     title: 'ID'
@@ -94,8 +92,8 @@ export const advertisersTableColumns: ColumnDef<AdvertisersProps>[] = [
     ),
     cell: ({ row }) => {
       return (
-        <Avatar style={{width: "150px", height: "100px", borderRadius: "5px"}}>
-          <AvatarImage src={row.getValue("logo")} alt="avatar" style={{objectFit: "cover"}} />
+        <Avatar style={{ width: "150px", height: "100px", borderRadius: "5px" }}>
+          <AvatarImage src={row.getValue("logo")} alt="avatar" style={{ objectFit: "cover" }} />
           <AvatarFallback>{row.getValue("name")}</AvatarFallback>
         </Avatar>
       )
@@ -119,6 +117,6 @@ export const advertisersTableColumns: ColumnDef<AdvertisersProps>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }) => <DataTableRowActions row={row} actionList={advertisersActionList}  />,
+    cell: ({ row }) => <DataTableRowActions row={row} actionList={advertisersActionList} />,
   },
 ]

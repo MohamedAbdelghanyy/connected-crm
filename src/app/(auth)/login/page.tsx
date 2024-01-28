@@ -1,26 +1,22 @@
-'use client';
-
-import { Icons } from "@/components/icons";
-import { UserAuthForm } from "@/components/user-auth-form";
-import { Grid } from '@mui/material';
+import AuthLayout from "@/components/layouts/auth-layout";
+import { Icons } from "@/components/other/icons";
+import { UserAuthForm } from "@/components/other/user-auth-form";
 
 export default function LoginPage() {
   return (
-    <Grid container className="h-screen w-screen">
-      <Grid item md={6} container justifyContent="center" alignItems="center" className="lg:pl-20">
-        <div className="w-1/2 lg:w-[300px] md:w-[300px]">
-          <div className="text-center pt-10 lg:pt-0">
-          <Icons.logo
-            className="mx-auto"
-            width="100%"
-            style={{ margin: "auto", marginBottom: "20px" }}
-          />
+    <AuthLayout>
+      <div className="flex flex-col lg:flex-row items-center justify-center h-screen w-screen">
+        <div className="w-full lg:w-1/2 mb-10 lg:mb-0">
+          <div className="text-center pr-12 pl-12">
+            <Icons.logo
+              className="mx-auto"
+              width="100%"
+              style={{ margin: "auto", marginBottom: "20px", maxWidth: '300px'}}
+            />
           </div>
         </div>
-      </Grid>
 
-      <Grid item xs={12} md={6} container justifyContent="center" alignItems="center" className="lg:pr-40">
-        <div className="w-[70%] lg:w-[300px] pb-10 lg:pb-0">
+        <div className="w-full lg:w-1/2 max-w-[400px] pr-12 pl-12">
           <div className="text-center mb-10">
             <h1 className="text-2xl font-semibold tracking-tight mb-2">
               Welcome back
@@ -31,7 +27,7 @@ export default function LoginPage() {
           </div>
           <UserAuthForm />
         </div>
-      </Grid>
-    </Grid>
+      </div>
+    </AuthLayout>
   );
 }

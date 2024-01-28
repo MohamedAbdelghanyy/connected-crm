@@ -1,6 +1,6 @@
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Icons } from "../icons";
+import { Icons } from "../other/icons";
 
 interface FormSaveButtonProps {
     isLoading: boolean,

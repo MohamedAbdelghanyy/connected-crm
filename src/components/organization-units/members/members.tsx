@@ -1,15 +1,9 @@
-"use client"
-
-import { EmptyPlaceholder } from "@/components/empty-placeholder"
 import AddMember from "@/components/forms/add-member"
-import { DashboardHeader } from "@/components/header"
-import { DashboardShell } from "@/components/shell"
+import { EmptyPlaceholder } from "@/components/other/empty-placeholder"
+import { DashboardHeader } from "@/components/other/header"
+import { DashboardShell } from "@/components/other/shell"
 import { DataTable } from "@/components/table/data-table"
 import { membersTableColumns, membersTableToolbar, membersTableToolbarSearchList } from "./config"
-
-export const metadata = {
-  title: "Members",
-}
 
 export default function MembersPage({ selectedUnit, members }: any) {
   const selectedUnitName = selectedUnit == -1 ? "Select a Unit" : selectedUnit.name;

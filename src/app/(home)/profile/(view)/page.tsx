@@ -1,23 +1,22 @@
-'use client'
-
 import ChangePasswordDialog from "@/components/forms/change-password-dialog"
 import FormButton from "@/components/forms/form-button"
-import { DashboardHeader } from "@/components/header"
-import { DashboardShell } from "@/components/shell"
+import { DashboardHeader } from "@/components/other/header"
+import DashboardLayout from "@/components/layouts/dashboard-layout"
+import { DashboardShell } from "@/components/other/shell"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { errorHandler } from "@/components/ui/custom/error-handler"
+import { errorHandler } from "@/components/other/error-handler"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { toast } from "@/components/ui/use-toast"
 import { UserObject } from "@/config/forms/defaultObjects"
 import axios from "@/services/axios"
-import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import ProfileLoading from "./loading"
 
 export default function ProfilePage() {
   const [user, setUser] = useState(UserObject.empty);
-  const { push } = useRouter();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get('/account/my-profile')
@@ -31,7 +30,7 @@ export default function ProfilePage() {
 
   return (
     (user.userName != '' || user.email != '') ?
-      <>
+      <DashboardLayout>
         <DashboardShell className="mb-1">
           <DashboardHeader heading={user.name} text={user.email}>
             <div style={{ display: 'flex', flexDirection: 'row' }} className="space-x-2">
@@ -39,7 +38,7 @@ export default function ProfilePage() {
                 label="Edit"
                 isLoading={false}
                 callback={() => {
-                  push("/profile/edit");
+                  navigate("/profile/edit");
                 }}
                 isEnabled={true}
               />
@@ -80,7 +79,7 @@ export default function ProfilePage() {
             <ChangePasswordDialog />
           </div>
         </div>
-      </>
+      </DashboardLayout>
       : <ProfileLoading />
   );
 }

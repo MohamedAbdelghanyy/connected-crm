@@ -1,9 +1,8 @@
-"use client"
-
 import _ from "@/@lodash/@lodash"
 import FormButton from "@/components/forms/form-button"
-import { DashboardHeader } from "@/components/header"
-import { DashboardShell } from "@/components/shell"
+import DashboardLayout from "@/components/layouts/dashboard-layout"
+import { DashboardHeader } from "@/components/other/header"
+import { DashboardShell } from "@/components/other/shell"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -11,12 +10,10 @@ import { HighlightObject } from "@/config/forms/defaultObjects"
 import { HighlightValidation } from "@/config/forms/validation"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { Grid } from "@mui/material"
-import { useRouter } from "next/navigation"
 import * as React from "react"
 import { Controller, FormProvider, useForm } from "react-hook-form"
 
 export default function AddHighlightPage() {
-  const router = useRouter();
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [activeTab, setActiveTab] = React.useState("general");
   const methods = useForm({
@@ -25,17 +22,19 @@ export default function AddHighlightPage() {
     resolver: yupResolver(HighlightValidation.mainSchema),
   });
   const { control, formState } = methods;
-  const { isValid, dirtyFields, errors } = formState;
+  const { isValid, dirtyFields } = formState;
 
   const add = () => {
+    setIsLoading(true);
     console.log("Added");
+    setIsLoading(false);
   }
 
   return (
-    <>
+    <DashboardLayout>
       <FormProvider {...methods}>
         <DashboardShell className="mb-1">
-          <DashboardHeader heading="Add Highlight" text="Enter highlight's details"></DashboardHeader>
+          <DashboardHeader heading="Add Highlight" text="Enter highlight details"></DashboardHeader>
         </DashboardShell>
         <div className="space-y-4 pb-4 px-2">
           <div className="space-y-2"></div>
@@ -84,6 +83,6 @@ export default function AddHighlightPage() {
           </Tabs>
         </div>
       </FormProvider>
-    </>
+    </DashboardLayout>
   )
 }

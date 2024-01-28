@@ -1,6 +1,4 @@
-"use client"
-
-import { Icons } from "@/components/icons"
+import { Icons } from "@/components/other/icons"
 import { Button, ButtonProps, buttonVariants } from "@/components/ui/button"
 import {
   Dialog,
@@ -21,15 +19,11 @@ import {
 } from "@/components/ui/select"
 import { toast } from "@/components/ui/use-toast"
 import { cn } from "@/lib/utils"
-import { useRouter } from "next/navigation"
 import * as React from "react"
 
 export default function AddMerchant({
-  className,
   variant,
-  ...props
 }: ButtonProps) {
-  const router = useRouter()
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
   const [showNewMerchantDialog, setShowNewMerchantDialog] = React.useState(false)
   const userNameRef = React.useRef<HTMLInputElement>(null);
@@ -65,7 +59,7 @@ export default function AddMerchant({
       }
 
       // This forces a cache invalidation.
-      router.refresh()
+
     }
   }
 

@@ -1,49 +1,41 @@
-import { promises as fs } from "fs"
-import path from "path"
-
-import { EmptyPlaceholder } from "@/components/empty-placeholder"
-import { DashboardHeader } from "@/components/header"
-import { Icons } from "@/components/icons"
-import { DashboardShell } from "@/components/shell"
+import DashboardLayout from "@/components/layouts/dashboard-layout"
+import { EmptyPlaceholder } from "@/components/other/empty-placeholder"
+import { DashboardHeader } from "@/components/other/header"
+import { Icons } from "@/components/other/icons"
+import { DashboardShell } from "@/components/other/shell"
 import { DataTable } from "@/components/table/data-table"
 import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import Link from "next/link"
+import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import { merchantsTableColumns, merchantsTableToolbar, merchantsTableToolbarSearchList } from "./config"
 
-export const metadata = {
-  title: "Merchants",
-}
+export default function MerchantsPage() {
+  const [merchants, setMerchants] = useState([]);
 
-async function getMerchants() {
-  const data = await fs.readFile(
-    path.join(process.cwd(), "src/data/merchants_data.json")
-  )
-  const merchants = JSON.parse(data.toString())
-  return merchants
-}
+  useEffect(() => {
+    setMerchants([]);
+  }, []);
 
-export default async function MerchantsPage() {
-  const merchants = await getMerchants()
   return (
-    <>
+    <DashboardLayout>
       <DashboardShell className="mb-1">
         <DashboardHeader heading="Merchants" text="Manage your merchants">
-          <Link href="/merchants/add" className={cn(buttonVariants({  }))}><Icons.add className="mr-2 h-4 w-4" />Add Merchant</Link>
+          <Link to="/merchants/add" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Merchant</Link>
         </DashboardHeader>
       </DashboardShell>
       <div className="m-2">
-          {merchants.length > 0 ? (
-            <DataTable data={merchants} columns={merchantsTableColumns} toolbar={merchantsTableToolbar} toolbarSearchList={merchantsTableToolbarSearchList} />
-          ) : (<EmptyPlaceholder>
-            <EmptyPlaceholder.Icon name="post" />
-            <EmptyPlaceholder.Title>No Merchants</EmptyPlaceholder.Title>
-            <EmptyPlaceholder.Description>
-              You don&apos;t have any merchants yet.
-            </EmptyPlaceholder.Description>
-            <Link href="/merchants/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Merchant</Link>
-          </EmptyPlaceholder>)}
+        {merchants.length > 0 ? (
+          <DataTable data={merchants} columns={merchantsTableColumns} toolbar={merchantsTableToolbar} toolbarSearchList={merchantsTableToolbarSearchList} />
+        ) : (<EmptyPlaceholder>
+          <EmptyPlaceholder.Icon name="post" />
+          <EmptyPlaceholder.Title>No Merchants</EmptyPlaceholder.Title>
+          <EmptyPlaceholder.Description>
+            You don&apos;t have any merchants yet.
+          </EmptyPlaceholder.Description>
+          <Link to="/merchants/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Merchant</Link>
+        </EmptyPlaceholder>)}
       </div>
-    </>
+    </DashboardLayout>
   )
 }

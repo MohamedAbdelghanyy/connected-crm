@@ -1,32 +1,31 @@
-"use client"
-
-import { EmptyPlaceholder } from "@/components/empty-placeholder"
 import FormButton from "@/components/forms/form-button"
-import { DashboardHeader } from "@/components/header"
-import { DashboardShell } from "@/components/shell"
-import { errorHandler } from "@/components/ui/custom/error-handler"
+import DashboardLayout from "@/components/layouts/dashboard-layout"
+import { errorHandler } from "@/components/other/error-handler"
+import { DashboardHeader } from "@/components/other/header"
+import { DashboardShell } from "@/components/other/shell"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { toast } from "@/components/ui/use-toast"
 import { Grid } from "@mui/material"
-import { useRouter } from "next/navigation"
 import * as React from "react"
+import { useNavigate } from "react-router-dom"
+import AttributeValueLoading from "./loading"
 
 export default function AttributeValueTabs({ attributeValue }: any) {
   const [activeTab, setActiveTab] = React.useState("info");
-  const { push } = useRouter();
+  const navigate = useNavigate();
   const currentUrl = window.location.href;
 
   React.useEffect(() => {
     if (!attributeValue) {
       errorHandler(toast, "This value was not found");
-      //push("/attributes");
+      //navigate("/attributes");
     }
   }, [attributeValue])
 
   return attributeValue ? (
-    <>
+    <DashboardLayout>
       <DashboardShell className="mb-1">
         <DashboardHeader heading={attributeValue.value} text={attributeValue.id}></DashboardHeader>
       </DashboardShell>
@@ -59,7 +58,7 @@ export default function AttributeValueTabs({ attributeValue }: any) {
                 label="Edit"
                 isLoading={false}
                 callback={() => {
-                  push(currentUrl + "/edit");
+                  navigate(currentUrl + "/edit");
                 }}
                 isEnabled={true}
               />
@@ -67,16 +66,6 @@ export default function AttributeValueTabs({ attributeValue }: any) {
           </div>
         </Tabs>
       </div>
-    </>
-  ) : <></>
-}
-
-function CustomEmptyPlaceHolder({ title, attributeName }: any) {
-  return (<EmptyPlaceholder>
-    <EmptyPlaceholder.Icon name="post" />
-    <EmptyPlaceholder.Title>No {title}</EmptyPlaceholder.Title>
-    <EmptyPlaceholder.Description>
-      {attributeName} doesn&apos;t have any {title} yet.
-    </EmptyPlaceholder.Description>
-  </EmptyPlaceholder>);
+    </DashboardLayout>
+  ) : <AttributeValueLoading />
 }

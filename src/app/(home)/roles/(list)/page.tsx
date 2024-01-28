@@ -1,19 +1,18 @@
-'use client'
-
-import { EmptyPlaceholder } from "@/components/empty-placeholder"
-import { DashboardHeader } from "@/components/header"
-import { Icons } from "@/components/icons"
+import { EmptyPlaceholder } from "@/components/other/empty-placeholder"
+import { DashboardHeader } from "@/components/other/header"
+import { Icons } from "@/components/other/icons"
+import DashboardLayout from "@/components/layouts/dashboard-layout"
 import ClaimsDialog from "@/components/roles/claims-dialog/claims-dialog"
 import PermissionsDialog from "@/components/roles/permissions-dialog/permissions-dialog"
-import { DashboardShell } from "@/components/shell"
+import { DashboardShell } from "@/components/other/shell"
 import { DynamicDataTable } from "@/components/table/dynamic-data-table"
 import { buttonVariants } from "@/components/ui/button"
-import { errorHandler } from "@/components/ui/custom/error-handler"
+import { errorHandler } from "@/components/other/error-handler"
 import { toast } from "@/components/ui/use-toast"
 import { cn } from "@/lib/utils"
 import axios from "@/services/axios"
-import Link from "next/link"
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import RoleLoading from "../[role]/(view)/loading"
 import { rolesActionList, rolesTableColumns, rolesTableToolbar, rolesTableToolbarSearchList } from "./config"
 
@@ -62,10 +61,10 @@ export default function RolesPage() {
 
   return (
     roles ?
-      <>
+      <DashboardLayout>
         <DashboardShell className="mb-1">
           <DashboardHeader heading="Roles" text="Manage your roles">
-            <Link href="/roles/add" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Role</Link>
+            <Link to="/roles/add" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Role</Link>
           </DashboardHeader>
         </DashboardShell>
         <div className="m-2">
@@ -97,10 +96,10 @@ export default function RolesPage() {
             <EmptyPlaceholder.Description>
               You don&apos;t have any roles yet.
             </EmptyPlaceholder.Description>
-            <Link href="/roles/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Role</Link>
+            <Link to="/roles/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Role</Link>
           </EmptyPlaceholder>)}
         </div>
-      </>
+      </DashboardLayout>
       : <RoleLoading />
   )
 }

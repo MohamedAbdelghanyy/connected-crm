@@ -1,11 +1,10 @@
-'use client'
-
 import _ from "@/@lodash/@lodash";
 import FormButton from "@/components/forms/form-button";
-import { DashboardHeader } from "@/components/header";
-import { DashboardShell } from "@/components/shell";
+import DashboardLayout from "@/components/layouts/dashboard-layout";
+import { errorHandler } from "@/components/other/error-handler";
+import { DashboardHeader } from "@/components/other/header";
+import { DashboardShell } from "@/components/other/shell";
 import { CustomInput } from "@/components/ui/custom-input";
-import { errorHandler } from "@/components/ui/custom/error-handler";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -15,16 +14,17 @@ import { RoleValidation } from "@/config/forms/validation";
 import axios from "@/services/axios";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Grid } from "@mui/material";
-import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect } from "react";
 import { Controller, FormProvider, useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
+import EditRoleLoading from "./loading";
 
-export default function RolePage({ params }: { params: { role: string } }) {
+export default function EditRolePage() {
+  const { roleID } = useParams();
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [activeTab, setActiveTab] = React.useState("general");
-  const [roleID, setRoleID] = React.useState("");
   const [role, setRole] = React.useState(RoleObject.empty);
-  const { push } = useRouter();
+  const navigate = useNavigate();
   const methods = useForm({
     mode: 'onChange',
     defaultValues: role,
@@ -33,7 +33,7 @@ export default function RolePage({ params }: { params: { role: string } }) {
   const { control, formState, getValues, reset } = methods;
   const { isValid, dirtyFields, errors } = formState;
 
-  const getRole = useCallback((roleID: string) => {
+  const getRole = useCallback(() => {
     axios.get('/identity/roles/' + roleID)
       .then(function (response) {
         if (response.data != null && response.data.name != null) {
@@ -41,25 +41,25 @@ export default function RolePage({ params }: { params: { role: string } }) {
           reset(response.data);
         } else {
           errorHandler(toast, "This role was not found");
-          push("/roles");
+          navigate("/roles");
         }
       })
       .catch(function (error) {
         errorHandler(toast, error);
-        push("/roles");
+        navigate("/roles");
       });
-  }, [push, reset]);
+  }, [navigate, reset]);
 
   const edit = () => {
     setIsLoading(true);
     axios.put('/identity/roles/' + roleID, getValues())
-      .then(function (response) {
+      .then(function () {
         toast({
           title: "Success",
           description: getValues().name + " was successfully updated.",
           variant: "success",
         });
-        push('/roles/' + roleID);
+        navigate('/roles/' + roleID);
       })
       .catch(function (error) {
         errorHandler(toast, error);
@@ -68,12 +68,11 @@ export default function RolePage({ params }: { params: { role: string } }) {
   }
 
   useEffect(() => {
-    setRoleID(params.role);
-    getRole(params.role);
-  }, [getRole, params.role]);
+    getRole();
+  }, [getRole, roleID]);
 
   return role && role.id != 0 ? (
-    <>
+    <DashboardLayout>
       <FormProvider {...methods}>
         <DashboardShell className="mb-1">
           <DashboardHeader heading={"Edit " + role.name + " Role"} text="Enter role details"></DashboardHeader>
@@ -149,6 +148,6 @@ export default function RolePage({ params }: { params: { role: string } }) {
           </Tabs>
         </div>
       </FormProvider>
-    </>
-  ) : <></>
+    </DashboardLayout>
+  ) : <EditRoleLoading />
 }

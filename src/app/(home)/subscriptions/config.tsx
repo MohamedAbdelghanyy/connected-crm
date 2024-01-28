@@ -1,12 +1,10 @@
-"use client"
-
 import { DataTableColumnHeader } from "@/components/table/data-table-column-header"
 import { ActionListProps, DataTableRowActions } from "@/components/table/data-table-row-actions"
 import { ToolbarProps, ToolbarSearchListProps } from "@/components/table/data-table-toolbar"
 import { Checkbox } from "@/components/ui/checkbox"
 import { ColumnDef } from "@tanstack/react-table"
 import { Check, X } from "lucide-react"
-import Link from "next/link"
+import { Link } from "react-router-dom"
 
 const subscriptionsActionList: ActionListProps[] = [
   {
@@ -119,7 +117,7 @@ export const subscriptionsTableColumns: ColumnDef<SubscriptionsProps>[] = [
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            <Link href={'/customers/' + row.original.customerID}>{row.getValue("customerName")}</Link>
+            <Link to={'/customers/' + row.original.customerID}>{row.getValue("customerName")}</Link>
           </span>
         </div>
       )
@@ -134,7 +132,7 @@ export const subscriptionsTableColumns: ColumnDef<SubscriptionsProps>[] = [
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            <Link href={'#'}>{row.getValue("subscriptionType")}</Link>
+            <Link to={'#'}>{row.getValue("subscriptionType")}</Link>
           </span>
         </div>
       )

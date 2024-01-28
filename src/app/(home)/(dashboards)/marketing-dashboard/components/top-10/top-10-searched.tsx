@@ -4,7 +4,7 @@ import {
   AvatarImage,
 } from "@/components/ui/avatar"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import Link from "next/link"
+import { Link } from "react-router-dom"
 
 const top10SearchedItems = [
   {
@@ -99,7 +99,7 @@ export function Top10Searched() {
                 </Avatar>
                 <div className="ml-4 space-y-1">
                   <p className="text-sm font-medium leading-none">
-                    <Link href={'/products/' + product.id}>{product.name}</Link>
+                    <Link to={'/products/' + product.id}>{product.name}</Link>
                   </p>
                   <p className="text-sm text-muted-foreground">
                     By Mohamed Abdelghany

@@ -1,39 +1,37 @@
-"use client"
-
-import { EmptyPlaceholder } from "@/components/empty-placeholder"
-import { DashboardHeader } from "@/components/header"
 import ImagesTable from "@/components/images-table/images-table"
-import { DashboardShell } from "@/components/shell"
+import DashboardLayout from "@/components/layouts/dashboard-layout"
+import { EmptyPlaceholder } from "@/components/other/empty-placeholder"
+import { DashboardHeader } from "@/components/other/header"
+import { DashboardShell } from "@/components/other/shell"
 import { DataTable } from "@/components/table/data-table"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Textarea } from "@/components/ui/textarea"
 import { Grid } from "@mui/material"
-import { useRouter } from "next/navigation"
 import * as React from "react"
+import { useNavigate } from "react-router-dom"
 import { appointmentsTableColumns, appointmentsTableToolbar, appointmentsTableToolbarSearchList } from "../../appointments/config"
-import { attributesTableColumns, attributesTableToolbar, attributesTableToolbarSearchList } from "../../categories/[category]/attributes/(list)/config"
 import { callsTableColumns, callsTableToolbar, callsTableToolbarSearchList } from "../../calls/config"
+import { attributesTableColumns, attributesTableToolbar, attributesTableToolbarSearchList } from "../../categories/[category]/attributes/(list)/config"
 import { internalNotesTableColumns, internalNotesTableToolbar, internalNotesTableToolbarSearchList } from "../../internal-notes/config"
 import { notificationsTableColumns, notificationsTableToolbar, notificationsTableToolbarSearchList } from "../../notifications/config"
-import StatisticsPage from "../../stats/page"
 import { subscriptionsTableColumns, subscriptionsTableToolbar, subscriptionsTableToolbarSearchList } from "../../subscriptions/config"
 import { wishlistsTableColumns, wishlistsTableToolbar, wishlistsTableToolbarSearchList } from "../../wishlists/config"
+import ProductLoading from "./loading"
 
-export default function ProductTabs({ product, attributes, wishlist, calls, subscriptions, notifications, appointments, internalNotes, stats, history }: any) {
-  const [isLoading, setIsLoading] = React.useState<boolean>(false)
-  const [activeTab, setActiveTab] = React.useState("basic")
-  const { push } = useRouter();
+export default function ProductTabs({ product, attributes, wishlist, calls, subscriptions, notifications, appointments, internalNotes }: any) {
+  const [activeTab, setActiveTab] = React.useState("basic");
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     if (!product) {
-      push("/product");
+      navigate("/product");
     }
-  }, [product, push])
+  }, [product, navigate])
 
   return product ? (
-    <>
+    <DashboardLayout>
       <DashboardShell className="mb-1">
         <DashboardHeader heading={product.name} text={product.id}></DashboardHeader>
       </DashboardShell>
@@ -99,7 +97,7 @@ export default function ProductTabs({ product, attributes, wishlist, calls, subs
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="category">Category</Label>
-                  <Input id="category"aria-label="category" value={product.category} readOnly />
+                  <Input id="category" aria-label="category" value={product.category} readOnly />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="owner">Owner</Label>
@@ -201,18 +199,11 @@ export default function ProductTabs({ product, attributes, wishlist, calls, subs
                 </div>
               </div>
             </TabsContent>
-            <TabsContent value="calls" forceMount={true} hidden={activeTab !== "stats"}>
-              <div className="space-y-4 py-2 pb-4">
-                <div className="space-y-2">
-                  <StatisticsPage />
-                </div>
-              </div>
-            </TabsContent>
           </div>
         </Tabs>
       </div>
-    </>
-  ) : <></>
+    </DashboardLayout>
+  ) : <ProductLoading />
 }
 
 

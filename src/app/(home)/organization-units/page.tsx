@@ -1,48 +1,26 @@
-import { promises as fs } from "fs"
-import path from "path"
+import DashboardLayout from "@/components/layouts/dashboard-layout";
+import UnitsPageMain from "@/components/organization-units/units-page-main";
+import { DashboardHeader } from "@/components/other/header";
+import { DashboardShell } from "@/components/other/shell";
+import { useEffect, useState } from "react";
 
-import { DashboardHeader } from "@/components/header"
-import UnitsPageMain from "@/components/organization-units/units-page-main"
-import { DashboardShell } from "@/components/shell"
+export default function UnitsPage() {
+  const [units, setUnits] = useState([]);
+  const [members, setMembers] = useState([]);
+  const [roles, setRoles] = useState([]);
 
-export const metadata = {
-  title: "Organization Units",
-}
+  useEffect(() => {
+    setUnits([]);
+    setMembers([]);
+    setRoles([]);
+  }, []);
 
-async function getUnits() {
-  const data = await fs.readFile(
-    path.join(process.cwd(), "src/data/units_data.json")
-  )
-  const units = JSON.parse(data.toString())
-  return units
-}
-
-async function getMembers() {
-  const data = await fs.readFile(
-    path.join(process.cwd(), "src/data/users_data.json")
-  )
-  const members = JSON.parse(data.toString())
-  return members
-}
-
-async function getRoles() {
-  const data = await fs.readFile(
-    path.join(process.cwd(), "src/data/roles_data.json")
-  )
-  const roles = JSON.parse(data.toString())
-  return roles
-}
-
-export default async function UnitsPage() {
-  const units = await getUnits()
-  const members = await getMembers()
-  const roles = await getRoles()
   return (
-    <>
+    <DashboardLayout>
       <DashboardShell className="mb-1">
         <DashboardHeader heading="Organization Units" text="Manage your organization units"></DashboardHeader>
       </DashboardShell>
       <UnitsPageMain units={units} members={members} roles={roles} />
-    </>
+    </DashboardLayout>
   )
 }

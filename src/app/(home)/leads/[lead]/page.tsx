@@ -3,10 +3,6 @@ import path from "path";
 
 import LeadTabs from "./lead-tabs";
 
-export const metadata = {
-  title: "Lead",
-}
-
 async function getLead(leadID: string) {
 
   const data = await fs.readFile(

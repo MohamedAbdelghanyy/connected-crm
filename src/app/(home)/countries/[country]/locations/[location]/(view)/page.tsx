@@ -1,26 +1,25 @@
-'use client'
-
 import FormButton from "@/components/forms/form-button";
-import { DashboardHeader } from "@/components/header";
-import { DashboardShell } from "@/components/shell";
-import { errorHandler } from "@/components/ui/custom/error-handler";
+import DashboardLayout from "@/components/layouts/dashboard-layout";
+import { errorHandler } from "@/components/other/error-handler";
+import { DashboardHeader } from "@/components/other/header";
+import { DashboardShell } from "@/components/other/shell";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/components/ui/use-toast";
 import axios from "@/services/axios";
 import { Grid } from "@mui/material";
-import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { LocationsProps } from "../../(list)/config";
 import LocationLoading from "./loading";
 
-export default function LocationPage({ params }: { params: { location: string } }) {
-  let locationID = params.location;
+export default function LocationPage() {
+  const { locationID } = useParams();
   const [location, setLocation] = useState<LocationsProps>();
   const [locationURL, setLocationURL] = useState('');
   const [activeTab, setActiveTab] = useState("info");
-  const { push } = useRouter();
+  const navigate = useNavigate();
 
   const getLocationData = useCallback(() => {
     axios.get('/app/location/' + locationID)
@@ -38,7 +37,7 @@ export default function LocationPage({ params }: { params: { location: string } 
   }, [getLocationData]);
 
   return location ? (
-    <>
+    <DashboardLayout>
       <DashboardShell className="mb-1">
         <DashboardHeader heading={location.name} text={location.id.toString()}>
           <div style={{ display: 'flex', flexDirection: 'row' }} className="space-x-2">
@@ -46,7 +45,7 @@ export default function LocationPage({ params }: { params: { location: string } 
               label="Edit"
               isLoading={false}
               callback={() => {
-                push(locationURL + '/edit');
+                navigate(locationURL + '/edit');
               }}
               isEnabled={true}
             />
@@ -82,6 +81,6 @@ export default function LocationPage({ params }: { params: { location: string } 
           </div>
         </Tabs>
       </div>
-    </>
+    </DashboardLayout>
   ) : <LocationLoading />
 }

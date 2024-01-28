@@ -1,5 +1,3 @@
-"use client"
-
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Grid } from "@mui/material";
 import * as React from 'react';

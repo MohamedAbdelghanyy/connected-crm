@@ -1,8 +1,5 @@
-"use client"
-
-import * as React from "react"
-import { useRouter } from "next/navigation"
-import { cn } from "@/lib/utils"
+import { Icons } from "@/components/other/icons";
+import { Button, ButtonProps, buttonVariants } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -10,26 +7,22 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { toast } from "@/components/ui/use-toast"
-import { Icons } from "@/components/icons"
-import { Button } from "@/components/ui/button"
-import { ButtonProps, buttonVariants } from "@/components/ui/button"
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { toast } from "@/components/ui/use-toast";
+import { cn } from "@/lib/utils";
+import * as React from "react";
 
 export default function AddBrand({
-  className,
   variant,
-  ...props
 }: ButtonProps) {
-  const router = useRouter()
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
   const [showNewBrandDialog, setShowNewBrandDialog] = React.useState(false)
   const userNameRef = React.useRef<HTMLInputElement>(null);
 
   async function saveBrand() {
-    if(userNameRef.current && userNameRef.current.value){
+    if (userNameRef.current && userNameRef.current.value) {
       setIsLoading(true)
 
       const response = await fetch("/api/posts", {
@@ -50,7 +43,7 @@ export default function AddBrand({
           description: "An error occurred while adding " + userNameRef.current.value + ", Please try again.",
           variant: "destructive",
         })
-      }else{
+      } else {
         setShowNewBrandDialog(false);
         return toast({
           title: "Success",
@@ -59,14 +52,14 @@ export default function AddBrand({
       }
 
       // This forces a cache invalidation.
-      router.refresh()
+
     }
   }
-  
+
   return (
     <>
       <button
-        onClick={() =>{
+        onClick={() => {
           setShowNewBrandDialog(true);
         }}
         className={cn(
@@ -84,7 +77,7 @@ export default function AddBrand({
               Enter brand details
             </DialogDescription>
           </DialogHeader>
-          <div style={{maxHeight: "60vh", overflow: "hidden scroll", padding: "0px 10px 0px 20px",}}>
+          <div style={{ maxHeight: "60vh", overflow: "hidden scroll", padding: "0px 10px 0px 20px", }}>
             <div className="space-y-4 py-2 pb-4">
               <div className="space-y-2">
                 <Label htmlFor="name">Brand Name</Label>

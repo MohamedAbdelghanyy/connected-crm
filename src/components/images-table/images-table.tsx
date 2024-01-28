@@ -1,9 +1,7 @@
-'use client'
-
-import { EmptyPlaceholder } from "@/components/empty-placeholder"
 import AddImage from "@/components/forms/add-image"
-import { DashboardHeader } from "@/components/header"
-import { DashboardShell } from "@/components/shell"
+import { EmptyPlaceholder } from "@/components/other/empty-placeholder"
+import { DashboardHeader } from "@/components/other/header"
+import { DashboardShell } from "@/components/other/shell"
 import { DataTable } from "@/components/table/data-table"
 import { imagesTableColumns, imagesTableToolbar, imagesTableToolbarSearchList } from "./config"
 

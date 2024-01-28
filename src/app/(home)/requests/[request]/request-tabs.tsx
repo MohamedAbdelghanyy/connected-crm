@@ -1,27 +1,26 @@
-"use client"
-
-import { DashboardHeader } from "@/components/header"
-import { DashboardShell } from "@/components/shell"
+import DashboardLayout from "@/components/layouts/dashboard-layout"
+import { DashboardHeader } from "@/components/other/header"
+import { DashboardShell } from "@/components/other/shell"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Grid } from "@mui/material"
-import { useRouter } from "next/navigation"
 import * as React from "react"
+import { useNavigate } from "react-router-dom"
+import RequestLoading from "./loading"
 
 export default function RequestTabs({ request }: any) {
-  const [isLoading, setIsLoading] = React.useState<boolean>(false)
-  const [activeTab, setActiveTab] = React.useState("info")
-  const { push } = useRouter();
+  const [activeTab, setActiveTab] = React.useState("info");
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     if (!request) {
-      push("/requests");
+      navigate("/requests");
     }
-  }, [request, push])
+  }, [request, navigate])
 
   return request ? (
-    <>
+    <DashboardLayout>
       <DashboardShell className="mb-1">
         <DashboardHeader heading={request.itemName} text={request.id}></DashboardHeader>
       </DashboardShell>
@@ -77,6 +76,6 @@ export default function RequestTabs({ request }: any) {
           </div>
         </Tabs>
       </div>
-    </>
-  ) : <></>
+    </DashboardLayout>
+  ) : <RequestLoading />
 }

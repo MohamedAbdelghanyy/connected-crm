@@ -1,3 +1,4 @@
+import DashboardLayout from "@/components/layouts/dashboard-layout"
 import {
   Card,
   CardContent,
@@ -15,13 +16,9 @@ import { Top10Searched } from "./components/top-10/top-10-searched"
 import { Top10Shared } from "./components/top-10/top-10-shared"
 import { Top10Viewed } from "./components/top-10/top-10-viewed"
 
-export const metadata = {
-  title: "Marketing Dashboard",
-}
-
 export default function MarketingDashboardPage() {
   return (
-    <>
+    <DashboardLayout>
       <div className="flex items-center justify-between space-y-2">
         <h2 className="text-4xl mb-1">Dashboard</h2>
       </div>
@@ -122,6 +119,6 @@ export default function MarketingDashboardPage() {
           </Grid>
         </Grid>
       </div>
-    </>
+    </DashboardLayout>
   )
 }

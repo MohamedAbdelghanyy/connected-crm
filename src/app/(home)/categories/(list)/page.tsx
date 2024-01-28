@@ -1,17 +1,16 @@
-'use client'
-
-import { EmptyPlaceholder } from "@/components/empty-placeholder"
-import { DashboardHeader } from "@/components/header"
-import { Icons } from "@/components/icons"
-import { DashboardShell } from "@/components/shell"
+import { EmptyPlaceholder } from "@/components/other/empty-placeholder"
+import { DashboardHeader } from "@/components/other/header"
+import { Icons } from "@/components/other/icons"
+import DashboardLayout from "@/components/layouts/dashboard-layout"
+import { DashboardShell } from "@/components/other/shell"
 import { DynamicDataTable } from "@/components/table/dynamic-data-table"
 import { buttonVariants } from "@/components/ui/button"
-import { errorHandler } from "@/components/ui/custom/error-handler"
+import { errorHandler } from "@/components/other/error-handler"
 import { toast } from "@/components/ui/use-toast"
 import { cn } from "@/lib/utils"
 import axios from "@/services/axios"
-import Link from "next/link"
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import { categoriesTableColumns, categoriesTableToolbar, categoriesTableToolbarSearchList } from "./config"
 import CategoriesLoading from "./loading"
 
@@ -39,10 +38,10 @@ export default function CategoriesPage() {
 
   return (
     categories ?
-      <>
+      <DashboardLayout>
         <DashboardShell className="mb-1">
           <DashboardHeader heading="Categories" text="Manage your categories">
-            <Link href="/categories/add" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Category</Link>
+            <Link to="/categories/add" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Category</Link>
           </DashboardHeader>
         </DashboardShell>
         <div className="m-2">
@@ -67,10 +66,10 @@ export default function CategoriesPage() {
               <EmptyPlaceholder.Description>
                 You don&apos;t have any categories yet.
               </EmptyPlaceholder.Description>
-              <Link href="/categories/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Category</Link>
+              <Link to="/categories/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Category</Link>
             </EmptyPlaceholder>)}
         </div>
-      </>
+      </DashboardLayout>
       : <CategoriesLoading />
   )
 }

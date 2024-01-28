@@ -1,35 +1,27 @@
-import { promises as fs } from "fs"
-import path from "path"
-
 import { customersTableColumns, customersTableToolbar, customersTableToolbarSearchList } from "@/app/(home)/customers/config"
-import { EmptyPlaceholder } from "@/components/empty-placeholder"
-import { DashboardHeader } from "@/components/header"
-import { Icons } from "@/components/icons"
-import { DashboardShell } from "@/components/shell"
+import DashboardLayout from "@/components/layouts/dashboard-layout"
+import { EmptyPlaceholder } from "@/components/other/empty-placeholder"
+import { DashboardHeader } from "@/components/other/header"
+import { Icons } from "@/components/other/icons"
+import { DashboardShell } from "@/components/other/shell"
 import { DataTable } from "@/components/table/data-table"
 import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import Link from "next/link"
+import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 
-export const metadata = {
-  title: "Customers",
-}
+export default function CustomersPage() {
+  const [customers, setCustomers] = useState([]);
 
-async function getCustomers() {
-  const data = await fs.readFile(
-    path.join(process.cwd(), "src/data/customers_data.json")
-  )
-  const customers = JSON.parse(data.toString())
-  return customers
-}
+  useEffect(() => {
+    setCustomers([]);
+  }, []);
 
-export default async function CustomersPage() {
-  const customers = await getCustomers()
   return (
-    <>
+    <DashboardLayout>
       <DashboardShell className="mb-1">
         <DashboardHeader heading="Customers" text="Manage your customers">
-          <Link href="/customers/add" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Customer</Link>
+          <Link to="/customers/add" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Customer</Link>
         </DashboardHeader>
       </DashboardShell>
       <div className="m-2">
@@ -41,9 +33,9 @@ export default async function CustomersPage() {
           <EmptyPlaceholder.Description>
             You don&apos;t have any customer yet.
           </EmptyPlaceholder.Description>
-          <Link href="/customers/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Customer</Link>
+          <Link to="/customers/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Customer</Link>
         </EmptyPlaceholder>)}
       </div>
-    </>
+    </DashboardLayout>
   )
 }

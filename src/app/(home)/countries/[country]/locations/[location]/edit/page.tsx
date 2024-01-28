@@ -1,11 +1,10 @@
-'use client'
-
 import _ from "@/@lodash/@lodash";
 import FormButton from "@/components/forms/form-button";
-import { DashboardHeader } from "@/components/header";
-import { DashboardShell } from "@/components/shell";
+import DashboardLayout from "@/components/layouts/dashboard-layout";
+import { errorHandler } from "@/components/other/error-handler";
+import { DashboardHeader } from "@/components/other/header";
+import { DashboardShell } from "@/components/other/shell";
 import { CustomInput } from "@/components/ui/custom-input";
-import { errorHandler } from "@/components/ui/custom/error-handler";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -15,27 +14,27 @@ import { LocationValidation } from "@/config/forms/validation";
 import axios from "@/services/axios";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Grid } from "@mui/material";
-import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect } from "react";
 import { Controller, FormProvider, useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
 import EditLocationLoading from "./loading";
 
-export default function EditLocationPage({ params }: { params: { location: string } }) {
+export default function EditLocationPage() {
+  const { locationID } = useParams();
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [activeTab, setActiveTab] = React.useState("general");
-  const [locationID, setLocationID] = React.useState("");
   const [location, setLocation] = React.useState(LocationObject.empty);
   const [locationURL, setLocationURL] = React.useState('');
-  const { push } = useRouter();
+  const navigate = useNavigate();
   const methods = useForm({
     mode: 'onChange',
     defaultValues: location,
     resolver: yupResolver(LocationValidation.mainSchema),
   });
-  const { control, formState, setValue, getValues, reset } = methods;
+  const { control, formState, getValues, reset } = methods;
   const { isValid, dirtyFields, errors } = formState;
 
-  const getLocation = useCallback((locationID: string) => {
+  const getLocation = useCallback(() => {
     axios.get('/app/location/' + locationID)
       .then(function (response) {
         if (response.data.result != null) {
@@ -44,25 +43,25 @@ export default function EditLocationPage({ params }: { params: { location: strin
           reset(response.data.result);
         } else {
           errorHandler(toast, "This location was not found");
-          push("/countries");
+          navigate("/countries");
         }
       })
       .catch(function (error) {
         errorHandler(toast, error);
-        push("/countries");
+        navigate("/countries");
       });
-  }, [setLocation, reset, push]);
+  }, [setLocation, reset, navigate]);
 
   const edit = () => {
     setIsLoading(true);
     axios.put('/app/location/' + locationID, getValues())
-      .then(function (response) {
+      .then(function () {
         toast({
           title: "Success",
           description: getValues().name + " was successfully updated.",
           variant: "success",
         });
-        push(locationURL);
+        navigate(locationURL);
       })
       .catch(function (error) {
         errorHandler(toast, error);
@@ -72,12 +71,11 @@ export default function EditLocationPage({ params }: { params: { location: strin
 
   useEffect(() => {
     setLocationURL(window.location.href.replace('/edit', ''));
-    setLocationID(params.location);
-    getLocation(params.location);
-  }, [getLocation, params.location]);
+    getLocation();
+  }, [getLocation, locationID]);
 
   return location && location.id != 0 ? (
-    <>
+    <DashboardLayout>
       <FormProvider {...methods}>
         <DashboardShell className="mb-1">
           <DashboardHeader heading={"Edit " + location.name + " Location"} text="Enter location details"></DashboardHeader>
@@ -140,6 +138,6 @@ export default function EditLocationPage({ params }: { params: { location: strin
           </Tabs>
         </div>
       </FormProvider>
-    </>
+    </DashboardLayout>
   ) : <EditLocationLoading />
 }

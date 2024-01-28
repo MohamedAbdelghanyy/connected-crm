@@ -1,8 +1,5 @@
-"use client"
-
-import * as React from "react"
-import { useRouter } from "next/navigation"
-import { cn } from "@/lib/utils"
+import { Icons } from "@/components/other/icons";
+import { Button, ButtonProps, buttonVariants } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -10,34 +7,23 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-import { toast } from "@/components/ui/use-toast"
-import { Icons } from "@/components/icons"
-import { Button } from "@/components/ui/button"
-import { ButtonProps, buttonVariants } from "@/components/ui/button"
-import { Textarea } from "@/components/ui/textarea"
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { toast } from "@/components/ui/use-toast";
+import { cn } from "@/lib/utils";
+import * as React from "react";
 
 export default function AddTopic({
-  className,
   variant,
-  ...props
 }: ButtonProps) {
-  const router = useRouter()
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
   const [showNewTopicDialog, setShowNewTopicDialog] = React.useState(false)
   const userNameRef = React.useRef<HTMLInputElement>(null);
 
   async function saveTopic() {
-    if(userNameRef.current && userNameRef.current.value){
+    if (userNameRef.current && userNameRef.current.value) {
       setIsLoading(true)
 
       const response = await fetch("/api/posts", {
@@ -58,7 +44,7 @@ export default function AddTopic({
           description: "An error occurred while adding " + userNameRef.current.value + ", Please try again.",
           variant: "destructive",
         })
-      }else{
+      } else {
         setShowNewTopicDialog(false);
         return toast({
           title: "Success",
@@ -67,14 +53,14 @@ export default function AddTopic({
       }
 
       // This forces a cache invalidation.
-      router.refresh()
+
     }
   }
-  
+
   return (
     <>
       <button
-        onClick={() =>{
+        onClick={() => {
           setShowNewTopicDialog(true);
         }}
         className={cn(
@@ -92,7 +78,7 @@ export default function AddTopic({
               Enter topic details
             </DialogDescription>
           </DialogHeader>
-          <div style={{maxHeight: "60vh", overflow: "hidden scroll", padding: "0px 10px 0px 20px",}}>
+          <div style={{ maxHeight: "60vh", overflow: "hidden scroll", padding: "0px 10px 0px 20px", }}>
             <div className="space-y-4 py-2 pb-4">
               <div className="space-y-2">
                 <Label htmlFor="name">Topic Name</Label>
@@ -104,7 +90,7 @@ export default function AddTopic({
               </div>
               <div className="space-y-2">
                 <Label htmlFor="details">Details</Label>
-                <Textarea id="details" aria-label="details" placeholder="Enter topic's details" />
+                <Textarea id="details" aria-label="details" placeholder="Enter topic details" />
               </div>
             </div>
           </div>

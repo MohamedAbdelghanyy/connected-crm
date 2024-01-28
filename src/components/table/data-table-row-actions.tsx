@@ -1,6 +1,4 @@
-"use client"
-
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,11 +9,11 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Row } from "@tanstack/react-table"
-import { SettingsIcon } from "lucide-react"
-import { useRouter } from 'next/navigation'
-import { Fragment } from "react"
+} from "@/components/ui/dropdown-menu";
+import { Row } from "@tanstack/react-table";
+import { SettingsIcon } from "lucide-react";
+import { Fragment } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>
@@ -35,7 +33,7 @@ export function DataTableRowActions<TData>({
   actionList
 }: DataTableRowActionsProps<TData>) {
 
-  const { push } = useRouter();
+  const navigate = useNavigate();
 
   return (
     <DropdownMenu>
@@ -58,7 +56,7 @@ export function DataTableRowActions<TData>({
                   if (action.action) {
                     action.action(row.getValue('id'));
                   } else if (action.redirect) {
-                    push(action.redirect(row.getValue('id')));
+                    navigate(action.redirect(row.getValue('id')));
                   }
                 }}
               >
@@ -87,7 +85,7 @@ export function DataTableRowActions<TData>({
                                       if (subAction2.action) {
                                         subAction2.action(row.getValue('id'));
                                       } else if (subAction2.redirect) {
-                                        push(subAction2.redirect(row.getValue('id')));
+                                        navigate(subAction2.redirect(row.getValue('id')));
                                       }
                                     }}
                                   >
@@ -104,7 +102,7 @@ export function DataTableRowActions<TData>({
                               if (subAction.action) {
                                 subAction.action(row.getValue('id'));
                               } else if (subAction.redirect) {
-                                push(subAction.redirect(row.getValue('id')));
+                                navigate(subAction.redirect(row.getValue('id')));
                               }
                             }}
                           >

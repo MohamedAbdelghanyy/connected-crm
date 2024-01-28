@@ -1,10 +1,8 @@
-"use client"
-
 import { DataTableColumnHeader } from "@/components/table/data-table-column-header"
 import { ToolbarProps, ToolbarSearchListProps } from "@/components/table/data-table-toolbar"
 import { Checkbox } from "@/components/ui/checkbox"
 import { ColumnDef } from "@tanstack/react-table"
-import Link from "next/link"
+import { Link } from "react-router-dom"
 
 export const notificationsTableToolbar: ToolbarProps[] = []
 
@@ -114,7 +112,7 @@ export const notificationsTableColumns: ColumnDef<NotificationsProps>[] = [
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            <Link href={"/customers/" + row.original.receiverID}>{row.getValue("receiverName")}</Link>
+            <Link to={"/customers/" + row.original.receiverID}>{row.getValue("receiverName")}</Link>
           </span>
         </div>
       )

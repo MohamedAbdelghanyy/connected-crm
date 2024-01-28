@@ -1,11 +1,10 @@
-'use client'
-
 import _ from "@/@lodash/@lodash";
 import FormButton from "@/components/forms/form-button";
-import { DashboardHeader } from "@/components/header";
-import { DashboardShell } from "@/components/shell";
+import DashboardLayout from "@/components/layouts/dashboard-layout";
+import { errorHandler } from "@/components/other/error-handler";
+import { DashboardHeader } from "@/components/other/header";
+import { DashboardShell } from "@/components/other/shell";
 import { CustomInput } from "@/components/ui/custom-input";
-import { errorHandler } from "@/components/ui/custom/error-handler";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
@@ -16,27 +15,27 @@ import { AttributeValidation } from "@/config/forms/validation";
 import axios from "@/services/axios";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Grid } from "@mui/material";
-import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { Controller, FormProvider, useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
 import EditAttributeLoading from "./loading";
 
-export default function EditAttributePage({ params }: { params: { attribute: string } }) {
+export default function EditAttributePage() {
+  const { attributeID } = useParams();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState("general");
-  const [attributeID, setAttributeID] = useState("");
   const [attribute, setAttribute] = useState(AttributeObject.empty);
   const [attributeURL, setAttributeURL] = useState('');
-  const { push } = useRouter();
+  const navigate = useNavigate();
   const methods = useForm({
     mode: 'onChange',
     defaultValues: attribute,
     resolver: yupResolver(AttributeValidation.mainSchema),
   });
-  const { control, formState, setValue, getValues, reset } = methods;
+  const { control, formState, getValues, reset } = methods;
   const { isValid, dirtyFields, errors } = formState;
 
-  const getAttribute = useCallback((attributeID: string) => {
+  const getAttribute = useCallback(() => {
     axios.get('/app/specification/' + attributeID)
       .then(function (response) {
         if (response.data.result != null) {
@@ -45,25 +44,25 @@ export default function EditAttributePage({ params }: { params: { attribute: str
           reset(response.data.result);
         } else {
           errorHandler(toast, "This attribute was not found");
-          push("/categories");
+          navigate("/categories");
         }
       })
       .catch(function (error) {
         errorHandler(toast, error);
-        push("/categories");
+        navigate("/categories");
       });
-  }, [setAttribute, reset, push]);
+  }, [setAttribute, reset, navigate]);
 
   const edit = () => {
     setIsLoading(true);
     axios.put('/app/specification/' + attributeID, getValues())
-      .then(function (response) {
+      .then(function () {
         toast({
           title: "Success",
           description: getValues().name + " was successfully updated.",
           variant: "success",
         });
-        push(attributeURL);
+        navigate(attributeURL);
       })
       .catch(function (error) {
         errorHandler(toast, error);
@@ -73,12 +72,11 @@ export default function EditAttributePage({ params }: { params: { attribute: str
 
   useEffect(() => {
     setAttributeURL(window.location.href);
-    setAttributeID(params.attribute);
-    getAttribute(params.attribute);
-  }, [getAttribute, params.attribute]);
+    getAttribute();
+  }, [getAttribute, attributeID]);
 
   return attribute && attribute.id != 0 ? (
-    <>
+    <DashboardLayout>
       <FormProvider {...methods}>
         <DashboardShell className="mb-1">
           <DashboardHeader heading={"Edit " + attribute.name + " Attribute"} text="Enter attribute details"></DashboardHeader>
@@ -212,6 +210,6 @@ export default function EditAttributePage({ params }: { params: { attribute: str
           </Tabs>
         </div>
       </FormProvider>
-    </>
+    </DashboardLayout>
   ) : <EditAttributeLoading />
 }

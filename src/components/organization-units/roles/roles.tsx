@@ -1,15 +1,9 @@
-"use client"
-
-import { EmptyPlaceholder } from "@/components/empty-placeholder"
 import AddRole from "@/components/forms/add-role"
-import { DashboardHeader } from "@/components/header"
-import { DashboardShell } from "@/components/shell"
+import { EmptyPlaceholder } from "@/components/other/empty-placeholder"
+import { DashboardHeader } from "@/components/other/header"
+import { DashboardShell } from "@/components/other/shell"
 import { DataTable } from "@/components/table/data-table"
 import { rolesWidgetTableColumns, rolesWidgetTableToolbar, rolesWidgetTableToolbarSearchList } from "./config"
-
-export const metadata = {
-  title: "Roles",
-}
 
 export default function RolesWidget({ selectedUnit, roles }: any) {
   const selectedUnitName = selectedUnit == -1 ? "Select a Unit" : selectedUnit.name;

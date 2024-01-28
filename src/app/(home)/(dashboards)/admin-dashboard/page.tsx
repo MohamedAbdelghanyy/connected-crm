@@ -1,3 +1,4 @@
+import DashboardLayout from "@/components/layouts/dashboard-layout"
 import {
   Card,
   CardContent,
@@ -11,13 +12,9 @@ import { AdminDashboardRequests } from "./components/admin-dashboard-requests"
 import { AdminDashboardItemsChart } from "./components/charts/admin-dashboard-items-chart"
 import { AdminDashboardUsersChart } from "./components/charts/admin-dashboard-users-chart"
 
-export const metadata = {
-  title: "Dashboard",
-}
-
 export default function AdminDashboardPage() {
   return (
-    <>
+    <DashboardLayout>
       <div className="flex items-center justify-between space-y-2">
         <h2 className="text-4xl mb-1">Dashboard</h2>
       </div>
@@ -93,6 +90,6 @@ export default function AdminDashboardPage() {
           </Grid>
         </Grid>
       </div>
-    </>
+    </DashboardLayout>
   )
 }

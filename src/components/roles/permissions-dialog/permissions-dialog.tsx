@@ -1,6 +1,4 @@
-"use client"
-
-import { Icons } from "@/components/icons"
+import { Icons } from "@/components/other/icons"
 import { Button, buttonVariants } from "@/components/ui/button"
 import {
   Dialog,
@@ -13,12 +11,10 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { toast } from "@/components/ui/use-toast"
 import { cn } from "@/lib/utils"
-import { useRouter } from "next/navigation"
 import * as React from "react"
 import { Checkbox } from "../../ui/checkbox"
 
 export default function PermissionsDialog({ showDialog, setShowDialog, permissions, role }: any) {
-  const router = useRouter()
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
   const [activeTab, setActiveTab] = React.useState("general")
   const userNameRef = React.useRef<HTMLInputElement>(null);
@@ -54,7 +50,7 @@ export default function PermissionsDialog({ showDialog, setShowDialog, permissio
       }
 
       // This forces a cache invalidation.
-      router.refresh()
+
     }
   }
 

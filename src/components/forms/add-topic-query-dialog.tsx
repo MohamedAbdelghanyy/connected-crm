@@ -1,7 +1,5 @@
-"use client"
-
 import _ from "@/@lodash/@lodash"
-import { Icons } from "@/components/icons"
+import { Icons } from "@/components/other/icons"
 import { Button, ButtonProps, buttonVariants } from "@/components/ui/button"
 import {
   Dialog,
@@ -17,11 +15,10 @@ import { TopicQueryValidation } from "@/config/forms/validation"
 import { cn } from "@/lib/utils"
 import axios from "@/services/axios"
 import { yupResolver } from "@hookform/resolvers/yup"
-import { useRouter } from "next/navigation"
 import * as React from "react"
 import { Controller, FormProvider, useForm } from "react-hook-form"
+import { errorHandler } from "../other/error-handler"
 import { CustomInput } from "../ui/custom-input"
-import { errorHandler } from "../ui/custom/error-handler"
 import { toast } from "../ui/use-toast"
 
 export default function AddTopicQueryDialog({
@@ -29,7 +26,6 @@ export default function AddTopicQueryDialog({
   variant,
   ...props
 }: ButtonProps & { topicId: string } & { onSave: Function }) {
-  const router = useRouter()
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
   const [showDialog, setShowDialog] = React.useState(false)
   const methods = useForm({
@@ -44,7 +40,7 @@ export default function AddTopicQueryDialog({
     console.log(props.topicId);
     setIsLoading(true);
     axios.post(`/app/topic/${props.topicId}/query`, getValues())
-      .then(function (response) {
+      .then(function () {
         toast({
           title: "Success",
           description: getValues().keyword + " Query was successfully added to this topic.",

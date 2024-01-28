@@ -1,10 +1,8 @@
-"use client"
-
+import { errorHandler } from "@/components/other/error-handler"
 import { DataTableColumnHeader } from "@/components/table/data-table-column-header"
-import { ActionListProps, DataTableRowActions } from "@/components/table/data-table-row-actions"
+import { DataTableRowActions } from "@/components/table/data-table-row-actions"
 import { ToolbarProps, ToolbarSearchListProps } from "@/components/table/data-table-toolbar"
 import { Checkbox } from "@/components/ui/checkbox"
-import { errorHandler } from "@/components/ui/custom/error-handler"
 import { toast } from "@/components/ui/use-toast"
 import axios from "@/services/axios"
 import { ColumnDef } from "@tanstack/react-table"
@@ -14,7 +12,7 @@ export async function deleteTopicQuery(topicId: number, keyword: string) {
     params: {
       Keyword: keyword,
     },
-  }).then(function (response) {
+  }).then(function () {
     toast({
       title: "Success",
       description: "Query was successfully deleted.",
@@ -26,8 +24,6 @@ export async function deleteTopicQuery(topicId: number, keyword: string) {
     errorHandler(toast, error);
   });
 }
-
-const topicQueriesActionList: ActionListProps[] = [];
 
 export const topicQueriesTableToolbar: ToolbarProps[] = []
 

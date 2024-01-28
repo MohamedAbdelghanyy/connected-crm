@@ -1,35 +1,27 @@
-import { promises as fs } from "fs"
-import path from "path"
-
-import { EmptyPlaceholder } from "@/components/empty-placeholder"
-import { DashboardHeader } from "@/components/header"
-import { Icons } from "@/components/icons"
-import { DashboardShell } from "@/components/shell"
+import DashboardLayout from "@/components/layouts/dashboard-layout"
+import { EmptyPlaceholder } from "@/components/other/empty-placeholder"
+import { DashboardHeader } from "@/components/other/header"
+import { Icons } from "@/components/other/icons"
+import { DashboardShell } from "@/components/other/shell"
 import { DataTable } from "@/components/table/data-table"
 import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import Link from "next/link"
+import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import { textTemplatesTableColumns, textTemplatesTableToolbar, textTemplatesTableToolbarSearchList } from "./config"
 
-export const metadata = {
-  title: "Text Templates",
-}
+export default function TextTemplatesPage() {
+  const [textTemplates, setTextTemplates] = useState([]);
 
-async function getTextTemplates() {
-  const data = await fs.readFile(
-    path.join(process.cwd(), "src/data/text_templates_data.json")
-  )
-  const textTemplates = JSON.parse(data.toString())
-  return textTemplates
-}
+  useEffect(() => {
+    setTextTemplates([]);
+  }, []);
 
-export default async function TextTemplatesPage() {
-  const textTemplates = await getTextTemplates()
   return (
-    <>
+    <DashboardLayout>
       <DashboardShell className="mb-1">
         <DashboardHeader heading="Text Templates" text="Manage your text templates">
-          <Link href="/text-templates/add" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Template</Link>
+          <Link to="/text-templates/add" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Template</Link>
         </DashboardHeader>
       </DashboardShell>
       <div className="m-2">
@@ -41,9 +33,9 @@ export default async function TextTemplatesPage() {
           <EmptyPlaceholder.Description>
             You don&apos;t have any templates yet.
           </EmptyPlaceholder.Description>
-          <Link href="/text-templates/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Template</Link>
+          <Link to="/text-templates/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Template</Link>
         </EmptyPlaceholder>)}
       </div>
-    </>
+    </DashboardLayout>
   )
 }

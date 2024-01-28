@@ -1,8 +1,7 @@
-"use client"
-
-import { EmptyPlaceholder } from "@/components/empty-placeholder"
-import { DashboardHeader } from "@/components/header"
-import { DashboardShell } from "@/components/shell"
+import DashboardLayout from "@/components/layouts/dashboard-layout"
+import { EmptyPlaceholder } from "@/components/other/empty-placeholder"
+import { DashboardHeader } from "@/components/other/header"
+import { DashboardShell } from "@/components/other/shell"
 import { DataTable } from "@/components/table/data-table"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Input } from "@/components/ui/input"
@@ -10,30 +9,30 @@ import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Textarea } from "@/components/ui/textarea"
 import { Grid } from "@mui/material"
-import { useRouter } from "next/navigation"
 import * as React from "react"
+import { useNavigate } from "react-router-dom"
 import { appointmentsTableColumns, appointmentsTableToolbar, appointmentsTableToolbarSearchList } from "../../appointments/config"
 import { callsTableColumns, callsTableToolbar, callsTableToolbarSearchList } from "../../calls/config"
 import { internalNotesTableColumns, internalNotesTableToolbar, internalNotesTableToolbarSearchList } from "../../internal-notes/config"
 import { notificationsTableColumns, notificationsTableToolbar, notificationsTableToolbarSearchList } from "../../notifications/config"
 import { productsTableColumns, productsTableToolbar, productsTableToolbarSearchList } from "../../products/(list)/config"
+import { requestsTableColumns, requestsTableToolbar, requestsTableToolbarSearchList } from "../../requests/config"
 import { subscriptionsTableColumns, subscriptionsTableToolbar, subscriptionsTableToolbarSearchList } from "../../subscriptions/config"
 import { wishlistsTableColumns, wishlistsTableToolbar, wishlistsTableToolbarSearchList } from "../../wishlists/config"
-import { requestsTableColumns, requestsTableToolbar, requestsTableToolbarSearchList } from "../../requests/config"
+import CustomerLoading from "./loading"
 
-export default function CustomerTabs({ customer, products, wishlist, calls, subscriptions, notifications, requests, appointments, internalNotes, stats, history }: any) {
-  const [isLoading, setIsLoading] = React.useState<boolean>(false)
+export default function CustomerTabs({ customer, products, wishlist, calls, subscriptions, notifications, requests, appointments, internalNotes }: any) {
   const [activeTab, setActiveTab] = React.useState("info")
-  const { push } = useRouter();
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     if (!customer) {
-      push("/customers");
+      navigate("/customers");
     }
-  }, [customer, push])
+  }, [customer, navigate])
 
   return customer ? (
-    <>
+    <DashboardLayout>
       <DashboardShell className="mb-1">
         <DashboardHeader heading={customer.name} text={customer.id}></DashboardHeader>
       </DashboardShell>
@@ -215,8 +214,8 @@ export default function CustomerTabs({ customer, products, wishlist, calls, subs
           </div>
         </Tabs>
       </div>
-    </>
-  ) : <></>
+    </DashboardLayout>
+  ) : <CustomerLoading />
 }
 
 

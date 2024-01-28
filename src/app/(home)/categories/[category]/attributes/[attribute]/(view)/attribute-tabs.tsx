@@ -1,13 +1,12 @@
-"use client"
-
-import { EmptyPlaceholder } from "@/components/empty-placeholder"
 import FormButton from "@/components/forms/form-button"
-import { DashboardHeader } from "@/components/header"
-import { Icons } from "@/components/icons"
-import { DashboardShell } from "@/components/shell"
+import DashboardLayout from "@/components/layouts/dashboard-layout"
+import { EmptyPlaceholder } from "@/components/other/empty-placeholder"
+import { errorHandler } from "@/components/other/error-handler"
+import { DashboardHeader } from "@/components/other/header"
+import { Icons } from "@/components/other/icons"
+import { DashboardShell } from "@/components/other/shell"
 import { DataTable } from "@/components/table/data-table"
 import { buttonVariants } from "@/components/ui/button"
-import { errorHandler } from "@/components/ui/custom/error-handler"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
@@ -15,26 +14,26 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { toast } from "@/components/ui/use-toast"
 import { cn } from "@/lib/utils"
 import { Grid } from "@mui/material"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
 import { attributeValuesTableColumns, attributeValuesTableToolbar, attributeValuesTableToolbarSearchList } from "../values/(list)/config"
+import AttributeLoading from "./loading"
 
 export default function AttributeTabs({ attribute, attributeValues }: any) {
   const [activeTab, setActiveTab] = useState("info");
   const [attributeURL, setAttributeURL] = useState('');
-  const { push } = useRouter();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setAttributeURL(window.location.href);
     if (!attribute) {
       errorHandler(toast, "This attribute was not found");
-      //push("/attributes");
+      //navigate("/attributes");
     }
   }, [attribute])
 
   return attribute ? (
-    <>
+    <DashboardLayout>
       <DashboardShell className="mb-1">
         <DashboardHeader heading={attribute.name} text={attribute.id}>
           <div style={{ display: 'flex', flexDirection: 'row' }} className="space-x-2">
@@ -42,7 +41,7 @@ export default function AttributeTabs({ attribute, attributeValues }: any) {
               label="Edit"
               isLoading={false}
               callback={() => {
-                push(attributeURL + '/edit');
+                navigate(attributeURL + '/edit');
               }}
               isEnabled={true}
             />
@@ -113,7 +112,7 @@ export default function AttributeTabs({ attribute, attributeValues }: any) {
               <div className="space-y-4 py-2 pb-4">
                 <DashboardShell className="mb-1">
                   <DashboardHeader heading="" text="Manage attribute values">
-                    <Link href={`${attributeURL}/values/add`} className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Value</Link>
+                    <Link to={`${attributeURL}/values/add`} className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Value</Link>
                   </DashboardHeader>
                 </DashboardShell>
                 <div className="m-2">
@@ -125,7 +124,7 @@ export default function AttributeTabs({ attribute, attributeValues }: any) {
                     <EmptyPlaceholder.Description>
                       This attribute doesn&apos;t have any values yet.
                     </EmptyPlaceholder.Description>
-                    <Link href={`${attributeURL}/values/add`} className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Value</Link>
+                    <Link to={`${attributeURL}/values/add`} className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Value</Link>
                   </EmptyPlaceholder>)}
                 </div>
               </div>
@@ -133,16 +132,6 @@ export default function AttributeTabs({ attribute, attributeValues }: any) {
           </div>
         </Tabs>
       </div>
-    </>
-  ) : <></>
-}
-
-function CustomEmptyPlaceHolder({ title, attributeName }: any) {
-  return (<EmptyPlaceholder>
-    <EmptyPlaceholder.Icon name="post" />
-    <EmptyPlaceholder.Title>No {title}</EmptyPlaceholder.Title>
-    <EmptyPlaceholder.Description>
-      {attributeName} doesn&apos;t have any {title} yet.
-    </EmptyPlaceholder.Description>
-  </EmptyPlaceholder>);
+    </DashboardLayout>
+  ) : <AttributeLoading />
 }

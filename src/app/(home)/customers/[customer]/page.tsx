@@ -3,18 +3,13 @@ import path from "path";
 
 import CustomerTabs from "./customer-tabs";
 
-export const metadata = {
-  title: "Customer",
-}
-
 async function getCustomer(customerID: string) {
 
   const data = await fs.readFile(
     path.join(process.cwd(), "src/data/customers_data.json")
   )
   const customers = JSON.parse(data.toString())
-  let customer = null;
-
+ 
   for (let i = 0; i < customers.length; i++) {
     if (customers[i].id == customerID) {
       return customers[i]

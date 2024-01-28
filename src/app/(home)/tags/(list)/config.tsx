@@ -1,12 +1,10 @@
-"use client"
-
 import { DataTableColumnHeader } from "@/components/table/data-table-column-header"
 import { ActionListProps, DataTableRowActions } from "@/components/table/data-table-row-actions"
 import { ToolbarProps, ToolbarSearchListProps } from "@/components/table/data-table-toolbar"
 import { Checkbox } from "@/components/ui/checkbox"
 import { ColumnDef } from "@tanstack/react-table"
 
-const tagsActionList : ActionListProps[] = [
+const tagsActionList: ActionListProps[] = [
   {
     type: "button",
     label: "View",
@@ -30,9 +28,9 @@ const tagsActionList : ActionListProps[] = [
   }
 ]
 
-export const tagsTableToolbar : ToolbarProps[] = []
+export const tagsTableToolbar: ToolbarProps[] = []
 
-export const tagsTableToolbarSearchList : ToolbarSearchListProps[] = [
+export const tagsTableToolbarSearchList: ToolbarSearchListProps[] = [
   {
     key: 'id',
     title: 'ID'
@@ -135,6 +133,6 @@ export const tagsTableColumns: ColumnDef<TagsProps>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }) => <DataTableRowActions row={row} actionList={tagsActionList}  />,
+    cell: ({ row }) => <DataTableRowActions row={row} actionList={tagsActionList} />,
   },
 ]

@@ -1,28 +1,20 @@
-import { promises as fs } from "fs"
-import path from "path"
-
-import { EmptyPlaceholder } from "@/components/empty-placeholder"
-import { DashboardHeader } from "@/components/header"
-import { DashboardShell } from "@/components/shell"
+import DashboardLayout from "@/components/layouts/dashboard-layout"
+import { EmptyPlaceholder } from "@/components/other/empty-placeholder"
+import { DashboardHeader } from "@/components/other/header"
+import { DashboardShell } from "@/components/other/shell"
 import { DataTable } from "@/components/table/data-table"
+import { useEffect, useState } from "react"
 import { auditLogsTableColumns, auditLogsTableToolbar, auditLogsTableToolbarSearchList } from "./config"
 
-export const metadata = {
-  title: "Audit Logs",
-}
+export default function AuditLogsPage() {
+  const [logs, setLogs] = useState([]);
 
-async function getAuditLogs() {
-  const data = await fs.readFile(
-    path.join(process.cwd(), "src/data/audit_logs_data.json")
-  )
-  const logs = JSON.parse(data.toString())
-  return logs
-}
+  useEffect(() => {
+    setLogs([]);
+  }, []);
 
-export default async function AuditLogsPage() {
-  const logs = await getAuditLogs()
   return (
-    <>
+    <DashboardLayout>
       <DashboardShell className="mb-1">
         <DashboardHeader heading="Audit Logs" text="Manage audit logs"></DashboardHeader>
       </DashboardShell>
@@ -37,6 +29,6 @@ export default async function AuditLogsPage() {
           </EmptyPlaceholder.Description>
         </EmptyPlaceholder>)}
       </div>
-    </>
+    </DashboardLayout>
   )
 }

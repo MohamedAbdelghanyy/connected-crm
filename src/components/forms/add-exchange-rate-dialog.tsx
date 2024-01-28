@@ -1,7 +1,5 @@
-"use client"
-
 import { CurrenciesProps } from "@/app/(home)/currencies/(list)/config"
-import { Icons } from "@/components/icons"
+import { Icons } from "@/components/other/icons"
 import { Button, ButtonProps, buttonVariants } from "@/components/ui/button"
 import {
   Dialog,
@@ -14,9 +12,8 @@ import {
 import { Label } from "@/components/ui/label"
 import { cn } from "@/lib/utils"
 import axios from "@/services/axios"
-import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
-import { errorHandler } from "../ui/custom/error-handler"
+import { errorHandler } from "../other/error-handler"
 import { Input } from "../ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select"
 import { Skeleton } from "../ui/skeleton"
@@ -27,7 +24,6 @@ export default function AddExchangeRateDialog({
   variant,
   ...props
 }: ButtonProps & { currencyId: string } & { onSave: Function }) {
-  const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [showDialog, setShowDialog] = useState(false);
   const [selectedCurrencyID, setSelectedCurrencyID] = useState(0);
@@ -52,7 +48,7 @@ export default function AddExchangeRateDialog({
         toCurrencyId: selectedCurrencyID,
         value: exchangeRate
       })
-      .then(function (response) {
+      .then(function () {
         toast({
           title: "Success",
           description: "Exchange rate was successfully added to this currency.",

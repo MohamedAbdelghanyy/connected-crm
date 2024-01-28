@@ -1,7 +1,5 @@
-"use client"
-
 import { leadsTableColumns, leadsTableToolbarSearchList } from "@/app/(home)/leads/config"
-import { Icons } from "@/components/icons"
+import { Icons } from "@/components/other/icons"
 import { Button, ButtonProps, buttonVariants } from "@/components/ui/button"
 import {
   Dialog,
@@ -12,18 +10,14 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { cn } from "@/lib/utils"
-import { useRouter } from "next/navigation"
 import * as React from "react"
 import * as xlsx from 'xlsx'
 import { DataTable } from "../table/data-table"
 import { Input } from "../ui/input"
 
 export default function ImportLeads({
-  className,
   variant,
-  ...props
 }: ButtonProps) {
-  const router = useRouter()
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
   const [showImportLeadsDialog, setShowImportLeadsDialog] = React.useState(false)
   const [leads, setLeads] = React.useState([]);
@@ -35,6 +29,7 @@ export default function ImportLeads({
 
   const readUploadFile = (e: any) => {
     e.preventDefault();
+    setIsLoading(true);
     if (e.target.files) {
       const reader = new FileReader();
       reader.onload = (e) => {
@@ -48,6 +43,7 @@ export default function ImportLeads({
       };
       reader.readAsArrayBuffer(e.target.files[0]);
     }
+    setIsLoading(false);
   }
 
   return (

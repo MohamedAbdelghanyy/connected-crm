@@ -1,9 +1,7 @@
-"use client"
-
-import * as React from "react"
 import * as SheetPrimitive from "@radix-ui/react-dialog"
 import { VariantProps, cva } from "class-variance-authority"
 import { X } from "lucide-react"
+import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
@@ -25,15 +23,14 @@ const portalVariants = cva("fixed inset-0 z-50 flex", {
 
 interface SheetPortalProps
   extends SheetPrimitive.DialogPortalProps,
-    VariantProps<typeof portalVariants> {}
+  VariantProps<typeof portalVariants> { }
 
 const SheetPortal = ({
   position,
-  className,
   children,
   ...props
 }: SheetPortalProps) => (
-  <SheetPrimitive.Portal className={cn(className)} {...props}>
+  <SheetPrimitive.Portal {...props}>
     <div className={portalVariants({ position })}>{children}</div>
   </SheetPrimitive.Portal>
 )
@@ -144,7 +141,7 @@ const sheetVariants = cva(
 
 export interface DialogContentProps
   extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>,
-    VariantProps<typeof sheetVariants> {}
+  VariantProps<typeof sheetVariants> { }
 
 const SheetContent = React.forwardRef<
   React.ElementRef<typeof SheetPrimitive.Content>,
@@ -220,11 +217,6 @@ const SheetDescription = React.forwardRef<
 SheetDescription.displayName = SheetPrimitive.Description.displayName
 
 export {
-  Sheet,
-  SheetTrigger,
-  SheetContent,
-  SheetHeader,
-  SheetFooter,
-  SheetTitle,
-  SheetDescription,
+  Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger
 }
+

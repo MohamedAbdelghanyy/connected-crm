@@ -1,11 +1,10 @@
-'use client'
-
 import _ from "@/@lodash/@lodash";
 import FormButton from "@/components/forms/form-button";
-import { DashboardHeader } from "@/components/header";
-import { DashboardShell } from "@/components/shell";
+import DashboardLayout from "@/components/layouts/dashboard-layout";
+import { errorHandler } from "@/components/other/error-handler";
+import { DashboardHeader } from "@/components/other/header";
+import { DashboardShell } from "@/components/other/shell";
 import { CustomInput } from "@/components/ui/custom-input";
-import { errorHandler } from "@/components/ui/custom/error-handler";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/components/ui/use-toast";
@@ -14,17 +13,17 @@ import { TagValidation } from "@/config/forms/validation";
 import axios from "@/services/axios";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Grid } from "@mui/material";
-import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect } from "react";
 import { Controller, FormProvider, useForm } from "react-hook-form";
-import EditTagsLoading from "./loading";
+import { useNavigate, useParams } from "react-router-dom";
+import EditTagLoading from "./loading";
 
-export default function TagPage({ params }: { params: { tag: string } }) {
+export default function EditTagPage() {
+  const { tagID } = useParams();
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [activeTab, setActiveTab] = React.useState("general");
-  const [tagID, setTagID] = React.useState("");
   const [tag, setTag] = React.useState(TagObject.empty);
-  const { push } = useRouter();
+  const navigate = useNavigate();
   const methods = useForm({
     mode: 'onChange',
     defaultValues: tag,
@@ -33,7 +32,7 @@ export default function TagPage({ params }: { params: { tag: string } }) {
   const { control, formState, getValues, reset } = methods;
   const { isValid, dirtyFields, errors } = formState;
 
-  const getTag = useCallback((tagID: string) => {
+  const getTag = useCallback(() => {
     axios.get('/app/tag/' + tagID)
       .then(function (response) {
         if (response.data.result != null) {
@@ -41,14 +40,14 @@ export default function TagPage({ params }: { params: { tag: string } }) {
           reset(response.data.result);
         } else {
           errorHandler(toast, "This tag was not found");
-          push("/tags");
+          navigate("/tags");
         }
       })
       .catch(function (error) {
         errorHandler(toast, error);
-        push("/tags");
+        navigate("/tags");
       });
-  }, [push, reset]);
+  }, [navigate, reset]);
 
   const edit = () => {
     setIsLoading(true);
@@ -59,7 +58,7 @@ export default function TagPage({ params }: { params: { tag: string } }) {
           description: getValues().displayName + " was successfully updated.",
           variant: "success",
         });
-        push('/tags/' + response.data.result.id);
+        navigate('/tags/' + response.data.result.id);
       })
       .catch(function (error) {
         errorHandler(toast, error);
@@ -68,12 +67,11 @@ export default function TagPage({ params }: { params: { tag: string } }) {
   }
 
   useEffect(() => {
-    setTagID(params.tag);
-    getTag(params.tag);
-  }, [getTag, params.tag]);
+    getTag();
+  }, [getTag, tagID]);
 
   return tag && tag.id != 0 ? (
-    <>
+    <DashboardLayout>
       <FormProvider {...methods}>
         <DashboardShell className="mb-1">
           <DashboardHeader heading={"Edit " + tag.displayName + " Tag"} text="Enter tag details"></DashboardHeader>
@@ -159,6 +157,6 @@ export default function TagPage({ params }: { params: { tag: string } }) {
           </Tabs>
         </div>
       </FormProvider>
-    </>
-  ) : <EditTagsLoading />
+    </DashboardLayout>
+  ) : <EditTagLoading />
 }

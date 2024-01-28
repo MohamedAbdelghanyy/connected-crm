@@ -1,9 +1,8 @@
-"use client"
-
 import FormButton from "@/components/forms/form-button"
-import { DashboardHeader } from "@/components/header"
-import { DashboardShell } from "@/components/shell"
-import { errorHandler } from "@/components/ui/custom/error-handler"
+import DashboardLayout from "@/components/layouts/dashboard-layout"
+import { errorHandler } from "@/components/other/error-handler"
+import { DashboardHeader } from "@/components/other/header"
+import { DashboardShell } from "@/components/other/shell"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -12,30 +11,29 @@ import { toast } from "@/components/ui/use-toast"
 import { TagObject } from "@/config/forms/defaultObjects"
 import axios from "@/services/axios"
 import { Grid } from "@mui/material"
-import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
+import { useNavigate, useParams } from "react-router-dom"
 import TagLoading from "./loading"
 
-export default function TagPage({ params }: { params: { tag: string } }) {
-  let tagID = params.tag;
-
+export default function TagPage() {
+  const { tagID } = useParams();
   const [activeTab, setActiveTab] = useState("info");
   const [tag, setTag] = useState(TagObject.empty);
-  const { push } = useRouter();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get('/app/tag/' + tagID)
       .then(function (response) {
         setTag(response.data.result);
       })
-      .catch(function (error) {
+      .catch(function () {
         errorHandler(toast, "This tag was not found");
-        push("/tags");
+        navigate("/tags");
       });
-  }, [tagID, push]);
+  }, [tagID, navigate]);
 
   return tag && tag.id != 0 ? (
-    <>
+    <DashboardLayout>
       <DashboardShell className="mb-1">
         <DashboardHeader heading={tag.displayName} text={tag.id.toString()}>
           <div style={{ display: 'flex', flexDirection: 'row' }} className="space-x-2">
@@ -43,7 +41,7 @@ export default function TagPage({ params }: { params: { tag: string } }) {
               label="Edit"
               isLoading={false}
               callback={() => {
-                push("/tags/" + tag.id + "/edit");
+                navigate("/tags/" + tag.id + "/edit");
               }}
               isEnabled={true}
             />
@@ -99,6 +97,6 @@ export default function TagPage({ params }: { params: { tag: string } }) {
           </div>
         </Tabs>
       </div>
-    </>
+    </DashboardLayout>
   ) : <TagLoading />
 }

@@ -1,12 +1,10 @@
-'use client'
-
 import _ from "@/@lodash/@lodash";
 import FormButton from "@/components/forms/form-button";
-import { DashboardHeader } from "@/components/header";
-import { DashboardShell } from "@/components/shell";
+import DashboardLayout from "@/components/layouts/dashboard-layout";
+import { errorHandler } from "@/components/other/error-handler";
+import { DashboardHeader } from "@/components/other/header";
+import { DashboardShell } from "@/components/other/shell";
 import { CustomInput } from "@/components/ui/custom-input";
-import { CustomTextarea } from "@/components/ui/custom-textarea";
-import { errorHandler } from "@/components/ui/custom/error-handler";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -16,16 +14,17 @@ import { CategoryValidation } from "@/config/forms/validation";
 import axios from "@/services/axios";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Grid } from "@mui/material";
-import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect } from "react";
 import { Controller, FormProvider, useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
+import EditCategoryLoading from "./loading";
 
-export default function CategoryPage({ params }: { params: { category: string } }) {
+export default function EditCategoryPage() {
+  const { categoryID } = useParams();
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [activeTab, setActiveTab] = React.useState("general");
-  const [categoryID, setCategoryID] = React.useState("");
   const [category, setCategory] = React.useState(CategoryObject.empty);
-  const { push } = useRouter();
+  const navigate = useNavigate();
   const methods = useForm({
     mode: 'onChange',
     defaultValues: category,
@@ -34,7 +33,7 @@ export default function CategoryPage({ params }: { params: { category: string } 
   const { control, formState, getValues, reset } = methods;
   const { isValid, dirtyFields, errors } = formState;
 
-  const getCategory = useCallback((categoryID: string) => {
+  const getCategory = useCallback(() => {
     axios.get('/app/category/' + categoryID)
       .then(function (response) {
         if (response.data.result != null) {
@@ -45,14 +44,14 @@ export default function CategoryPage({ params }: { params: { category: string } 
           console.log(tempCategory);
         } else {
           errorHandler(toast, "This category was not found");
-          push("/categories");
+          navigate("/categories");
         }
       })
       .catch(function (error) {
         errorHandler(toast, error);
-        push("/categories");
+        navigate("/categories");
       });
-  }, [push, reset]);
+  }, [navigate, reset]);
 
   const edit = () => {
     setIsLoading(true);
@@ -63,7 +62,7 @@ export default function CategoryPage({ params }: { params: { category: string } 
           description: getValues().name + " was successfully updated.",
           variant: "success",
         });
-        push('/categories/' + response.data.result.id);
+        navigate('/categories/' + response.data.result.id);
       })
       .catch(function (error) {
         errorHandler(toast, error);
@@ -72,12 +71,11 @@ export default function CategoryPage({ params }: { params: { category: string } 
   }
 
   useEffect(() => {
-    setCategoryID(params.category);
-    getCategory(params.category);
-  }, [getCategory, params.category]);
+    getCategory();
+  }, [getCategory, categoryID]);
 
   return category && category.id != 0 ? (
-    <>
+    <DashboardLayout>
       <FormProvider {...methods}>
         <DashboardShell className="mb-1">
           <DashboardHeader heading={"Edit " + category.name + " Category"} text="Enter category details"></DashboardHeader>
@@ -191,6 +189,6 @@ export default function CategoryPage({ params }: { params: { category: string } 
           </Tabs>
         </div>
       </FormProvider>
-    </>
-  ) : <></>
+    </DashboardLayout>
+  ) : <EditCategoryLoading />
 }

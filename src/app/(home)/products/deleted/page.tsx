@@ -1,35 +1,26 @@
-import { promises as fs } from "fs"
-import path from "path"
-
-import { EmptyPlaceholder } from "@/components/empty-placeholder"
-import { DashboardHeader } from "@/components/header"
-import { DashboardShell } from "@/components/shell"
+import DashboardLayout from "@/components/layouts/dashboard-layout"
+import { EmptyPlaceholder } from "@/components/other/empty-placeholder"
+import { DashboardHeader } from "@/components/other/header"
+import { DashboardShell } from "@/components/other/shell"
 import { DataTable } from "@/components/table/data-table"
+import { useEffect, useState } from "react"
 import { deletedProductsTableColumns, deletedProductsTableToolbar, deletedProductsTableToolbarSearchList } from "./config"
 
-export const metadata = {
-  title: "Deleted Products",
-}
+export default function DeletedProductsPage() {
+  const [deletedProducts, setDeletedProducts] = useState([]);
 
-async function getProducts() {
-  const data = await fs.readFile(
-    path.join(process.cwd(), "src/data/products_data.json")
-  )
-  const products = JSON.parse(data.toString())
-  return products
-}
+  useEffect(() => {
+    setDeletedProducts([]);
+  }, []);
 
-
-export default async function ProductsPage() {
-  const products = await getProducts()
   return (
-    <>
+    <DashboardLayout>
       <DashboardShell className="mb-1">
         <DashboardHeader heading="Deleted Products" text="Manage your deleted products"></DashboardHeader>
       </DashboardShell>
       <div className="m-2">
-        {products.length > 0 ? (
-          <DataTable data={products} columns={deletedProductsTableColumns} toolbar={deletedProductsTableToolbar} toolbarSearchList={deletedProductsTableToolbarSearchList} />
+        {deletedProducts.length > 0 ? (
+          <DataTable data={deletedProducts} columns={deletedProductsTableColumns} toolbar={deletedProductsTableToolbar} toolbarSearchList={deletedProductsTableToolbarSearchList} />
         ) : (<EmptyPlaceholder>
           <EmptyPlaceholder.Icon name="post" />
           <EmptyPlaceholder.Title>No Deleted Products</EmptyPlaceholder.Title>
@@ -38,6 +29,6 @@ export default async function ProductsPage() {
           </EmptyPlaceholder.Description>
         </EmptyPlaceholder>)}
       </div>
-    </>
+    </DashboardLayout>
   )
 }

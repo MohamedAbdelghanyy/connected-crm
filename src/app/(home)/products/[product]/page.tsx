@@ -3,17 +3,13 @@ import path from "path";
 
 import ProductTabs from "./product-tabs";
 
-export const metadata = {
-  title: "Product",
-}
-
 async function getProduct(productID: string) {
 
   const data = await fs.readFile(
     path.join(process.cwd(), "src/data/products_data.json")
   )
   const products = JSON.parse(data.toString())
-  let product = null;
+
   for (let i = 0; i < products.length; i++) {
     if (products[i].id == productID) {
       return products[i]

@@ -1,3 +1,4 @@
+import DashboardLayout from "@/components/layouts/dashboard-layout"
 import {
   Card,
   CardContent,
@@ -12,13 +13,9 @@ import { TechDashboardStorageChart } from "./components/charts/tech-dashboard-st
 import { TechDashboardAuditLogs } from "./components/tech-dashboard-audit-logs"
 import { TechDashboardSecurityLogs } from "./components/tech-dashboard-security-logs"
 
-export const metadata = {
-  title: "Dashboard",
-}
-
 export default function TechDashboardPage() {
   return (
-    <>
+    <DashboardLayout>
       <div className="flex items-center justify-between space-y-2">
         <h2 className="text-4xl mb-1">Dashboard</h2>
       </div>
@@ -97,6 +94,6 @@ export default function TechDashboardPage() {
           </Grid>
         </Grid>
       </div>
-    </>
+    </DashboardLayout>
   )
 }

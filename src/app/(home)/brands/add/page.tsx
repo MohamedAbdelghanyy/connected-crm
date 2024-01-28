@@ -1,12 +1,11 @@
-"use client"
-
 import _ from "@/@lodash/@lodash"
 import FormButton from "@/components/forms/form-button"
-import { DashboardHeader } from "@/components/header"
-import { DashboardShell } from "@/components/shell"
+import DashboardLayout from "@/components/layouts/dashboard-layout"
+import { errorHandler } from "@/components/other/error-handler"
+import { DashboardHeader } from "@/components/other/header"
+import { DashboardShell } from "@/components/other/shell"
 import BrandsCategoriesInput from "@/components/ui/brands-categories-input"
 import { CustomInput } from "@/components/ui/custom-input"
-import { errorHandler } from "@/components/ui/custom/error-handler"
 import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -16,12 +15,12 @@ import { BrandValidation } from "@/config/forms/validation"
 import axios from "@/services/axios"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { Grid } from "@mui/material"
-import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { Controller, FormProvider, useForm } from "react-hook-form"
+import { useNavigate } from "react-router-dom"
 
 export default function AddBrandPage() {
-  const router = useRouter();
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState("general");
   const methods = useForm({
@@ -29,7 +28,7 @@ export default function AddBrandPage() {
     defaultValues: BrandObject.empty,
     resolver: yupResolver(BrandValidation.mainSchema),
   });
-  const { control, formState, getValues, watch } = methods;
+  const { control, formState, getValues } = methods;
   const { isValid, dirtyFields, errors } = formState;
 
   const add = () => {
@@ -43,7 +42,7 @@ export default function AddBrandPage() {
           description: brandToAdd.name + " was successfully added.",
           variant: "success",
         });
-        router.push('/brands/' + response.data.result.id);
+        navigate('/brands/' + response.data.result.id);
       })
       .catch(function (error) {
         errorHandler(toast, error);
@@ -52,7 +51,7 @@ export default function AddBrandPage() {
   }
 
   return (
-    <>
+    <DashboardLayout>
       <FormProvider {...methods}>
         <DashboardShell className="mb-1">
           <DashboardHeader heading="Add Brand" text="Enter brand details"></DashboardHeader>
@@ -250,6 +249,6 @@ export default function AddBrandPage() {
           </Tabs>
         </div>
       </FormProvider>
-    </>
+    </DashboardLayout>
   )
 }

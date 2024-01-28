@@ -1,6 +1,4 @@
-"use client"
-
-import { Icons } from "@/components/icons"
+import { Icons } from "@/components/other/icons"
 import { Button, buttonVariants } from "@/components/ui/button"
 import {
   Dialog,
@@ -15,14 +13,11 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { toast } from "@/components/ui/use-toast"
 import { cn } from "@/lib/utils"
-import { useRouter } from "next/navigation"
 import * as React from "react"
 import { Checkbox } from "../../ui/checkbox"
 
 export default function ClaimsDialog({ showDialog, setShowDialog, claims, role }: any) {
-  const router = useRouter()
-  const [isLoading, setIsLoading] = React.useState<boolean>(false)
-  const [activeTab, setActiveTab] = React.useState("general")
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const userNameRef = React.useRef<HTMLInputElement>(null);
 
   async function save() {
@@ -56,7 +51,7 @@ export default function ClaimsDialog({ showDialog, setShowDialog, claims, role }
       }
 
       // This forces a cache invalidation.
-      router.refresh()
+
     }
   }
 

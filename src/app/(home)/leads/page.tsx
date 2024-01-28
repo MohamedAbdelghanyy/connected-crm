@@ -1,39 +1,30 @@
-import { promises as fs } from "fs"
-import path from "path"
-
 import { leadsTableColumns, leadsTableToolbar, leadsTableToolbarSearchList } from "@/app/(home)/leads/config"
-import { EmptyPlaceholder } from "@/components/empty-placeholder"
-import { DashboardHeader } from "@/components/header"
-import { Icons } from "@/components/icons"
-import { DashboardShell } from "@/components/shell"
+import ImportLeads from "@/components/forms/import-leads"
+import DashboardLayout from "@/components/layouts/dashboard-layout"
+import { EmptyPlaceholder } from "@/components/other/empty-placeholder"
+import { DashboardHeader } from "@/components/other/header"
+import { Icons } from "@/components/other/icons"
+import { DashboardShell } from "@/components/other/shell"
 import { DataTable } from "@/components/table/data-table"
 import { buttonVariants } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
-import Link from "next/link"
-import ImportLeads from "@/components/forms/import-leads"
+import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 
-export const metadata = {
-  title: "Leads",
-}
+export default function LeadsPage() {
+  const [leads, setLeads] = useState([]);
 
-async function getLeads() {
-  const data = await fs.readFile(
-    path.join(process.cwd(), "src/data/leads_data.json")
-  )
-  const leads = JSON.parse(data.toString())
-  return leads
-}
+  useEffect(() => {
+    setLeads([]);
+  }, []);
 
-export default async function LeadsPage() {
-  const leads = await getLeads()
   return (
-    <>
+    <DashboardLayout>
       <DashboardShell className="mb-1">
         <DashboardHeader heading="Leads" text="Manage your leads">
           <div>
             <ImportLeads />
-            <Link href="/leads/add" className={cn(buttonVariants({})) + " ml-2"}><Icons.add className="mr-2 h-4 w-4" />Add Lead</Link>
+            <Link to="/leads/add" className={cn(buttonVariants({})) + " ml-2"}><Icons.add className="mr-2 h-4 w-4" />Add Lead</Link>
           </div>
         </DashboardHeader>
       </DashboardShell>
@@ -46,9 +37,9 @@ export default async function LeadsPage() {
           <EmptyPlaceholder.Description>
             You don&apos;t have any lead yet.
           </EmptyPlaceholder.Description>
-          <Link href="/leads/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Lead</Link>
+          <Link to="/leads/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Lead</Link>
         </EmptyPlaceholder>)}
       </div>
-    </>
+    </DashboardLayout>
   )
 }

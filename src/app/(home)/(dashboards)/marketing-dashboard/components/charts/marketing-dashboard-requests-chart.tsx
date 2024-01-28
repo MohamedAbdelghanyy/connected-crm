@@ -1,20 +1,18 @@
-"use client"
-
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Grid } from '@mui/material';
 import {
-  LineElement,
   CategoryScale,
   Chart as ChartJS,
   Filler,
   Legend,
+  LineElement,
   LinearScale,
   PointElement,
   Tooltip,
 } from 'chart.js';
 import { useCallback, useEffect, useState } from 'react';
-import { Bar, Line } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 
 ChartJS.register(
   CategoryScale,

@@ -1,6 +1,11 @@
-"use client"
-
-import * as React from "react"
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -15,16 +20,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table"
-
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table"
-
+import * as React from "react"
 import { DataTablePagination } from "./data-table-pagination"
 import { DataTableToolbar, ToolbarProps, ToolbarSearchListProps } from "./data-table-toolbar"
 
@@ -35,7 +31,7 @@ interface DataTableProps<TData, TValue> {
   toolbarSearchList: ToolbarSearchListProps[]
 }
 
-export function DataTable<TData, TValue>({columns, data, toolbar, toolbarSearchList}: DataTableProps<TData, TValue>) {
+export function DataTable<TData, TValue>({ columns, data, toolbar, toolbarSearchList }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = React.useState({})
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({})
@@ -70,7 +66,7 @@ export function DataTable<TData, TValue>({columns, data, toolbar, toolbarSearchL
     <div className="space-y-4">
       {(toolbar.length != 0 || toolbarSearchList.length != 0) && <DataTableToolbar table={table} toolbar={toolbar} toolbarSearchList={toolbarSearchList} />}
       <div className="rounded-md border">
-        <Table style={{position: "relative"}}>
+        <Table style={{ position: "relative" }}>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
@@ -80,9 +76,9 @@ export function DataTable<TData, TValue>({columns, data, toolbar, toolbarSearchL
                       {header.isPlaceholder
                         ? null
                         : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
                     </TableHead>
                   )
                 })}
@@ -119,7 +115,7 @@ export function DataTable<TData, TValue>({columns, data, toolbar, toolbarSearchL
           </TableBody>
         </Table>
       </div>
-      {(toolbar.length != 0 || toolbarSearchList.length != 0) && <DataTablePagination table={table} />}  
+      {(toolbar.length != 0 || toolbarSearchList.length != 0) && <DataTablePagination table={table} />}
     </div>
   )
 }

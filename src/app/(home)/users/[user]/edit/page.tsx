@@ -1,12 +1,11 @@
-'use client'
-
 import _ from "@/@lodash/@lodash";
 import FormButton from "@/components/forms/form-button";
-import { DashboardHeader } from "@/components/header";
-import { DashboardShell } from "@/components/shell";
+import DashboardLayout from "@/components/layouts/dashboard-layout";
+import { errorHandler } from "@/components/other/error-handler";
+import { DashboardHeader } from "@/components/other/header";
+import { DashboardShell } from "@/components/other/shell";
 import { Checkbox } from "@/components/ui/checkbox";
 import { CustomInput } from "@/components/ui/custom-input";
-import { errorHandler } from "@/components/ui/custom/error-handler";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/components/ui/use-toast";
@@ -15,17 +14,18 @@ import { UserValidation } from "@/config/forms/validation";
 import axios from "@/services/axios";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Grid } from "@mui/material";
-import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect } from "react";
 import { Controller, FormProvider, useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
+import EditUserLoading from "./loading";
 
-export default function UserPage({ params }: { params: { user: string } }) {
+export default function EditUserPage() {
+  const { userID } = useParams();
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [activeTab, setActiveTab] = React.useState("general");
-  const [userID, setUserID] = React.useState("");
   const [user, setUser] = React.useState(UserObject.empty);
   const [allRoles, setAllRoles] = React.useState([]);
-  const { push } = useRouter();
+  const navigate = useNavigate();
   const methods = useForm({
     mode: 'onChange',
     defaultValues: user,
@@ -34,7 +34,7 @@ export default function UserPage({ params }: { params: { user: string } }) {
   const { control, formState, getValues, reset } = methods;
   const { isValid, dirtyFields, errors } = formState;
 
-  const getUser = useCallback((userID: string) => {
+  const getUser = useCallback(() => {
     axios.get('/identity/users/' + userID)
       .then(function (response) {
         if (response.data != null && response.data.name != null) {
@@ -42,25 +42,25 @@ export default function UserPage({ params }: { params: { user: string } }) {
           reset(response.data);
         } else {
           errorHandler(toast, "This user was not found");
-          push("/users");
+          navigate("/users");
         }
       })
       .catch(function (error) {
         errorHandler(toast, error);
-        push("/users");
+        navigate("/users");
       });
-  }, [push, reset]);
+  }, [navigate, reset]);
 
   const edit = () => {
     setIsLoading(true);
     axios.put('/identity/users/' + userID, getValues())
-      .then(function (response) {
+      .then(function () {
         toast({
           title: "Success",
           description: getValues().name + " was successfully updated.",
           variant: "success",
         });
-        push('/users/' + userID);
+        navigate('/users/' + userID);
       })
       .catch(function (error) {
         errorHandler(toast, error);
@@ -69,9 +69,8 @@ export default function UserPage({ params }: { params: { user: string } }) {
   }
 
   useEffect(() => {
-    setUserID(params.user);
-    getUser(params.user);
-  }, [getUser, params.user]);
+    getUser();
+  }, [getUser, userID]);
 
   React.useEffect(() => {
     axios.get('/identity/roles')
@@ -95,7 +94,7 @@ export default function UserPage({ params }: { params: { user: string } }) {
   }
 
   return user && user.id != 0 ? (
-    <>
+    <DashboardLayout>
       <FormProvider {...methods}>
         <DashboardShell className="mb-1">
           <DashboardHeader heading={"Edit " + user.name + " User"} text="Enter user details"></DashboardHeader>
@@ -302,6 +301,6 @@ export default function UserPage({ params }: { params: { user: string } }) {
           </Tabs>
         </div>
       </FormProvider>
-    </>
-  ) : <></>
+    </DashboardLayout>
+  ) : <EditUserLoading />
 }

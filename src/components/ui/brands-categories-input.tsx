@@ -1,15 +1,13 @@
-'use client'
-
 import { InputWrapper, Listbox, Root, StyledTag } from '@/lib/auto-complete-input-components';
 import axios from "@/services/axios";
 import { useAutocomplete } from '@mui/base/useAutocomplete';
 import { Theme } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
-import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
-import { errorHandler } from './custom/error-handler';
+import { errorHandler } from '../other/error-handler';
 import { Skeleton } from './skeleton';
 import { toast } from './use-toast';
+import { useTheme } from '@/lib/theme-provider';
 
 interface BrandsCategoriesInputProps {
   defaultValue: CategoryOptionType[];

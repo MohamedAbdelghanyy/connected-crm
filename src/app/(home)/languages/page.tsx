@@ -1,35 +1,27 @@
-import { promises as fs } from "fs"
-import path from "path"
-
-import { EmptyPlaceholder } from "@/components/empty-placeholder"
-import { DashboardHeader } from "@/components/header"
-import { Icons } from "@/components/icons"
-import { DashboardShell } from "@/components/shell"
+import DashboardLayout from "@/components/layouts/dashboard-layout"
+import { EmptyPlaceholder } from "@/components/other/empty-placeholder"
+import { DashboardHeader } from "@/components/other/header"
+import { Icons } from "@/components/other/icons"
+import { DashboardShell } from "@/components/other/shell"
 import { DataTable } from "@/components/table/data-table"
 import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import Link from "next/link"
+import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import { languagesTableColumns, languagesTableToolbar, languagesTableToolbarSearchList } from "./config"
 
-export const metadata = {
-  title: "Languages",
-}
+export default function LanguagesPage() {
+  const [languages, setLanguages] = useState([]);
 
-async function getLanguages() {
-  const data = await fs.readFile(
-    path.join(process.cwd(), "src/data/languages_data.json")
-  )
-  const languages = JSON.parse(data.toString())
-  return languages
-}
+  useEffect(() => {
+    setLanguages([]);
+  }, []);
 
-export default async function LanguagesPage() {
-  const languages = await getLanguages()
   return (
-    <>
+    <DashboardLayout>
       <DashboardShell className="mb-1">
         <DashboardHeader heading="Languages" text="Manage your languages">
-          <Link href="/languages/add" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Language</Link>
+          <Link to="/languages/add" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Language</Link>
         </DashboardHeader>
       </DashboardShell>
       <div className="m-2">
@@ -41,9 +33,9 @@ export default async function LanguagesPage() {
           <EmptyPlaceholder.Description>
             You don&apos;t have any languages yet.
           </EmptyPlaceholder.Description>
-          <Link href="/languages/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Language</Link>
+          <Link to="/languages/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Language</Link>
         </EmptyPlaceholder>)}
       </div>
-    </>
+    </DashboardLayout>
   )
 }

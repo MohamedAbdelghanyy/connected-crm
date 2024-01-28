@@ -1,10 +1,9 @@
-"use client"
-
 import _ from "@/@lodash/@lodash"
 import FormButton from "@/components/forms/form-button"
-import { DashboardHeader } from "@/components/header"
 import ImagesTable from "@/components/images-table/images-table"
-import { DashboardShell } from "@/components/shell"
+import DashboardLayout from "@/components/layouts/dashboard-layout"
+import { DashboardHeader } from "@/components/other/header"
+import { DashboardShell } from "@/components/other/shell"
 import { CustomInput } from "@/components/ui/custom-input"
 import { CustomTextarea } from "@/components/ui/custom-textarea"
 import { Label } from "@/components/ui/label"
@@ -21,14 +20,12 @@ import { InventoryProductObject } from "@/config/forms/defaultObjects"
 import { InventoryProductValidation } from "@/config/forms/validation"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { Grid } from "@mui/material"
-import { useRouter } from "next/navigation"
 import * as React from "react"
 import { Controller, FormProvider, useForm } from "react-hook-form"
 
-export default function AddItemPage() {
-  const router = useRouter()
-  const [isLoading, setIsLoading] = React.useState<boolean>(false)
-  const [activeTab, setActiveTab] = React.useState("general")
+export default function AddInventoryItemPage() {
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [activeTab, setActiveTab] = React.useState("general");
 
   const methods = useForm({
     mode: 'onChange',
@@ -40,14 +37,16 @@ export default function AddItemPage() {
   const enableShowPrice = watch('enableShowPrice');
 
   const add = () => {
+    setIsLoading(true);
     console.log("Added");
+    setIsLoading(false);
   }
 
   return (
-    <>
+    <DashboardLayout>
       <FormProvider {...methods}>
         <DashboardShell className="mb-1">
-          <DashboardHeader heading="Add Inventory Item" text="Enter item's details"></DashboardHeader>
+          <DashboardHeader heading="Add Inventory Item" text="Enter item details"></DashboardHeader>
         </DashboardShell>
         <div className="space-y-4 pb-4 px-2">
           <div className="space-y-2"></div>
@@ -546,6 +545,6 @@ export default function AddItemPage() {
           </Tabs>
         </div>
       </FormProvider>
-    </>
+    </DashboardLayout>
   )
 }

@@ -1,9 +1,8 @@
-"use client"
-
 import _ from "@/@lodash/@lodash"
 import FormButton from "@/components/forms/form-button"
-import { DashboardHeader } from "@/components/header"
-import { DashboardShell } from "@/components/shell"
+import DashboardLayout from "@/components/layouts/dashboard-layout"
+import { DashboardHeader } from "@/components/other/header"
+import { DashboardShell } from "@/components/other/shell"
 import { CustomInput } from "@/components/ui/custom-input"
 import { CustomTextarea } from "@/components/ui/custom-textarea"
 import { Label } from "@/components/ui/label"
@@ -13,16 +12,12 @@ import { NotificationObject } from "@/config/forms/defaultObjects"
 import { NotificationValidation } from "@/config/forms/validation"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { Grid } from "@mui/material"
-import { useRouter } from "next/navigation"
 import * as React from "react"
 import { Controller, FormProvider, useForm } from "react-hook-form"
 
-export default function AddNotificationPage() {
-  const router = useRouter();
+export default function SendNotificationPage() {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [activeTab, setActiveTab] = React.useState("general");
-  const [isVisible, setIsVisible] = React.useState(false);
-  const [isExclusive, setIsExclusive] = React.useState(false);
 
   const methods = useForm({
     mode: 'onChange',
@@ -33,11 +28,13 @@ export default function AddNotificationPage() {
   const { isValid, dirtyFields, errors } = formState;
 
   const add = () => {
+    setIsLoading(true);
     console.log("Added");
+    setIsLoading(false);
   }
 
   return (
-    <>
+    <DashboardLayout>
       <FormProvider {...methods}>
         <DashboardShell className="mb-1">
           <DashboardHeader heading="Send Notification" text="Enter notification details"></DashboardHeader>
@@ -153,6 +150,6 @@ export default function AddNotificationPage() {
           </Tabs>
         </div>
       </FormProvider>
-    </>
+    </DashboardLayout>
   )
 }

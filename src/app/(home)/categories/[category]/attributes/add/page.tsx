@@ -1,12 +1,10 @@
-"use client"
-
 import _ from "@/@lodash/@lodash"
 import FormButton from "@/components/forms/form-button"
-import { DashboardHeader } from "@/components/header"
-import { DashboardShell } from "@/components/shell"
+import DashboardLayout from "@/components/layouts/dashboard-layout"
+import { errorHandler } from "@/components/other/error-handler"
+import { DashboardHeader } from "@/components/other/header"
+import { DashboardShell } from "@/components/other/shell"
 import { CustomInput } from "@/components/ui/custom-input"
-import { errorHandler } from "@/components/ui/custom/error-handler"
-import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Switch } from "@/components/ui/switch"
@@ -17,15 +15,15 @@ import { AttributeValidation } from "@/config/forms/validation"
 import axios from "@/services/axios"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { Grid } from "@mui/material"
-import { useRouter } from "next/navigation"
 import * as React from "react"
 import { Controller, FormProvider, useForm } from "react-hook-form"
+import { useNavigate, useParams } from "react-router-dom"
 
-export default function AddAttributePage({ params }: { params: { category: string } }) {
-  const router = useRouter();
+export default function AddAttributePage() {
+  const { categoryID } = useParams();
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [activeTab, setActiveTab] = React.useState("general");
-  const categoryID = parseInt(params.category);
   const [categoryName, setCategoryName] = React.useState("");
   const methods = useForm({
     mode: 'onChange',
@@ -40,17 +38,17 @@ export default function AddAttributePage({ params }: { params: { category: strin
       axios.get('/app/category/' + categoryID)
         .then(function (response) {
           setCategoryName(response.data.result.name);
-          setValue('categoryId', categoryID);
+          setValue('categoryId', parseInt(categoryID.toString()));
         })
         .catch(function (error) {
           errorHandler(toast, error);
-          router.push("/categories");
+          navigate("/categories");
         });
     } else {
       errorHandler(toast, "Category was not found.");
-      router.push("/categories");
+      navigate("/categories");
     }
-  }, [categoryID, router, setValue]);
+  }, [categoryID, setValue]);
 
   const add = () => {
     console.log(getValues())
@@ -62,7 +60,7 @@ export default function AddAttributePage({ params }: { params: { category: strin
           description: getValues().name + " was successfully added.",
           variant: "success",
         });
-        router.push('/categories/' + categoryID + "/attributes/" + response.data.result.id);
+        navigate('/categories/' + categoryID + "/attributes/" + response.data.result.id);
       })
       .catch(function (error) {
         errorHandler(toast, error);
@@ -71,7 +69,7 @@ export default function AddAttributePage({ params }: { params: { category: strin
   }
 
   return categoryName != "" && (
-    <>
+    <DashboardLayout>
       <FormProvider {...methods}>
         <DashboardShell className="mb-1">
           <DashboardHeader heading={"Add Attribute To " + categoryName} text="Enter attribute details"></DashboardHeader>
@@ -205,6 +203,6 @@ export default function AddAttributePage({ params }: { params: { category: strin
           </Tabs>
         </div>
       </FormProvider>
-    </>
+    </DashboardLayout>
   )
 }

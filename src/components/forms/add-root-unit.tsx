@@ -1,6 +1,4 @@
-"use client"
-
-import { Icons } from "@/components/icons"
+import { Icons } from "@/components/other/icons"
 import { Button, ButtonProps, buttonVariants } from "@/components/ui/button"
 import {
   Dialog,
@@ -14,15 +12,11 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { toast } from "@/components/ui/use-toast"
 import { cn } from "@/lib/utils"
-import { useRouter } from "next/navigation"
 import * as React from "react"
 
 export default function AddRootUnit({
-  className,
   variant,
-  ...props
 }: ButtonProps) {
-  const router = useRouter()
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
   const [showDialog, setShowDialog] = React.useState(false)
   const userNameRef = React.useRef<HTMLInputElement>(null);
@@ -58,7 +52,7 @@ export default function AddRootUnit({
       }
 
       // This forces a cache invalidation.
-      router.refresh()
+
     }
   }
 

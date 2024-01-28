@@ -1,30 +1,23 @@
-import { promises as fs } from "fs"
-import path from "path"
 
-import AddUserTabs from "@/app/(home)/users/add/add-user-tabs"
-import { DashboardHeader } from "@/components/header"
-import { DashboardShell } from "@/components/shell"
+import AddUserTabs from "@/app/(home)/users/add/add-user-tabs";
+import DashboardLayout from "@/components/layouts/dashboard-layout";
+import { DashboardHeader } from "@/components/other/header";
+import { DashboardShell } from "@/components/other/shell";
+import { useEffect, useState } from "react";
 
-export const metadata = {
-  title: "Add User",
-}
+export default function AddUserPage() {
+  const [units, setUnits] = useState([]);
 
-async function getUnits() {
-  const data = await fs.readFile(
-    path.join(process.cwd(), "src/data/units_data.json")
-  )
-  const units = JSON.parse(data.toString())
-  return units
-}
+  useEffect(() => {
+    setUnits([]);
+  }, []);
 
-export default async function AddUserPage() {
-  const units = await getUnits()
   return (
-    <>
+    <DashboardLayout>
       <DashboardShell className="mb-1">
-        <DashboardHeader heading="Add User" text="Enter user's details"></DashboardHeader>
+        <DashboardHeader heading="Add User" text="Enter user details"></DashboardHeader>
       </DashboardShell>
       <AddUserTabs units={units} />
-    </>
+    </DashboardLayout>
   )
 }

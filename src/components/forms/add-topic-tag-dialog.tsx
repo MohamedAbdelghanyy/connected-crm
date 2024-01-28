@@ -1,7 +1,5 @@
-"use client"
-
 import { TagsProps } from "@/app/(home)/tags/(list)/config"
-import { Icons } from "@/components/icons"
+import { Icons } from "@/components/other/icons"
 import { Button, ButtonProps, buttonVariants } from "@/components/ui/button"
 import {
   Dialog,
@@ -14,9 +12,8 @@ import {
 import { Label } from "@/components/ui/label"
 import { cn } from "@/lib/utils"
 import axios from "@/services/axios"
-import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
-import { errorHandler } from "../ui/custom/error-handler"
+import { errorHandler } from "../other/error-handler"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select"
 import { Skeleton } from "../ui/skeleton"
 import { toast } from "../ui/use-toast"
@@ -26,7 +23,6 @@ export default function AddTopicTagDialog({
   variant,
   ...props
 }: ButtonProps & { topicId: string } & { onSave: Function }) {
-  const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [showDialog, setShowDialog] = useState(false);
   const [selectedTagID, setSelectedTagID] = useState(0);
@@ -46,7 +42,7 @@ export default function AddTopicTagDialog({
     console.log(props.topicId);
     setIsLoading(true);
     axios.post(`/app/topic/${props.topicId}/tag`, { tagId: selectedTagID })
-      .then(function (response) {
+      .then(function () {
         toast({
           title: "Success",
           description: "Tag was successfully added to this topic.",

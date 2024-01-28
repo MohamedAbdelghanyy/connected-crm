@@ -1,35 +1,27 @@
-import { promises as fs } from "fs"
-import path from "path"
-
-import { EmptyPlaceholder } from "@/components/empty-placeholder"
-import { DashboardHeader } from "@/components/header"
-import { Icons } from "@/components/icons"
-import { DashboardShell } from "@/components/shell"
+import DashboardLayout from "@/components/layouts/dashboard-layout"
+import { EmptyPlaceholder } from "@/components/other/empty-placeholder"
+import { DashboardHeader } from "@/components/other/header"
+import { Icons } from "@/components/other/icons"
+import { DashboardShell } from "@/components/other/shell"
 import { DataTable } from "@/components/table/data-table"
 import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import Link from "next/link"
+import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import { claimTypesTableColumns, claimTypesTableToolbar, claimTypesTableToolbarSearchList } from "./config"
 
-export const metadata = {
-  title: "Claim Types",
-}
+export default function ClaimTypesPage() {
+  const [claimTypes, setClaimTypes] = useState([]);
 
-async function getClaimTypes() {
-  const data = await fs.readFile(
-    path.join(process.cwd(), "src/data/claim_types_data.json")
-  )
-  const claimTypes = JSON.parse(data.toString())
-  return claimTypes
-}
+  useEffect(() => {
+    setClaimTypes([]);
+  }, []);
 
-export default async function ClaimTypesPage() {
-  const claimTypes = await getClaimTypes()
   return (
-    <>
+    <DashboardLayout>
       <DashboardShell className="mb-1">
         <DashboardHeader heading="Claim Types" text="Manage your claim types">
-          <Link href="/claim-types/add" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Type</Link>
+          <Link to="/claim-types/add" className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Type</Link>
         </DashboardHeader>
       </DashboardShell>
       <div className="m-2">
@@ -41,9 +33,9 @@ export default async function ClaimTypesPage() {
           <EmptyPlaceholder.Description>
             You don&apos;t have any types yet.
           </EmptyPlaceholder.Description>
-          <Link href="/claim-types/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Type</Link>
+          <Link to="/claim-types/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Type</Link>
         </EmptyPlaceholder>)}
       </div>
-    </>
+    </DashboardLayout>
   )
 }

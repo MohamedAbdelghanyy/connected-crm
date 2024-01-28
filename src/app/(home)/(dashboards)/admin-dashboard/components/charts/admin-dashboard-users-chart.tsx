@@ -1,5 +1,3 @@
-"use client"
-
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Grid } from '@mui/material';
@@ -83,7 +81,7 @@ export function AdminDashboardUsersChart() {
         </Grid>
       </CardHeader>
       <CardContent>
-        <Doughnut data={chartData} options={options}/>
+        <Doughnut data={chartData} options={options} />
       </CardContent>
     </Card>
   );

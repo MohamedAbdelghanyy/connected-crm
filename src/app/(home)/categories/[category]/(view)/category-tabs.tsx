@@ -1,13 +1,12 @@
-"use client"
-
-import { EmptyPlaceholder } from "@/components/empty-placeholder"
 import FormButton from "@/components/forms/form-button"
-import { DashboardHeader } from "@/components/header"
-import { Icons } from "@/components/icons"
-import { DashboardShell } from "@/components/shell"
+import DashboardLayout from "@/components/layouts/dashboard-layout"
+import { EmptyPlaceholder } from "@/components/other/empty-placeholder"
+import { errorHandler } from "@/components/other/error-handler"
+import { DashboardHeader } from "@/components/other/header"
+import { Icons } from "@/components/other/icons"
+import { DashboardShell } from "@/components/other/shell"
 import { DataTable } from "@/components/table/data-table"
 import { buttonVariants } from "@/components/ui/button"
-import { errorHandler } from "@/components/ui/custom/error-handler"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
@@ -15,25 +14,24 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { toast } from "@/components/ui/use-toast"
 import { cn } from "@/lib/utils"
 import { Grid } from "@mui/material"
-import Image from "next/image"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
+import { Image } from "@radix-ui/react-avatar"
 import * as React from "react"
+import { Link, useNavigate } from "react-router-dom"
 import { attributesTableColumns, attributesTableToolbar, attributesTableToolbarSearchList } from "../attributes/(list)/config"
 
 export default function CategoryTabs({ category, attributes }: any) {
   const [activeTab, setActiveTab] = React.useState("info");
-  const { push } = useRouter();
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     if (!category) {
       errorHandler(toast, "This category was not found");
-      push("/categories");
+      navigate("/categories");
     }
-  }, [category, push])
+  }, [category, navigate])
 
   return category ? (
-    <>
+    <DashboardLayout>
       <DashboardShell className="mb-1">
         <DashboardHeader heading={category.name} text={category.id}>
           <div style={{ display: 'flex', flexDirection: 'row' }} className="space-x-2">
@@ -41,7 +39,7 @@ export default function CategoryTabs({ category, attributes }: any) {
               label="Edit"
               isLoading={false}
               callback={() => {
-                push("/categories/" + category.id + "/edit");
+                navigate("/categories/" + category.id + "/edit");
               }}
               isEnabled={true}
             />
@@ -109,7 +107,7 @@ export default function CategoryTabs({ category, attributes }: any) {
               <div className="space-y-4 py-2 pb-4">
                 <DashboardShell className="mb-1">
                   <DashboardHeader heading="" text="Manage category attributes">
-                    <Link href={`/categories/${category.id}/attributes/add`} className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Attribute</Link>
+                    <Link to={`/categories/${category.id}/attributes/add`} className={cn(buttonVariants({}))}><Icons.add className="mr-2 h-4 w-4" />Add Attribute</Link>
                   </DashboardHeader>
                 </DashboardShell>
                 <div className="m-2">
@@ -121,7 +119,7 @@ export default function CategoryTabs({ category, attributes }: any) {
                     <EmptyPlaceholder.Description>
                       You don&apos;t have any attributes yet.
                     </EmptyPlaceholder.Description>
-                    <Link href="/attributes/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Attribute</Link>
+                    <Link to="/attributes/add" className={cn(buttonVariants({ variant: "outline" }))}><Icons.add className="mr-2 h-4 w-4" />Add Attribute</Link>
                   </EmptyPlaceholder>)}
                 </div>
               </div>
@@ -129,16 +127,6 @@ export default function CategoryTabs({ category, attributes }: any) {
           </div>
         </Tabs>
       </div>
-    </>
+    </DashboardLayout>
   ) : <></>
-}
-
-function CustomEmptyPlaceHolder({ title, categoryName }: any) {
-  return (<EmptyPlaceholder>
-    <EmptyPlaceholder.Icon name="post" />
-    <EmptyPlaceholder.Title>No {title}</EmptyPlaceholder.Title>
-    <EmptyPlaceholder.Description>
-      {categoryName} doesn&apos;t have any {title} yet.
-    </EmptyPlaceholder.Description>
-  </EmptyPlaceholder>);
 }

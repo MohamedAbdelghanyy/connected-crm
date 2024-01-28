@@ -1,12 +1,10 @@
-'use client'
-
 import _ from "@/@lodash/@lodash";
 import FormButton from "@/components/forms/form-button";
-import { DashboardHeader } from "@/components/header";
-import { DashboardShell } from "@/components/shell";
+import { errorHandler } from "@/components/other/error-handler";
+import { DashboardHeader } from "@/components/other/header";
+import { DashboardShell } from "@/components/other/shell";
 import BrandsCategoriesInput from "@/components/ui/brands-categories-input";
 import { CustomInput } from "@/components/ui/custom-input";
-import { errorHandler } from "@/components/ui/custom/error-handler";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -16,17 +14,18 @@ import { BrandValidation } from "@/config/forms/validation";
 import axios from "@/services/axios";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Grid } from "@mui/material";
-import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect } from "react";
 import { Controller, FormProvider, useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
 import EditBrandLoading from "./loading";
+import DashboardLayout from "@/components/layouts/dashboard-layout";
 
-export default function BrandPage({ params }: { params: { brand: string } }) {
+export default function EditBrandPage() {
+  const { brandID } = useParams();
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [activeTab, setActiveTab] = React.useState("general");
-  const [brandID, setBrandID] = React.useState("");
   const [brand, setBrand] = React.useState(BrandObject.empty);
-  const { push } = useRouter();
+  const navigate = useNavigate();
   const methods = useForm({
     mode: 'onChange',
     defaultValues: brand,
@@ -35,7 +34,7 @@ export default function BrandPage({ params }: { params: { brand: string } }) {
   const { control, formState, getValues, reset } = methods;
   const { isValid, dirtyFields, errors } = formState;
 
-  const getBrand = useCallback((brandID: string) => {
+  const getBrand = useCallback(() => {
     axios.get('/app/brands/' + brandID)
       .then(function (response) {
         if (response.data.result != null) {
@@ -43,14 +42,14 @@ export default function BrandPage({ params }: { params: { brand: string } }) {
           reset(response.data.result);
         } else {
           errorHandler(toast, "This brand was not found");
-          push("/brands");
+          navigate("/brands");
         }
       })
       .catch(function (error) {
         errorHandler(toast, error);
-        push("/brands");
+        navigate("/brands");
       });
-  }, [push, reset]);
+  }, [navigate, reset]);
 
   const edit = () => {
     setIsLoading(true);
@@ -63,7 +62,7 @@ export default function BrandPage({ params }: { params: { brand: string } }) {
           description: brandToUpdate.name + " was successfully updated.",
           variant: "success",
         });
-        push('/brands/' + response.data.result.id);
+        navigate('/brands/' + response.data.result.id);
       })
       .catch(function (error) {
         errorHandler(toast, error);
@@ -72,12 +71,11 @@ export default function BrandPage({ params }: { params: { brand: string } }) {
   }
 
   useEffect(() => {
-    setBrandID(params.brand);
-    getBrand(params.brand);
-  }, [getBrand, params.brand]);
+    getBrand();
+  }, [getBrand, brandID]);
 
   return brand && brand.id != 0 ? (
-    <>
+    <DashboardLayout>
       <FormProvider {...methods}>
         <DashboardShell className="mb-1">
           <DashboardHeader heading={"Edit " + brand.name + " Brand"} text="Enter brand details"></DashboardHeader>
@@ -248,6 +246,6 @@ export default function BrandPage({ params }: { params: { brand: string } }) {
           </Tabs>
         </div>
       </FormProvider>
-    </>
+    </DashboardLayout>
   ) : <EditBrandLoading />
 }

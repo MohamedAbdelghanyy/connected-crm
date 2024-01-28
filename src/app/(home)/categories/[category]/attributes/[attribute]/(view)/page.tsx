@@ -1,38 +1,39 @@
-import { errorHandler } from "@/components/ui/custom/error-handler";
+import { errorHandler } from "@/components/other/error-handler";
 import { toast } from "@/components/ui/use-toast";
 import axios from "@/services/axios";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import AttributeTabs from "./attribute-tabs";
 
-export const metadata = {
-  title: "Attribute",
-}
+export default function AttributePage() {
+  const { attributeID } = useParams();
+  const [attribute, setAttribute] = useState();
+  const [attributeValues, setAttributeValues] = useState([]);
 
-async function getAttribute(attributeID: string) {
-  return await axios.get('/app/specification/' + attributeID)
-    .then(function (response) {
-      return response.data.result;
-    })
-    .catch(function (error) {
-      errorHandler(toast, error);
-      return null;
-    });
-}
+  async function getAttribute() {
+    return await axios.get('/app/specification/' + attributeID)
+      .then(function (response) {
+        setAttribute(response.data.result);
+      })
+      .catch(function (error) {
+        errorHandler(toast, error);
+      });
+  }
 
-async function getAttributeValues(attributeID: string) {
-  return await axios.get('/app/specification/' + attributeID + '/value')
-    .then(function (response) {
-      return response.data.result.items;
-    })
-    .catch(function (error) {
-      errorHandler(toast, error);
-      return null;
-    });
-}
+  async function getAttributeValues() {
+    return await axios.get('/app/specification/' + attributeID + '/value')
+      .then(function (response) {
+        setAttributeValues(response.data.result.items);
+      })
+      .catch(function (error) {
+        errorHandler(toast, error);
+      });
+  }
 
-export default async function AttributePage({ params }: { params: { attribute: string } }) {
-  let attributeID = params.attribute;
-  const attribute = await getAttribute(attributeID);
-  const attributeValues = await getAttributeValues(attributeID);
+  useEffect(() => {
+    getAttribute();
+    getAttributeValues();
+  }, [attributeID]);
 
   return (
     <AttributeTabs

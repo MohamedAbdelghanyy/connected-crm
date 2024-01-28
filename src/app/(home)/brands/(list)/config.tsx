@@ -1,5 +1,3 @@
-"use client"
-
 import { DataTableColumnHeader } from "@/components/table/data-table-column-header"
 import { ActionListProps, DataTableRowActions } from "@/components/table/data-table-row-actions"
 import { ToolbarProps, ToolbarSearchListProps } from "@/components/table/data-table-toolbar"
@@ -165,8 +163,8 @@ export const brandsTableColumns: ColumnDef<BrandsProps>[] = [
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            {(row.getValue("categories") as Array<{id: number, name: string}>).length > 0 ?
-              (row.getValue("categories") as Array<{id: number, name: string}>).map(item => item.name).join(', ')
+            {(row.getValue("categories") as Array<{ id: number, name: string }>).length > 0 ?
+              (row.getValue("categories") as Array<{ id: number, name: string }>).map(item => item.name).join(', ')
               : "No Categories"
             }
           </span>

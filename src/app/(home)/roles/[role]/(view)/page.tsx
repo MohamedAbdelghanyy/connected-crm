@@ -1,31 +1,33 @@
-import { errorHandler } from "@/components/ui/custom/error-handler";
+import { errorHandler } from "@/components/other/error-handler";
 import { toast } from "@/components/ui/use-toast";
 import axios from "@/services/axios";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import RoleTabs from "./role-tabs";
 
-export const metadata = {
-  title: "Role",
-}
+export default function RolePage() {
+  const { roleID } = useParams();
+  const [role, setRole] = useState();
+  const [attributes, setAttributes] = useState([]);
 
-async function getRole(roleID: string) {
-  return await axios.get('/identity/roles/' + roleID)
-    .then(function (response) {
-      return response.data;
-    })
-    .catch(function (error) {
-      errorHandler(toast, error);
-      return null;
-    });
-}
+  async function getRole() {
+    await axios.get('/identity/roles/' + roleID)
+      .then(function (response) {
+        setRole(response.data);
+      })
+      .catch(function (error) {
+        errorHandler(toast, error);
+      });
+  }
 
-async function getAttributes(roleID: string) {
-  return [];
-}
+  async function getAttributes() {
+    setAttributes([]);
+  }
 
-export default async function RolePage({ params }: { params: { role: string } }) {
-  let roleID = params.role
-  const role = await getRole(roleID);
-  const attributes = await getAttributes(roleID);
+  useEffect(() => {
+    getRole();
+    getAttributes();
+  }, [roleID]);
 
   return (
     <RoleTabs

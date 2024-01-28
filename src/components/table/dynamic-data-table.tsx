@@ -1,5 +1,11 @@
-"use client"
-
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -15,16 +21,6 @@ import {
   useReactTable,
 } from "@tanstack/react-table"
 import * as React from "react"
-
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table"
-
 import { DataTableDynamicPagination } from "./data-table-dynamic-pagination"
 import { DataTableToolbar, ToolbarProps, ToolbarSearchListProps } from "./data-table-toolbar"
 
